@@ -1,0 +1,115 @@
+:root {
+    --card-w: 180px;
+    --card-h: 240px;
+    --radius: 240px;
+    --perspective: 1500px;
+    --panel: #ffffff;
+    --bdr: #e5e7eb;
+    --shadow: 0 10px 25px rgba(0, 0, 0, .25);
+    --shadow-strong: 0 20px 40px rgba(0, 0, 0, .35);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    height: 100%;
+    margin: 0;
+}
+
+.portfolio {
+    font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
+    /* background: linear-gradient(180deg, #0b0e14 0%, #101522 100%); */
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+}
+
+.wrap {
+    width: min(1100px, 96vw);
+    height: min(720px, 88vh);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    user-select: none;
+    cursor: grab;
+}
+
+.wrap.dragging {
+    cursor: grabbing;
+}
+
+.stage {
+    position: relative;
+    perspective: var(--perspective);
+    perspective-origin: center;
+}
+
+.wheel {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: var(--card-w);
+    height: var(--card-h);
+    margin-left: calc(var(--card-w) / -2);
+    margin-top: calc(var(--card-h) / -2);
+    transform-style: preserve-3d;
+}
+
+.card {
+    position: absolute;
+    width: var(--card-w);
+    height: var(--card-h);
+    transform-style: preserve-3d;
+}
+
+.card-inner {
+    width: 100%;
+    height: 100%;
+    border-radius: 16px;
+    overflow: hidden;
+    background: var(--panel);
+    border: 1px solid var(--bdr);
+    box-shadow: var(--shadow);
+    backface-visibility: hidden;
+    transition: transform .3s ease, box-shadow .3s ease;
+}
+
+.card-inner:hover {
+    transform: scale(1.05);
+    box-shadow: var(--shadow-strong);
+    z-index: 10;
+}
+
+.card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    pointer-events: none;
+}
+
+.hud {
+    position: absolute;
+    left: 50%;
+    bottom: 16px;
+    transform: translateX(-50%);
+    font-size: 12px;
+    opacity: .75;
+    background: rgba(17, 24, 39, .55);
+    border: 1px solid rgba(148, 163, 184, .25);
+    padding: 8px 12px;
+    border-radius: 999px;
+    backdrop-filter: blur(6px);
+    color: #e5e7eb;
+}
+
+@media (max-width: 768px) {
+    :root {
+        --card-w: 140px;
+        --card-h: 190px;
+        --radius: 160px;
+    }
+}

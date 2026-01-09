@@ -1,0 +1,683 @@
+@import url('https://fonts.googleapis.com/css2?family=Balsamiq+Sans:wght@400;700&display=swap');
+*{
+
+    padding: 0;
+    margin: 0;
+    box-sizing: 0;
+    text-decoration: none;
+    list-style: none;
+    font-family: 'Balsamiq Sans', cursive;
+
+}
+
+html{
+
+    font-size: 62.5%;
+}
+
+::-webkit-scrollbar{
+
+    width: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+
+    background-color: #f46a06;
+    border-radius: 6px;
+}
+
+header{
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 10%;
+}
+
+header .logo span{
+
+    color: #f46a06;
+}
+
+.navbar{
+
+    display: flex;
+    align-items: center;
+}
+
+.navbar .numero{
+
+    margin-left: 90px;
+}
+
+.bar{
+
+    display: flex;
+}
+
+.bar li{
+
+    margin-left: 25px;
+}
+
+.bar li a{
+
+    font-size: 12px;
+    color: #f46a06;
+    text-transform: capitalize;
+}
+
+.numero{
+
+    background: #f46a06;
+    padding: 7px 30px;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+}
+
+
+/* PARTIE ACCEUIL */
+
+.acceuil{
+
+    padding: 0 10%;
+    min-height: 70vh;
+    display: flex;
+    align-items: center;
+
+}
+
+.texte{
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+
+.texte .gauche{
+
+    width: 40%;
+}
+
+.texte .gauche h1{
+
+    font-size: 30px;
+}
+
+.texte .gauche p{
+
+    color: #999;
+    margin-top: 10px
+}
+
+.bouton_gauche{
+
+    display: flex;
+    margin-top: 20px;
+}
+
+.bouton_gauche a {
+
+    padding: 10px 20px;
+    align-items: center;
+    font-size: 12px;
+
+}
+
+a {
+
+    display: flex;
+    
+}
+a img {
+
+    width: 20px;
+    margin-left: 5px;
+   
+}
+
+.bouton_gauche .btn_commander{
+
+    background-color: #f46a06;
+    color: #fff;
+}
+
+.bouton_gauche .btn_apprendreplus {
+
+    margin-left: 25px;
+    background: #fff;
+    color: #000;
+    box-shadow: 0 0 10px 0 rgba(0,0,0,0.1);
+}
+
+.texte .droit{
+
+    width: 45%;
+    height: 350px;
+}
+
+.texte .droit img {
+
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 20px;
+    box-shadow:  0 0 10px rgba(0,0,0,0.1);
+}
+
+/*   PARTIE STATISTIQUE   */
+
+
+.info-statistique {
+
+    background-color: #f46a06;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding: 50px 15%;
+}
+
+.info-statistique .boite {
+    text-align: center;
+}
+
+.info-statistique .boite p {
+    color: #fff;
+    font-size: 12px;
+}
+
+.info-statistique .boite h1 {
+    font-size: 25px;
+    color: #fff;
+}
+
+
+/*    PARTIE A PROPOS   */
+
+
+.a_propos {
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 50px 10%;
+}
+
+
+.a_propos .gauche {
+
+    width: 50%;
+}
+
+.a_propos .gauche  img {
+
+    height: 350px;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 20px;
+    box-shadow: 0 0 10px 0 rgba(0,0,0,0.1);
+}
+
+.a_propos .droit {
+
+    width: 40%;
+}
+
+.a_propos .droit h2 {
+
+    font-size: 25px;
+}
+
+.a_propos .droit p {
+
+    margin: 10px 0;
+    color: #999;
+}
+
+.a_propos .droit button {
+
+    padding: 8px 20px;
+    background-color: #f46a06;
+    border: 0;
+    
+}
+
+.a_propos .droit button a {
+
+    color: #fff;
+    display: flex;
+    align-items: center;
+}
+
+
+/*    PARTIE SERVICES   */
+
+.services {
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 30px 10%;
+}
+
+.services p {
+
+    font-size: 13px;
+    color: #555555;
+}
+
+.services .gauche {
+
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+}
+
+.texte {
+    padding: 10px 0;
+}
+
+.services .gauche h2 {
+
+    font-size: 25px;
+}
+
+.services .gauche .service {
+
+    display: flex;
+    align-items: center;
+}
+
+.services .gauche .service img {
+
+    width: 25px;
+}
+
+.services .gauche button {
+
+    margin-top: 20px;
+    width: fit-content;
+    padding: 10px 25px;
+    background-color: #f46a06;
+    border: 0;
+}
+
+.services .gauche button a {
+
+    color: #fff;
+    display: flex;
+    align-items: center;
+}
+
+.services .gauche .service p {
+
+    margin-left: 10px;
+}
+
+.services .droit {
+
+    width: 55%;
+    height: 500px;
+
+}
+
+.services .droit img {
+
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 20px;
+    box-shadow: 0 0 10px 0 rgba(0,0,0,0.1);
+}
+
+
+
+/*    PARTIE BANNIERE   */
+
+
+.banniere {
+
+    text-align: center;
+    margin: 50px 0;
+    background: linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)), url(./image/bg2.jpg);
+    background-position: center;
+    background-size: cover;
+    padding: 100px;
+}
+
+.banniere h1 {
+
+    color: #f46a06;
+    font-size: 30px
+}
+
+.banniere p {
+    font-size: 15px;
+    padding: 5px 0;
+    color: #fff;
+}
+
+
+
+
+
+/*    PARTIE PLAT   */
+
+
+.plat {
+
+    margin: 100px 0;
+}
+
+.plat .haut {
+
+    text-align: center;
+}
+
+.plat .haut h1 {
+
+    font-size: 30px;
+    padding: 15px 0;
+}
+
+.plat .haut p {
+
+    color: #555555;
+    font-size: 14px;
+    padding: 5px 0;
+}
+
+.plat .bas {
+
+  margin: 60px;
+  display: flex;
+  justify-content: space-between;
+
+}
+
+.plat .bas .boite {
+
+    text-align: center;
+    width: 30%;
+}
+
+.plat .bas .boite img {
+
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.plat .bas .boite h4 {
+
+    font-size: 20px;
+    margin: 10px 0;
+}
+
+.plat .bas .boite p {
+
+    margin: 5px 0;
+    font-size: 12px;
+    color: #999;
+}
+
+
+.plat .bas .boite span {
+
+    font-size: 25px;
+    color: #f46a06;
+}
+
+.plat .bas .boite button a img {
+
+    width: 20px;
+    height: 20px;
+    width:fit-content;
+}
+
+.plat .bas .boite button {
+
+    background-color: #f46a06;
+    border: 0;
+    margin-top: 10px;
+    width: 100%;
+    text-align: center;
+    padding: 5px ;
+    display: flex;
+}
+
+.plat .bas .boite button a {
+
+    color: #fff;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    margin:  0 auto;
+}
+
+
+
+/*    PARTIE FOOTER   */
+
+
+footer {
+
+    background-color: #f46a06;
+    color: #fff;
+    padding: 10px 0;
+    text-align: center;
+    font-size: 12px;
+}
+
+#icone_menu{
+
+    display: none;
+    font-size: 32px;
+    z-index: 10001;
+    cursor: pointer;
+    color:#f46a06;
+} 
+
+/*    PARTIE MEDIA QUARIES   */
+
+
+@media (max-width:739px) {
+
+    header {
+
+        padding: 10px 20px;
+    }
+
+    header .bar {
+
+
+        display: none;
+    }
+
+    .numero {
+
+
+        display: none;
+    }
+
+    .acceuil {
+
+
+        margin: 50px 0;
+        padding: 0 20px;
+    }
+
+    .acceuil .texte {
+
+
+        flex-direction: column-reverse;
+    }
+
+    .acceuil .texte .gauche {
+
+
+        width: 100%;
+        margin-top: 50px;
+    }
+
+    .acceuil .texte .droit {
+
+        width: 100%;
+
+    }
+
+    .info-statistique {
+
+
+        padding: 30px 20px;
+    }
+
+    .a_propos {
+
+        flex-direction: column-reverse;
+        padding: 50px 20px;
+    }
+
+    .a_propos .gauche {
+
+        margin-top: 50px;
+    }
+
+    .a_propos .gauche ,    .a_propos .droit {
+        width: 100%;
+    }
+
+    .services {
+
+        padding: 0 20px;
+        position: relative;
+        width: 100%;
+        margin: 100px 0;
+        background:linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7)),url(images/img2.jpg);
+        background-position: center;
+        background-size: cover;
+        min-height: 70vh;
+    }
+
+    .services  .droit {
+
+        display: none;
+    }
+
+    .services h2 {
+
+        color: #f46a06;
+    }
+
+    .services p {
+
+        color: #fff;
+    }
+
+    .services .gauche {
+
+        width: 100%;
+    }
+
+    .banniere {
+
+        padding: 100px 20px;
+    }
+
+    .banniere h1 {
+
+        font-size: 18px;
+    }
+
+    .banniere p {
+
+        font-size: 12px;
+    }
+
+    .plat .haut h1 {
+
+      font-size: 20px;
+
+    }
+
+    .plat .haut p {
+
+        display: none;
+    }
+
+    #icone_menu{
+
+        display: initial;
+    }
+
+    .bar.open{
+
+        top: 100%;
+    }
+
+}
+
+
+#icone_menu {
+    height: 50px;
+    width: 50px;
+    background-color: #fff;
+    position: fixed;
+    right: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 1000;
+    border-radius: 6px;
+}
+
+header .bar.responsive {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items:center;
+    justify-content: center;
+    background-color: rgba(255 255 255 /0.9);
+    backdrop-filter: blur(5px);
+    z-index: 50;
+
+}
+
+header .bar.responsive li {
+    margin: 20px 0;
+}
+header .bar.responsive li a {
+    font-size: 14px;
+}
+
+
+
+
+/* PARTIE PLAT*/
+
+@media (max-width:634px) {
+
+
+    .plat .bas {
+
+        flex-direction: column;
+    }
+
+    .plat .bas .boite {
+
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+
+}

@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Mon portfolio. </title>
+    <link rel="stylesheet" href="./style.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <!-- <link rel="stylesheet" href="./css/bootstrap.css"> -->
+    <link rel="stylesheet" href="portfolio.css">
+    <!-- <script>
+        // --------------------PARTIE FILTRE-------------------------
+
+            // Attendre que le DOM soit chargé avant d'exécuter le script
+            document.addEventListener('DOMContentLoaded', () => {
+
+                /** ---------------------------------
+                 *  Déclarations des sélecteurs DOM
+                 * ---------------------------------*/
+
+                // Boutons de filtre des projets (sauf les boutons de type "submit")
+                const project_button = document.querySelectorAll('.row-btn button:not([type=submit])');
+
+                // Cartes de projet à afficher/masquer selon le filtre
+                const card_project = document.querySelectorAll('.portfolio-box');
+
+                const projectSelection = (event) => {
+                    project_button.forEach(btn => {
+                        btn.classList.remove('selected-button'); // Supprime l'état actif de tous les boutons
+                    });
+                    event.target.classList.add('selected-button'); // Ajoute l'état actif au bouton cliqué
+
+
+
+                    const id = event.target.id; // Récupère l'identifiant du bouton cliqué
+
+                    card_project.forEach(card => {
+                        if (card.classList.contains(id)) {
+                            card.style.display = 'flex'; // Affiche les cartes correspondant au filtre
+                        } else {
+                            card.style.display = 'none'; // Masque les autres cartes
+                        }
+                    });
+
+                    // Si le bouton n'a pas d'identifiant (par exemple, "Tous"), afficher toutes les cartes
+                    if (id === '') {
+                        card_project.forEach(card => {
+                            card.style.display = 'flex';
+                        });
+                    }
+                };
+
+                // Ajouter un écouteur sur chaque bouton de filtre
+                project_button.forEach(btn => {
+                    btn.addEventListener('click', projectSelection);
+                });
+
+            });
+    </script> -->
+
+</head>
+
+<body>
+
+    <!--header -->
+
+    <header class="header">
+
+        <a href="#home" class="logo"><span>Mon</span> Portfolio.</a>
+
+        <i class='bx bx-menu' id="menu-icon"></i>
+
+        <nav class="navbar">
+            <a href="#acceuil" class="active">Acceuil</a>
+            <a href="#apropos">A propos</a>
+            <!-- <a href="#services">Service</a> -->
+            <a href="#parcours">Parcours</a>
+            <a href="#competence">Competence</a>
+            <a href="#portfolio">Portfolio</a>
+            <a href="#Contact">Contacts</a>
+        </nav>
+    </header>
+
+    <section class="acceuil" id="acceuil">
+        <div class="acceuil-content">
+            <h3>Salut,Moi c'est</h3>
+            <h1>Damiti !</h1>
+            <h3>Je suis un <span class="multiple-text"></span></h3>
+            <p>Bienvenue dans mon espace digital ou l'innovation et la passion rencontre pour créer des expérience;
+                Explorer mon univers Créatif à travers ce portfolio, ou chaque projet raconte une histoire unique.
+            </p>
+
+            <div class="social-media">
+
+                <a href="#"><i class='bx bxl-facebook'></i></a>
+                <a href="#"><i class='bx bxl-instagram'></i></a>
+                <a href="https://wa.me/2250713188565"><i class='bx bxl-whatsapp'></i></a>
+                <a href="https://www.snapchat.com/add/Dãm_ël"><i class='bx bxl-snapchat'></i></a>
+
+            </div>
+            <a href="./document/cv.pdf" class="btn">Télecharger mon CV</a>
+        </div>
+
+        <div class="acceuil-image">
+            <img src="./image/photo_portfoio-removebg-preview.png" alt="">
+        </div>
+    </section>
+
+    <!-------------------------------------A PROPOS-------------------------------------------->
+    
+    <section class="apropos" id="apropos">
+        <div class="apropos-img">
+            <img src="./image/photo_portfolio_apropos-removebg-preview.png" alt="">
+        </div>
+    
+        <div class="apropos-content">
+            <h2 class="entete">A propos <span>de moi</span></h2>
+            <h3>Developpeur Web</h3>
+            <p> Je suis Ouattara Damiti Elie Lindaye Eric , née le 22 juin 2005 à abobo.
+                Passionné par l’informatique et actuellement en Licence 3 d'études de sciences informatiques, je développe
+                progressivement mes compétences dans le domaine du développement web. Du côté Front-End, je
+                maîtrise HTML et CSS à un niveau intermédiaire, tout en consolidant mes bases en JavaScript. Côté
+                Back-End, je m’initie au PHP et à MySQL pour concevoir des applications dynamiques et interactives.
+    
+                J’explore également les LANGAGE C, PYTHON et JAVA ainsi que les concepts D'ALGORITHME, en cherchant
+                toujours à renforcer mes bases. Pour optimiser mes projets, j’intègre des outils tels que BOOTSTRAP, TAILWINDS afin
+                d’allier design et fonctionnalité.
+    
+                Curieux et motivé, je suis toujours à la recherche de nouvelles opportunités pour apprendre,
+                expérimenter et améliorer mes compétences.
+            </p>
+    
+        </div>
+    </section>
+
+    <!-- --------------------------------------------EDUCATION-------------------------------------- -->
+    
+    <!-- <section id="education" class="education">
+                <h2 class="entete">Mon <span>Parcours</span></h2>
+                <div class="education-container">
+                    <div class="education-box">
+                        <h5>2002 - 2006</h5>
+                        <span class="glyphicon glyphicon-education"></span>
+                        <h3>Collège Les Orchidées - Abidjan</h3>
+                        <h4>Diplôme de Baccaloréat D</h4>
+                        <div class="red-divider"></div>
+                        <p>Francais , Anglais</p>
+                        <p>Mathematique , Physique</p>
+                    </div>
+    
+                    <div class="education-box">
+                        <h5>2026</h5>
+                        <span class="glyphicon glyphicon-education"></span>
+                        <h3>Institut Des Technologie D'Abidjan (ITA 2 PLATEAUX) - Abidjan</h3>
+                        <h4>Diplôme de Licence En Science Informatique</h4>
+                        <div class="red-divider"></div>
+                        <p>HTML, CSS, Boostrap, Javascript, JQuery, Php, MySql, Angular </p>
+                        <p>Figma, Canva</p>
+                    </div>
+                </div> 
+            </div>
+        </div>
+    </section> -->
+    
+
+    <!---------------------------------------service---------------------------------------------->
+
+    <!-- <section class="services" id="services">
+        <h2 class="entete">Notre <span>Services</span></h2>
+
+        <div class="services-container">
+
+            <div class="services-box">
+                <i class='bx bx-code-alt'></i>
+                <h3>Developpement Web</h3>
+                <p>INTERMEDIAIRE</p>
+                <button class="btn"><a href="./service_dev.html">Voir plus</a></button>
+            </div>
+
+            <div class="services-box">
+                <i class='bx bxs-paint'></i>
+                <h3>Web Design</h3>
+                <p>INTERMEDIAIRE</p>
+                <button class="btn"><a href="./service_design.html">Voir plus</a></button>
+            </div>
+
+            
+        </div>
+    </section> -->
+
+
+    <!-- ------------------------------------EXPERIENCE PROFESSIONELLE-------------------------------- -->
+    
+    <section id="parcours" class="experience">
+        <div class="container">
+            <h2 class="entete">Mon <span>Parcours</span></h2>
+            <ul class="timeline">
+                <li>
+                    <div class="timeline-badge"><span class="glyphicon glyphicon-briefcase"><i
+                                class="fa-solid fa-briefcase"></i></span></div>
+                    <div class="timeline-panel-container">
+                        <div class="timeline-panel">
+                            <div class="timeline-heading">
+                                <h3>Baccaloréat D</h3>
+                                <h4>Collège Les Orchidées - Abidjan</h4>
+                                <p class="text-muted"><small class="glyphicon glyphicon-time"><i class="fa-duotone fa-regular fa-calendar-clock"></i></small> Annee</p>
+                            </div>
+                            <div class="timeline-body">
+                                <p>J'ai obtenu mon baccalauréat scientifique avec une spécialisation en mathématiques (ou
+                                    informatique et sciences du
+                                    numérique, selon ton cas), ce qui m’a permis de développer des compétences en logique,
+                                    en résolution de problèmes
+                                    complexes, ainsi qu'une base solide en programmation et en technologies numériques.</p>
+                                <!-- <p>Cette formation m'a également donné l'opportunité de travailler sur des projets de modélisation de données et de
+                                            découvrir les principes fondamentaux des systèmes informatiques.</p> -->
+                            </div>
+                        </div>
+                    </div>
+                </li>
+    
+    
+                <li>
+                    <div class="timeline-badge"><span class="glyphicon glyphicon-briefcase"><i
+                                class="fa-solid fa-briefcase"></i></span></div>
+                    <div class="timeline-panel-container-inverted">
+                        <div class="timeline-panel">
+                            <div class="timeline-heading">
+                                <h3>LICENCE 2</h3>
+                                <h4>Institut Des Technologie D'Abidjan (ITA 2 PLATEAUX) - Abidjan</h4>
+                                <p class="text-muted"><small class="glyphicon glyphicon-time"></small> 2024</p>
+                            </div>
+                            <div class="timeline-body">
+                                <p>Au cours de cette année, j'ai approfondi mes connaissances en développement web (HTML,
+                                    CSS, JavaScript), gestion des
+                                    bases de données (MySQL) et en algorithmique.</p>
+                                <!-- <p>J'ai participé à plusieurs projets pratiques, dont la création d'un site de gestion de contenu et la mise en place de
+                                            fonctionnalités dynamiques à l'aide de JavaScript.</p> -->
+                            </div>
+                        </div>
+                    </div>
+                </li>
+    
+    
+    
+                <li>
+                    <div class="timeline-badge"><span class="glyphicon glyphicon-briefcase"><i
+                                class="fa-solid fa-briefcase"></i></span></div>
+                    <div class="timeline-panel-container">
+                        <div class="timeline-panel">
+                            <div class="timeline-heading">
+                                <h3>LICENCE 3 (en cours)</h3>
+                                <h4>Institut Des Technologie D'Abidjan (ITA 2 PLATEAUX) - Abidjan</h4>
+                                <p class="text-muted"><small class="glyphicon glyphicon-time"></small> 2025</p>
+                            </div>
+                            <div class="timeline-body">
+                                <p>Actuellement en troisième année, je me concentre sur le développement full-stack
+                                    (React.js, Node.js), l'intégration
+                                    d'API, et la sécurisation des applications web.</p>
+                                <p>Je travaille sur un projet de fin d'études autour d'un système de gestion en ligne,
+                                    optimisé pour la performance et
+                                    l’interface utilisateur.</p>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    <!-------------------------------------------- competence -------------------------------------------->
+
+    <section class="competence" id="competence">
+        <div class="main-text">
+            <h2 class="entete">Mes <span>Competences</span></h2>
+        </div>
+
+        <div class="skill-main">
+            <div class="skill-left">
+                <h3>Competence Technique</h3>
+                <div class="skill-bar">
+                    <div class="info">
+                        <p>HTML</p>
+                        <p>90%</p>
+                    </div>
+                    <div class="bar">
+                        <span class="html"></span>
+                    </div>
+                </div>
+
+
+                <div class="skill-bar">
+                    <div class="info">
+                        <p>JAVASCRIPT </p>
+                        <p>70%</p>
+                    </div>
+                    <div class="bar">
+                        <span class="javascript"></span>
+                    </div>
+                </div>
+
+
+                <div class="skill-bar">
+                    <div class="info">
+                        <p>CSS / TAILWINDS</p>
+                        <p>80%</p>
+                    </div>
+                    <div class="bar">
+                        <span class="css"></span>
+                    </div>
+                </div>
+
+
+                <div class="skill-bar">
+                    <div class="info">
+                        <p>MySQL / PHP</p>
+                        <p>60%</p>
+                    </div>
+                    <div class="bar">
+                        <span class="angular"></span>
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="skill-right">
+                <h3> Competence Professionelle </h3>
+                <div class="professional">
+                    <div class="box">
+                        <div class="circle" data-dots="80" data-percent="90"></div>
+                        <div class="text">
+                            <big>90%</big>
+                            <small>Travailler de Groupe</small>
+                        </div>
+                    </div>
+
+                    <div class="box">
+                        <div class="circle" data-dots="80" data-percent="87"></div>
+                        <div class="text">
+                            <big>87%</big>
+                            <small>Créativité</small>
+                        </div>
+                    </div>
+
+                    <div class="box">
+                        <div class="circle" data-dots="80" data-percent="80"></div>
+                        <div class="text">
+                            <big>80%</big>
+                            <small>Communication</small>
+                        </div>
+                    </div>
+
+
+                    <div class="box">
+                        <div class="circle" data-dots="80" data-percent="75"></div>
+                        <div class="text">
+                            <big>75%</big>
+                            <small>Gestion de projet</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    
+
+    <!--------------------------------------portfolio-------------------------------------------->
+
+    <section class="portfolio" id="portfolio">
+        <h2 class="entete">Mes <span>Projets</span></h2>
+        <div class="wrap" id="wrap">
+            <div class="stage" id="stage">
+                <div class="wheel" id="wheel"></div>
+            </div>
+        
+        </div>
+        <!-- <div class="row-btn">
+            <button class="selected-button btn">Tous</button>
+            <button id="frontend" class="btn">Front-end</button>
+            <button id="fullstack" class="btn" >Fullstack</button>
+            
+        </div>
+        <div class="portfolio-container">
+            <div class="portfolio-box frontend">
+                <img src="./image/Capture d’écran_22-7-2025_25524_.jpeg" alt="">
+                <div class="portfolio-layer">
+                    <h4 style="font-weight: bold !important;">Developpement Web Front-end</h4>
+                    <p>Site pour une agence de voyage</p>
+                    <p style="font-weight: bold !important;"><strong style="color: var(--second-bg-color) !important;">LANGAGE
+                            UTILISE:</strong> <br> HTML et CSS</p>
+                    <a href="./page/autres_pages/PROJET HTML_CSS/index.html" target="_blank"><i class='bx bx-link-external'></i></a>
+                </div>
+            </div>
+            <div class="portfolio-box frontend">
+                <img src="./image/MIEL.jpeg" alt="">
+                <div class="portfolio-layer">
+                    <h4 style="font-weight: bold !important;">Developpement Web Front-end</h4>
+                    <p>Site vitrine pour la vente de miel d'une entreprise</p>
+                    <p style="font-weight: bold !important;"><strong>LANGAGE UTILISE:</strong> <br> HTML, CSS, JAVASCRIPT </p>
+                    <a href="./page/autres_pages/VENTE_MIEL/index.html" target="_blank"><i class='bx bx-link-external'></i></a>
+                </div>
+            </div> -->
+            <!-- <div class="portfolio-box fullstack">
+                <img src="" alt="">
+                <div class="portfolio-layer">
+                    <h4 style="font-weight: bold !important;">Developpement Web Front-end</h4>
+                    <p>Site vitrine pour la vente de miel d'une entreprise</p>
+                    <p style="font-weight: bold !important;"><strong>LANGAGE UTILISE:</strong> <br> HTML, CSS, JAVASCRIPT </p>
+                    <a href="./page/autres_pages/VENTE_MIEL/index.html" target="_blank"><i class='bx bx-link-external'></i></a>
+                </div>
+            </div>
+            <div class="portfolio-box fullstack">
+                <img src="./image/MIEL.jpeg" alt="">
+                <div class="portfolio-layer">
+                    <h4 style="font-weight: bold !important;">Developpement Web Front-end</h4>
+                    <p>Site vitrine pour la vente de miel d'une entreprise</p>
+                    <p style="font-weight: bold !important;"><strong>LANGAGE UTILISE:</strong> <br> HTML, CSS, JAVASCRIPT </p>
+                    <a href="./page/autres_pages/VENTE_MIEL/index.html" target="_blank"><i class='bx bx-link-external'></i></a>
+                </div>
+            </div>
+            <div class="portfolio-box webdesign">
+                <img src="./image/MIEL.jpeg" alt="">
+                <div class="portfolio-layer">
+                    <h4 style="font-weight: bold !important;">Developpement Web Front-end</h4>
+                    <p>Site vitrine pour la vente de miel d'une entreprise</p>
+                    <p style="font-weight: bold !important;"><strong>LANGAGE UTILISE:</strong> <br> HTML, CSS, JAVASCRIPT </p>
+                    <a href="./page/autres_pages/VENTE_MIEL/index.html" target="_blank"><i class='bx bx-link-external'></i></a>
+                </div>
+            </div> -->
+            <script src="./portfolio.js"></script>
+        </div>
+    </section>
+
+    <!---------------------------------Contact--------------------------------->
+
+    <section class="contact" id="Contact">
+        <h2 class="entete">Contactez <span>Moi !</span></h2>
+
+        <form action="" id="contactForm">
+            <div class="input-box">
+                <input type="text" placeholder="Nom complet" name="nom" id="nom" required>
+                <input type="email" placeholder="Adresse Email" name="email" id="email" required>
+            </div>
+            <div class="input-box">
+                <input type="tel" placeholder="Numero mobile" name="telephone" id="mobile" required>
+                <input type="text" placeholder="Sujet du Courriel" name="sujet" id="sujet" required>
+            </div>
+            <textarea name="message" cols="30" rows="10" placeholder="Votre message" id="message"></textarea>
+            <button type="submit" class="btn">Envoyer</button>
+        </form>
+    </section>
+
+    <!-------------------------------------footer----------------------------------->
+
+    <footer class="footer">
+        <div class="footer-text">
+            <p>&copy; 2025 par dam<span>el</span> - Tout droits réserver</p>
+        </div>
+
+        <div class="footer-iconTop">
+            <a href="#acceuil"><i class='bx bx-up-arrow-alt'></i></a>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/scrollreveal"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

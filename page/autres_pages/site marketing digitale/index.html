@@ -1,0 +1,631 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head><script src="https://static.readdy.ai/static/e.js"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Marketing Made Smarter - SaaS Platform</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com/3.4.16"></script>
+<script>tailwind.config={theme:{extend:{colors:{primary:'#8b5cf6',secondary:'#ec4899'},borderRadius:{'none':'0px','sm':'4px',DEFAULT:'8px','md':'12px','lg':'16px','xl':'20px','2xl':'24px','3xl':'32px','full':'9999px','button':'8px'}}}}</script>
+
+</head>
+<body class="bg-black text-white min-h-screen relative">
+
+<!-- Hero Section with Gradient Background -->
+<div class="relative min-h-screen overflow-hidden">
+<div class="absolute inset-0 z-0" style="background-image: url('https://readdy.ai/api/search-image?query=abstract%20digital%20fluid%20gradient%20wave%20with%20blue%2C%20purple%2C%20and%20magenta%20colors%20flowing%20like%20liquid%20on%20black%20background%2C%20elegant%20modern%20technology%20visualization%2C%20high%20resolution%2C%20no%20text%2C%20minimalist%20design&width=1920&height=1080&seq=hero123&orientation=landscape'); background-size: cover; background-position: center;"></div>
+<div class="absolute inset-0 bg-black bg-opacity-50 z-10"></div>
+<!-- Navigation -->
+<nav class="fixed w-full top-0 left-0 z-50 px-6 py-4">
+<div class="max-w-6xl mx-auto">
+<div class="bg-white/10 backdrop-blur-md rounded-full border border-white/10 shadow-lg shadow-black/5 px-6 py-3 flex items-center justify-between">
+<a href="#" class="flex items-center">
+<span class="text-2xl font-['Pacifico'] text-white">logo</span>
+</a>
+<div class="hidden md:flex-1 md:flex items-center justify-center space-x-8">
+<div class="flex items-center space-x-8">
+<a href="#" class="text-white hover:text-primary transition-all duration-300 relative after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-0 after:bg-primary hover:after:w-full after:transition-all after:duration-300">Home</a>
+<a href="#" class="text-white hover:text-primary transition-all duration-300 relative after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-0 after:bg-primary hover:after:w-full after:transition-all after:duration-300">Features</a>
+<a href="#" class="text-white hover:text-primary transition-all duration-300 relative after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-0 after:bg-primary hover:after:w-full after:transition-all after:duration-300">Pricing</a>
+<a href="#" class="text-white hover:text-primary transition-all duration-300 relative after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-0 after:bg-primary hover:after:w-full after:transition-all after:duration-300">About</a>
+<a href="#" class="text-white hover:text-primary transition-all duration-300 relative after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-0 after:bg-primary hover:after:w-full after:transition-all after:duration-300">Blogs</a>
+</div>
+</div>
+<a href="#" class="hidden md:inline-block px-8 py-2.5 bg-gradient-to-r from-primary/80 to-secondary/80 hover:from-primary hover:to-secondary rounded-full text-white font-medium transition-all duration-300 shadow-[0_0_20px_rgba(139,92,246,0.3)] hover:shadow-[0_0_25px_rgba(139,92,246,0.4)] hover:scale-105">Get Started</a>
+<button class="md:hidden w-10 h-10 flex items-center justify-center text-white">
+<i class="ri-menu-line ri-lg"></i>
+</button>
+</div>
+</div>
+</nav>
+
+
+
+<!-- Hero Content -->
+<div class="relative z-20 flex flex-col items-center justify-center px-6 py-24 text-center h-screen">
+<span class="text-primary font-medium mb-4">AI-POWERED MARKETING PLATFORM</span>
+<h1 class="text-5xl md:text-7xl font-bold mb-8 max-w-5xl leading-tight">Transform Your Marketing with <span class="gradient-text">Intelligent Automation</span></h1>
+<p class="text-xl md:text-2xl text-gray-200 mb-12 max-w-2xl">Scale your growth with AI-driven insights, personalized campaigns, and automated workflows that deliver results 10x faster.</p>
+<div class="flex flex-col sm:flex-row items-center gap-4">
+<a href="#" class="btn-hover bg-gradient-to-r from-[#6366f1] to-[#a855f7] text-white text-xl font-medium px-16 py-5 rounded-[100px] shadow-lg hover:shadow-xl transition-all duration-300 whitespace-nowrap">Start Free Trial</a>
+<a href="#" class="flex items-center gap-2 text-xl font-medium hover:text-primary transition-colors">
+<i class="ri-play-circle-line ri-xl"></i>
+Watch Demo
+</a>
+</div>
+<div class="flex items-center gap-8 mt-12">
+<div class="flex -space-x-4">
+<img src="https://readdy.ai/api/search-image?query=professional%20smiling%20young%20asian%20businesswoman%20headshot%20on%20clean%20white%20background%2C%20studio%20lighting&width=96&height=96&seq=user1&orientation=squarish" alt="User Avatar" class="w-12 h-12 rounded-full border-2 border-white">
+<img src="https://readdy.ai/api/search-image?query=professional%20confident%20african%20american%20businessman%20headshot%20on%20clean%20white%20background%2C%20studio%20lighting&width=96&height=96&seq=user2&orientation=squarish" alt="User Avatar" class="w-12 h-12 rounded-full border-2 border-white">
+<img src="https://readdy.ai/api/search-image?query=professional%20middle%20aged%20caucasian%20businesswoman%20headshot%20on%20clean%20white%20background%2C%20studio%20lighting&width=96&height=96&seq=user3&orientation=squarish" alt="User Avatar" class="w-12 h-12 rounded-full border-2 border-white">
+</div>
+<div class="flex items-center gap-2">
+<div class="flex items-center">
+<i class="ri-star-fill ri-sm text-yellow-400"></i>
+<i class="ri-star-fill ri-sm text-yellow-400"></i>
+<i class="ri-star-fill ri-sm text-yellow-400"></i>
+<i class="ri-star-fill ri-sm text-yellow-400"></i>
+<i class="ri-star-fill ri-sm text-yellow-400"></i>
+</div>
+<p class="text-gray-300">Trusted by 10,000+ marketing teams</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Features Section -->
+<section class="py-20 px-6 bg-black">
+<div class="max-w-7xl mx-auto">
+<div class="text-center mb-16">
+<h2 class="text-primary text-xl mb-3">Our Features</h2>
+<h3 class="text-4xl font-bold">Supercharge Your Productivity</h3>
+</div>
+<div class="grid md:grid-cols-2 gap-8">
+<!-- Feature 1: Live Chat -->
+<div class="bg-gray-900 rounded-xl p-8 card-hover">
+<h4 class="text-2xl font-bold mb-4">Live Chat</h4>
+<p class="text-gray-300 mb-6">Enhance customer experience with our 24/7 live chat feature. Get instant support, resolve queries quickly, and boost satisfaction with real-time assistance.</p>
+<div class="bg-gray-800 rounded-lg p-4 mb-6">
+<div class="chat-message flex items-start mb-4">
+<div class="w-8 h-8 rounded-full bg-gray-700 flex items-center justify-center mr-3">
+<i class="ri-user-line ri-sm"></i>
+</div>
+<div class="bg-gray-700 rounded-lg p-3 max-w-xs">
+<p class="text-sm">Hey! Could everything is going well?</p>
+<span class="text-xs text-gray-400">10:45 AM</span>
+</div>
+</div>
+<div class="chat-message flex items-start justify-end mb-4">
+<div class="bg-primary bg-opacity-30 rounded-lg p-3 max-w-xs">
+<p class="text-sm">Yes, all good! How may I assist you today?</p>
+<span class="text-xs text-gray-400">10:46 AM</span>
+</div>
+<div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center ml-3">
+<i class="ri-customer-service-line ri-sm"></i>
+</div>
+</div>
+</div>
+<a href="#" class="inline-flex items-center text-primary hover:text-secondary transition-colors">
+Explore Feature
+<i class="ri-arrow-right-line ri-sm ml-2"></i>
+</a>
+</div>
+<!-- Feature 2: Secured Payment -->
+<div class="bg-gray-900 rounded-xl p-8 card-hover">
+<h4 class="text-2xl font-bold mb-4">Secured Payment</h4>
+<p class="text-gray-300 mb-6">Fast and secure payment with our advanced payment feature. Safeguard transactions with advanced encryption, protecting your financial data and providing a safe, reliable payment experience.</p>
+<div class="bg-gray-800 rounded-lg p-4 mb-6">
+<div class="flex items-center justify-between mb-4">
+<div class="flex items-center">
+<div class="w-10 h-10 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 flex items-center justify-center mr-3">
+<i class="ri-secure-payment-line ri-lg"></i>
+</div>
+<div>
+<h5 class="font-medium">Payment Received</h5>
+<div class="flex items-center">
+<i class="ri-check-line ri-sm text-green-500 mr-1"></i>
+<span class="text-sm text-green-500">Verified</span>
+</div>
+</div>
+</div>
+<div class="w-8 h-8 flex items-center justify-center">
+<i class="ri-more-2-fill ri-lg"></i>
+</div>
+</div>
+<div class="bg-gray-700 rounded-lg p-3">
+<div class="flex items-center justify-between mb-2">
+<span class="text-sm text-gray-300">Amount</span>
+<span class="font-medium">$1,489.00</span>
+</div>
+<div class="flex items-center justify-between">
+<span class="text-sm text-gray-300">Date</span>
+<span class="text-sm">May 27, 2025</span>
+</div>
+</div>
+</div>
+<a href="#" class="inline-flex items-center text-primary hover:text-secondary transition-colors">
+Explore Feature
+<i class="ri-arrow-right-line ri-sm ml-2"></i>
+</a>
+</div>
+<!-- Feature 3: Receive Feedbacks -->
+<div class="bg-gray-900 rounded-xl p-8 card-hover">
+<h4 class="text-2xl font-bold mb-4">Receive Feedbacks</h4>
+<p class="text-gray-300 mb-6">Improve your service with our feedback feature. Collect real-time customer insights, identify areas for improvement, and enhance satisfaction by listening to what your users have to say.</p>
+<div class="bg-gray-800 rounded-lg p-4 mb-6">
+<div class="flex items-center mb-3">
+<i class="ri-double-quotes-l ri-2x text-primary mr-2"></i>
+</div>
+<p class="text-sm italic mb-3">"The marketing automation tools have completely transformed our workflow. We're saving at least 15 hours per week and seeing a 34% increase in engagement rates."</p>
+<div class="flex items-center">
+<div class="w-8 h-8 rounded-full bg-gray-700 flex items-center justify-center mr-3">
+<i class="ri-user-line ri-sm"></i>
+</div>
+<div>
+<p class="text-sm font-medium">Alexandra Reynolds</p>
+<p class="text-xs text-gray-400">Marketing Director, TechVision</p>
+</div>
+</div>
+</div>
+<a href="#" class="inline-flex items-center text-primary hover:text-secondary transition-colors">
+Explore Feature
+<i class="ri-arrow-right-line ri-sm ml-2"></i>
+</a>
+</div>
+<!-- Feature 4: Analytics Dashboard -->
+<div class="bg-gray-900 rounded-xl p-8 card-hover">
+<h4 class="text-2xl font-bold mb-4">Analytics Dashboard</h4>
+<p class="text-gray-300 mb-6">Gain powerful insights with our comprehensive analytics dashboard. Track performance metrics, visualize data trends, and make data-driven decisions to optimize your marketing strategies.</p>
+<div class="bg-gray-800 rounded-lg p-4 mb-6 h-48" id="analytics-chart"></div>
+<a href="#" class="inline-flex items-center text-primary hover:text-secondary transition-colors">
+Explore Feature
+<i class="ri-arrow-right-line ri-sm ml-2"></i>
+</a>
+</div>
+</div>
+</div>
+</section>
+
+
+<script id="stats-animation" src="./script.js"></script>
+
+
+<!-- Use Cases Section -->
+<section class="py-20 px-6 bg-gray-950">
+<div class="max-w-7xl mx-auto">
+<div class="text-center mb-16">
+<h2 class="text-primary text-xl mb-3">Use Cases</h2>
+<h3 class="text-4xl font-bold mb-6">See How Businesses Succeed</h3>
+<p class="text-gray-300 max-w-2xl mx-auto">Discover how companies across industries leverage our platform to achieve remarkable results and drive sustainable growth.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-16 mb-24">
+<div class="bg-gray-900 rounded-xl p-8 relative group">
+<div class="absolute -inset-4 bg-gradient-to-r from-primary/20 to-secondary/20 rounded-2xl blur-lg opacity-0 transition-opacity duration-300 group-hover:opacity-100"></div>
+<div class="relative flex items-center mb-8">
+<div class="w-14 h-14 rounded-full bg-primary/20 flex items-center justify-center mr-4 shadow-lg shadow-primary/20">
+<i class="ri-line-chart-line ri-2x text-primary"></i>
+</div>
+<div>
+<span class="text-primary text-sm font-medium">Success Metrics</span>
+<h4 class="text-2xl font-bold mt-1">Platform Impact</h4>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-6">
+<div>
+<div class="text-4xl font-bold mb-2">
+<span class="stat-number" data-target="93">0</span>%
+</div>
+<p class="text-gray-400">Customer Satisfaction Rate</p>
+</div>
+<div>
+<div class="text-4xl font-bold mb-2">
+$<span class="stat-number" data-target="2">0</span>M+
+</div>
+<p class="text-gray-400">Revenue Generated</p>
+</div>
+<div>
+<div class="text-4xl font-bold mb-2">
+<span class="stat-number" data-target="150">0</span>k+
+</div>
+<p class="text-gray-400">Active Users</p>
+</div>
+<div>
+<div class="text-4xl font-bold mb-2">
+<span class="stat-number" data-target="45">0</span>%
+</div>
+<p class="text-gray-400">Average ROI Increase</p>
+</div>
+</div>
+</div>
+<div class="bg-gray-900 rounded-xl p-8 relative group">
+<div class="absolute -inset-4 bg-gradient-to-r from-primary/20 to-secondary/20 rounded-2xl blur-lg opacity-0 transition-opacity duration-300 group-hover:opacity-100"></div>
+<div class="relative flex items-center gap-4 mb-8">
+<div class="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center">
+<i class="ri-trophy-line ri-xl text-primary"></i>
+</div>
+<div>
+<h4 class="text-xl font-bold">Industry Recognition</h4>
+<p class="text-sm text-gray-400">Awards & Achievements</p>
+</div>
+</div>
+<div class="space-y-6">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-xl bg-blue-500/10 flex items-center justify-center">
+<i class="ri-award-line ri-lg text-blue-500"></i>
+</div>
+<div>
+<h5 class="font-medium mb-1">Best SaaS Solution 2025</h5>
+<p class="text-sm text-gray-400">Global Tech Awards</p>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-xl bg-purple-500/10 flex items-center justify-center">
+<i class="ri-medal-line ri-lg text-purple-500"></i>
+</div>
+<div>
+<h5 class="font-medium mb-1">Innovation Excellence</h5>
+<p class="text-sm text-gray-400">MarTech Breakthrough Awards</p>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-xl bg-pink-500/10 flex items-center justify-center">
+<i class="ri-shield-star-line ri-lg text-pink-500"></i>
+</div>
+<div>
+<h5 class="font-medium mb-1">Customer Choice 2025</h5>
+<p class="text-sm text-gray-400">Industry Leaders Review</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="grid md:grid-cols-3 gap-12">
+<!-- Use Case 1 -->
+<div class="group bg-gray-900 rounded-xl overflow-hidden card-hover relative">
+<div class="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-gray-900 z-10 transition-all duration-300 group-hover:from-black/80 group-hover:via-black/60 group-hover:to-gray-900"></div>
+<div class="h-64 overflow-hidden transform group-hover:scale-105 transition-transform duration-500">
+<img src="https://readdy.ai/api/search-image?query=modern%20minimalist%20e-commerce%20workspace%20with%20sleek%20laptop%20displaying%20analytics%20dashboard%2C%20soft%20ambient%20lighting%2C%20contemporary%20office%20setup%20with%20clean%20white%20background%2C%20professional%20and%20sophisticated%20composition&width=600&height=400&seq=usecase1&orientation=landscape" alt="E-commerce Marketing" class="w-full h-full object-cover object-top brightness-75">
+</div>
+<div class="absolute bottom-0 left-0 right-0 p-6 z-20">
+<div class="flex items-center gap-3 mb-3">
+<div class="w-10 h-10 rounded-lg bg-blue-500/20 flex items-center justify-center">
+<i class="ri-shopping-bag-line ri-lg text-blue-500"></i>
+</div>
+<h4 class="text-xl font-bold">E-commerce Growth</h4>
+</div>
+<p class="text-gray-300 mb-4">An online retailer increased sales by 47% using our automated email campaigns and personalized product recommendations.</p>
+<div class="flex items-center text-blue-500">
+<span class="text-sm font-medium mr-2">Results:</span>
+<span class="text-sm">+47% Sales • +62% Engagement</span>
+</div>
+</div>
+</div>
+<!-- Use Case 2 -->
+<div class="group bg-gray-900 rounded-xl overflow-hidden card-hover relative">
+<div class="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-gray-900 z-10 transition-all duration-300 group-hover:from-black/80 group-hover:via-black/60 group-hover:to-gray-900"></div>
+<div class="h-64 overflow-hidden transform group-hover:scale-105 transition-transform duration-500">
+<img src="https://readdy.ai/api/search-image?query=modern%20tech%20workspace%20with%20elegant%20monitor%20displaying%20data%20visualization%2C%20contemporary%20minimalist%20office%20environment%2C%20clean%20white%20walls%2C%20organized%20desk%20arrangement%2C%20professional%20setting%20with%20sleek%20design%20elements&width=600&height=400&seq=usecase2&orientation=landscape" alt="SaaS Marketing" class="w-full h-full object-cover object-top brightness-75">
+</div>
+<div class="absolute bottom-0 left-0 right-0 p-6 z-20">
+<div class="flex items-center gap-3 mb-3">
+<div class="w-10 h-10 rounded-lg bg-purple-500/20 flex items-center justify-center">
+<i class="ri-rocket-line ri-lg text-purple-500"></i>
+</div>
+<h4 class="text-xl font-bold">SaaS Lead Generation</h4>
+</div>
+<p class="text-gray-300 mb-4">A B2B software company doubled qualified leads and reduced CAC by 28% with our integrated marketing tools.</p>
+<div class="flex items-center text-purple-500">
+<span class="text-sm font-medium mr-2">Results:</span>
+<span class="text-sm">+103% Leads • -28% CAC</span>
+</div>
+</div>
+</div>
+<!-- Use Case 3 -->
+<div class="group bg-gray-900 rounded-xl overflow-hidden card-hover relative">
+<div class="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-gray-900 z-10 transition-all duration-300 group-hover:from-black/80 group-hover:via-black/60 group-hover:to-gray-900"></div>
+<div class="h-64 overflow-hidden transform group-hover:scale-105 transition-transform duration-500">
+<img src="https://readdy.ai/api/search-image?query=contemporary%20marketing%20workspace%20with%20sleek%20presentation%20display%20showing%20analytics%2C%20modern%20minimalist%20office%20interior%2C%20clean%20organized%20desk%20setup%2C%20professional%20atmosphere%20with%20elegant%20design%20elements&width=600&height=400&seq=usecase3&orientation=landscape" alt="Agency Scaling" class="w-full h-full object-cover object-top brightness-75">
+</div>
+<div class="absolute bottom-0 left-0 right-0 p-6 z-20">
+<div class="flex items-center gap-3 mb-3">
+<div class="w-10 h-10 rounded-lg bg-pink-500/20 flex items-center justify-center">
+<i class="ri-line-chart-line ri-lg text-pink-500"></i>
+</div>
+<h4 class="text-xl font-bold">Agency Scaling</h4>
+</div>
+<p class="text-gray-300 mb-4">A marketing agency expanded client capacity by 35% without adding headcount using our workflow automation.</p>
+<div class="flex items-center text-pink-500">
+<span class="text-sm font-medium mr-2">Results:</span>
+<span class="text-sm">+35% Capacity • +41% Profit</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+
+<script id="stats-animation" src="./script.js"></script>
+
+
+<!-- Testimonials Section -->
+<section class="py-20 px-6 bg-black">
+<div class="max-w-7xl mx-auto">
+<div class="text-center mb-16">
+<h2 class="text-primary text-xl mb-3">Testimonials</h2>
+<h3 class="text-4xl font-bold mb-6">What Our Clients Say</h3>
+<p class="text-gray-300 max-w-2xl mx-auto">Hear from marketing professionals who have transformed their strategies with our platform.</p>
+</div>
+<div class="grid md:grid-cols-3 gap-12">
+<!-- Testimonial 1 -->
+<div class="bg-gray-900 rounded-xl p-8 card-hover flex flex-col">
+<div class="flex items-center mb-6">
+<i class="ri-star-fill ri-sm text-yellow-400"></i>
+<i class="ri-star-fill ri-sm text-yellow-400"></i>
+<i class="ri-star-fill ri-sm text-yellow-400"></i>
+<i class="ri-star-fill ri-sm text-yellow-400"></i>
+<i class="ri-star-fill ri-sm text-yellow-400"></i>
+</div>
+<p class="text-gray-300 italic flex-grow mb-6">"This platform has revolutionized our marketing operations. The automation features alone have saved us countless hours, and the analytics provide insights we never had access to before."</p>
+<div class="flex items-center h-[72px]">
+<div class="w-12 h-12 rounded-full bg-gray-700 flex items-center justify-center mr-4">
+<i class="ri-user-line ri-lg"></i>
+</div>
+<div>
+<p class="font-medium">Michael Thompson</p>
+<p class="text-sm text-gray-400">CMO, Elevate Solutions</p>
+</div>
+</div>
+</div>
+<!-- Testimonial 2 -->
+<div class="bg-gray-900 rounded-xl p-8 card-hover flex flex-col">
+<div class="flex items-center mb-6">
+<i class="ri-star-fill ri-sm text-yellow-400"></i>
+<i class="ri-star-fill ri-sm text-yellow-400"></i>
+<i class="ri-star-fill ri-sm text-yellow-400"></i>
+<i class="ri-star-fill ri-sm text-yellow-400"></i>
+<i class="ri-star-fill ri-sm text-yellow-400"></i>
+</div>
+<p class="text-gray-300 italic flex-grow mb-6">"The ROI we've seen since implementing this platform has been incredible. Our campaign performance improved by 78% in just three months, and the customer support team is always there when we need them."</p>
+<div class="flex items-center h-[72px]">
+<div class="w-12 h-12 rounded-full bg-gray-700 flex items-center justify-center mr-4">
+<i class="ri-user-line ri-lg"></i>
+</div>
+<div>
+<p class="font-medium">Samantha Wilson</p>
+<p class="text-sm text-gray-400">Marketing Director, NexGen Retail</p>
+</div>
+</div>
+</div>
+<!-- Testimonial 3 -->
+<div class="bg-gray-900 rounded-xl p-8 card-hover flex flex-col">
+<div class="flex items-center mb-6">
+<i class="ri-star-fill ri-sm text-yellow-400"></i>
+<i class="ri-star-fill ri-sm text-yellow-400"></i>
+<i class="ri-star-fill ri-sm text-yellow-400"></i>
+<i class="ri-star-fill ri-sm text-yellow-400"></i>
+<i class="ri-star-fill ri-sm text-yellow-400"></i>
+</div>
+<p class="text-gray-300 italic flex-grow mb-6">"As a small marketing team, we needed a solution that could help us compete with larger companies. This platform has leveled the playing field and allowed us to execute sophisticated campaigns that deliver real results."</p>
+<div class="flex items-center h-[72px]">
+<div class="w-12 h-12 rounded-full bg-gray-700 flex items-center justify-center mr-4">
+<i class="ri-user-line ri-lg"></i>
+</div>
+<div>
+<p class="font-medium">David Rodriguez</p>
+<p class="text-sm text-gray-400">Founder, Catalyst Marketing</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<scrip id="stats-animation" src="./script.js"></script>
+
+<!-- Pricing Section -->
+<!-- FAQ Section -->
+<section class="py-20 px-6 bg-black">
+<div class="max-w-3xl mx-auto">
+<div class="text-center mb-16">
+<h2 class="text-primary text-xl mb-3">FAQ</h2>
+<h3 class="text-4xl font-bold mb-6">Frequently Asked Questions</h3>
+<p class="text-gray-300">Find answers to common questions about our platform.</p>
+</div>
+<div class="space-y-4" id="faq-container">
+<!-- FAQ Item 1 -->
+<div class="border border-gray-800 rounded-lg overflow-hidden">
+<button class="faq-button w-full flex items-center justify-between p-6 text-left focus:outline-none">
+<span class="text-lg font-medium">How does the 14-day free trial work?</span>
+<i class="ri-add-line ri-lg faq-icon"></i>
+</button>
+<div class="faq-content hidden px-6 pb-6">
+<p class="text-gray-300">Our 14-day free trial gives you full access to all features of the Professional plan. No credit card is required to start, and you can cancel anytime. At the end of the trial, you can choose to upgrade to a paid plan or your account will automatically switch to our limited free plan.</p>
+</div>
+</div>
+<!-- FAQ Item 2 -->
+<div class="border border-gray-800 rounded-lg overflow-hidden">
+<button class="faq-button w-full flex items-center justify-between p-6 text-left focus:outline-none">
+<span class="text-lg font-medium">Can I change plans later?</span>
+<i class="ri-add-line ri-lg faq-icon"></i>
+</button>
+<div class="faq-content hidden px-6 pb-6">
+<p class="text-gray-300">Absolutely! You can upgrade, downgrade, or change your plan at any time. When upgrading, the new features will be immediately available. If you downgrade, the changes will take effect at the start of your next billing cycle.</p>
+</div>
+</div>
+<!-- FAQ Item 3 -->
+<div class="border border-gray-800 rounded-lg overflow-hidden">
+<button class="faq-button w-full flex items-center justify-between p-6 text-left focus:outline-none">
+<span class="text-lg font-medium">Do you offer custom solutions?</span>
+<i class="ri-add-line ri-lg faq-icon"></i>
+</button>
+<div class="faq-content hidden px-6 pb-6">
+<p class="text-gray-300">Yes, we offer custom solutions for businesses with specific needs. Our Enterprise plan includes custom integrations, and our team can work with you to develop tailored features. Contact our sales team to discuss your requirements and get a personalized quote.</p>
+</div>
+</div>
+<!-- FAQ Item 4 -->
+<div class="border border-gray-800 rounded-lg overflow-hidden">
+<button class="faq-button w-full flex items-center justify-between p-6 text-left focus:outline-none">
+<span class="text-lg font-medium">What kind of support do you provide?</span>
+<i class="ri-add-line ri-lg faq-icon"></i>
+</button>
+<div class="faq-content hidden px-6 pb-6">
+<p class="text-gray-300">We offer multiple support channels based on your plan. All customers receive email support with a 24-hour response time. Professional plans include live chat support during business hours, while Enterprise customers get 24/7 priority support and a dedicated account manager. We also maintain an extensive knowledge base and regular webinars.</p>
+</div>
+</div>
+<!-- FAQ Item 5 -->
+<div class="border border-gray-800 rounded-lg overflow-hidden">
+<button class="faq-button w-full flex items-center justify-between p-6 text-left focus:outline-none">
+<span class="text-lg font-medium">Is my data secure?</span>
+<i class="ri-add-line ri-lg faq-icon"></i>
+</button>
+<div class="faq-content hidden px-6 pb-6">
+<p class="text-gray-300">Security is our top priority. We use industry-standard encryption for all data, both in transit and at rest. Our platform is SOC 2 compliant and GDPR ready. We perform regular security audits and penetration testing to ensure your data remains protected. You can review our security practices in detail in our security whitepaper.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+
+<scrip id="stats-animation" src="./script.js"></script>
+
+<!-- CTA Section -->
+<section class="relative h-[400px] overflow-hidden rounded-3xl mx-auto max-w-7xl">
+<div class="absolute inset-0 bg-gradient-to-r from-pink-300 via-purple-300 to-blue-300"></div>
+<div class="absolute left-[10%] top-1/2 -translate-y-1/2 w-[40%] perspective-[1000px] flex items-center gap-4">
+<div class="w-2/3 relative z-0">
+<img src="https://public.readdy.ai/ai/img_res/98396f56-37d0-4c87-ace9-f7de22e11642.jpg" alt="Abstract Shape" class="w-full h-auto object-cover scale-150" style="animation: rotateClockwise 20s linear infinite;">
+</div>
+<div class="w-1/2 relative z-10 -ml-8">
+<img src="https://public.readdy.ai/ai/img_res/3cf1d9a4-5823-403b-b9da-7dcf837b7aea.jpg" alt="Abstract Shape 2" class="w-full h-auto object-cover" style="animation: rotateCounterClockwise 20s linear infinite;">
+</div>
+</div>
+<div class="absolute left-[55%] top-1/2 -translate-y-1/2 text-left">
+<h2 class="text-5xl font-bold text-gray-900 mb-8">Unlock unlimited<br>growth.</h2>
+<a href="#" class="inline-flex items-center bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 text-white font-medium px-12 py-4 rounded-[100px] hover:opacity-90 transition-opacity whitespace-nowrap text-xl">
+Get Started
+</a>
+</div>
+</section>
+<!-- Footer -->
+<footer class="bg-gray-950 py-16 px-6">
+<div class="max-w-7xl mx-auto">
+<div class="grid grid-cols-1 md:grid-cols-5 gap-8 mb-12">
+<div class="md:col-span-2">
+<a href="#" class="inline-block mb-6">
+<span class="text-3xl font-['Pacifico'] text-white">logo</span>
+</a>
+<p class="text-gray-400 mb-6 max-w-md">Powerful marketing automation platform that helps businesses grow through intelligent campaigns, analytics, and personalized customer experiences.</p>
+<div class="flex space-x-4">
+<a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-gray-400 hover:bg-primary hover:text-white transition-colors">
+<i class="ri-twitter-x-line ri-lg"></i>
+</a>
+<a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-gray-400 hover:bg-primary hover:text-white transition-colors">
+<i class="ri-linkedin-line ri-lg"></i>
+</a>
+<a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-gray-400 hover:bg-primary hover:text-white transition-colors">
+<i class="ri-facebook-line ri-lg"></i>
+</a>
+<a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-gray-400 hover:bg-primary hover:text-white transition-colors">
+<i class="ri-instagram-line ri-lg"></i>
+</a>
+</div>
+</div>
+<div>
+<h5 class="font-bold mb-6">Product</h5>
+<ul class="space-y-3">
+<li><a href="#" class="text-gray-400 hover:text-primary transition-colors">Features</a></li>
+<li><a href="#" class="text-gray-400 hover:text-primary transition-colors">Pricing</a></li>
+<li><a href="#" class="text-gray-400 hover:text-primary transition-colors">Integrations</a></li>
+<li><a href="#" class="text-gray-400 hover:text-primary transition-colors">Updates</a></li>
+<li><a href="#" class="text-gray-400 hover:text-primary transition-colors">Roadmap</a></li>
+</ul>
+</div>
+<div>
+<h5 class="font-bold mb-6">Company</h5>
+<ul class="space-y-3">
+<li><a href="#" class="text-gray-400 hover:text-primary transition-colors">About Us</a></li>
+<li><a href="#" class="text-gray-400 hover:text-primary transition-colors">Careers</a></li>
+<li><a href="#" class="text-gray-400 hover:text-primary transition-colors">Blog</a></li>
+<li><a href="#" class="text-gray-400 hover:text-primary transition-colors">Press</a></li>
+<li><a href="#" class="text-gray-400 hover:text-primary transition-colors">Contact</a></li>
+</ul>
+</div>
+<div>
+<h5 class="font-bold mb-6">Resources</h5>
+<ul class="space-y-3">
+<li><a href="#" class="text-gray-400 hover:text-primary transition-colors">Documentation</a></li>
+<li><a href="#" class="text-gray-400 hover:text-primary transition-colors">Help Center</a></li>
+<li><a href="#" class="text-gray-400 hover:text-primary transition-colors">Community</a></li>
+<li><a href="#" class="text-gray-400 hover:text-primary transition-colors">Webinars</a></li>
+<li><a href="#" class="text-gray-400 hover:text-primary transition-colors">Partners</a></li>
+</ul>
+</div>
+</div>
+<div class="pt-8 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center">
+<p class="text-gray-500 mb-4 md:mb-0">© 2025 Marketing Platform. All rights reserved.</p>
+<div class="flex flex-wrap gap-4">
+<a href="#" class="text-gray-500 hover:text-primary transition-colors">Terms of Service</a>
+<a href="#" class="text-gray-500 hover:text-primary transition-colors">Privacy Policy</a>
+<a href="#" class="text-gray-500 hover:text-primary transition-colors">Cookie Policy</a>
+</div>
+</div>
+</div>
+</footer>
+<!-- Chatbot Widget -->
+<div id="chatbot-container" class="fixed bottom-10 right-6 z-50">
+<!-- Chat Window -->
+<div id="chat-window" class="hidden chat-window bg-gray-900 w-[360px] h-[480px] rounded-2xl shadow-2xl flex flex-col mb-4 border border-gray-800 origin-bottom-right">
+<!-- Chat Header -->
+<div class="p-4 border-b border-gray-800 flex items-center justify-between">
+<div class="flex items-center">
+<div class="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center mr-3">
+<i class="ri-customer-service-2-line ri-lg text-primary"></i>
+</div>
+<div>
+<h4 class="font-medium">Chat Support</h4>
+<p class="text-sm text-gray-400">Online</p>
+</div>
+</div>
+<button id="close-chat" class="w-8 h-8 flex items-center justify-center rounded-full hover:bg-gray-800 transition-colors">
+<i class="ri-close-line ri-lg"></i>
+</button>
+</div>
+<!-- Chat Messages -->
+<div id="chat-messages" class="flex-1 overflow-y-auto p-4 space-y-4">
+<div class="chat-message-bot flex items-start">
+<div class="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center mr-3">
+<i class="ri-customer-service-2-line text-primary"></i>
+</div>
+<div class="bg-gray-800 rounded-lg rounded-tl-none p-3 max-w-[80%]">
+<p class="text-sm">Hello! 👋 How can I help you today?</p>
+</div>
+</div>
+</div>
+<!-- Chat Input -->
+<div class="p-4 border-t border-gray-800">
+<div class="flex items-center gap-2">
+<input type="text" id="chat-input" placeholder="Type your message..." class="flex-1 bg-gray-800 rounded-full px-4 py-2 text-sm focus:ring-2 focus:ring-primary/50 border-none">
+<button id="send-message" class="w-10 h-10 rounded-full bg-primary flex items-center justify-center hover:bg-primary/90 transition-colors">
+<i class="ri-send-plane-fill ri-sm"></i>
+</button>
+</div>
+</div>
+</div>
+<!-- Chatbot Button -->
+<button id="chatbot-button" class="chatbot-widget w-16 h-16 rounded-full bg-primary flex items-center justify-center shadow-lg hover:shadow-xl">
+<i class="ri-customer-service-2-line ri-2x text-white"></i>
+</button>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.5.0/echarts.min.js"></script>
+<script id="chart-script" src="./script.js"></script>
+<script id="faq-script" src="./script.js"></script>
+<script id="pricing-toggle-script" src="./script.js"></script>
+<scrip id="chatbot-script" src="./script.js"></script>
+<script src="./script.js"></script>
+<script src="https://static.readdy.ai/static/share.js"></script></body>
+</html>

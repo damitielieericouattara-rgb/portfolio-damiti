@@ -1,0 +1,130 @@
+* {
+
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    border: none;
+    scroll-behavior: smooth;
+    font-family: 'popins', sans-serif;
+}
+
+:root {
+
+    --bg-color: #fff;
+    --second-bg-color: #ded5d5;
+    --text-color: #000;
+    --main-color: #f26522;
+
+}
+
+html {
+
+    font-size: 62.5%;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+    scroll-padding-top: 7em;
+}
+
+/*Scrollbar CSS*/
+
+::-webkit-scrollbar {
+    width: 10px;
+    background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: var(--main-color);
+}
+
+body {
+
+    background: var(--bg-color);
+    color: var(--text-color);
+
+}
+
+span {
+
+    color: var(--main-color);
+} 
+
+section {
+    min-height: 100vh;
+    padding: 10rem 9% 2rem;
+}
+
+.entete {
+
+    text-align: center;
+    font-size: 4.5rem;
+}
+
+/* PARTIE CONTACT */
+
+.contact h2 {
+
+    margin-bottom: 3rem;
+}
+
+.contact form {
+
+    max-width: 70rem;
+    margin: 1rem auto;
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.contact form .input-box {
+
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.contact form .input-box input,
+.contact form textarea {
+
+    width: 100%;
+    padding: 1.5rem;
+    font-size: 1.6rem;
+    color: var(--text-color);
+    background: var(--second-bg-color);
+    border-radius: .8rem;
+    margin: .7rem 0;
+}
+
+.contact form .input-box input {
+
+    width: 49%;
+}
+
+.contact form textarea {
+
+    resize: none;
+}
+
+.contact form .btn {
+
+    margin-top: 2rem;
+    cursor: pointer;
+}
+
+.btn {
+
+    display: inline-block;
+    padding: 1rem 2.8rem;
+    background: var(--main-color);
+    border-radius: 4rem;
+    box-shadow: 0 0 1rem var(--main-color);
+    font-size: 1.6rem;
+    color: var(--second-bg-color);
+    letter-spacing: .1rem;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.btn:hover {
+
+    box-shadow: none;
+}
