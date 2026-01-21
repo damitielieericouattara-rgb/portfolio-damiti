@@ -11,7 +11,8 @@
 }
 
 a{
-    text-decoration: none  ;
+    text-decoration: none;
+    color: var(--main-color)  ;
 }
 :root{
 
@@ -358,7 +359,7 @@ span{
 
 /*----------------------------------- PARTIE NOS SERVICE --------------------------------------*/
 
-/* .services{
+.services{
     background: var(--bg-color)  ;
     border-radius: 10px  ;
 }
@@ -416,7 +417,7 @@ span{
 
     font-size: 1.6rem  ;
     margin: 1rem 0 3rem  ;
-} */
+}
 
 /* ---------------------------- PARTIE MES PARCOURS --------------------------------------
 
@@ -564,24 +565,29 @@ span{
 .skill-bar .bar .css {
 
     width: 80%  ;
-    animation: css 4s  ;
+    animation: css 3s  ;
 }
 
 .skill-bar .bar .html{
 
     width: 90%  ;
-    animation: html 5s  ;
+    animation: html 4s  ;
 }
 .skill-bar .bar .angular{
 
     width: 60%  ;
-    animation: angular 6s  ;
+    animation: angular 5s  ;
 }
-/* .skill-bar .bar .algo{
+.skill-bar .bar .algo{
 
-    width: 80%  ;
+    width: 79%  ;
     animation: algo 6s  ;
-} */
+}
+.skill-bar .bar .ia{
+
+    width: 84%  ;
+    animation: ia 7s  ;
+}
 
 @keyframes html {
     0%{
@@ -609,7 +615,7 @@ span{
 }
 
 
-/* @keyframes algo {
+@keyframes algo {
     0%{
 
         width: 0%  ;
@@ -617,9 +623,9 @@ span{
 
     100%{
 
-        width: 80%  ;
+        width: 79%  ;
     }
-} */
+}
 
 
 @keyframes css {
@@ -643,6 +649,18 @@ span{
     100%{
 
         width: 60%  ;
+    }
+}
+
+@keyframes ia {
+    0%{
+
+        width: 0%  ;
+    }
+
+    100%{
+
+        width: 84%  ;
     }
 }
 
