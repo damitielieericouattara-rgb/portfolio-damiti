@@ -36,8 +36,11 @@ window.onscroll = () => {
 
     });
 
-    let header = doceument.querySelector('header');
-    header.classList.toogle('sticky', window.scrollY > 100);
+    let header = document.querySelector('header');
+    header.classList.toggle('sticky', window.scrollY > 100);
+
+    // Animation au scroll - Déclenche les animations
+    revealOnScroll();
 };
 
 
@@ -112,27 +115,34 @@ circles.forEach(elem=>{
 //     window.location.href = "./index_portfolio.html#Contact";
 // }
 
-// Animation au scroll
-document.addEventListener("DOMContentLoaded", () => {
-    const sections = document.querySelectorAll("section");
-
-    const revealOnScroll = () => {
+// ============================================
+// Animation au scroll - Fonction améliorée
+// ============================================
+const revealOnScroll = () => {
     const triggerBottom = window.innerHeight * 0.85;
+    const allSections = document.querySelectorAll("section");
 
-    sections.forEach(section => {
-    const sectionTop = section.getBoundingClientRect().top;
-    if (sectionTop < triggerBottom) {
-        section.classList.add("visible");
-    }
+    allSections.forEach(section => {
+        const sectionTop = section.getBoundingClientRect().top;
+        if (sectionTop < triggerBottom) {
+            section.classList.add("visible");
+        }
     });
 };
 
-  // Lancer au chargement
-revealOnScroll();
-
-  // Lancer au scroll
-window.addEventListener("scroll", revealOnScroll);
+// Lancer au chargement de la page
+document.addEventListener("DOMContentLoaded", () => {
+    revealOnScroll();
+    
+    // Ajouter visible à la section accueil immédiatement
+    const accueilSection = document.querySelector('.acceuil');
+    if(accueilSection) {
+        accueilSection.classList.add('visible');
+    }
 });
+
+// Lancer au scroll
+window.addEventListener("scroll", revealOnScroll);
 
 
 
