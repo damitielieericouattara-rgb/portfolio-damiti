@@ -1242,43 +1242,72 @@ span{
 }
 
 /* PARTIE FOOTER */
-.footer{
-
+.footer {
     display: flex;
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
     padding: 2rem 9%;
     background: var(--bg-color);
+    
+    /* Animation initiale */
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
 }
 
-.footer-text p{
+.footer.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
 
+/* Animation des éléments internes du footer */
+.footer-text {
+    opacity: 0;
+    transform: translateX(-30px);
+    transition: opacity 0.6s ease 0.2s, transform 0.6s ease 0.2s;
+}
+
+.footer.visible .footer-text {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.footer-iconTop {
+    opacity: 0;
+    transform: translateX(30px);
+    transition: opacity 0.6s ease 0.3s, transform 0.6s ease 0.3s;
+}
+
+.footer.visible .footer-iconTop {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.footer-text p {
     font-size: 1.6rem;
-
 }
 
-.footer-iconTop a{
-
+.footer-iconTop a {
     display: inline-flex;
     justify-content: center;
     align-items: center;
     padding: .8rem;
     background: var(--main-color);
     border-radius: .8rem;
-    transition: .3s ease;
+    transition: all 0.3s ease;
 }
 
 .footer-iconTop a:hover {
-
     box-shadow: 0 0 1rem var(--main-color);
+    transform: translateY(-5px);
 }
 
-.footer-iconTop a i{
-
+.footer-iconTop a i {
     font-size: 2.4rem;
     color: var(--second-bg-color);
 }
+
 
 /* ----------------------------------------PARTIE MEDIA QUERRIES -----------------------------------------*/
 
@@ -1528,4 +1557,223 @@ span{
         width: 100%  ;
     }
 
+}
+
+
+/* ============================================
+   ANIMATIONS AU SCROLL - AMÉLIORÉES
+   ============================================ */
+
+/* Animation de base pour toutes les sections */
+section {
+    min-height: 100vh;
+    padding: 10rem 9% 2rem;
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+section.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Animation pour la section accueil - Toujours visible */
+.acceuil {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+}
+
+/* ============================================
+   ANIMATION DU FOOTER - CORRIGÉE
+   ============================================ */
+
+.footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 2rem 9%;
+    background: var(--bg-color);
+    
+    /* Animation initiale - CORRIGÉE */
+    opacity: 1; /* Changé de 0 à 1 pour être visible par défaut */
+    transform: translateY(30px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.footer.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Animation des éléments internes du footer */
+.footer-text {
+    opacity: 1; /* Changé pour être visible par défaut */
+    transform: translateX(-30px);
+    transition: opacity 0.6s ease 0.2s, transform 0.6s ease 0.2s;
+}
+
+.footer.visible .footer-text {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.footer-iconTop {
+    opacity: 1; /* Changé pour être visible par défaut */
+    transform: translateX(30px);
+    transition: opacity 0.6s ease 0.3s, transform 0.6s ease 0.3s;
+}
+
+.footer.visible .footer-iconTop {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.footer-text p {
+    font-size: 1.6rem;
+}
+
+.footer-iconTop a {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    padding: .8rem;
+    background: var(--main-color);
+    border-radius: .8rem;
+    transition: all 0.3s ease;
+}
+
+.footer-iconTop a:hover {
+    box-shadow: 0 0 1rem var(--main-color);
+    transform: translateY(-5px);
+}
+
+.footer-iconTop a i {
+    font-size: 2.4rem;
+    color: var(--second-bg-color);
+}
+
+/* ============================================
+   AMÉLIORATIONS DES AUTRES ANIMATIONS
+   ============================================ */
+
+/* Amélioration de l'animation des services */
+.services-container .services-box {
+    opacity: 0;
+    transform: translateY(50px) scale(0.95);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.services.visible .services-box:nth-child(1) {
+    animation: fadeInUpScale 0.8s ease forwards 0.2s;
+}
+
+.services.visible .services-box:nth-child(2) {
+    animation: fadeInUpScale 0.8s ease forwards 0.4s;
+}
+
+.services.visible .services-box:nth-child(3) {
+    animation: fadeInUpScale 0.8s ease forwards 0.6s;
+}
+
+@keyframes fadeInUpScale {
+    from {
+        opacity: 0;
+        transform: translateY(50px) scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* Animation améliorée pour le portfolio */
+.portfolio .wrap {
+    opacity: 0;
+    transform: scale(0.9) translateY(30px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.portfolio.visible .wrap {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+}
+
+/* Animation améliorée pour le formulaire de contact */
+.contact form {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.contact.visible form {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.2s;
+}
+
+.contact form .input-box:nth-child(1),
+.contact form .input-box:nth-child(2),
+.contact form textarea,
+.contact form .btn {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.contact.visible form .input-box:nth-child(1) {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.3s;
+}
+
+.contact.visible form .input-box:nth-child(2) {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.4s;
+}
+
+.contact.visible form textarea {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.5s;
+}
+
+.contact.visible form .btn {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.6s;
+}
+
+/* ============================================
+   RESPONSIVE - FOOTER
+   ============================================ */
+
+@media (max-width: 768px) {
+    .footer {
+        padding: 2rem 3%;
+    }
+}
+
+@media (max-width: 365px) {
+    .footer {
+        flex-direction: column-reverse;
+        text-align: center;
+    }
+
+    .footer p {
+        text-align: center;
+        margin-top: 2rem;
+    }
+    
+    .footer-text,
+    .footer-iconTop {
+        transform: translateY(20px);
+    }
+    
+    .footer.visible .footer-text,
+    .footer.visible .footer-iconTop {
+        transform: translateY(0);
+    }
 }
