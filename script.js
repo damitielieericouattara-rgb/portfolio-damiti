@@ -9,10 +9,6 @@ navbar.classList.toggle('active');
 
 };
 
-
-
-
-
 let sections = document.querySelectorAll('section');
 let navLinks = document.querySelectorAll('header nav a');
 
@@ -60,7 +56,7 @@ ScrollReveal().reveal('.home-content p, .about-content', { origin:'right'});
 
 const typed = new Typed('.multiple-text', {
 
-    strings:['Developpeur Fullstack', 'Web Designer', 'Etudiant en informatique'],
+    strings:['Developpeur Fullstack', 'Etudiant en informatique'],
     typeSpeed: 100,
     backSpeed: 100,
     backDelay: 1000,
@@ -93,28 +89,6 @@ circles.forEach(elem=>{
 
 })  
 
-// document.getElementById("openModal").addEventListener("click", function(){
-//     document.getElementById("modal").style.display="block";
-// });
-
-// document.getElementById(".close").addEventListener("click", function(){
-//     document.getElementById("modal").style.display="none";
-// });
-
-// window.onclick = function(event){
-//     let modal = document.getElementById("modal");
-//     if(event.target === modal){
-//         modal.style.display = "none";
-//     }
-// };
-
-
-
-// function contactService(service) {
-//     alert(`Merci pour votre intérêt pour le service "${service}".\nVous allez être redirigé vers la page de contact.`);
-//     window.location.href = "./index_portfolio.html#Contact";
-// }
-
 // ============================================
 // Animation au scroll - Fonction améliorée
 // ============================================
@@ -124,10 +98,25 @@ const revealOnScroll = () => {
 
     allSections.forEach(section => {
         const sectionTop = section.getBoundingClientRect().top;
+        
+        // Ajouter la classe visible quand la section entre dans la vue
         if (sectionTop < triggerBottom) {
             section.classList.add("visible");
         }
+        // Optionnel : retirer la classe quand la section sort de la vue (pour reset:true)
+        else {
+            section.classList.remove("visible");
+        }
     });
+
+    // Animation spéciale pour le footer
+    const footer = document.querySelector('.footer');
+    if (footer) {
+        const footerTop = footer.getBoundingClientRect().top;
+        if (footerTop < triggerBottom) {
+            footer.classList.add("visible");
+        }
+    }
 };
 
 // Lancer au chargement de la page
@@ -144,9 +133,29 @@ document.addEventListener("DOMContentLoaded", () => {
 // Lancer au scroll
 window.addEventListener("scroll", revealOnScroll);
 
+// Animation supplémentaire pour les éléments au scroll
+const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -100px 0px'
+};
 
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            // Optionnel : arrêter d'observer après l'animation
+            // observer.unobserve(entry.target);
+        }
+    });
+}, observerOptions);
 
-
+// Observer toutes les sections
+document.addEventListener('DOMContentLoaded', () => {
+    const sectionsToObserve = document.querySelectorAll('section');
+    sectionsToObserve.forEach(section => {
+        observer.observe(section);
+    });
+});
 
 document.getElementById("contactForm").addEventListener("submit", function(e) {
     e.preventDefault();
@@ -175,6 +184,6 @@ document.getElementById("contactForm").addEventListener("submit", function(e) {
 📝 Message : ${message}`;
 
     // Redirection vers WhatsApp
-    let url = `https://wa.me/${2250713188565}?text=${encodeURIComponent(text)}`;
+    let url = `https://wa.me/${numero}?text=${encodeURIComponent(text)}`;
     window.open(url, "_blank");
-    });
+});
