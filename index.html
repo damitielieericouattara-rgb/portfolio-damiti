@@ -10,56 +10,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
     <!-- <link rel="stylesheet" href="./css/bootstrap.css"> -->
     <link rel="stylesheet" href="portfolio.css">
-    <!-- <script>
-        // --------------------PARTIE FILTRE-------------------------
-
-            // Attendre que le DOM soit chargé avant d'exécuter le script
-            document.addEventListener('DOMContentLoaded', () => {
-
-                /** ---------------------------------
-                 *  Déclarations des sélecteurs DOM
-                 * ---------------------------------*/
-
-                // Boutons de filtre des projets (sauf les boutons de type "submit")
-                const project_button = document.querySelectorAll('.row-btn button:not([type=submit])');
-
-                // Cartes de projet à afficher/masquer selon le filtre
-                const card_project = document.querySelectorAll('.portfolio-box');
-
-                const projectSelection = (event) => {
-                    project_button.forEach(btn => {
-                        btn.classList.remove('selected-button'); // Supprime l'état actif de tous les boutons
-                    });
-                    event.target.classList.add('selected-button'); // Ajoute l'état actif au bouton cliqué
-
-
-
-                    const id = event.target.id; // Récupère l'identifiant du bouton cliqué
-
-                    card_project.forEach(card => {
-                        if (card.classList.contains(id)) {
-                            card.style.display = 'flex'; // Affiche les cartes correspondant au filtre
-                        } else {
-                            card.style.display = 'none'; // Masque les autres cartes
-                        }
-                    });
-
-                    // Si le bouton n'a pas d'identifiant (par exemple, "Tous"), afficher toutes les cartes
-                    if (id === '') {
-                        card_project.forEach(card => {
-                            card.style.display = 'flex';
-                        });
-                    }
-                };
-
-                // Ajouter un écouteur sur chaque bouton de filtre
-                project_button.forEach(btn => {
-                    btn.addEventListener('click', projectSelection);
-                });
-
-            });
-    </script> -->
-
 </head>
 
 <body>
@@ -225,10 +175,6 @@
     </div>
 </section>
     <!-------------------------------------A PROPOS-------------------------------------------->
-    
-    <!-- ========================================
-     SECTION À PROPOS - NOUVEAU DESIGN MODERNE
-     ======================================== -->
 
 <section class="apropos" id="apropos">
     <div class="apropos-container">
@@ -477,10 +423,6 @@
     
     <!---------------------------------------service---------------------------------------------->
 
-    <!-- ========================================
-     SECTION DIPLÔME - NOUVEAU DESIGN MODERNE
-     ======================================== -->
-
 <section class="services diplome" id="diplome">
     <div class="diplome-container">
         <!-- Header de la section -->
@@ -657,7 +599,7 @@
             </div>
         </div>
 
-        <!-- Timeline du parcours -->
+        <!-- Timeline du parcours
         <div class="parcours-timeline">
             <h3 class="timeline-title">
                 <i class='bx bx-time-five'></i>
@@ -703,7 +645,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
 
         <!-- Call to action -->
         <div class="diplome-cta">
@@ -726,91 +668,102 @@
 </section>
 
 
-    <!-- ------------------------------------EXPERIENCE PROFESSIONELLE-------------------------------- -->
+    <!-- ------------------------------------PARCOURS-------------------------------- -->
     
     <section id="parcours" class="experience">
-        <div class="container">
-            <h2 class="entete">Mon <span>Parcours</span></h2>
-            <ul class="timeline">
-                <li>
-                    <div class="timeline-badge"><span class="glyphicon glyphicon-briefcase"><i
-                                class="fa-solid fa-briefcase"></i></span></div>
-                    <div class="timeline-panel-container">
-                        <div class="timeline-panel">
-                            <div class="timeline-heading">
-                                <h3>Baccaloréat D</h3>
-                                <h4>Collège Les Orchidées - Abidjan</h4>
-                                <p class="text-muted"><small class="glyphicon glyphicon-time"><i class="fa-duotone fa-regular fa-calendar-clock"></i></small> Annee</p>
-                            </div>
-                            <div class="timeline-body">
-                                <p>J'ai obtenu mon baccalauréat scientifique avec une spécialisation en mathématiques (ou
-                                    informatique et sciences du
-                                    numérique, selon ton cas), ce qui m’a permis de développer des compétences en logique,
-                                    en résolution de problèmes
-                                    complexes, ainsi qu'une base solide en programmation et en technologies numériques.</p>
-                                <!-- <p>Cette formation m'a également donné l'opportunité de travailler sur des projets de modélisation de données et de
-                                            découvrir les principes fondamentaux des systèmes informatiques.</p> -->
-                            </div>
+        <h2 class="entete">Mon <span>Parcours</span></h2>
+        
+        <ul class="timeline">
+            <!-- Baccalauréat -->
+            <li>
+                <div class="timeline-badge">
+                    <span class="glyphicon glyphicon-briefcase">
+                        <i class="fa-solid fa-briefcase"></i>
+                    </span>
+                </div>
+                <div class="timeline-panel-container">
+                    <div class="timeline-panel">
+                        <div class="timeline-heading">
+                            <h3>Baccalauréat D</h3>
+                            <h4>Collège Les Orchidées - Abidjan</h4>
+                            <p class="text-muted">
+                                <i class="fa-regular fa-calendar"></i>
+                                2023
+                            </p>
+                        </div>
+                        <div class="timeline-body">
+                            <p>
+                                J'ai obtenu mon baccalauréat scientifique avec une spécialisation en mathématiques, 
+                                ce qui m'a permis de développer des compétences en logique, en résolution de problèmes 
+                                complexes, ainsi qu'une base solide en programmation et en technologies numériques.
+                            </p>
                         </div>
                     </div>
-                </li>
-    
-    
-                <li>
-                    <div class="timeline-badge"><span class="glyphicon glyphicon-briefcase"><i
-                                class="fa-solid fa-briefcase"></i></span></div>
-                    <div class="timeline-panel-container-inverted">
-                        <div class="timeline-panel">
-                            <div class="timeline-heading">
-                                <h3>LICENCE 1</h3>
-                                <h4>Institut Des Technologie D'Abidjan (ITA 2 PLATEAUX) - Abidjan</h4>
-                                <p class="text-muted"><small class="glyphicon glyphicon-time"></small>2023-2024</p>
-                            </div>
-                            <div class="timeline-body">
-                                <p>Au cours de cette année, j'ai approfondi mes connaissances en développement web (HTML,
-                                    CSS, JavaScript), gestion des
-                                    bases de données (MySQL) et en algorithmique.</p>
-                                <!-- <p>J'ai participé à plusieurs projets pratiques, dont la création d'un site de gestion de contenu et la mise en place de
-                                            fonctionnalités dynamiques à l'aide de JavaScript.</p> -->
-                            </div>
-                            <!-- <br>
-                            <br>
-                            <div class="timeline-heading">
-                                <h3>DIPLOME ACQUIS</h3>
-                                <br>
-                                <h2><a href="./document/CERTIFICAT DE FORMATION SI 1.pdf">- CERTIFICAT DE FORMATION (cliquez pour voir ! )</a></h2>
-                                <h2><a href="">- BULLETIN DE FIN DE SEMESTRE</a></h2>
+                </div>
+            </li>
 
-                            </div> -->
+            <!-- Licence 1 -->
+            <li>
+                <div class="timeline-badge">
+                    <span class="glyphicon glyphicon-briefcase">
+                        <i class="fa-solid fa-briefcase"></i>
+                    </span>
+                </div>
+                <div class="timeline-panel-container-inverted">
+                    <div class="timeline-panel">
+                        <div class="timeline-heading">
+                            <h3>LICENCE 1</h3>
+                            <h4>Institut Des Technologies D'Abidjan (ITA 2 PLATEAUX) - Abidjan</h4>
+                            <p class="text-muted">
+                                <i class="fa-regular fa-calendar"></i>
+                                2023-2024
+                            </p>
+                        </div>
+                        <div class="timeline-body">
+                            <p>
+                                Au cours de cette année, j'ai approfondi mes connaissances en développement web 
+                                (HTML, CSS, JavaScript), gestion des bases de données (MySQL) et en algorithmique.
+                            </p>
+                            <p>
+                                J'ai participé à plusieurs projets pratiques, dont la création d'un site de gestion 
+                                de contenu et la mise en place de fonctionnalités dynamiques à l'aide de JavaScript.
+                            </p>
                         </div>
                     </div>
-                </li>
-    
-    
-    
-                <li>
-                    <div class="timeline-badge"><span class="glyphicon glyphicon-briefcase"><i
-                                class="fa-solid fa-briefcase"></i></span></div>
-                    <div class="timeline-panel-container">
-                        <div class="timeline-panel">
-                            <div class="timeline-heading">
-                                <h3>LICENCE 3 (en cours)</h3>
-                                <h4>Institut Des Technologie D'Abidjan (ITA 2 PLATEAUX) - Abidjan</h4>
-                                <p class="text-muted"><small class="glyphicon glyphicon-time"></small> 2025-2026</p>
-                            </div>
-                            <div class="timeline-body">
-                                <p>Actuellement en troisième année, je me concentre sur le développement full-stack
-                                    (React.js, Node.js), l'intégration
-                                    d'API, et la sécurisation des applications web.</p>
-                                <p>Je travaille sur un projet de fin d'études autour d'un système de gestion en ligne,
-                                    optimisé pour la performance et
-                                    l’interface utilisateur.</p>
-                            </div>
+                </div>
+            </li>
+
+            <!-- Licence 3 -->
+            <li>
+                <div class="timeline-badge">
+                    <span class="glyphicon glyphicon-briefcase">
+                        <i class="fa-solid fa-briefcase"></i>
+                    </span>
+                </div>
+                <div class="timeline-panel-container">
+                    <div class="timeline-panel">
+                        <div class="timeline-heading">
+                            <h3>LICENCE 3 (en cours)</h3>
+                            <h4>Institut Des Technologies D'Abidjan (ITA 2 PLATEAUX) - Abidjan</h4>
+                            <p class="text-muted">
+                                <i class="fa-regular fa-calendar"></i>
+                                2025-2026
+                            </p>
+                        </div>
+                        <div class="timeline-body">
+                            <p>
+                                Actuellement en troisième année, je me concentre sur le développement full-stack 
+                                (React.js, Node.js), l'intégration d'API, et la sécurisation des applications web.
+                            </p>
+                            <p>
+                                Je travaille sur un projet de fin d'études autour d'un système de gestion en ligne, 
+                                optimisé pour la performance et l'interface utilisateur.
+                            </p>
                         </div>
                     </div>
-                </li>
-            </ul>
-        </div>
+                </div>
+            </li>
+        </ul>
     </section>
 
     <!-------------------------------------------- competence -------------------------------------------->
@@ -987,6 +940,7 @@
 
     <section class="contact" id="Contact">
         <h2 class="entete">Contactez <span>Moi !</span></h2>
+        <p class="contact-subtitle">N'hésitez pas à me contacter pour toute opportunité ou collaboration</p>
 
         <form action="" id="contactForm">
             <div class="input-box">
@@ -994,12 +948,33 @@
                 <input type="email" placeholder="Adresse Email" name="email" id="email" required>
             </div>
             <div class="input-box">
-                <input type="tel" placeholder="Numero mobile" name="telephone" id="mobile" required>
+                <input type="tel" placeholder="Numéro mobile" name="telephone" id="mobile" required>
                 <input type="text" placeholder="Sujet du Courriel" name="sujet" id="sujet" required>
             </div>
-            <textarea name="message" cols="30" rows="10" placeholder="Votre message" id="message"></textarea>
-            <button type="submit" class="btn">Envoyer</button>
+            <textarea name="message" cols="30" rows="10" placeholder="Votre message" id="message" required></textarea>
+            <button type="submit" class="btn">Envoyer le message</button>
         </form>
+
+        <!-- Informations de contact supplémentaires -->
+        <div class="contact-info">
+            <div class="info-card">
+                <i class='bx bx-envelope'></i>
+                <h3>Email</h3>
+                <p><a href="mailto:damiti.ouattara@example.com">damitielieericouattara@gmail.com</a></p>
+            </div>
+
+            <div class="info-card">
+                <i class='bx bx-phone'></i>
+                <h3>Téléphone</h3>
+                <p><a href="tel:+2250713188565">+225 07 13 18 85 65</a></p>
+            </div>
+
+            <div class="info-card">
+                <i class='bx bx-map'></i>
+                <h3>Localisation</h3>
+                <p>Abobo, Abidjan, Côte d'Ivoire</p>
+            </div>
+        </div>
     </section>
 
     <!-------------------------------------footer----------------------------------->
