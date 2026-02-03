@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="./style.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-    <!-- <link rel="stylesheet" href="./css/bootstrap.css"> -->
     <link rel="stylesheet" href="portfolio.css">
 </head>
 
@@ -163,15 +162,8 @@
             </div>
         </div>
     </div>
+</section>
 
-    <!-- Scroll indicator
-    <div class="scroll-indicator">
-        <div class="mouse">
-            <div class="wheel"></div>
-        </div>
-        <span>Scroll Down</span>
-    </div>
-</section> -->
     <!-------------------------------------A PROPOS-------------------------------------------->
 
 <section class="apropos" id="apropos">
@@ -390,37 +382,7 @@
     </div>
 </section>
 
-    <!-- --------------------------------------------EDUCATION-------------------------------------- -->
     
-    <!-- <section id="education" class="education">
-                <h2 class="entete">Mon <span>Parcours</span></h2>
-                <div class="education-container">
-                    <div class="education-box">
-                        <h5>2002 - 2006</h5>
-                        <span class="glyphicon glyphicon-education"></span>
-                        <h3>Collège Les Orchidées - Abidjan</h3>
-                        <h4>Diplôme de Baccaloréat D</h4>
-                        <div class="red-divider"></div>
-                        <p>Francais , Anglais</p>
-                        <p>Mathematique , Physique</p>
-                    </div>
-    
-                    <div class="education-box">
-                        <h5>2026</h5>
-                        <span class="glyphicon glyphicon-education"></span>
-                        <h3>Institut Des Technologie D'Abidjan (ITA 2 PLATEAUX) - Abidjan</h3>
-                        <h4>Diplôme de Licence En Science Informatique</h4>
-                        <div class="red-divider"></div>
-                        <p>HTML, CSS, Boostrap, Javascript, JQuery, Php, MySql, Angular </p>
-                        <p>Figma, Canva</p>
-                    </div>
-                </div> 
-            </div>
-        </div>
-    </section> -->
-    
-    <!---------------------------------------service---------------------------------------------->
-
 <section class="services diplome" id="diplome">
     <div class="diplome-container">
         <!-- Header de la section -->
@@ -596,54 +558,6 @@
                 </a>
             </div>
         </div>
-
-        <!-- Timeline du parcours
-        <div class="parcours-timeline">
-            <h3 class="timeline-title">
-                <i class='bx bx-time-five'></i>
-                Mon Parcours en Bref
-            </h3>
-            
-            <div class="timeline-wrapper">
-                <div class="timeline-line"></div>
-                
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <span class="timeline-year">2023</span>
-                        <h4>Baccalauréat D</h4>
-                        <p>Collège Les Orchidées - Série Sciences</p>
-                    </div>
-                </div>
-
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <span class="timeline-year">2023-2024</span>
-                        <h4>Licence 1 - Sciences Informatiques</h4>
-                        <p>Institut des Technologies d'Abidjan</p>
-                    </div>
-                </div>
-
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <span class="timeline-year">2024-2025</span>
-                        <h4>Licence 2 - Sciences Informatiques</h4>
-                        <p>Développement et Frameworks</p>
-                    </div>
-                </div>
-
-                <div class="timeline-item active">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <span class="timeline-year">2025-2026</span>
-                        <h4>Licence 3 - En cours</h4>
-                        <p>Spécialisation Full-Stack</p>
-                    </div>
-                </div>
-            </div>
-        </div> -->
 
         <!-- Call to action -->
         <div class="diplome-cta">
@@ -879,7 +793,7 @@
         </div>
     </section>
 
-    <!--------------------------------------SECTION PORTFOLIO AMÉLIORÉE-------------------------------------------->
+    <!--------------------------------------SECTION PORTFOLIO CORRIGÉE-------------------------------------------->
 
 <section class="portfolio" id="portfolio">
     <h2 class="entete">Mes <span>Projets</span></h2>
@@ -916,7 +830,7 @@
         </button>
     </div>
 
-    <!-- Carousel 3D -->
+    <!-- Carousel 3D CORRIGÉ -->
     <div class="wrap" id="wrap">
         <div class="stage" id="stage">
             <div class="wheel" id="wheel"></div>
@@ -934,23 +848,41 @@
     <script src="./portfolio.js"></script>
 </section>
 
-    <!---------------------------------Contact--------------------------------->
+    <!---------------------------------Contact CORRIGÉ--------------------------------->
 
     <section class="contact" id="Contact">
         <h2 class="entete">Contactez <span>Moi !</span></h2>
         <p class="contact-subtitle">N'hésitez pas à me contacter pour toute opportunité ou collaboration</p>
 
-        <form action="" id="contactForm">
+        <form action="" id="contactForm" novalidate>
             <div class="input-box">
-                <input type="text" placeholder="Nom complet" name="nom" id="nom" required>
-                <input type="email" placeholder="Adresse Email" name="email" id="email" required>
+                <div class="input-group">
+                    <input type="text" placeholder="Nom complet" name="nom" id="nom" required minlength="2">
+                    <span class="error-message" id="nom-error"></span>
+                </div>
+                <div class="input-group">
+                    <input type="email" placeholder="Adresse Email" name="email" id="email" required>
+                    <span class="error-message" id="email-error"></span>
+                </div>
             </div>
             <div class="input-box">
-                <input type="tel" placeholder="Numéro mobile" name="telephone" id="mobile" required>
-                <input type="text" placeholder="Sujet du Courriel" name="sujet" id="sujet" required>
+                <div class="input-group">
+                    <input type="tel" placeholder="Numéro mobile" name="telephone" id="mobile" required pattern="[0-9]{8,15}">
+                    <span class="error-message" id="mobile-error"></span>
+                </div>
+                <div class="input-group">
+                    <input type="text" placeholder="Sujet du Courriel" name="sujet" id="sujet" required minlength="3">
+                    <span class="error-message" id="sujet-error"></span>
+                </div>
             </div>
-            <textarea name="message" cols="30" rows="10" placeholder="Votre message" id="message" required></textarea>
-            <button type="submit" class="btn">Envoyer le message</button>
+            <div class="input-group">
+                <textarea name="message" cols="30" rows="10" placeholder="Votre message" id="message" required minlength="10"></textarea>
+                <span class="error-message" id="message-error"></span>
+            </div>
+            <button type="submit" class="btn">
+                <i class='bx bx-send'></i>
+                Envoyer le message
+            </button>
         </form>
 
         <!-- Informations de contact supplémentaires -->
@@ -958,7 +890,7 @@
             <div class="info-card">
                 <i class='bx bx-envelope'></i>
                 <h3>Email</h3>
-                <p><a href="mailto:damiti.ouattara@example.com">damitielieericouattara@gmail.com</a></p>
+                <p><a href="mailto:damitielieericouattara@gmail.com">damitielieericouattara@gmail.com</a></p>
             </div>
 
             <div class="info-card">

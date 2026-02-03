@@ -437,7 +437,7 @@ strong{
     align-items: center;
     justify-content: space-between;
     gap: 5rem;
-    max-width: 1400px;
+    max-width: 2000px;
     margin: 0 auto;
     padding: 0 9%;
     position: relative;
@@ -991,7 +991,7 @@ strong{
     }
 }
 
-.mouse {
+/* .mouse {
     width: 25px;
     height: 40px;
     border: 2px solid var(--main-color);
@@ -1020,7 +1020,7 @@ strong{
         top: 24px;
         opacity: 0;
     }
-}
+} */
 
 .scroll-indicator span {
     font-size: 1.2rem;
@@ -2703,314 +2703,133 @@ strong{
 /* ------------------------- PARTIE PARCOURS--------------------------- */
 
 .experience {
-            background: var(--bg-color);
-            padding: 10rem 9% 5rem;
-            position: relative;
-            overflow: hidden;
-        }
 
-        .experience::before {
-            content: '';
-            position: absolute;
-            top: -200px;
-            right: -200px;
-            width: 600px;
-            height: 600px;
-            background: radial-gradient(circle, rgba(0, 238, 255, 0.05) 0%, transparent 70%);
-            border-radius: 50%;
-        }
+    background: var(--bg-color)  ;
+    padding: 30px  ;
 
-        .experience h2 {
-            margin-bottom: 5rem;
-        }
+}
 
-        .glyphicon-briefcase {
-            color: var(--text-color);
-        }
+.glyphicon-briefcase {
+    color: var(--text-color)  ;
+}
 
-        /* Container principal de la timeline */
-        .timeline {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 4rem 2rem;
-            position: relative;
-        }
+.experience h2 {
+    margin-bottom: 5rem  ;
+}
 
-        /* Ligne centrale moderne avec gradient */
-        .timeline::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            left: 50%;
-            width: 3px;
-            background: linear-gradient(180deg, 
-                transparent 0%, 
-                var(--main-color) 10%, 
-                var(--main-color) 90%, 
-                transparent 100%);
-            margin-left: -1.5px;
-            box-shadow: 0 0 10px rgba(0, 238, 255, 0.5);
-        }
+.timeline {
+    padding: 30px  ;
+    position: relative  ;
+}
 
-        .timeline > li {
-            margin-bottom: 6rem;
-            position: relative;
-            list-style: none;
-        }
+.timeline::before {
+    top: 0  ;
+    bottom: 0  ;
+    position: absolute  ;
+    content: " "  ;
+    width: 5px  ;
+    background: var(--main-color)  ;
+    left: 50%  ;
+    margin-left: -2.5px  ;
+}
 
-        .timeline > li::after {
-            clear: both;
-        }
+.timeline>li {
 
-        .timeline > li::before,
-        .timeline > li::after {
-            content: " ";
-            display: table;
-        }
+    margin-bottom: 20px  ;
+    position: relative  ;
+}
 
-        /* Badge amélioré avec animations */
-        .timeline li .timeline-badge {
-            width: 70px;
-            height: 70px;
-            line-height: 70px;
-            font-size: 3rem;
-            text-align: center;
-            position: absolute;
-            top: 30px;
-            left: 50%;
-            margin-left: -35px;
-            background: var(--bg-color);
-            border-radius: 50%;
-            border: 4px solid var(--main-color);
-            z-index: 10;
-            transition: all 0.3s ease;
-            box-shadow: 0 0 0 10px var(--bg-color),
-                        0 0 20px rgba(0, 238, 255, 0.3);
-        }
+.timeline>li::after {
+    clear: both  ;
+}
 
-        .timeline li .timeline-badge:hover {
-            transform: scale(1.15) rotate(10deg);
-            box-shadow: 0 0 0 10px var(--bg-color),
-                        0 0 30px rgba(0, 238, 255, 0.6);
-        }
+.timeline>li::before,
+.timeline>li::after {
+    content: " "  ;
+    display: table  ;
+}
 
-        .timeline li .timeline-badge i {
-            color: var(--main-color);
-        }
+.timeline li .timeline-badge {
 
-        /* Containers gauche/droite */
-        .timeline-panel-container {
-            width: 50%;
-            float: left;
-            padding-right: 5rem;
-        }
+    width: 50px  ;
+    line-height: 50px  ;
+    font-size: 20px  ;
+    text-align: center  ;
+    position: absolute  ;
+    top: 30px  ;
+    left: 50%  ;
+    margin-left: -25px  ;
+    background: var(--second-bg-color)  ;
+    border-radius: 50%  ;
+    border: 1px solid var(--main-color)  ;
+}
 
-        .timeline-panel-container-inverted {
-            width: 50%;
-            float: right;
-            padding-left: 5rem;
-        }
+.timeline-panel-container {
+    width: 50%  ;
+    float: left  ;
+}
 
-        /* Panel moderne avec effets */
-        .timeline-panel {
-            width: 100%;
-            position: relative;
-            background: var(--second-bg-color);
-            border: 2px solid transparent;
-            border-radius: 2rem;
-            padding: 3rem;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-            transition: all 0.4s ease;
-            overflow: hidden;
-        }
+.timeline-panel-container-inverted {
+    width: 50%  ;
+    float: right  ;
+}
 
-        .timeline-panel::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, rgba(0, 238, 255, 0.05) 0%, transparent 50%);
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
+.timeline-panel {
+    width: 90%  ;
+    float: right  ;
+    margin-right: 40px  ;
+    border: 1px solid var(--main-color)  ;
+    border-radius: 15px  ;
+    padding: 20px 25px  ;
+    position: relative  ;
+    box-shadow: 0 1px 6px rgba(0, 0, 0, .175)  ;
+    background: var(--second-bg-color)  ;
+}
 
-        .timeline-panel:hover::before {
-            opacity: 1;
-        }
+.timeline-panel-container-inverted .timeline-panel {
+    float: left  ;
+    margin-left: 40px  ;
+}
 
-        .timeline-panel:hover {
-            border-color: var(--main-color);
-            transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(0, 238, 255, 0.3);
-        }
+.timeline-panel::after {
+    position: absolute;
+    top: 40px  ;
+    right: -14px  ;
+    display: inline-block  ;
+    border-top: 14px solid transparent  ;
+    border-left: 14px solid var(--main-color)  ;
+    border-bottom: 14px solid transparent  ;
+    border-right: 0 solid var(--main-color)  ;
+    content: " "  ;
 
-        .timeline-panel-container-inverted .timeline-panel {
-            float: left;
-        }
+}
 
-        /* Flèches connectées aux badges */
-        .timeline-panel::after {
-            content: '';
-            position: absolute;
-            top: 50px;
-            right: -20px;
-            width: 0;
-            height: 0;
-            border-top: 15px solid transparent;
-            border-left: 20px solid var(--second-bg-color);
-            border-bottom: 15px solid transparent;
-            transition: border-left-color 0.3s ease;
-        }
+.timeline-panel-container-inverted .timeline-panel::after {
+    border-left-width: 0  ;
+    border-right-width: 14px  ;
+    left: -14px  ;
+    right: auto  ;
+}
 
-        .timeline-panel:hover::after {
-            border-left-color: var(--main-color);
-        }
+.timeline-heading h3 {
+    margin-top: 5px  ;
+    font-size: 20px  ;
+    color: var(--text-color)  ;
+    font-weight: bold  ;
+}
 
-        .timeline-panel-container-inverted .timeline-panel::after {
-            left: -20px;
-            right: auto;
-            border-left: none;
-            border-right: 20px solid var(--second-bg-color);
-        }
+.timeline-heading h4 {
+    color: var(--main-color)  ;
+    font-size: 20px  ;
+    font-weight: bold  ;
+}
 
-        .timeline-panel-container-inverted .timeline-panel:hover::after {
-            border-right-color: var(--main-color);
-        }
+.timeline-body {
+    color: var(--text-color);
+    font-size: 12px;
+}
 
-        /* En-tête du panel */
-        .timeline-heading {
-            margin-bottom: 2rem;
-            position: relative;
-        }
-
-        .timeline-heading h3 {
-            font-size: 2.8rem;
-            color: var(--main-color);
-            font-weight: 700;
-            margin-bottom: 0.8rem;
-            line-height: 1.2;
-        }
-
-        .timeline-heading h4 {
-            font-size: 2rem;
-            color: var(--text-color);
-            font-weight: 600;
-            margin-bottom: 1rem;
-        }
-
-        .timeline-heading .text-muted {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.8rem;
-            padding: 0.5rem 1.5rem;
-            background: rgba(0, 238, 255, 0.1);
-            border: 1px solid rgba(0, 238, 255, 0.3);
-            border-radius: 2rem;
-            color: var(--main-color);
-            font-size: 1.3rem;
-            font-weight: 600;
-        }
-
-        .timeline-heading .text-muted i {
-            font-size: 1.6rem;
-        }
-
-        /* Corps du panel */
-        .timeline-body {
-            position: relative;
-            z-index: 1;
-        }
-
-        .timeline-body p {
-            font-size: 1.6rem;
-            line-height: 1.8;
-            color: #ccc;
-            margin-bottom: 1.5rem;
-        }
-
-        .timeline-body p:last-child {
-            margin-bottom: 0;
-        }
-
-        /* Responsive Timeline */
-        @media screen and (max-width: 768px) {
-            .timeline::before {
-                left: 30px;
-            }
-
-            .timeline li .timeline-badge {
-                left: 30px;
-                margin-left: -35px;
-                width: 60px;
-                height: 60px;
-                line-height: 60px;
-                font-size: 2.5rem;
-            }
-
-            .timeline-panel-container,
-            .timeline-panel-container-inverted {
-                width: 100%;
-                float: none;
-                padding-left: 90px;
-                padding-right: 2rem;
-            }
-
-            .timeline-panel {
-                width: 100%;
-            }
-
-            .timeline-panel::after,
-            .timeline-panel-container-inverted .timeline-panel::after {
-                left: -20px;
-                right: auto;
-                border-left: none;
-                border-right: 20px solid var(--second-bg-color);
-            }
-
-            .timeline-panel:hover::after,
-            .timeline-panel-container-inverted .timeline-panel:hover::after {
-                border-right-color: var(--main-color);
-                border-left-color: transparent;
-            }
-        }
-
-        @media screen and (max-width: 480px) {
-            .experience {
-                padding: 8rem 3% 4rem;
-            }
-
-            .entete {
-                font-size: 3rem;
-            }
-
-            .timeline {
-                padding: 2rem 0;
-            }
-
-            .timeline-panel-container,
-            .timeline-panel-container-inverted {
-                padding-left: 70px;
-                padding-right: 1rem;
-            }
-
-            .timeline-heading h3 {
-                font-size: 2rem;
-            }
-
-            .timeline-heading h4 {
-                font-size: 1.6rem;
-            }
-
-            .timeline-body p {
-                font-size: 1.4rem;
-                line-height: 1.6;
-            }
-        }
-
-/* -------------------------PARTIE MON PORTFOLIO--------------------------------------- */
+-------------------------PARTIE MON PORTFOLIO---------------------------------------
 
 .portfolio{
 
@@ -3107,42 +2926,231 @@ strong{
 }
 
 /* -----------------------------PARTIE CONTACT----------------------------- */
-.entete {
-            text-align: center;
-            font-size: 4.5rem;
-            margin-bottom: 1rem;
-        }
 
-        .entete span {
-            color: var(--main-color);
-        }
-.contact {
-            background: var(--second-bg-color);
-            padding: 10rem 9% 5rem;
-            position: relative;
-            overflow: hidden;
-        }
+.contact form {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 4rem;
+    background: var(--bg-color);
+    border-radius: 2rem;
+    border: 2px solid transparent;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+    position: relative;
+    z-index: 2;
+}
 
-        .contact::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 800px;
-            height: 800px;
-            background: radial-gradient(circle, rgba(0, 238, 255, 0.05) 0%, transparent 70%);
-            border-radius: 50%;
-        }
+/* .contact form:hover {
+    border-color: rgba(0, 238, 255, 0.3);
+    box-shadow: 0 15px 50px rgba(0, 238, 255, 0.2);
+} */
 
-        .contact h2 {
-            margin-bottom: 2rem;
-            position: relative;
-            z-index: 2;
-        }
+/* ============================================
+   INPUT-BOX WRAPPER - CORRIGÉ
+   ============================================ */
 
-        /* Sous-titre du formulaire */
-        .contact-subtitle {
+.contact form .input-box {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+/* ============================================
+   INPUT-GROUP - NOUVEAU (CRITIQUE POUR AFFICHAGE D'ERREURS)
+   ============================================ */
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    position: relative;
+}
+
+/* ============================================
+   INPUTS - AMÉLIORÉS
+   ============================================ */
+
+.contact form .input-box input,
+.contact form textarea {
+    width: 100%;
+    padding: 1.8rem 2rem;
+    font-size: 1.6rem;
+    color: var(--text-color);
+    background: var(--second-bg-color);
+    border: 2px solid transparent;
+    border-radius: 1.5rem;
+    transition: all 0.3s ease;
+    font-family: 'Poppins', sans-serif;
+    outline: none;
+}
+
+.contact form .input-box input:focus,
+.contact form textarea:focus {
+    border-color: var(--main-color);
+    background: rgba(0, 238, 255, 0.05);
+    box-shadow: 0 0 20px rgba(0, 238, 255, 0.2);
+    transform: translateY(-2px);
+}
+
+/* État d'erreur */
+.contact form .input-box input.error,
+.contact form textarea.error {
+    border-color: #ff4444 !important;
+    background: rgba(255, 68, 68, 0.05);
+}
+
+/* ============================================
+   MESSAGES D'ERREUR - NOUVEAU (CRITIQUE)
+   ============================================ */
+
+.error-message {
+    display: none;
+    color: #ff4444;
+    font-size: 1.2rem;
+    font-weight: 500;
+    margin-top: 0.5rem;
+    padding-left: 1rem;
+    animation: shake 0.3s ease;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    75% { transform: translateX(5px); }
+}
+
+/* ============================================
+   PLACEHOLDERS - AMÉLIORÉS
+   ============================================ */
+
+.contact form .input-box input::placeholder,
+.contact form textarea::placeholder {
+    color: #666;
+    font-weight: 500;
+}
+
+/* ============================================
+   TEXTAREA - OPTIMISÉ
+   ============================================ */
+
+.contact form textarea {
+    width: 100%;
+    resize: none;
+    min-height: 180px;
+    margin-bottom: 0;
+}
+
+/* ============================================
+   BOUTON D'ENVOI - AMÉLIORÉ
+   ============================================ */
+
+.contact form .btn {
+    width: 100%;
+    padding: 1.8rem 3rem;
+    background: rgba(0, 238, 255, 0.253);
+    box-shadow: 0 0 20px rgba(8, 21, 21, 0.2);
+    color: var(--text-color);
+    border: none;
+    border-radius: 3rem;
+    font-size: 1.8rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.contact form .btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, var(--main-color), transparent);
+    transition: left 0.5s ease;
+}
+
+.contact form .btn:hover::before {
+    left: 100%;
+}
+
+.contact form .btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(0, 238, 255, 0.5);
+}
+
+.contact form .btn:active {
+    transform: translateY(-1px);
+}
+
+.contact form .btn i {
+    font-size: 2rem;
+}
+
+/* ============================================
+   ÉTAT DE CHARGEMENT DU BOUTON
+   ============================================ */
+
+.contact form .btn.loading {
+    background: #888;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+.contact form .btn.loading::after {
+    content: '';
+    width: 16px;
+    height: 16px;
+    border: 2px solid #fff;
+    border-top-color: transparent;
+    border-radius: 50%;
+    animation: spin 0.6s linear infinite;
+    margin-left: 1rem;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* ============================================
+   ÉTAT DE SUCCÈS DU BOUTON
+   ============================================ */
+
+.contact form .btn.success {
+    background: #00ff00;
+    animation: pulse-success 0.5s ease;
+}
+
+@keyframes pulse-success {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+/* ============================================
+   INFORMATIONS DE CONTACT - AMÉLIORÉES
+   ============================================ */
+
+.contact-info {
+    max-width: 900px;
+    margin: 4rem auto 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    position: relative;
+    z-index: 2;
+}
+
+
+.contact-subtitle {
             text-align: center;
             font-size: 1.8rem;
             color: #888;
@@ -3151,213 +3159,256 @@ strong{
             z-index: 2;
         }
 
-        /* Formulaire moderne */
-        .contact form {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 4rem;
-            background: var(--bg-color);
-            border-radius: 2rem;
-            border: 2px solid transparent;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
-            transition: all 0.3s ease;
-            position: relative;
-            z-index: 2;
-        }
+.info-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    padding: 2.5rem 2rem;
+    background: var(--bg-color);
+    border-radius: 1.5rem;
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
+}
 
-        .contact form:hover {
-            border-color: rgba(0, 238, 255, 0.3);
-            box-shadow: 0 15px 50px rgba(0, 238, 255, 0.2);
-        }
+.info-card:hover {
+    border-color: var(--main-color);
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 238, 255, 0.3);
+}
 
-        .contact form .input-box {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 2rem;
-            margin-bottom: 2rem;
-        }
+.info-card i {
+    font-size: 3.5rem;
+    color: var(--main-color);
+}
 
-        /* Styles des inputs modernes */
-        .contact form .input-box input,
-        .contact form textarea {
-            width: 100%;
-            padding: 1.8rem 2rem;
-            font-size: 1.6rem;
-            color: var(--text-color);
-            background: var(--second-bg-color);
-            border: 2px solid transparent;
-            border-radius: 1.5rem;
-            transition: all 0.3s ease;
-            font-family: 'Poppins', sans-serif;
-        }
+.info-card h3 {
+    font-size: 1.8rem;
+    color: var(--text-color);
+    margin-bottom: 0.5rem;
+}
 
-        .contact form .input-box input:focus,
-        .contact form textarea:focus {
-            outline: none;
-            border-color: var(--main-color);
-            background: rgba(0, 238, 255, 0.05);
-            box-shadow: 0 0 20px rgba(0, 238, 255, 0.2);
-            transform: translateY(-2px);
-        }
+.info-card p {
+    font-size: 1.4rem;
+    color: #888;
+    text-align: center;
+}
 
-        .contact form .input-box input::placeholder,
-        .contact form textarea::placeholder {
-            color: #666;
-            font-weight: 500;
-        }
+.info-card a {
+    color: var(--main-color);
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
 
-        /* Textarea spécifique */
-        .contact form textarea {
-            width: 100%;
-            resize: none;
-            min-height: 180px;
-            margin-bottom: 2rem;
-        }
+.info-card a:hover {
+    text-decoration: underline;
+}
 
-        /* Bouton d'envoi moderne */
-        .contact form .btn {
-            width: 100%;
-            padding: 1.8rem 3rem;
-            background: var(--main-color);
-            color: var(--bg-color);
-            border: none;
-            border-radius: 3rem;
-            font-size: 1.8rem;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
+/* ============================================
+   RESPONSIVE - FORMULAIRE DE CONTACT
+   ============================================ */
 
-        .contact form .btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-            transition: left 0.5s ease;
-        }
+@media (max-width: 768px) {
+    .contact {
+        padding: 8rem 5% 4rem;
+    }
 
-        .contact form .btn:hover::before {
-            left: 100%;
-        }
+    .contact form {
+        padding: 3rem 2rem;
+    }
 
-        .contact form .btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(0, 238, 255, 0.5);
-        }
+    .contact form .input-box {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
 
-        .contact form .btn:active {
-            transform: translateY(-1px);
-        }
+    .contact-info {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+}
 
-        /* Informations de contact supplémentaires */
-        .contact-info {
-            max-width: 900px;
-            margin: 4rem auto 0;
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-            position: relative;
-            z-index: 2;
-        }
+@media (max-width: 480px) {
+    .entete {
+        font-size: 3rem;
+    }
 
-        .info-card {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 1rem;
-            padding: 2.5rem 2rem;
-            background: var(--bg-color);
-            border-radius: 1.5rem;
-            border: 2px solid transparent;
-            transition: all 0.3s ease;
-        }
+    .contact form {
+        padding: 2rem 1.5rem;
+    }
 
-        .info-card:hover {
-            border-color: var(--main-color);
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0, 238, 255, 0.3);
-        }
+    .contact form .input-box input,
+    .contact form textarea {
+        padding: 1.5rem;
+        font-size: 1.4rem;
+    }
 
-        .info-card i {
-            font-size: 3.5rem;
-            color: var(--main-color);
-        }
+    .contact form .btn {
+        padding: 1.5rem 2rem;
+        font-size: 1.6rem;
+    }
 
-        .info-card h3 {
-            font-size: 1.8rem;
-            color: var(--text-color);
-            margin-bottom: 0.5rem;
-        }
+    .contact-subtitle {
+        font-size: 1.5rem;
+    }
 
-        .info-card p {
-            font-size: 1.4rem;
-            color: #888;
-            text-align: center;
-        }
+    .error-message {
+        font-size: 1.1rem;
+    }
+}
 
-        .info-card a {
-            color: var(--main-color);
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
+/* ============================================
+   ANIMATIONS SUPPLÉMENTAIRES
+   ============================================ */
 
-        .info-card a:hover {
-            text-decoration: underline;
-        }
+/* Animation d'entrée du formulaire */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
 
-        /* Responsive Contact */
-        @media (max-width: 768px) {
-            .contact {
-                padding: 8rem 5% 4rem;
-            }
+.contact.visible form {
+    animation: fadeInUp 0.8s ease forwards;
+}
 
-            .contact form {
-                padding: 3rem 2rem;
-            }
+/* Animation des champs au focus */
+.contact form .input-box input:focus,
+.contact form textarea:focus {
+    animation: input-focus 0.3s ease;
+}
 
-            .contact form .input-box {
-                grid-template-columns: 1fr;
-                gap: 1.5rem;
-            }
+@keyframes input-focus {
+    0% {
+        box-shadow: 0 0 0 0 rgba(0, 238, 255, 0.4);
+    }
+    100% {
+        box-shadow: 0 0 0 10px rgba(0, 238, 255, 0);
+    }
+}
 
-            .contact-info {
-                grid-template-columns: 1fr;
-                gap: 1.5rem;
-            }
-        }
+/* ============================================
+   VALIDATION VISUELLE POSITIVE
+   ============================================ */
 
-        @media (max-width: 480px) {
-            .entete {
-                font-size: 3rem;
-            }
+.contact form .input-box input.valid,
+.contact form textarea.valid {
+    border-color: #00ff00;
+    background: rgba(0, 255, 0, 0.05);
+}
 
-            .contact form {
-                padding: 2rem 1.5rem;
-            }
+.contact form .input-box input.valid::after,
+.contact form textarea.valid::after {
+    content: '✓';
+    position: absolute;
+    right: 1.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #00ff00;
+    font-size: 2rem;
+    font-weight: bold;
+}
 
-            .contact form .input-box input,
-            .contact form textarea {
-                padding: 1.5rem;
-                font-size: 1.4rem;
-            }
+/* ============================================
+   ACCESSIBILITÉ - AMÉLIORATION
+   ============================================ */
 
-            .contact form .btn {
-                padding: 1.5rem 2rem;
-                font-size: 1.6rem;
-            }
+.contact form .input-box input:focus-visible,
+.contact form textarea:focus-visible {
+    outline: 3px solid var(--main-color);
+    outline-offset: 2px;
+}
 
-            .contact-subtitle {
-                font-size: 1.5rem;
-            }
-        }
+/* Mode sombre forcé pour le formulaire */
+.contact form {
+    color-scheme: dark;
+}
 
+/* ============================================
+   PROTECTION ANTI-SPAM (Honeypot invisible)
+   ============================================ */
+
+.contact form .honeypot {
+    position: absolute;
+    left: -9999px;
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* ============================================
+   INDICATEUR DE PROGRESSION (Optionnel)
+   ============================================ */
+
+.contact form .progress-bar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 4px;
+    background: var(--main-color);
+    width: 0%;
+    transition: width 0.3s ease;
+    border-radius: 0 0 2rem 2rem;
+}
+
+.contact form.form-25 .progress-bar { width: 25%; }
+.contact form.form-50 .progress-bar { width: 50%; }
+.contact form.form-75 .progress-bar { width: 75%; }
+.contact form.form-100 .progress-bar { width: 100%; }
+
+/* ============================================
+   TOOLTIP POUR AIDE (Optionnel)
+   ============================================ */
+
+.input-tooltip {
+    position: absolute;
+    top: -3rem;
+    right: 0;
+    background: var(--second-bg-color);
+    color: var(--text-color);
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    font-size: 1.2rem;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    white-space: nowrap;
+}
+
+.input-group:hover .input-tooltip {
+    opacity: 1;
+}
+
+/* ============================================
+   PRÉVENTIONS DES PROBLÈMES COURANTS
+   ============================================ */
+
+/* Empêcher le zoom sur iOS lors du focus */
+@media screen and (max-width: 768px) {
+    .contact form .input-box input,
+    .contact form textarea {
+        font-size: 16px; /* Minimum 16px pour éviter le zoom auto sur iOS */
+    }
+}
+
+/* Assurer que les inputs ne débordent pas */
+.contact form .input-box,
+.contact form textarea {
+    max-width: 100%;
+}
+
+/* Empêcher le resize du textarea sur les coins */
+.contact form textarea {
+    resize: vertical; /* Permet resize vertical seulement */
+}
+
+/* ============================================
+   FIN DES AMÉLIORATIONS CRITIQUES
+   ============================================ */
 /* PARTIE FOOTER */
 .footer {
     display: flex;
