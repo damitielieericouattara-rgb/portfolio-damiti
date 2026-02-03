@@ -431,7 +431,12 @@ strong{
     overflow: hidden;
     background: linear-gradient(135deg, var(--bg-color) 0%, #1a1e27 50%, var(--second-bg-color) 100%);
 }
-
+.multiple-text {
+    color: var(--main-color);
+    font-weight: 700;
+    padding-right: 5px;
+    animation: blink-caret 0.7s step-end infinite;
+}
 .acceuil-container {
     display: flex;
     align-items: center;
@@ -604,7 +609,7 @@ strong{
 }
 
 .role-text {
-    font-size: 3rem;
+    font-size: 2rem;
     font-weight: 600;
     margin-bottom: 2rem;
     color: var(--text-color);
@@ -3048,9 +3053,8 @@ strong{
 .contact form .btn {
     width: 100%;
     padding: 1.8rem 3rem;
-    background: rgba(0, 238, 255, 0.253);
-    box-shadow: 0 0 20px rgba(8, 21, 21, 0.2);
-    color: var(--text-color);
+    background: var(--main-color);
+    color: var(--bg-color);
     border: none;
     border-radius: 3rem;
     font-size: 1.8rem;
