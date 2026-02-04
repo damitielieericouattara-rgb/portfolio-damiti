@@ -104,7 +104,7 @@
 
             <div class="portfolio-instructions">
                 <p>
-                    <i class='bx bx-mouse'></i> Survolez les cartes pour voir les effets 3D
+                    <i class='bx bx-mouse'></i> Survolez les cartes pour voir les effets d'animation<br>
                     <i class='bx bx-pointer'></i> Cliquez pour voir les projets en détail
                 </p>
             </div>
