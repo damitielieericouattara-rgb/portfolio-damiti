@@ -9,6 +9,8 @@
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
     <link rel="stylesheet" href="portfolio.css">
+    <!-- CSS de correction des boutons - DOIT ÊTRE CHARGÉ EN DERNIER -->
+    <link rel="stylesheet" href="fix-buttons.css">
 </head>
 
 <body>
@@ -94,7 +96,7 @@
                     </div>
                 </div>
 
-                <!-- Réseaux sociaux avec nouveau design -->
+                <!-- Réseaux sociaux avec nouveau design - CORRIGÉS -->
                 <div class="social-media-new">
                     <a href="https://www.facebook.com/profile.php?id=100088974321346" target="_blank" rel="noopener noreferrer" class="social-btn facebook" title="Facebook">
                         <i class='bx bxl-facebook'></i>
@@ -108,15 +110,15 @@
                         <i class='bx bxl-whatsapp'></i>
                         <span>WhatsApp</span>
                     </a>
-                    <a href="https://www.snapchat.com/add/Dãm_ël" target="_blank" rel="noopener noreferrer" class="social-btn snapchat" title="Snapchat">
+                    <a href="https://www.snapchat.com/add/dam_el225" target="_blank" rel="noopener noreferrer" class="social-btn snapchat" title="Snapchat">
                         <i class='bx bxl-snapchat'></i>
                         <span>Snapchat</span>
                     </a>
                 </div>
 
-                <!-- Boutons d'action -->
+                <!-- Boutons d'action - CORRIGÉS -->
                 <div class="action-buttons">
-                    <a href="./document/cv.pdf" class="btn btn-primary" download>
+                    <a href="./document/cv.pdf" class="btn btn-primary" download="CV_Ouattara_Damiti.pdf">
                         <i class='bx bx-download'></i>
                         Télécharger mon CV
                     </a>
@@ -909,6 +911,9 @@
     <script src="https://unpkg.com/scrollreveal"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+
+    <!-- Script de correction des boutons - DOIT ÊTRE CHARGÉ EN PREMIER -->
+    <script src="fix-buttons.js"></script>
 
     <script src="script.js"></script>
 </body>

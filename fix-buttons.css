@@ -1,0 +1,156 @@
+/* ============================================
+   CORRECTIF CSS - Boutons non cliquables
+   À charger APRÈS le style.css principal
+   ============================================ */
+
+/* Force tous les boutons à être cliquables */
+.social-btn,
+.action-buttons .btn,
+.btn-primary,
+.btn-secondary,
+.btn-contact {
+    position: relative !important;
+    z-index: 9999 !important;
+    pointer-events: auto !important;
+    cursor: pointer !important;
+}
+
+/* Assure que les overlays ne bloquent pas les clics */
+.particles,
+.image-decoration,
+.decoration-circle,
+.tech-icons,
+.tech-icon,
+.floating-badge,
+.particle {
+    pointer-events: none !important;
+}
+
+/* Assure que le contenu principal est cliquable */
+.acceuil-content {
+    position: relative;
+    z-index: 100;
+    pointer-events: auto;
+}
+
+/* Assure que les boutons sociaux sont au-dessus de tout */
+.social-media-new {
+    position: relative;
+    z-index: 1000;
+    pointer-events: auto !important;
+}
+
+.social-media-new a {
+    pointer-events: auto !important;
+    cursor: pointer !important;
+}
+
+/* Assure que les boutons d'action sont au-dessus de tout */
+.action-buttons {
+    position: relative;
+    z-index: 1000;
+    pointer-events: auto !important;
+}
+
+.action-buttons a {
+    pointer-events: auto !important;
+    cursor: pointer !important;
+}
+
+/* Effet visuel pour confirmer que le bouton est cliquable */
+.social-btn:hover,
+.btn:hover {
+    transform: translateY(-3px) scale(1.05) !important;
+    transition: all 0.3s ease !important;
+}
+
+.social-btn:active,
+.btn:active {
+    transform: translateY(-1px) scale(1.02) !important;
+}
+
+/* Assure que les icônes à l'intérieur des boutons ne bloquent pas */
+.social-btn i,
+.btn i,
+.social-btn span,
+.btn span {
+    pointer-events: none !important;
+}
+
+/* Container principal ne doit pas bloquer */
+.acceuil-container {
+    pointer-events: auto;
+}
+
+/* Correction spécifique pour le bouton CV */
+a[download] {
+    pointer-events: auto !important;
+    cursor: pointer !important;
+    z-index: 9999 !important;
+}
+
+/* Indicateur visuel au survol */
+.social-btn::after,
+.btn::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: inherit;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+.social-btn:hover::after,
+.btn:hover::after {
+    opacity: 0.1;
+    background: rgba(255, 255, 255, 0.2);
+}
+
+/* Correction pour mobile */
+@media (max-width: 768px) {
+    .social-btn,
+    .btn {
+        min-height: 44px !important;
+        min-width: 44px !important;
+        touch-action: manipulation !important;
+    }
+}
+
+/* Animation de clic pour feedback visuel */
+@keyframes click-feedback {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(0.95);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.social-btn:active,
+.btn:active {
+    animation: click-feedback 0.2s ease !important;
+}
+
+/* Assure que le pseudo-élément ::before ne bloque pas */
+.social-btn::before,
+.btn::before {
+    pointer-events: none !important;
+}
+
+/* Debug - Contour rouge temporaire pour voir les zones cliquables */
+/* Décommentez pour déboguer */
+/*
+.social-btn {
+    outline: 2px solid red !important;
+}
+.btn {
+    outline: 2px solid blue !important;
+}
+*/
