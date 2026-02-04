@@ -1,33 +1,124 @@
+/* ============================================
+   PORTFOLIO MODERNE - VERSION ADAPTÉE
+   Design professionnel avec grille de cartes
+   ============================================ */
+
 :root {
-    --card-w: 180px;
-    --card-h: 240px;
-    --radius: 240px;
-    --perspective: 1500px;
-    --panel: #ffffff;
-    --bdr: #e5e7eb;
-    --shadow: 0 10px 25px rgba(0, 0, 0, .25);
-    --shadow-strong: 0 20px 40px rgba(0, 0, 0, .35);
     --main-color: #0ef;
     --second-bg-color: #323946;
     --bg-color: #1f242d;
     --text-color: #fff;
 }
 
-* {
-    box-sizing: border-box;
-}
-
-html,
-body {
-    height: 100%;
-    margin: 0;
-}
+/* ============================================
+   SECTION PORTFOLIO
+   ============================================ */
 
 .portfolio {
-    font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
-    display: grid;
-    place-items: center;
+    background: var(--bg-color);
+    padding: 10rem 9% 5rem;
+    position: relative;
     overflow: hidden;
+}
+
+/* Effet de fond animé */
+.portfolio::before {
+    content: '';
+    position: absolute;
+    top: -300px;
+    right: -300px;
+    width: 800px;
+    height: 800px;
+    background: radial-gradient(circle, rgba(0, 238, 255, 0.05) 0%, transparent 70%);
+    border-radius: 50%;
+    animation: float-bg 20s ease-in-out infinite;
+}
+
+@keyframes float-bg {
+    0%, 100% {
+        transform: translate(0, 0);
+    }
+    50% {
+        transform: translate(-100px, 100px);
+    }
+}
+
+/* ============================================
+   TITRE DE LA SECTION
+   ============================================ */
+
+.portfolio .entete {
+    text-align: center;
+    font-size: 4.5rem;
+    margin-bottom: 2rem;
+    color: var(--text-color);
+    position: relative;
+    z-index: 2;
+}
+
+.portfolio .entete span {
+    color: var(--main-color);
+}
+
+/* ============================================
+   STATISTIQUES DU PORTFOLIO
+   ============================================ */
+
+.portfolio-stats {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    margin-bottom: 4rem;
+    flex-wrap: wrap;
+    position: relative;
+    z-index: 2;
+}
+
+.stat-box {
+    background: var(--second-bg-color);
+    padding: 1.8rem 3rem;
+    border-radius: 1.5rem;
+    border: 2px solid var(--main-color);
+    text-align: center;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.stat-box::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(0, 238, 255, 0.2), transparent);
+    transition: left 0.5s ease;
+}
+
+.stat-box:hover::before {
+    left: 100%;
+}
+
+.stat-box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 238, 255, 0.4);
+}
+
+.stat-number {
+    font-size: 3.5rem;
+    font-weight: bold;
+    color: var(--main-color);
+    display: block;
+    margin-bottom: 0.5rem;
+    line-height: 1;
+}
+
+.stat-label {
+    font-size: 1.4rem;
+    color: var(--text-color);
+    opacity: 0.9;
+    font-weight: 500;
 }
 
 /* ============================================
@@ -39,13 +130,17 @@ body {
     justify-content: center;
     align-items: center;
     gap: 1.5rem;
-    margin-bottom: 4rem;
+    margin-bottom: 5rem;
     flex-wrap: wrap;
-    animation: fadeInDown 0.8s ease;
+    position: relative;
+    z-index: 2;
 }
 
 .filter-btn {
-    padding: 1rem 2.5rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.8rem;
+    padding: 1.2rem 2.8rem;
     background: var(--second-bg-color);
     color: var(--text-color);
     border: 2px solid transparent;
@@ -76,270 +171,338 @@ body {
 .filter-btn:hover {
     border-color: var(--main-color);
     transform: translateY(-3px);
-    box-shadow: 0 5px 15px rgba(0, 238, 255, 0.3);
+    box-shadow: 0 5px 20px rgba(0, 238, 255, 0.3);
 }
 
 .filter-btn.active {
     background: var(--main-color);
     color: var(--second-bg-color);
     border-color: var(--main-color);
-    box-shadow: 0 0 20px var(--main-color);
+    box-shadow: 0 0 25px var(--main-color);
 }
 
 .filter-btn i {
-    margin-right: 0.5rem;
+    font-size: 1.8rem;
 }
 
 /* ============================================
-   CAROUSEL 3D
+   GRILLE DE PROJETS
    ============================================ */
 
-.wrap {
-    width: min(1100px, 96vw);
-    height: min(720px, 88vh);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    user-select: none;
-    cursor: grab;
-}
-
-.wrap.dragging {
-    cursor: grabbing;
-}
-
-.stage {
+.portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 3.5rem;
+    max-width: 1400px;
+    margin: 0 auto;
     position: relative;
-    perspective: var(--perspective);
-    perspective-origin: center;
+    z-index: 2;
 }
 
-.wheel {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    width: var(--card-w);
-    height: var(--card-h);
-    margin-left: calc(var(--card-w) / -2);
-    margin-top: calc(var(--card-h) / -2);
-    transform-style: preserve-3d;
-}
+/* ============================================
+   CARTE PROJET
+   ============================================ */
 
-.card {
-    position: absolute;
-    width: var(--card-w);
-    height: var(--card-h);
-    transform-style: preserve-3d;
-}
-
-.card-inner {
-    width: 100%;
-    height: 100%;
-    border-radius: 16px;
+.project-card {
+    position: relative;
+    background: var(--second-bg-color);
+    border-radius: 2rem;
     overflow: hidden;
-    background: var(--panel);
-    border: 1px solid var(--bdr);
-    box-shadow: var(--shadow);
-    backface-visibility: hidden;
-    transition: transform .3s ease, box-shadow .3s ease;
-    position: relative;
+    border: 2px solid rgba(0, 238, 255, 0.2);
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    transform-style: preserve-3d;
+    cursor: pointer;
+    
+    /* Animation d'entrée */
+    opacity: 0;
+    transform: translateY(50px);
+    animation: fadeInUp 0.8s ease forwards;
+    
+    /* Ombre 3D */
+    box-shadow: 
+        0 15px 35px rgba(0, 0, 0, 0.4),
+        0 25px 60px rgba(0, 0, 0, 0.3);
 }
 
-.card-inner:hover {
-    transform: scale(1.05);
-    box-shadow: var(--shadow-strong);
-    z-index: 10;
+.project-card:nth-child(1) { animation-delay: 0.1s; }
+.project-card:nth-child(2) { animation-delay: 0.2s; }
+.project-card:nth-child(3) { animation-delay: 0.3s; }
+.project-card:nth-child(4) { animation-delay: 0.4s; }
+.project-card:nth-child(5) { animation-delay: 0.5s; }
+.project-card:nth-child(6) { animation-delay: 0.6s; }
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
-.card-content {
+/* Effet hover 3D */
+.project-card:hover {
+    transform: translateY(-15px) translateZ(30px) rotateX(2deg);
+    border-color: var(--main-color);
+    box-shadow: 
+        0 25px 50px rgba(0, 238, 255, 0.3),
+        0 40px 80px rgba(0, 0, 0, 0.5),
+        0 0 40px rgba(0, 238, 255, 0.2);
+}
+
+/* ============================================
+   IMAGE DU PROJET
+   ============================================ */
+
+.project-image-wrapper {
     position: relative;
     width: 100%;
-    height: 100%;
+    height: 250px;
+    overflow: hidden;
+    background: linear-gradient(135deg, rgba(0, 238, 255, 0.1), transparent);
 }
 
-.card img {
+.project-image {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    display: block;
-    pointer-events: none;
+    transition: transform 0.6s ease;
+    filter: brightness(0.85);
+}
+
+.project-card:hover .project-image {
+    transform: scale(1.15);
+    filter: brightness(1);
+}
+
+/* Badge année */
+.project-year-badge {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    padding: 0.6rem 1.8rem;
+    background: var(--main-color);
+    color: var(--bg-color);
+    border-radius: 2rem;
+    font-size: 1.3rem;
+    font-weight: bold;
+    box-shadow: 0 5px 15px rgba(0, 238, 255, 0.6);
+    z-index: 10;
+    transition: all 0.3s ease;
+}
+
+.project-card:hover .project-year-badge {
+    transform: translateY(-5px) scale(1.1);
+}
+
+/* Badge numéro */
+.project-number-badge {
+    position: absolute;
+    top: 1.5rem;
+    left: 1.5rem;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.8);
+    border: 2px solid var(--main-color);
+    border-radius: 50%;
+    color: var(--main-color);
+    font-size: 2rem;
+    font-weight: bold;
+    backdrop-filter: blur(10px);
+    z-index: 10;
 }
 
 /* ============================================
-   OVERLAY DES CARTES
+   CONTENU DE LA CARTE
    ============================================ */
 
-.card-overlay {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: linear-gradient(to top, rgba(31, 36, 45, 0.98) 0%, rgba(31, 36, 45, 0.85) 70%, transparent 100%);
-    padding: 1.5rem 1rem;
-    transform: translateY(100%);
-    transition: transform 0.4s ease;
+.project-content {
+    padding: 2.5rem;
     display: flex;
     flex-direction: column;
-    gap: 0.8rem;
-}
-
-.card-inner:hover .card-overlay {
-    transform: translateY(0);
+    gap: 1.5rem;
 }
 
 .project-title {
-    font-size: 1.4rem;
-    font-weight: bold;
+    font-size: 2.3rem;
+    font-weight: 700;
     color: var(--main-color);
     margin: 0;
-    line-height: 1.2;
+    line-height: 1.3;
+    transition: all 0.3s ease;
+}
+
+.project-card:hover .project-title {
+    transform: translateX(5px);
 }
 
 .project-description {
-    font-size: 1.1rem;
-    color: #cbd5e1;
+    font-size: 1.5rem;
+    line-height: 1.7;
+    color: #aaa;
     margin: 0;
-    line-height: 1.3;
     display: -webkit-box;
-    -webkit-line-clamp: 2;
+    -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden;
+    transition: color 0.3s ease;
 }
 
-.project-tech {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.4rem;
-    margin-top: 0.3rem;
-}
-
-.tech-badge {
-    background: rgba(0, 238, 255, 0.2);
-    color: var(--main-color);
-    padding: 0.3rem 0.6rem;
-    border-radius: 0.4rem;
-    font-size: 0.9rem;
-    font-weight: 600;
-    border: 1px solid rgba(0, 238, 255, 0.3);
-}
-
-.project-year {
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
-    background: var(--main-color);
-    color: var(--second-bg-color);
-    padding: 0.3rem 0.8rem;
-    border-radius: 1rem;
-    font-size: 1rem;
-    font-weight: bold;
-    box-shadow: 0 2px 10px rgba(0, 238, 255, 0.5);
+.project-card:hover .project-description {
+    color: #ccc;
 }
 
 /* ============================================
-   INSTRUCTIONS D'UTILISATION
+   TAGS TECHNOLOGIQUES
+   ============================================ */
+
+.project-tech-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+}
+
+.tech-tag {
+    padding: 0.6rem 1.4rem;
+    background: rgba(0, 238, 255, 0.1);
+    border: 1px solid rgba(0, 238, 255, 0.3);
+    border-radius: 2rem;
+    color: var(--main-color);
+    font-size: 1.2rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.project-card:hover .tech-tag {
+    background: rgba(0, 238, 255, 0.2);
+    border-color: var(--main-color);
+    transform: translateY(-2px);
+}
+
+/* ============================================
+   BOUTON D'ACTION
+   ============================================ */
+
+.project-link-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    padding: 1.3rem 2.8rem;
+    background: transparent;
+    border: 2px solid var(--main-color);
+    border-radius: 3rem;
+    color: var(--main-color);
+    font-size: 1.6rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.4s ease;
+    margin-top: auto;
+    position: relative;
+    overflow: hidden;
+}
+
+.project-link-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: var(--main-color);
+    transition: left 0.4s ease;
+    z-index: -1;
+}
+
+.project-card:hover .project-link-btn::before {
+    left: 0;
+}
+
+.project-card:hover .project-link-btn {
+    color: var(--bg-color);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(0, 238, 255, 0.5);
+}
+
+.project-link-btn i {
+    font-size: 2rem;
+    transition: transform 0.3s ease;
+}
+
+.project-card:hover .project-link-btn i {
+    transform: translateX(5px);
+}
+
+/* ============================================
+   ÉTAT VIDE (aucun projet)
+   ============================================ */
+
+.empty-state {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 8rem 2rem;
+    color: #888;
+}
+
+.empty-state i {
+    font-size: 8rem;
+    color: var(--main-color);
+    margin-bottom: 2rem;
+    opacity: 0.5;
+}
+
+.empty-state h3 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    color: var(--text-color);
+}
+
+.empty-state p {
+    font-size: 1.8rem;
+}
+
+/* ============================================
+   INSTRUCTIONS
    ============================================ */
 
 .portfolio-instructions {
     text-align: center;
-    margin-top: 2rem;
-    opacity: 0.7;
-    font-size: 1.4rem;
-    color: var(--text-color);
-    animation: fadeInUp 1s ease 0.5s forwards;
+    margin-top: 4rem;
+    font-size: 1.5rem;
+    color: #888;
+    position: relative;
+    z-index: 2;
 }
 
 .portfolio-instructions i {
     color: var(--main-color);
-    margin: 0 0.3rem;
-}
-
-/* ============================================
-   STATISTIQUES DU PORTFOLIO
-   ============================================ */
-
-.portfolio-stats {
-    display: flex;
-    justify-content: center;
-    gap: 3rem;
-    margin-bottom: 3rem;
-    flex-wrap: wrap;
-    animation: fadeInUp 0.8s ease 0.3s;
-}
-
-.stat-box {
-    background: var(--second-bg-color);
-    padding: 1.5rem 2.5rem;
-    border-radius: 1.5rem;
-    border: 2px solid var(--main-color);
-    text-align: center;
-    transition: all 0.3s ease;
-}
-
-.stat-box:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 25px rgba(0, 238, 255, 0.3);
-}
-
-.stat-number {
-    font-size: 3rem;
-    font-weight: bold;
-    color: var(--main-color);
-    display: block;
-    margin-bottom: 0.5rem;
-}
-
-.stat-label {
-    font-size: 1.3rem;
-    color: var(--text-color);
-    opacity: 0.8;
-}
-
-/* ============================================
-   ANIMATIONS
-   ============================================ */
-
-@keyframes fadeInDown {
-    from {
-        opacity: 0;
-        transform: translateY(-20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+    margin: 0 0.5rem;
 }
 
 /* ============================================
    RESPONSIVE DESIGN
    ============================================ */
 
+@media (max-width: 1024px) {
+    .portfolio-grid {
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 3rem;
+    }
+}
+
 @media (max-width: 768px) {
-    :root {
-        --card-w: 140px;
-        --card-h: 190px;
-        --radius: 160px;
+    .portfolio {
+        padding: 8rem 5% 4rem;
     }
 
-    .portfolio-filters {
-        gap: 1rem;
-        margin-bottom: 3rem;
+    .portfolio .entete {
+        font-size: 3.5rem;
     }
 
-    .filter-btn {
-        padding: 0.8rem 1.8rem;
-        font-size: 1.3rem;
+    .portfolio-grid {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
     }
 
     .portfolio-stats {
@@ -347,46 +510,52 @@ body {
     }
 
     .stat-box {
-        padding: 1rem 1.5rem;
+        padding: 1.3rem 2rem;
     }
 
     .stat-number {
-        font-size: 2.5rem;
+        font-size: 3rem;
     }
 
     .stat-label {
-        font-size: 1.1rem;
+        font-size: 1.2rem;
+    }
+
+    .portfolio-filters {
+        gap: 1rem;
+        margin-bottom: 4rem;
+    }
+
+    .filter-btn {
+        padding: 1rem 2rem;
+        font-size: 1.4rem;
+    }
+
+    .project-image-wrapper {
+        height: 220px;
+    }
+
+    .project-content {
+        padding: 2rem;
     }
 
     .project-title {
-        font-size: 1.2rem;
+        font-size: 2rem;
     }
 
     .project-description {
-        font-size: 1rem;
+        font-size: 1.4rem;
     }
 
-    .tech-badge {
-        font-size: 0.8rem;
-        padding: 0.2rem 0.5rem;
-    }
-
-    .portfolio-instructions {
-        font-size: 1.2rem;
-        padding: 0 1rem;
+    /* Réduire l'effet 3D sur tablette */
+    .project-card:hover {
+        transform: translateY(-10px) translateZ(15px);
     }
 }
 
 @media (max-width: 480px) {
-    :root {
-        --card-w: 120px;
-        --card-h: 160px;
-        --radius: 140px;
-    }
-
-    .filter-btn {
-        padding: 0.7rem 1.5rem;
-        font-size: 1.2rem;
+    .portfolio .entete {
+        font-size: 3rem;
     }
 
     .portfolio-stats {
@@ -396,26 +565,76 @@ body {
 
     .stat-box {
         width: 100%;
-        max-width: 250px;
+        max-width: 300px;
         margin: 0 auto;
+    }
+
+    .filter-btn {
+        padding: 0.9rem 1.8rem;
+        font-size: 1.3rem;
+    }
+
+    .project-image-wrapper {
+        height: 200px;
+    }
+
+    .project-content {
+        padding: 1.8rem;
+    }
+
+    .project-title {
+        font-size: 1.8rem;
+    }
+
+    .project-description {
+        font-size: 1.3rem;
+        -webkit-line-clamp: 2;
+    }
+
+    .tech-tag {
+        font-size: 1.1rem;
+        padding: 0.5rem 1.2rem;
+    }
+
+    .project-link-btn {
+        padding: 1.2rem 2.5rem;
+        font-size: 1.5rem;
+    }
+
+    /* Désactiver l'effet 3D complexe sur mobile */
+    .project-card:hover {
+        transform: translateY(-8px);
     }
 }
 
 /* ============================================
-   HUD (Optionnel)
+   ANIMATIONS SUPPLÉMENTAIRES
    ============================================ */
 
-.hud {
-    position: absolute;
-    left: 50%;
-    bottom: 16px;
-    transform: translateX(-50%);
-    font-size: 12px;
-    opacity: .75;
-    background: rgba(17, 24, 39, .55);
-    border: 1px solid rgba(148, 163, 184, .25);
-    padding: 8px 12px;
-    border-radius: 999px;
-    backdrop-filter: blur(6px);
-    color: #e5e7eb;
+/* Animation au scroll */
+.portfolio.visible .portfolio-grid {
+    animation: fadeIn 0.8s ease 0.3s forwards;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Animation de pulsation pour les filtres actifs */
+@keyframes pulse {
+    0%, 100% {
+        box-shadow: 0 0 25px var(--main-color);
+    }
+    50% {
+        box-shadow: 0 0 35px var(--main-color);
+    }
+}
+
+.filter-btn.active {
+    animation: pulse 2s ease-in-out infinite;
 }
