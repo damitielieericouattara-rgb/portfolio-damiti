@@ -1325,6 +1325,65 @@ strong{
     animation: progress-animation 2s ease-in-out forwards;
 }
 
+/* Stats circulaires right */
+.circular-stats-right {
+    position: absolute;
+    bottom: -20px;
+    left: 5px;
+    z-index: 3;
+}
+
+.circular-stat-right {
+    position: relative;
+    width: 100px;
+    height: 100px;
+}
+
+.circular-progress-right {
+    transform: rotate(-62deg);
+}
+
+.progress-bg-right {
+    fill: none;
+    stroke: rgba(255, 255, 255, 0.1);
+    stroke-width: 8;
+}
+
+.progress-bar-right {
+    fill: none;
+    stroke: var(--main-color);
+    stroke-width: 8;
+    stroke-linecap: round;
+    stroke-dasharray: 251.2;
+    stroke-dashoffset: calc(251.2 - (251.2 * var(--percent)) / 100);
+    animation: progress-animation 2s ease-in-out forwards;
+}
+
+.circular-stat-right .stat-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.stat-percent {
+    display: block;
+    font-size: 1.6rem;
+    font-weight: bold;
+    color: var(--main-color);
+    line-height: 1;
+}
+
+.stat-name {
+    display: block;
+    font-size: 1rem;
+    color: #888;
+}
+
+
+
+
 @keyframes progress-animation {
     from {
         stroke-dashoffset: 251.2;
