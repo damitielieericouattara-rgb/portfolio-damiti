@@ -87,6 +87,9 @@
     // ============================================
     
     function buildPortfolioHTML() {
+        // Guard anti-duplication : si la grille existe déjà, stop
+        if (portfolioSection.querySelector('.portfolio-grid')) return;
+
         // Nettoyer le contenu existant (ancien carousel)
         const existingContent = portfolioSection.querySelector('.wrap, .carousel-3d-container, .horizontal-slider-container, .stack-container, .floating-cards-grid');
         if (existingContent) {
@@ -369,10 +372,13 @@
     // INITIALISATION AU CHARGEMENT
     // ============================================
     
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', init);
-    } else {
-        init();
+    // Init unique — on passe toujours par DOMContentLoaded ou immédiat
+    if (!document.querySelector('.portfolio-grid')) {
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', init);
+        } else {
+            init();
+        }
     }
 
     // ============================================

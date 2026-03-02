@@ -4,86 +4,88 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> Mon Portfolio - Ouattara Damiti</title>
+    <meta name="description" content="Portfolio de Ouattara Damiti Elie – Développeur web front-end passionné, étudiant en Licence 3 Informatique à Abidjan. Disponible pour un stage. Compétences : HTML, CSS, JavaScript, PHP, MySQL, React.">
+    <meta name="keywords" content="développeur web, front-end, stage, Abidjan, HTML, CSS, JavaScript, portfolio, Ouattara Damiti">
+    <meta name="author" content="Ouattara Damiti Elie Lindaye Eric">
+    <meta property="og:title" content="Portfolio – Ouattara Damiti | Développeur Web">
+    <meta property="og:description" content="Étudiant en Licence 3 Informatique à Abidjan, passionné par le développement web front-end. Disponible pour un stage.">
+    <meta property="og:type" content="website">
+
+    <title>Portfolio – Ouattara Damiti | Développeur Web Front-end</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="./image/favicon.svg">
+
     <link rel="stylesheet" href="./style.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
     <link rel="stylesheet" href="portfolio.css">
-    <!-- CSS de correction des boutons - DOIT ÊTRE CHARGÉ EN DERNIER -->
-    <link rel="stylesheet" href="fix-buttons.css">
+    <link rel="stylesheet" href="additions.css">
 </head>
 
 <body>
 
-    <!--header -->
-
+    <!-- HEADER -->
     <header class="header">
-
         <a href="#home" class="logo"><span>Mon</span> Portfolio.</a>
-
         <i class='bx bx-menu' id="menu-icon"></i>
-
         <nav class="navbar">
-            <a href="#acceuil" class="active">Acceuil</a>
-            <a href="#apropos">A propos</a>
-            <a href="#diplome">Diplome</a>
+            <a href="#accueil" class="active">Accueil</a>
+            <a href="#apropos">À propos</a>
             <a href="#parcours">Parcours</a>
-            <a href="#competence">Competence</a>
+            <a href="#competence">Compétences</a>
             <a href="#portfolio">Portfolio</a>
-            <a href="#Contact">Contacts</a>
+            <a href="#stage">Stage</a>
+            <a href="#Contact">Contact</a>
         </nav>
     </header>
 
-    <!-- --------------------------------------SECTION ACCEUIL------------------------------------------ -->
+    <!-- ══════════════════════════════════════════
+         SECTION ACCUEIL
+    ══════════════════════════════════════════ -->
+    <section class="accueil section-page active" id="accueil" data-section="accueil">
+        <div class="accueil-container">
 
-<section class="acceuil section-page active" id="acceuil" data-section="acceuil">
-        <div class="acceuil-container">
-            <!-- Particules de fond animées -->
-            <div class="particles">
-                <div class="particle"></div>
-                <div class="particle"></div>
-                <div class="particle"></div>
-                <div class="particle"></div>
-                <div class="particle"></div>
-            </div>
+            <!-- Seule animation conservée : une légère lueur de fond -->
+            <div class="accueil-bg-glow"></div>
 
             <!-- Contenu principal -->
-            <div class="acceuil-content">
+            <div class="accueil-content">
                 <div class="greeting-badge">
                     <i class='bx bx-waving-hand'></i>
                     <span>Bienvenue sur mon portfolio</span>
                 </div>
 
-                <h3 class="intro-text">Salut, Moi c'est</h3>
-                
+                <h3 class="intro-text">Salut, moi c'est</h3>
+
                 <h1 class="name-title">
                     <span class="name-highlight">Ouattara</span>
                     <span class="name-subtitle">Damiti Elie Lindaye Eric</span>
                 </h1>
-                
+
                 <h3 class="role-text">
-                    Je suis un  <span class="multiple-text"></span>
+                    Je suis <span class="multiple-text"></span>
                 </h3>
-                
+
                 <p class="description-text">
-                    Passionné par l'innovation technologique, je crée des expériences web 
-                    modernes et intuitives. Chaque projet raconte une histoire unique de 
-                    créativité et de maîtrise technique.
+                    Je construis des interfaces web soignées qui résolvent de vrais problèmes.
+                    Mon terrain de jeu : transformer une idée en expérience utilisateur fluide,
+                    accessible et visuellement mémorable.
                 </p>
 
-                <!-- Statistiques rapides -->
+                <!-- Stats -->
                 <div class="quick-stats">
                     <div class="stat-item">
                         <i class='bx bx-code-alt'></i>
                         <div class="stat-content">
-                            <span class="stat-number">10+</span>
+                            <span class="stat-number">5+</span>
                             <span class="stat-label">Projets</span>
                         </div>
                     </div>
                     <div class="stat-item">
                         <i class='bx bx-trophy'></i>
                         <div class="stat-content">
-                            <span class="stat-number">5+</span>
+                            <span class="stat-number">7+</span>
                             <span class="stat-label">Technologies</span>
                         </div>
                     </div>
@@ -91,12 +93,12 @@
                         <i class='bx bx-calendar'></i>
                         <div class="stat-content">
                             <span class="stat-number">2+</span>
-                            <span class="stat-label">Années Exp.</span>
+                            <span class="stat-label">Années d'étude</span>
                         </div>
                     </div>
                 </div>
 
-                <!-- Réseaux sociaux avec nouveau design - CORRIGÉS -->
+                <!-- Réseaux sociaux -->
                 <div class="social-media-new">
                     <a href="https://www.facebook.com/profile.php?id=100088974321346" target="_blank" rel="noopener noreferrer" class="social-btn facebook" title="Facebook">
                         <i class='bx bxl-facebook'></i>
@@ -116,7 +118,7 @@
                     </a>
                 </div>
 
-                <!-- Boutons d'action - CORRIGÉS -->
+                <!-- Boutons d'action -->
                 <div class="action-buttons">
                     <a href="./document/cv.pdf" class="btn btn-primary" download="CV_Ouattara_Damiti.pdf">
                         <i class='bx bx-download'></i>
@@ -124,810 +126,764 @@
                     </a>
                     <a href="#Contact" class="btn btn-secondary btn-contact">
                         <i class='bx bx-envelope'></i>
-                        Me Contacter
+                        Me contacter
                     </a>
                 </div>
             </div>
 
-            <!-- Image avec design moderne -->
-            <div class="acceuil-image-container">
-                <div class="image-decoration">
-                    <div class="decoration-circle circle-1"></div>
-                    <div class="decoration-circle circle-2"></div>
-                    <div class="decoration-circle circle-3"></div>
-                </div>
-                
+            <!-- Image -->
+            <div class="accueil-image-container">
                 <div class="image-wrapper">
-                    <img src="./image/photo_portfoio-removebg-preview.png" alt="Damiti - Développeur Web" class="profile-img">
-                    
-                    <!-- Badge flottant -->
+                    <img src="./image/photo_portfoio-removebg-preview.png" alt="Damiti – Développeur Web" class="profile-img">
                     <div class="floating-badge">
                         <i class='bx bx-check-circle'></i>
-                        <span>Disponible pour projets</span>
+                        <span>Disponible pour un stage</span>
                     </div>
-                </div>
 
-                <!-- Icônes technologiques flottantes -->
-                <div class="tech-icons">
-                    <div class="tech-icon" style="--delay: 0s;">
-                        <i class='bx bxl-html5'></i>
-                    </div>
-                    <div class="tech-icon" style="--delay: 0.5s;">
-                        <i class='bx bxl-css3'></i>
-                    </div>
-                    <div class="tech-icon" style="--delay: 1s;">
-                        <i class='bx bxl-javascript'></i>
-                    </div>
-                    <div class="tech-icon" style="--delay: 1.5s;">
-                        <i class='bx bxl-react'></i>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-------------------------------------A PROPOS-------------------------------------------->
-
-<section class="apropos" id="apropos">
-    <div class="apropos-container">
-        <!-- Image avec effets -->
-        <div class="apropos-image-wrapper">
-            <div class="image-bg-shape"></div>
-            <div class="image-frame">
-                <img src="./image/photo_portfolio_apropos-removebg-preview.png" alt="Damiti - Développeur Web" class="apropos-img">
-                
-                <!-- Badges flottants -->
-                <div class="skill-badge badge-1">
-                    <i class='bx bxl-html5'></i>
-                    <span>HTML5</span>
-                </div>
-                <div class="skill-badge badge-2">
-                    <i class='bx bxl-css3'></i>
-                    <span>CSS3</span>
-                </div>
-                <div class="skill-badge badge-3">
-                    <i class='bx bxl-javascript'></i>
-                    <span>JavaScript</span>
-                </div>
-                <div class="skill-badge badge-4">
-                    <i class='bx bxl-react'></i>
-                    <span>React</span>
-                </div>
-            </div>
-
-            <!-- Stats circulaires -->
-            <div class="circular-stats">
-                <div class="circular-stat">
-                    <svg class="circular-progress" width="100" height="100">
-                        <circle cx="50" cy="50" r="40" class="progress-bg"></circle>
-                        <circle cx="50" cy="50" r="40" class="progress-bar" style="--percent: 90;"></circle>
-                    </svg>
-                    <div class="stat-content">
-                        <span class="stat-percent">90%</span>
-                        <span class="stat-name">Frontend</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="circular-stats-right">
-                <div class="circular-stat-right">
-                    <svg class="circular-progress-right" width="100" height="100">
-                        <circle cx="50" cy="50" r="40" class="progress-bg-right"></circle>
-                        <circle cx="50" cy="50" r="40" class="progress-bar-right" style="--percent: 62;"></circle>
-                    </svg>
-                    <div class="stat-content">
-                        <span class="stat-percent">62%</span>
-                        <span class="stat-name">Backend</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Contenu -->
-        <div class="apropos-content-wrapper">
-            <div class="section-header">
-                <span class="section-tag">
-                    <i class='bx bx-user'></i>
-                    Qui suis-je ?
-                </span>
-                <h2 class="section-title">
-                    À propos <span class="highlight">de moi</span>
-                </h2>
-            </div>
-
-            <!-- Rôle avec effet -->
-            <div class="role-card">
-                <div class="role-icon">
-                    <i class='bx bx-code-curly'></i>
-                </div>
-                <div class="role-content">
-                    <h3>Développeur Web Front-end</h3>
-                    <p>Passionné par la création d'expériences web innovantes</p>
-                </div>
-            </div>
-
-            <!-- Description enrichie -->
-            <div class="bio-content">
-                <p class="bio-intro">
-                    <strong>Salut ! Je suis Ouattara Damiti Elie Lindaye Eric</strong>
-
-                <div class="bio-section">
-                    <div class="bio-icon">
-                        <i class='bx bx-heart'></i>
-                    </div>
-                    <div class="bio-text">
-                        <h4>Ma Passion</h4>
-                        <p>
-                            Passionné par l'informatique et actuellement en <strong>Licence 3 d'études de sciences informatiques</strong>, 
-                            je développe progressivement mes compétences dans le domaine du développement web moderne.
-                        </p>
-                    </div>
-                </div>
-
-                <div class="bio-section">
-                    <div class="bio-icon">
-                        <i class='bx bx-laptop'></i>
-                    </div>
-                    <div class="bio-text">
-                        <h4>Mes Compétences</h4>
-                        <p>
-                            Du côté <strong>Front-End</strong>, je maîtrise HTML et CSS à un niveau intermédiaire, 
-                            tout en consolidant mes bases en JavaScript. Côté <strong>Back-End</strong>, je m'initie 
-                            au PHP et à MySQL pour concevoir des applications dynamiques et interactives.
-                        </p>
-                    </div>
-                </div>
-
-                <div class="bio-section">
-                    <div class="bio-icon">
-                        <i class='bx bx-code-block'></i>
-                    </div>
-                    <div class="bio-text">
-                        <h4>Technologies</h4>
-                        <p>
-                            J'explore également les langages <strong>C et le Python</strong>, ainsi que les concepts 
-                            d'<strong>algorithme</strong>. Pour optimiser mes projets, j'intègre des outils comme 
-                            <strong>Bootstrap et Tailwind CSS</strong> afin d'allier design et fonctionnalité.
-                        </p>
-                    </div>
-                </div>
-
-                <div class="bio-section">
-                    <div class="bio-icon">
-                        <i class='bx bx-rocket'></i>
-                    </div>
-                    <div class="bio-text">
-                        <h4>Ma Mission</h4>
-                        <p>
-                            Curieux et motivé, je suis toujours à la recherche de nouvelles opportunités pour 
-                            apprendre, expérimenter et améliorer mes compétences dans le monde passionnant du 
-                            développement web.
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Informations clés -->
-            <div class="info-grid">
-                <div class="info-card">
-                    <i class='bx bx-calendar'></i>
-                    <div>
-                        <span class="info-label">Âge</span>
-                        <span class="info-value">20 ans</span>
-                    </div>
-                </div>
-                <div class="info-card">
-                    <i class='bx bx-map'></i>
-                    <div>
-                        <span class="info-label">Localisation</span>
-                        <span class="info-value">Abidjan, CI</span>
-                    </div>
-                </div>
-                <div class="info-card">
-                    <i class='bx bx-briefcase'></i>
-                    <div>
-                        <span class="info-label">Expérience</span>
-                        <span class="info-value">2+ ans</span>
-                    </div>
-                </div>
-                <div class="info-card">
-                    <i class='bx bx-book-open'></i>
-                    <div>
-                        <span class="info-label">Formation</span>
-                        <span class="info-value">Licence 3 SI</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Technologies principales -->
-            <div class="tech-stack">
-                <h4 class="tech-title">
-                    <i class='bx bx-cog'></i>
-                    Stack Technique
-                </h4>
-                <div class="tech-grid">
-                    <div class="tech-item">
+                    <!-- ── Badges flottants stack accueil ── -->
+                    <div class="acc-float-badge acc-badge-html">
                         <i class='bx bxl-html5'></i>
                         <span>HTML5</span>
                     </div>
-                    <div class="tech-item">
+                    <div class="acc-float-badge acc-badge-css">
                         <i class='bx bxl-css3'></i>
                         <span>CSS3</span>
                     </div>
-                    <div class="tech-item">
+                    <div class="acc-float-badge acc-badge-js">
                         <i class='bx bxl-javascript'></i>
-                        <span>JavaScript</span>
+                        <span>JS</span>
                     </div>
-                    <div class="tech-item">
-                        <i class='bx bxl-php'></i>
-                        <span>PHP</span>
-                    </div>
-                    <div class="tech-item">
-                        <i class='bx bx-data'></i>
-                        <span>MySQL</span>
-                    </div>
-                    <div class="tech-item">
-                        <i class='bx bxl-bootstrap'></i>
-                        <span>Bootstrap</span>
-                    </div>
-                    <div class="tech-item">
+                    <div class="acc-float-badge acc-badge-tailwind">
                         <i class='bx bxl-tailwind-css'></i>
                         <span>Tailwind</span>
                     </div>
-                    <div class="tech-item">
-                        <i class='bx bxl-python'></i>
-                        <span>Python</span>
-                    </div>
                 </div>
             </div>
 
-            <!-- Call to action -->
-            <div class="apropos-actions">
-                <a href="#portfolio" class="btn btn-primary">
-                    <i class='bx bx-briefcase'></i>
-                    Voir mes projets
-                </a>
-                <a href="#Contact" class="btn btn-outline">
-                    <i class='bx bx-envelope'></i>
-                    Me contacter
-                </a>
-            </div>
         </div>
-    </div>
-</section>
-
-    
-<section class="services diplome" id="diplome">
-    <div class="diplome-container">
-        <!-- Header de la section -->
-        <div class="section-header">
-            <span class="section-tag">
-                <i class='bx bx-medal'></i>
-                Mes Réussites
-            </span>
-            <h2 class="section-title">
-                MES <span class="highlight">DIPLÔMES</span>
-            </h2>
-            <p class="section-subtitle">
-                Parcours académique et certifications professionnelles acquises
-            </p>
-        </div>
-
-        <!-- Statistiques des diplômes -->
-        <div class="diplome-stats">
-            <div class="stat-card">
-                <div class="stat-icon">
-                    <i class='bx bx-certification'></i>
-                </div>
-                <div class="stat-info">
-                    <span class="stat-number">2+</span>
-                    <span class="stat-label">Certificats</span>
-                </div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-icon">
-                    <i class='bx bx-book-bookmark'></i>
-                </div>
-                <div class="stat-info">
-                    <span class="stat-number">3</span>
-                    <span class="stat-label">Années d'études</span>
-                </div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-icon">
-                    <i class='bx bx-trophy'></i>
-                </div>
-                <div class="stat-info">
-                    <span class="stat-number">5+</span>
-                    <span class="stat-label">Compétences</span>
-                </div>
-            </div>
-        </div>
-
-        <!-- Cartes de diplômes -->
-        <div class="diplome-grid">
-            <!-- Certificats de Formation -->
-            <div class="diplome-card featured">
-                <div class="card-decoration"></div>
-                <div class="card-icon">
-                    <i class='bx bx-certification'></i>
-                    <div class="icon-glow"></div>
-                </div>
-                
-                <div class="card-header">
-                    <span class="card-badge">Principal</span>
-                    <h3>CERTIFICAT DE FORMATION</h3>
-                </div>
-
-                <p class="card-description">
-                    Certificat de formation en Sciences Informatiques délivré par l'Institut des 
-                    Technologies d'Abidjan (ITA). Attestant de mes compétences en développement web, 
-                    bases de données et programmation.
-                </p>
-
-                <div class="card-details">
-                    <div class="detail-item">
-                        <i class='bx bx-calendar'></i>
-                        <span>2023-2025</span>
-                    </div>
-                    <div class="detail-item">
-                        <i class='bx bx-buildings'></i>
-                        <span>ITA - Institut des Technologies</span>
-                    </div>
-                </div>
-
-                <div class="card-skills">
-                    <span class="skill-tag">Développement Web</span>
-                    <span class="skill-tag">Bases de données</span>
-                    <span class="skill-tag">Programmation</span>
-                </div>
-
-                <a href="./page/certificats.html" class="card-btn">
-                    <span>Voir les certificats</span>
-                    <i class='bx bx-right-arrow-alt'></i>
-                </a>
-            </div>
-
-            <!-- Bulletins Académiques -->
-            <div class="diplome-card">
-                <div class="card-decoration"></div>
-                <div class="card-icon">
-                    <i class='bx bx-book-bookmark'></i>
-                    <div class="icon-glow"></div>
-                </div>
-                
-                <div class="card-header">
-                    <span class="card-badge">Académique</span>
-                    <h3>BULLETIN ACADÉMIQUE</h3>
-                </div>
-
-                <p class="card-description">
-                    Bulletins de notes attestant de ma progression académique en Licence Sciences 
-                    Informatiques. Résultats en développement web, algorithmique, bases de données 
-                    et langages de programmation.
-                </p>
-
-                <div class="card-details">
-                    <div class="detail-item">
-                        <i class='bx bx-trending-up'></i>
-                        <span>Progression Continue</span>
-                    </div>
-                    <div class="detail-item">
-                        <i class='bx bx-star'></i>
-                        <span>Mention Bien</span>
-                    </div>
-                </div>
-
-                <div class="card-skills">
-                    <span class="skill-tag">L1 - L2 - L3</span>
-                    <span class="skill-tag">Semestres validés</span>
-                    <span class="skill-tag">Compétences acquises</span>
-                </div>
-
-                <a href="./page/bulletins.html" class="card-btn">
-                    <span>Voir les bulletins</span>
-                    <i class='bx bx-right-arrow-alt'></i>
-                </a>
-            </div>
-
-            <!-- Baccalauréat -->
-            <div class="diplome-card">
-                <div class="card-decoration"></div>
-                <div class="card-icon">
-                    <i class='bx bx-graduation'></i>
-                    <div class="icon-glow"></div>
-                </div>
-                
-                <div class="card-header">
-                    <span class="card-badge">Fondation</span>
-                    <h3>BACCALAURÉAT D</h3>
-                </div>
-
-                <p class="card-description">
-                    Diplôme du Baccalauréat série D (Sciences Expérimentales) obtenu au Collège Les 
-                    Orchidées. Spécialisation en Mathématiques, Physique-Chimie et Sciences de la Vie 
-                    et de la Terre.
-                </p>
-
-                <div class="card-details">
-                    <div class="detail-item">
-                        <i class='bx bx-map'></i>
-                        <span>Collège Les Orchidées</span>
-                    </div>
-                    <div class="detail-item">
-                        <i class='bx bx-check-circle'></i>
-                        <span>Série D - Sciences</span>
-                    </div>
-                </div>
-
-                <div class="card-skills">
-                    <span class="skill-tag">Mathématiques</span>
-                    <span class="skill-tag">Physique-Chimie</span>
-                    <span class="skill-tag">SVT</span>
-                </div>
-
-                <a href="#" class="card-btn">
-                    <span>Voir le diplôme</span>
-                    <i class='bx bx-right-arrow-alt'></i>
-                </a>
-            </div>
-        </div>
-
-        <!-- Call to action -->
-        <div class="diplome-cta">
-            <div class="cta-content">
-                <h3>Découvrez mon parcours complet</h3>
-                <p>Consultez mes certificats, bulletins et réalisations académiques</p>
-            </div>
-            <div class="cta-buttons">
-                <a href="./page/certificats.html" class="btn btn-primary">
-                    <i class='bx bx-certification'></i>
-                    Voir les certificats
-                </a>
-                <a href="./page/bulletins.html" class="btn btn-outline">
-                    <i class='bx bx-book-bookmark'></i>
-                    Voir les bulletins
-                </a>
-            </div>
-        </div>
-    </div>
-</section>
-
-
-    <!-- ------------------------------------PARCOURS-------------------------------- -->
-    
-    <section id="parcours" class="experience">
-        <h2 class="entete">Mon <span>Parcours</span></h2>
-        
-        <ul class="timeline">
-            <!-- Baccalauréat -->
-            <li>
-                <div class="timeline-badge">
-                    <span class="glyphicon glyphicon-briefcase">
-                        <i class="fa-solid fa-briefcase"></i>
-                    </span>
-                </div>
-                <div class="timeline-panel-container">
-                    <div class="timeline-panel">
-                        <div class="timeline-heading">
-                            <h3>Baccalauréat D</h3>
-                            <h4>Collège Les Orchidées - Abidjan</h4>
-                            <p class="text-muted">
-                                <i class="fa-regular fa-calendar"></i>
-                                2023
-                            </p>
-                        </div>
-                        <div class="timeline-body">
-                            <p>
-                                J'ai obtenu mon baccalauréat scientifique avec une spécialisation en mathématiques, 
-                                ce qui m'a permis de développer des compétences en logique, en résolution de problèmes 
-                                complexes, ainsi qu'une base solide en programmation et en technologies numériques.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </li>
-
-            <!-- Licence 1 -->
-            <li>
-                <div class="timeline-badge">
-                    <span class="glyphicon glyphicon-briefcase">
-                        <i class="fa-solid fa-briefcase"></i>
-                    </span>
-                </div>
-                <div class="timeline-panel-container-inverted">
-                    <div class="timeline-panel">
-                        <div class="timeline-heading">
-                            <h3>LICENCE 1</h3>
-                            <h4>Institut Des Technologies D'Abidjan (ITA 2 PLATEAUX) - Abidjan</h4>
-                            <p class="text-muted">
-                                <i class="fa-regular fa-calendar"></i>
-                                2023-2024
-                            </p>
-                        </div>
-                        <div class="timeline-body">
-                            <p>
-                                Au cours de cette année, j'ai approfondi mes connaissances en développement web 
-                                (HTML, CSS, JavaScript), gestion des bases de données (MySQL) et en algorithmique.
-                            </p>
-                            <p>
-                                J'ai participé à plusieurs projets pratiques, dont la création d'un site de gestion 
-                                de contenu et la mise en place de fonctionnalités dynamiques à l'aide de JavaScript.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </li>
-
-            <!-- Licence 3 -->
-            <li>
-                <div class="timeline-badge">
-                    <span class="glyphicon glyphicon-briefcase">
-                        <i class="fa-solid fa-briefcase"></i>
-                    </span>
-                </div>
-                <div class="timeline-panel-container">
-                    <div class="timeline-panel">
-                        <div class="timeline-heading">
-                            <h3>LICENCE 3 (en cours)</h3>
-                            <h4>Institut Des Technologies D'Abidjan (ITA 2 PLATEAUX) - Abidjan</h4>
-                            <p class="text-muted">
-                                <i class="fa-regular fa-calendar"></i>
-                                2025-2026
-                            </p>
-                        </div>
-                        <div class="timeline-body">
-                            <p>
-                                Actuellement en troisième année, je me concentre sur le développement full-stack 
-                                (React.js, Node.js), l'intégration d'API, et la sécurisation des applications web.
-                            </p>
-                            <p>
-                                Je travaille sur un projet de fin d'études autour d'un système de gestion en ligne, 
-                                optimisé pour la performance et l'interface utilisateur.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </li>
-        </ul>
     </section>
 
-    <!-------------------------------------------- competence -------------------------------------------->
+    <!-- ══════════════════════════════════════════
+         SECTION À PROPOS (restructurée + texte différenciant)
+    ══════════════════════════════════════════ -->
+    <section class="apropos" id="apropos">
+        <div class="apropos-container">
 
+            <!-- Image -->
+            <div class="apropos-image-wrapper">
+                <div class="image-bg-shape"></div>
+                <div class="image-frame">
+                    <img src="./image/photo_portfolio_apropos-removebg-preview.png" alt="Damiti – Développeur Web" class="apropos-img">
+                </div>
+                <div class="circular-stats">
+                    <div class="circular-stat">
+                        <svg class="circular-progress" width="100" height="100">
+                            <circle cx="50" cy="50" r="40" class="progress-bg"></circle>
+                            <circle cx="50" cy="50" r="40" class="progress-bar" style="--percent: 90;"></circle>
+                        </svg>
+                        <div class="stat-content">
+                            <span class="stat-percent">90%</span>
+                            <span class="stat-name">Frontend</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="circular-stats-right">
+                    <div class="circular-stat-right">
+                        <svg class="circular-progress-right" width="100" height="100">
+                            <circle cx="50" cy="50" r="40" class="progress-bg-right"></circle>
+                            <circle cx="50" cy="50" r="40" class="progress-bar-right" style="--percent: 62;"></circle>
+                        </svg>
+                        <div class="stat-content">
+                            <span class="stat-percent">62%</span>
+                            <span class="stat-name">Backend</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ── Badges flottants technos ── -->
+                <div class="tech-float-badge badge-html5">
+                    <i class='bx bxl-bootstrap'></i>
+                    <span>Bootstrap</span>
+                </div>
+                <div class="tech-float-badge badge-css3">
+                    <i class='bx bxl-react'></i>
+                    <span>REACT</span>
+                </div>
+                
+                <div class="tech-float-badge badge-tailwind">
+                    <i class='bx bxl-php'></i>
+                    <span>PHP</span>
+                </div>
+            
+            </div>
+
+            <!-- Contenu -->
+            <div class="apropos-content-wrapper">
+                <div class="section-header">
+                    <span class="section-tag">
+                        <i class='bx bx-user'></i>
+                        Qui suis-je ?
+                    </span>
+                    <h2 class="section-title">À propos <span class="highlight">de moi</span></h2>
+                </div>
+
+                <div class="role-card">
+                    <div class="role-icon"><i class='bx bx-code-curly'></i></div>
+                    <div class="role-content">
+                        <h3>Développeur Web Front-end</h3>
+                        <p>Licence 3 Sciences Informatiques · ITA Abidjan</p>
+                    </div>
+                </div>
+
+                <!-- BIO DIFFÉRENCIANTE -->
+                <div class="bio-content">
+                    <p class="bio-intro">
+                        <strong>Bonjour, je suis Damiti.</strong> Ce qui me différencie ?
+                        Je ne code pas juste pour que ça marche — je code pour que ça soit
+                        <strong>beau, rapide et compréhensible</strong> par n'importe quel utilisateur.
+                    </p>
+
+                    <div class="bio-section">
+                        <div class="bio-icon"><i class='bx bx-heart'></i></div>
+                        <div class="bio-text">
+                            <h4>Ce qui me passionne</h4>
+                            <p>
+                                Les interfaces qui <strong>résolvent un vrai problème</strong> de manière élégante.
+                                Je m'intéresse particulièrement aux projets de <strong>gestion</strong> (stocks, tâches, données)
+                                et aux <strong>plateformes de service</strong> (livraison, e-commerce, quiz interactifs) —
+                                là où l'UX fait réellement la différence entre adoption et abandon.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="bio-section">
+                        <div class="bio-icon"><i class='bx bx-laptop'></i></div>
+                        <div class="bio-text">
+                            <h4>Mon approche technique</h4>
+                            <p>
+                                Je pars toujours de la <strong>structure HTML sémantique</strong>, j'applique un CSS
+                                précis et maintenable, puis j'enrichis avec JavaScript uniquement là où c'est
+                                nécessaire. Résultat : des pages <strong>légères, accessibles et responsives</strong>
+                                même sur connexions lentes en Côte d'Ivoire.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="bio-section">
+                        <div class="bio-icon"><i class='bx bx-rocket'></i></div>
+                        <div class="bio-text">
+                            <h4>Mon objectif immédiat</h4>
+                            <p>
+                                Décrocher un <strong>stage en entreprise</strong> pour confronter mes compétences
+                                à des projets réels, collaborer avec une équipe et progresser sur
+                                <strong>React.js, Node.js et les outils professionnels</strong> (Git, CI/CD, tests).
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Diplômes résumés en 3 lignes — plus de sous-pages -->
+                <!-- <div class="diplomes-resume">
+                    <h4 class="tech-title"><i class='bx bx-graduation'></i> Formation</h4>
+                    <div class="diplome-ligne">
+                        <span class="diplome-annee">2025–2026</span>
+                        <span class="diplome-texte"><strong>Licence 3</strong> Sciences Informatiques · ITA Abidjan <em>(en cours)</em></span>
+                    </div>
+                    <div class="diplome-ligne">
+                        <span class="diplome-annee">2023–2025</span>
+                        <span class="diplome-texte"><strong>Licence 1 &amp; 2</strong> Sciences Informatiques · ITA Abidjan</span>
+                    </div>
+                    <div class="diplome-ligne">
+                        <span class="diplome-annee">2023</span>
+                        <span class="diplome-texte"><strong>Baccalauréat D</strong> · Collège Les Orchidées, Abidjan</span>
+                    </div>
+                    <a href="./document/cv.pdf" download="CV_Ouattara_Damiti.pdf" class="btn btn-outline" style="margin-top:1.5rem;display:inline-flex;">
+                        <i class='bx bx-download'></i> Voir mon CV complet
+                    </a>
+                </div> -->
+
+                <!-- ── Certifications ── -->
+                <div class="certif-apropos">
+                    <h4 class="tech-title"><i class='bx bx-award'></i> Certifications</h4>
+
+                    <!-- Certificat IBM -->
+                    <a href="./document/CERTIFICATION_IBM.pdf"
+                       target="_blank"
+                       rel="noopener noreferrer"
+                       class="certif-inline-card">
+                        <div class="certif-inline-left">
+                            <div class="certif-inline-icon certif-inline-ibm">
+                                <i class='bx bx-chip'></i>
+                            </div>
+                            <div class="certif-inline-info">
+                                <span class="certif-inline-org">IBM · SkillsBuild</span>
+                                <span class="certif-inline-name">Web Development Fundamentals</span>
+                                <span class="certif-inline-date"><i class='bx bx-calendar'></i> 2024 · International</span>
+                            </div>
+                        </div>
+                        <div class="certif-inline-right">
+                            <span class="certif-inline-badge">
+                                <i class='bx bx-check-shield'></i> Vérifié
+                            </span>
+                            <span class="certif-inline-cta">
+                                Voir <i class='bx bx-right-arrow-alt'></i>
+                            </span>
+                        </div>
+                    </a>
+
+                    <!-- Certificat ITA -->
+                    <a href="./document/CERTIFICAT DE FORMATION SI 1.pdf"
+                       target="_blank"
+                       rel="noopener noreferrer"
+                       class="certif-inline-card">
+                        <div class="certif-inline-left">
+                            <div class="certif-inline-icon certif-inline-ita">
+                                <i class='bx bx-buildings'></i>
+                            </div>
+                            <div class="certif-inline-info">
+                                <span class="certif-inline-org">ITA · Institut des Technologies d'Abidjan</span>
+                                <span class="certif-inline-name">Certificat de Formation SI 1</span>
+                                <span class="certif-inline-date"><i class='bx bx-calendar'></i> 2023–2024 · Abidjan</span>
+                            </div>
+                        </div>
+                        <div class="certif-inline-right">
+                            <span class="certif-inline-badge">
+                                <i class='bx bx-check-shield'></i> Vérifié
+                            </span>
+                            <span class="certif-inline-cta">
+                                Voir <i class='bx bx-right-arrow-alt'></i>
+                            </span>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- Stack technique -->
+                <div class="tech-stack">
+                    <h4 class="tech-title"><i class='bx bx-cog'></i> Stack Technique</h4>
+                    <div class="tech-grid">
+                        <div class="tech-item"><i class='bx bxl-html5'></i><span>HTML5</span></div>
+                        <div class="tech-item"><i class='bx bxl-css3'></i><span>CSS3</span></div>
+                        <div class="tech-item"><i class='bx bxl-javascript'></i><span>JavaScript</span></div>
+                        <div class="tech-item"><i class='bx bxl-php'></i><span>PHP</span></div>
+                        <div class="tech-item"><i class='bx bx-data'></i><span>MySQL</span></div>
+                        <div class="tech-item"><i class='bx bxl-bootstrap'></i><span>Bootstrap</span></div>
+                        <div class="tech-item"><i class='bx bxl-tailwind-css'></i><span>Tailwind</span></div>
+                        <div class="tech-item"><i class='bx bxl-python'></i><span>Python</span></div>
+                    </div>
+                </div>
+
+                <div class="apropos-actions">
+                    <a href="#portfolio" class="btn btn-primary">
+                        <i class='bx bx-briefcase'></i> Voir mes projets
+                    </a>
+                    <a href="#Contact" class="btn btn-outline">
+                        <i class='bx bx-envelope'></i> Me contacter
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════
+         SECTION PARCOURS (timeline simplifiée et moderne)
+    ══════════════════════════════════════════ -->
+    <section id="parcours" class="parcours-moderne">
+        <div class="parcours-container">
+            <div class="section-header" style="text-align:center;margin-bottom:5rem;">
+                <span class="section-tag"><i class='bx bx-map-pin'></i> Itinéraire</span>
+                <h2 class="section-title">Mon <span class="highlight">Parcours</span></h2>
+            </div>
+
+            <div class="timeline-moderne">
+
+                <!-- Item 1 -->
+                <div class="tm-item">
+                    <div class="tm-date">
+                        <span>2023</span>
+                    </div>
+                    <div class="tm-dot"></div>
+                    <div class="tm-card">
+                        <div class="tm-card-header">
+                            <i class='bx bx-book'></i>
+                            <div>
+                                <h3>Baccalauréat D</h3>
+                                <p class="tm-lieu">Collège Les Orchidées · Abidjan</p>
+                            </div>
+                        </div>
+                        <p class="tm-desc">
+                            Baccalauréat scientifique série D. Base solide en logique
+                            mathématique et résolution de problèmes — fondement naturel
+                            pour aborder la programmation et l'algorithmique.
+                        </p>
+                        <div class="tm-tags">
+                            <span>Mathématiques</span>
+                            <span>Sciences</span>
+                            <span>Logique</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 2 -->
+                <div class="tm-item tm-right">
+                    <div class="tm-date">
+                        <span>2023–2025</span>
+                    </div>
+                    <div class="tm-dot"></div>
+                    <div class="tm-card">
+                        <div class="tm-card-header">
+                            <i class='bx bxl-html5'></i>
+                            <div>
+                                <h3>Licence 1 &amp; 2 – Informatique</h3>
+                                <p class="tm-lieu">ITA 2 Plateaux · Abidjan</p>
+                            </div>
+                        </div>
+                        <p class="tm-desc">
+                            Développement web (HTML, CSS, JS), bases de données (MySQL),
+                            algorithmique, PHP, Java POO, Bootstrap. Premiers projets concrets :
+                            site de gestion de contenu, applications dynamiques PHP/MySQL.
+                        </p>
+                        <div class="tm-tags">
+                            <span>HTML/CSS/JS</span>
+                            <span>PHP</span>
+                            <span>MySQL</span>
+                            <span>Algo</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 3 -->
+                <div class="tm-item">
+                    <div class="tm-date">
+                        <span>2025–2026</span>
+                    </div>
+                    <div class="tm-dot tm-dot-active"></div>
+                    <div class="tm-card tm-card-active">
+                        <div class="tm-card-header">
+                            <i class='bx bxl-react'></i>
+                            <div>
+                                <h3>Licence 3 – En cours</h3>
+                                <p class="tm-lieu">ITA 2 Plateaux · Abidjan</p>
+                            </div>
+                        </div>
+                        <p class="tm-desc">
+                            Full-stack (React.js, Node.js), intégration d'API, sécurisation
+                            d'applications web. Projet de fin d'études : système de gestion
+                            en ligne optimisé pour la performance et l'UX.
+                        </p>
+                        <div class="tm-tags">
+                            <span>React.js</span>
+                            <span>Node.js</span>
+                            <span>API</span>
+                            <span>Sécurité web</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════
+         SECTION COMPÉTENCES (sans barres de pourcentage)
+    ══════════════════════════════════════════ -->
     <section class="competence" id="competence">
-        <div class="main-text">
-            <h2 class="entete">Mes <span>Competences</span></h2>
-        </div>
-
-        <div class="skill-main">
-            <div class="skill-left">
-                <h3>Competence Technique</h3>
-                <div class="skill-bar">
-                    <div class="info">
-                        <p>HTML</p>
-                        <p>90%</p>
-                    </div>
-                    <div class="bar">
-                        <span class="html"></span>
-                    </div>
-                </div>
-
-
-                <div class="skill-bar">
-                    <div class="info">
-                        <p>JAVASCRIPT </p>
-                        <p>70%</p>
-                    </div>
-                    <div class="bar">
-                        <span class="javascript"></span>
-                    </div>
-                </div>
-
-
-                <div class="skill-bar">
-                    <div class="info">
-                        <p>CSS / TAILWINDS</p>
-                        <p>80%</p>
-                    </div>
-                    <div class="bar">
-                        <span class="css"></span>
-                    </div>
-                </div>
-
-
-                <div class="skill-bar">
-                    <div class="info">
-                        <p>MySQL / PHP</p>
-                        <p>60%</p>
-                    </div>
-                    <div class="bar">
-                        <span class="angular"></span>
-                    </div>
-                </div>
-
-                <div class="skill-bar">
-                    <div class="info">
-                        <p>INTELLIGENCE ARTIFICIELLE (IA)</p>
-                        <p>80%</p>
-                    </div>
-                    <div class="bar">
-                        <span class="ia"></span>
-                    </div>
-                </div>
-
-                <div class="skill-bar">
-                    <div class="info">
-                        <p>ALGORITHME</p>
-                        <p>79%</p>
-                    </div>
-                    <div class="bar">
-                        <span class="algo"></span>
-                    </div>
-                </div>
-
-
+        <div class="competence-container">
+            <div class="section-header" style="text-align:center;margin-bottom:5rem;">
+                <span class="section-tag"><i class='bx bx-code-alt'></i> Savoir-faire</span>
+                <h2 class="section-title">Mes <span class="highlight">Compétences</span></h2>
+                <p class="section-subtitle">
+                    Plutôt que des pourcentages subjectifs, voici ce que j'ai concrètement réalisé
+                    avec chaque technologie.
+                </p>
             </div>
-            <div class="skill-right">
-                <h3> Competence Professionelle </h3>
-                <div class="professional">
-                    <div class="box">
-                        <div class="circle" data-dots="80" data-percent="90"></div>
-                        <div class="text">
-                            <big>90%</big>
-                            <small>Travailler de Groupe</small>
+
+            <div class="competences-grid">
+
+                <!-- HTML / CSS -->
+                <div class="comp-card">
+                    <div class="comp-card-top">
+                        <div class="comp-icons">
+                            <i class='bx bxl-html5'></i>
+                            <i class='bx bxl-css3'></i>
                         </div>
+                        <div class="comp-level comp-level-avance">Avancé</div>
                     </div>
-
-                    <div class="box">
-                        <div class="circle" data-dots="80" data-percent="87"></div>
-                        <div class="text">
-                            <big>87%</big>
-                            <small>Créativité</small>
-                        </div>
-                    </div>
-
-                    <div class="box">
-                        <div class="circle" data-dots="80" data-percent="80"></div>
-                        <div class="text">
-                            <big>80%</big>
-                            <small>Communication</small>
-                        </div>
-                    </div>
-
-
-                    <div class="box">
-                        <div class="circle" data-dots="80" data-percent="75"></div>
-                        <div class="text">
-                            <big>75%</big>
-                            <small>Gestion de projet</small>
-                        </div>
+                    <h4>HTML5 &amp; CSS3</h4>
+                    <p>Mise en page responsive sur tous les projets, animations CSS, Grid et Flexbox.</p>
+                    <div class="comp-proof">
+                        <span class="proof-label"><i class='bx bx-link-alt'></i> Projets :</span>
+                        <span>Portfolio · Site livraison · Site miel</span>
                     </div>
                 </div>
+
+                <!-- JavaScript -->
+                <div class="comp-card">
+                    <div class="comp-card-top">
+                        <div class="comp-icons"><i class='bx bxl-javascript'></i></div>
+                        <div class="comp-level comp-level-intermediaire">Intermédiaire</div>
+                    </div>
+                    <h4>JavaScript ES6+</h4>
+                    <p>Manipulation du DOM, gestion d'événements, formulaires dynamiques, LocalStorage.</p>
+                    <div class="comp-proof">
+                        <span class="proof-label"><i class='bx bx-link-alt'></i> Projets :</span>
+                        <span>Quiz interactif · Todo List · Portfolio</span>
+                    </div>
+                </div>
+
+                <!-- PHP / MySQL -->
+                <div class="comp-card">
+                    <div class="comp-card-top">
+                        <div class="comp-icons">
+                            <i class='bx bxl-php'></i>
+                            <i class='bx bx-data'></i>
+                        </div>
+                        <div class="comp-level comp-level-intermediaire">Intermédiaire</div>
+                    </div>
+                    <h4>PHP &amp; MySQL</h4>
+                    <p>Création d'applications dynamiques, gestion de bases de données, formulaires serveur.</p>
+                    <div class="comp-proof">
+                        <span class="proof-label"><i class='bx bx-link-alt'></i> Projets :</span>
+                        <span>Système de gestion de contenu (L1)</span>
+                    </div>
+                </div>
+
+                <!-- Bootstrap / Tailwind -->
+                <div class="comp-card">
+                    <div class="comp-card-top">
+                        <div class="comp-icons">
+                            <i class='bx bxl-bootstrap'></i>
+                            <i class='bx bxl-tailwind-css'></i>
+                        </div>
+                        <div class="comp-level comp-level-avance">Avancé</div>
+                    </div>
+                    <h4>Bootstrap &amp; Tailwind CSS</h4>
+                    <p>Prototypage rapide, composants réutilisables, mises en page adaptées mobile-first.</p>
+                    <div class="comp-proof">
+                        <span class="proof-label"><i class='bx bx-link-alt'></i> Projets :</span>
+                        <span>Portfolio · Pages vitrines</span>
+                    </div>
+                </div>
+
+                <!-- Algorithmique / Python -->
+                <div class="comp-card">
+                    <div class="comp-card-top">
+                        <div class="comp-icons">
+                            <i class='bx bxl-python'></i>
+                            <i class='bx bx-git-branch'></i>
+                        </div>
+                        <div class="comp-level comp-level-debutant">En progression</div>
+                    </div>
+                    <h4>Python &amp; Algorithmique</h4>
+                    <p>Scripts de traitement de données, structures de données, algorithmes de tri et de recherche.</p>
+                    <div class="comp-proof">
+                        <span class="proof-label"><i class='bx bx-book'></i> Contexte :</span>
+                        <span>Cours L2 &amp; L3 · Exercices pratiques</span>
+                    </div>
+                </div>
+
+                <!-- Soft skills -->
+                <div class="comp-card comp-card-soft">
+                    <div class="comp-card-top">
+                        <div class="comp-icons"><i class='bx bx-group'></i></div>
+                        <div class="comp-level comp-level-avance">Atouts</div>
+                    </div>
+                    <h4>Compétences transversales</h4>
+                    <div class="soft-skills-list">
+                        <span><i class='bx bx-check'></i> Travail en équipe</span>
+                        <span><i class='bx bx-check'></i> Curiosité technique</span>
+                        <span><i class='bx bx-check'></i> Autonomie</span>
+                        <span><i class='bx bx-check'></i> Adaptabilité rapide</span>
+                        <span><i class='bx bx-check'></i> Gestion de projet</span>
+                        <span><i class='bx bx-check'></i> Communication</span>
+                    </div>
+                </div>
+
             </div>
         </div>
     </section>
 
-    <!--------------------------------------SECTION PORTFOLIO CORRIGÉE-------------------------------------------->
+    <!-- ══════════════════════════════════════════
+         SECTION PORTFOLIO
+    ══════════════════════════════════════════ -->
+    <section class="portfolio" id="portfolio">
+        <h2 class="entete">Mes <span>Projets</span></h2>
 
-<section class="portfolio" id="portfolio">
-    <h2 class="entete">Mes <span>Projets</span></h2>
-    
-    <!-- Statistiques du portfolio -->
-    <div class="portfolio-stats">
-        <div class="stat-box">
-            <span class="stat-number">5+</span>
-            <span class="stat-label">Projets Complétés</span>
+        <div class="portfolio-stats">
+            <div class="stat-box"><span class="stat-number">5+</span><span class="stat-label">Projets réalisés</span></div>
+            <div class="stat-box"><span class="stat-number">7+</span><span class="stat-label">Technologies utilisées</span></div>
+            <div class="stat-box"><span class="stat-number">2+</span><span class="stat-label">Années de pratique</span></div>
         </div>
-        <div class="stat-box">
-            <span class="stat-number">5+</span>
-            <span class="stat-label">Technologies Maîtrisées</span>
+
+        <div class="portfolio-filters">
+            <button class="filter-btn active" data-filter="all"><i class='bx bx-grid-alt'></i> Tous</button>
+            <button class="filter-btn" data-filter="frontend"><i class='bx bx-code-alt'></i> Front-end</button>
         </div>
-        <div class="stat-box">
-            <span class="stat-number">2+</span>
-            <span class="stat-label">Années d'Expérience</span>
-        </div>
-    </div>
 
-    <!-- Filtres de projets -->
-    <div class="portfolio-filters">
-        <button class="filter-btn active" data-filter="all">
-            <i class='bx bx-grid-alt'></i> Tous les projets
-        </button>
-        <button class="filter-btn" data-filter="frontend">
-            <i class='bx bx-code-alt'></i> Front-end
-        </button>
-        <button class="filter-btn" data-filter="fullstack">
-            <i class='bx bx-server'></i> Full-stack
-        </button>
-        <!-- <button class="filter-btn" data-filter="webdesign">
-            <i class='bx bx-palette'></i> Web Design
-        </button> -->
-    </div>
+    </section>
 
-    <!-- La grille de projets sera générée ici par JavaScript -->
-    
-    <script src="./portfolio.js"></script>
-</section>
+    <!-- ══════════════════════════════════════════
+         SECTION STAGE
+    ══════════════════════════════════════════ -->
+    <section class="stage-section" id="stage">
+        <div class="stage-container">
 
-    <!---------------------------------Contact CORRIGÉ--------------------------------->
+            <div class="stage-header">
+                <span class="stage-tag">
+                    <i class='bx bx-search-alt'></i>
+                    Opportunité
+                </span>
+                <h2 class="stage-title">Ce que je <span class="highlight">cherche</span></h2>
+                <p class="stage-subtitle">
+                    Étudiant en Licence 3 Informatique, je recherche un stage pour
+                    appliquer mes compétences sur des projets réels et grandir aux côtés d'une équipe expérimentée.
+                </p>
+            </div>
 
-    <section class="contact" id="Contact">
-        <h2 class="entete">Contactez <span>Moi !</span></h2>
-        <p class="contact-subtitle">N'hésitez pas à me contacter pour toute opportunité ou collaboration</p>
-
-        <form action="" id="contactForm" novalidate>
-            <div class="input-box">
-                <div class="input-group">
-                    <input type="text" placeholder="Nom complet" name="nom" id="nom" required minlength="2">
-                    <span class="error-message" id="nom-error"></span>
+            <div class="stage-availability-card">
+                <div class="availability-icon">
+                    <i class='bx bx-briefcase-alt-2'></i>
+                    <span class="availability-dot"></span>
                 </div>
-                <div class="input-group">
-                    <input type="email" placeholder="Adresse Email" name="email" id="email" required>
-                    <span class="error-message" id="email-error"></span>
+                <div class="availability-content">
+                    <h3>Disponible pour un <span>stage</span></h3>
+                    <p>
+                        Licence 3 Sciences Informatiques à l'ITA d'Abidjan. Je recherche un stage
+                        de fin d'études pour confronter mes compétences à des défis professionnels
+                        concrets et acquérir les réflexes du métier.
+                    </p>
+                    <div class="availability-badges">
+                        <span class="avail-badge green"><i class='bx bx-check-circle'></i> Disponible maintenant</span>
+                        <span class="avail-badge blue"><i class='bx bx-map'></i> Abidjan · Remote possible</span>
+                        <span class="avail-badge blue"><i class='bx bx-time'></i> 2 à 6 mois</span>
+                    </div>
                 </div>
             </div>
-            <div class="input-box">
-                <div class="input-group">
-                    <input type="tel" placeholder="Numéro mobile" name="telephone" id="mobile" required pattern="[0-9]{8,15}">
-                    <span class="error-message" id="mobile-error"></span>
+
+            <div class="stage-grid">
+                <div class="stage-card">
+                    <div class="stage-card-icon"><i class='bx bx-target-lock'></i></div>
+                    <h4>Mon objectif</h4>
+                    <p>Intégrer une équipe tech pour travailler sur des projets web à fort impact : gestion, e-commerce, plateforme de service — là où l'UX fait la différence.</p>
                 </div>
-                <div class="input-group">
-                    <input type="text" placeholder="Sujet du Courriel" name="sujet" id="sujet" required minlength="3">
-                    <span class="error-message" id="sujet-error"></span>
+                <div class="stage-card">
+                    <div class="stage-card-icon"><i class='bx bx-gift'></i></div>
+                    <h4>Ce que j'apporte</h4>
+                    <p>HTML, CSS, JavaScript, PHP, MySQL maîtrisés. Capacité d'adaptation, rigueur et motivation à apprendre chaque jour de nouveaux outils.</p>
+                </div>
+                <div class="stage-card">
+                    <div class="stage-card-icon"><i class='bx bx-bulb'></i></div>
+                    <h4>Ce que je veux apprendre</h4>
+                    <p>Découvrir les workflows en entreprise (Git, code review, agile), approfondir React.js et Node.js sur des projets en production.</p>
+                </div>
+                <div class="stage-card">
+                    <div class="stage-card-icon"><i class='bx bx-buildings'></i></div>
+                    <h4>L'environnement idéal</h4>
+                    <p>Startup tech, agence web ou ESN à Abidjan (ou remote). Un environnement où l'initiative est valorisée et où on apprend vite.</p>
                 </div>
             </div>
-            <div class="input-group">
-                <textarea name="message" cols="30" rows="10" placeholder="Votre message" id="message" required minlength="10"></textarea>
-                <span class="error-message" id="message-error"></span>
-            </div>
-            <button type="submit" class="btn">
-                <i class='bx bx-send'></i>
-                Envoyer le message
-            </button>
-        </form>
 
-        <!-- Informations de contact supplémentaires -->
-        <div class="contact-info">
-            <div class="info-card">
-                <i class='bx bx-envelope'></i>
-                <h3>Email</h3>
-                <p><a href="mailto:damitielieericouattara@gmail.com">damitielieericouattara@gmail.com</a></p>
-            </div>
-
-            <div class="info-card">
-                <i class='bx bx-phone'></i>
-                <h3>Téléphone</h3>
-                <p><a href="tel:+2250713188565">+225 07 13 18 85 65</a></p>
+            <div class="stage-skills-target">
+                <h3><i class='bx bx-code-block'></i> Compétences mobilisables en stage</h3>
+                <div class="skills-tags-grid">
+                    <span class="s-tag">HTML5 / CSS3</span>
+                    <span class="s-tag">JavaScript ES6+</span>
+                    <span class="s-tag">PHP</span>
+                    <span class="s-tag">MySQL</span>
+                    <span class="s-tag">Bootstrap</span>
+                    <span class="s-tag">Tailwind CSS</span>
+                    <span class="s-tag">React.js</span>
+                    <span class="s-tag">Responsive Design</span>
+                    <span class="s-tag">Git / GitHub</span>
+                    <span class="s-tag">Algorithmique</span>
+                    <span class="s-tag">UML / Merise</span>
+                    <span class="s-tag">Python</span>
+                </div>
             </div>
 
-            <div class="info-card">
-                <i class='bx bx-map'></i>
-                <h3>Localisation</h3>
-                <p>Abobo, Abidjan, Côte d'Ivoire</p>
+            <div class="stage-cta">
+                <h3>Vous avez une <span>opportunité</span> pour moi ?</h3>
+                <p>Parlons-en ! Je suis disponible pour un entretien à tout moment.</p>
+                <div class="stage-cta-buttons">
+                    <a href="#Contact" class="btn btn-primary"><i class='bx bx-envelope'></i> Me contacter</a>
+                    <a href="./document/cv.pdf" class="btn btn-secondary" download="CV_Ouattara_Damiti.pdf"><i class='bx bx-download'></i> Mon CV</a>
+                </div>
             </div>
+
         </div>
     </section>
 
-    <!-------------------------------------footer----------------------------------->
+    <!-- ══════════════════════════════════════════
+         SECTION CONTACT — VERSION PREMIUM
+    ══════════════════════════════════════════ -->
+    <section class="contact-v2" id="Contact">
+        <div class="contact-v2-wrapper">
 
+            <!-- ── Colonne gauche : infos + réseaux ── -->
+            <div class="contact-v2-left">
+
+                <div class="contact-v2-header">
+                    <span class="section-tag">
+                        <i class='bx bx-paper-plane'></i>
+                        Disponible
+                    </span>
+                    <h2 class="section-title">
+                        Parlons de votre <span class="highlight">projet</span>
+                    </h2>
+                    <p class="contact-v2-intro">
+                        Recruteur, collaborateur ou simplement curieux —
+                        je lis chaque message et réponds sous 24h.
+                    </p>
+                </div>
+
+                <!-- Disponibilité -->
+                <div class="contact-v2-status">
+                    <span class="status-dot"></span>
+                    <span>Disponible pour un stage dès maintenant</span>
+                </div>
+
+                <!-- Canaux de contact -->
+                <div class="contact-v2-channels">
+
+                    <a href="mailto:damitielieericouattara@gmail.com" class="channel-card">
+                        <div class="channel-icon channel-email">
+                            <i class='bx bx-envelope'></i>
+                        </div>
+                        <div class="channel-info">
+                            <span class="channel-label">Email</span>
+                            <span class="channel-value"><span class="__cf_email__" data-cfemail="">damitielieericouattara@gmail.com</span></span>
+                        </div>
+                        <i class='bx bx-right-arrow-alt channel-arrow'></i>
+                    </a>
+
+                    <a href="tel:+2250713188565" class="channel-card">
+                        <div class="channel-icon channel-phone">
+                            <i class='bx bx-phone'></i>
+                        </div>
+                        <div class="channel-info">
+                            <span class="channel-label">Téléphone</span>
+                            <span class="channel-value">+225 07 13 18 85 65</span>
+                        </div>
+                        <i class='bx bx-right-arrow-alt channel-arrow'></i>
+                    </a>
+
+                    <a href="https://wa.me/2250713188565" target="_blank" rel="noopener noreferrer" class="channel-card">
+                        <div class="channel-icon channel-whatsapp">
+                            <i class='bx bxl-whatsapp'></i>
+                        </div>
+                        <div class="channel-info">
+                            <span class="channel-label">WhatsApp</span>
+                            <span class="channel-value">+225 07 13 18 85 65</span>
+                        </div>
+                        <i class='bx bx-right-arrow-alt channel-arrow'></i>
+                    </a>
+
+                    <div class="channel-card channel-location">
+                        <div class="channel-icon channel-map">
+                            <i class='bx bx-map-pin'></i>
+                        </div>
+                        <div class="channel-info">
+                            <span class="channel-label">Localisation</span>
+                            <span class="channel-value">Abobo, Abidjan, Côte d'Ivoire</span>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Réseaux sociaux -->
+                <div class="contact-v2-socials">
+                    <span class="socials-label">Me retrouver sur</span>
+                    <div class="socials-row">
+                        <a href="https://www.facebook.com/profile.php?id=100088974321346" target="_blank" rel="noopener noreferrer" class="social-icon-btn facebook" title="Facebook">
+                            <i class='bx bxl-facebook'></i>
+                        </a>
+                        <a href="https://www.instagram.com/dam_el225/" target="_blank" rel="noopener noreferrer" class="social-icon-btn instagram" title="Instagram">
+                            <i class='bx bxl-instagram'></i>
+                        </a>
+                        <a href="https://www.snapchat.com/add/dam_el225" target="_blank" rel="noopener noreferrer" class="social-icon-btn snapchat" title="Snapchat">
+                            <i class='bx bxl-snapchat'></i>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- ── Colonne droite : formulaire ── -->
+            <div class="contact-v2-right">
+                <div class="contact-v2-form-card">
+
+                    <div class="form-card-header">
+                        <i class='bx bx-edit-alt'></i>
+                        <span>Envoyer un message</span>
+                    </div>
+
+                    <form action="" id="contactForm" novalidate>
+
+                        <div class="form-row">
+                            <div class="form-field">
+                                <label for="nom"><i class='bx bx-user'></i> Nom complet</label>
+                                <input type="text" id="nom" name="nom" placeholder="Ex : Jean Dupont" required minlength="2">
+                                <span class="error-message" id="nom-error"></span>
+                            </div>
+                            <div class="form-field">
+                                <label for="email"><i class='bx bx-envelope'></i> Email</label>
+                                <input type="email" id="email" name="email" placeholder="Ex : jean@gmail.com" required>
+                                <span class="error-message" id="email-error"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-field">
+                                <label for="mobile"><i class='bx bx-phone'></i> Téléphone</label>
+                                <input type="tel" id="mobile" name="telephone" placeholder="Ex : +225 07 00 00 00" required>
+                                <span class="error-message" id="mobile-error"></span>
+                            </div>
+                            <div class="form-field">
+                                <label for="sujet"><i class='bx bx-purchase-tag'></i> Sujet</label>
+                                <input type="text" id="sujet" name="sujet" placeholder="Ex : Proposition de stage" required minlength="3">
+                                <span class="error-message" id="sujet-error"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-field">
+                            <label for="message"><i class='bx bx-message-detail'></i> Message</label>
+                            <textarea id="message" name="message" rows="6" placeholder="Décrivez votre projet ou votre opportunité..." required minlength="10"></textarea>
+                            <span class="error-message" id="message-error"></span>
+                        </div>
+
+                        <button type="submit" class="contact-v2-submit">
+                            <span>Envoyer via WhatsApp</span>
+                            <i class='bx bxl-whatsapp'></i>
+                        </button>
+
+                        <p class="form-note">
+                            <i class='bx bx-shield-quarter'></i>
+                            Vos données ne sont jamais partagées. Réponse sous 24h.
+                        </p>
+
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- FOOTER -->
     <footer class="footer">
         <div class="footer-text">
-            <p>&copy; 2025 par dam<span>el</span> - Tout droits réserver</p>
+            <p>&copy; 2025 par dam<span>el</span> — Tous droits réservés</p>
         </div>
-
         <div class="footer-iconTop">
-            <a href="#acceuil"><i class='bx bx-up-arrow-alt'></i></a>
+                     <a href="#accueil"><i class='bx bx-up-arrow-alt'></i></a>
         </div>
     </footer>
 
+    <!-- Scripts -->
     <script src="https://unpkg.com/scrollreveal"></script>
+    <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
+    <script src="./portfolio.js"></script>
+    <script src="./script.js"></script>
+    <script src="./scroll-animations.js"></script>
+    <script src="./theme-toggle.js"></script>
 
-    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
-
-    <!-- Script de correction des boutons - DOIT ÊTRE CHARGÉ EN PREMIER -->
-    <script src="fix-buttons.js"></script>
-
-    <script src="script.js"></script>
 </body>
-
 </html>
