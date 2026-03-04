@@ -60,7 +60,7 @@
        Envoi via EmailJS
     ───────────────────────────────────────────────────────── */
     function sendNotification() {
-        if (SERVICE_ID === 'VOTRE_SERVICE_ID') {
+        if (SERVICE_ID === 'service_gjk5upd') {
             console.warn('[Portfolio Notify] Configure EmailJS dans visitor-notify.js');
             return;
         }
