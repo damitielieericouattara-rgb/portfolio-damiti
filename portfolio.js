@@ -12,7 +12,7 @@
             id: 1,
             src: './image/BOUFFE.jpeg',
             href: 'https://damitielieericouattara-rgb.github.io/restaurant/',
-            title: 'DABALIE DE BABI',
+            title: 'DABALIE DE BABI ( en cours de developpement )',
             subtitle: 'Plateforme de livraison · Full-Stack',
             description: 'Interface complète pour commander de la street food ivoirienne. Catalogue de plats, panier dynamique, suivi de commande et système de paiement mobile. Architecture JavaScript native côté front, PHP + MySQL côté back.',
             technologies: ['HTML5', 'CSS3', 'JavaScript', 'PHP', 'MySQL'],
