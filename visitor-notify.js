@@ -22,18 +22,26 @@
 
     function getVisitorInfo() {
         const now = new Date();
+        const heure  = now.toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' });
+        const date   = now.toLocaleDateString('fr-FR', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
+        const langue = navigator.language || '?';
+        const ecran  = screen.width + 'x' + screen.height;
+        const os     = navigator.platform || '?';
+        const referrer = document.referrer
+            ? document.referrer.replace(/^https?:\/\/(www\.)?/,'').split('/')[0]
+            : 'Acces direct';
+        const page = window.location.href;
+
         return {
-            sujet    : 'Nouveau visiteur sur ton Portfolio !',
-            heure    : now.toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' }),
-            date     : now.toLocaleDateString('fr-FR', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' }),
-            langue   : navigator.language || '?',
-            ecran    : screen.width + 'x' + screen.height,
-            os       : navigator.platform || '?',
-            referrer : document.referrer
-                        ? document.referrer.replace(/^https?:\/\/(www\.)?/,'').split('/')[0]
-                        : 'Acces direct',
-            page     : window.location.href,
-            email_to : EMAIL_DEST
+            to_email : EMAIL_DEST,
+            subject  : 'Nouveau visiteur sur ton Portfolio !',
+            heure    : heure,
+            date     : date,
+            langue   : langue,
+            ecran    : ecran,
+            os       : os,
+            referrer : referrer,
+            page     : page
         };
     }
 
@@ -46,11 +54,11 @@
             emailjs.init(PUBLIC_KEY);
             emailjs.send(SERVICE_ID, TEMPLATE_ID, getVisitorInfo())
                 .then(function () {
-                    console.log('[Portfolio Notify] Email envoye avec succes !');
+                    console.log('[Portfolio Notify] Email envoye !');
                     try { localStorage.setItem('pf_visit_ts', Date.now().toString()); } catch(e) {}
                 })
                 .catch(function (err) {
-                    console.error('[Portfolio Notify] Erreur envoi :', err);
+                    console.error('[Portfolio Notify] Erreur :', JSON.stringify(err));
                 });
         };
         script.onerror = function() {
