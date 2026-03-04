@@ -1,618 +1,433 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr" data-theme="dark">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>fast food</title>
-    <link rel="stylesheet" href="style.css">
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/brands.min.css" integrity="sha512-DJLNx+VLY4aEiEQFjiawXaiceujj5GA7lIY8CHCIGQCBPfsEG0nGz1edb4Jvw1LR7q031zS5PpPqFuPA8ihlRA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#f46a06">
+<title>StreetBite 🔥 — Fast Food Urbain</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Syne:wght@400;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!--------- DEBUT PARTIE HEADER ---------->
-<header>
-    <a href="#" class="logo"><i class="fas fa-utensils"></i>logo</a>
+<!-- CURSOR CUSTOM -->
+<div id="cursor"></div>
+<div id="cursor-glow"></div>
 
-    <nav class="navbar">
+<!-- PWA BANNER -->
+<div id="pwa-banner" class="pwa-banner hidden">
+  <span>📱</span><div><strong>Installer l'app</strong><small>Accès rapide</small></div>
+  <button onclick="installPWA()">Installer</button>
+  <button onclick="this.parentElement.classList.add('hidden')"><i class="fas fa-times"></i></button>
+</div>
 
-        <a href="#home" class="active">Acceuil</a>
-        <a href="#dishes">Plats</a>
-        <a href="#about">A propos</a>
-        <a href="#menu">menu</a>
-        <a href="#review">Critique</a>
-        <a href="#order">Commander</a>
+<!-- TOAST -->
+<div id="toasts"></div>
 
-    </nav>
+<!-- FLOATING CART BUBBLE -->
+<div id="cart-bubble" class="cart-bubble hidden" onclick="toggleCart()">
+  <i class="fas fa-shopping-bag"></i>
+  <span id="bubble-count">0</span>
+  <div id="bubble-price">0 FCFA</div>
+</div>
 
+<!-- AI CHATBOT -->
+<button id="ai-fab" class="ai-fab" onclick="toggleAI()">
+  <span>🤖</span><div class="ai-pulse"></div>
+  <div class="ai-tooltip">Assistant IA</div>
+</button>
+<div id="ai-chat" class="ai-chat hidden">
+  <div class="ai-header">
+    <div class="ai-ava">🤖</div>
+    <div><strong>Chef IA</strong><small>Conseiller personnel</small></div>
+    <button onclick="toggleAI()"><i class="fas fa-times"></i></button>
+  </div>
+  <div id="ai-msgs" class="ai-msgs"></div>
+  <div id="ai-suggestions" class="ai-suggs"></div>
+  <div class="ai-input">
+    <input id="ai-inp" type="text" placeholder="Que souhaitez-vous manger ?" onkeydown="if(event.key==='Enter')sendAI()">
+    <button onclick="startVoice()" id="voice-btn" class="voice-btn"><i class="fas fa-microphone"></i></button>
+    <button onclick="sendAI()"><i class="fas fa-paper-plane"></i></button>
+  </div>
+</div>
 
-    <div class="icons">
+<!-- MODALS BACKDROP -->
+<div id="backdrop" class="backdrop hidden" onclick="closeAllModals()"></div>
 
-        <i class="fas fa-bars" id="menu-bars"></i>
-        <i class="fas fa-search" id="search-icon"></i>
-        <a href="#" class="fas fa-heart"></a>
-        <a href="#" class="fas fa-shopping-cart"></a>
+<!-- AUTH MODAL -->
+<div id="auth-modal" class="modal hidden">
+  <button class="modal-close" onclick="closeModal('auth-modal')"><i class="fas fa-times"></i></button>
+  <div class="auth-tabs">
+    <button class="atab active" data-tab="login">Connexion</button>
+    <button class="atab" data-tab="register">Inscription</button>
+  </div>
+  <div id="login-pane" class="auth-pane">
+    <div class="auth-icon">👋</div>
+    <h2>Bon retour !</h2>
+    <div class="fg"><label>Email</label><input id="l-email" type="email" placeholder="vous@exemple.com"></div>
+    <div class="fg"><label>Mot de passe</label>
+      <div class="pw"><input id="l-pass" type="password" placeholder="••••••••"><button type="button" onclick="togglePw('l-pass',this)"><i class="fas fa-eye"></i></button></div>
     </div>
+    <button class="btn-p w100" onclick="doLogin()"><i class="fas fa-sign-in-alt"></i> Connexion</button>
+    <p class="hint">Démo: <code>demo@streetbite.com</code> / <code>demo123</code></p>
+  </div>
+  <div id="register-pane" class="auth-pane hidden">
+    <div class="auth-icon">🎉</div>
+    <h2>Rejoignez-nous</h2>
+    <div class="fg"><label>Nom</label><input id="r-name" type="text" placeholder="Votre nom"></div>
+    <div class="fg"><label>Email</label><input id="r-email" type="email" placeholder="vous@exemple.com"></div>
+    <div class="fg"><label>Mot de passe</label>
+      <div class="pw"><input id="r-pass" type="password" placeholder="••••••••" oninput="checkPwStrength(this.value)"><button type="button" onclick="togglePw('r-pass',this)"><i class="fas fa-eye"></i></button></div>
+    </div>
+    <div id="pw-strength" class="pw-strength"></div>
+    <button class="btn-p w100" onclick="doRegister()"><i class="fas fa-user-plus"></i> Créer mon compte</button>
+  </div>
+</div>
 
+<!-- ITEM DETAIL MODAL -->
+<div id="item-modal" class="modal item-modal hidden">
+  <button class="modal-close" onclick="closeModal('item-modal')"><i class="fas fa-times"></i></button>
+  <div id="item-modal-body"></div>
+</div>
+
+<!-- ORDER CONFIRM MODAL -->
+<div id="order-modal" class="modal order-modal hidden">
+  <div id="confetti-wrap"></div>
+  <div class="order-check"><div class="check-ring"></div><i class="fas fa-check"></i></div>
+  <h2>Commande confirmée !</h2>
+  <p id="order-id-disp" class="mono"></p>
+  <div class="eta-box">
+    <div class="eta-emoji">🛵</div>
+    <div><strong id="eta-val">28 min</strong><small>Livraison estimée</small></div>
+    <div class="live-tag">LIVE</div>
+  </div>
+  <div class="tracker" id="tracker">
+    <div class="ts active" id="ts0"><div class="ti"><i class="fas fa-receipt"></i></div><span>Reçue</span></div>
+    <div class="tl"></div>
+    <div class="ts" id="ts1"><div class="ti"><i class="fas fa-fire-alt"></i></div><span>Cuisine</span></div>
+    <div class="tl"></div>
+    <div class="ts" id="ts2"><div class="ti"><i class="fas fa-motorcycle"></i></div><span>En route</span></div>
+    <div class="tl"></div>
+    <div class="ts" id="ts3"><div class="ti"><i class="fas fa-home"></i></div><span>Livré</span></div>
+  </div>
+  <button class="btn-p" onclick="closeModal('order-modal')">Fermer</button>
+</div>
+
+<!-- CART DRAWER -->
+<div id="cart-ov" class="ov hidden" onclick="toggleCart()"></div>
+<div id="cart-drw" class="drawer">
+  <div class="drw-head">
+    <h2><i class="fas fa-shopping-bag"></i> Panier <span id="cart-n" class="pill-badge">0</span></h2>
+    <button onclick="toggleCart()"><i class="fas fa-times"></i></button>
+  </div>
+  <div id="cart-upsell" class="upsell hidden"></div>
+  <div id="cart-body" class="drw-body"></div>
+  <div class="drw-foot">
+    <div class="promo-inp">
+      <input id="promo-code" type="text" placeholder="Code promo (BITE10)">
+      <button onclick="applyPromo()">OK</button>
+    </div>
+    <div class="totals">
+      <div class="trow"><span>Sous-total</span><span id="cart-sub">0 FCFA</span></div>
+      <div class="trow promo-trow hidden" id="promo-trow"><span>🎉 Promo</span><span id="cart-promo" class="green">-0</span></div>
+      <div class="trow"><span>Livraison</span><span id="cart-del">1 500 FCFA</span></div>
+      <div class="trow bold"><span>Total</span><span id="cart-tot">0 FCFA</span></div>
+    </div>
+    <button class="btn-p w100" onclick="checkout()"><i class="fas fa-lock"></i> Commander — <span id="cko-tot">0 FCFA</span></button>
+    <button class="btn-ghost w100 sm" onclick="clearCart()">Vider le panier</button>
+  </div>
+</div>
+
+<!-- ORDERS DRAWER -->
+<div id="orders-ov" class="ov hidden" onclick="closeOrders()"></div>
+<div id="orders-drw" class="drawer orders-drawer">
+  <div class="drw-head"><h2><i class="fas fa-receipt"></i> Mes Commandes</h2><button onclick="closeOrders()"><i class="fas fa-times"></i></button></div>
+  <div id="orders-body" class="drw-body"></div>
+</div>
+
+<!-- LOYALTY DRAWER -->
+<div id="loyalty-ov" class="ov hidden" onclick="closeLoyalty()"></div>
+<div id="loyalty-drw" class="drawer loyalty-drawer">
+  <div class="drw-head"><h2><i class="fas fa-crown"></i> Programme Fidélité</h2><button onclick="closeLoyalty()"><i class="fas fa-times"></i></button></div>
+  <div id="loyalty-body" class="drw-body"></div>
+</div>
+
+<!-- ===== HEADER ===== -->
+<header id="hdr">
+  <a href="#" class="logo">STREET<span>BITE</span></a>
+  <nav id="nav">
+    <a href="#home" class="nl active">Accueil</a>
+    <a href="#menu-sec" class="nl">Menu</a>
+    <a href="#about-sec" class="nl">À propos</a>
+    <a href="#" class="nl" onclick="openOrders(event)">Commandes</a>
+    <a href="#" class="nl" onclick="openLoyalty(event)"><i class="fas fa-crown"></i> Fidélité <span id="pts-badge">0pts</span></a>
+  </nav>
+  <div class="h-right">
+    <button class="ib" onclick="toggleTheme()" id="theme-btn" title="Thème"><i class="fas fa-moon" id="theme-icon"></i></button>
+    <button class="ib" onclick="toggleSearch()" title="Rechercher (/)"><i class="fas fa-search"></i></button>
+    <button class="ib" id="auth-btn" onclick="openModal('auth-modal')"><i class="fas fa-user"></i></button>
+    <button class="ib cart-ib" onclick="toggleCart()">
+      <i class="fas fa-shopping-bag"></i>
+      <span id="cart-badge" class="badge hidden">0</span>
+    </button>
+    <button class="ib mob-menu" id="mob-toggle"><i class="fas fa-bars"></i></button>
+  </div>
 </header>
 
-<!--------- FIN PARTIE HEADER ---------->
+<!-- SEARCH OVERLAY -->
+<div id="search-ov" class="search-ov hidden">
+  <div class="search-box">
+    <i class="fas fa-search"></i>
+    <input id="s-input" type="text" placeholder="Chercher un plat... (appuyez sur / )" oninput="doSearch(this.value)">
+    <button onclick="startVoice()" class="voice-btn" title="Voix"><i class="fas fa-microphone"></i></button>
+    <button onclick="toggleSearch()"><i class="fas fa-times"></i></button>
+  </div>
+  <div id="s-tags" class="s-tags"></div>
+  <div id="s-results" class="s-results"></div>
+</div>
 
-
-<!--------- DEBUT PARTIE RECHERCHE ---------->
-
-<form action="" id="search-form">
-    <input type="search" placeholder="RECHERCHE" id="search-box">
-    <label for="search-box" class="fas fa-search"></label>
-    <i class="fas fa-times" id="close"></i>
-
-</form>
-<!--------- FIN PARTIE RECHERCHE ---------->
-
-
-
-
-<!--------- DEBUT PARTIE ACCEUIL ---------->
-
-<section class="home" id="home">
-
-    <div class="swiper home-slider">
-
-        <div class="swiper-wrapper wrapper">
-
-            <div class="swiper-slide slide">
-                <div class="content">
-                    <span>notre plat special</span>
-                    <h3>frite au poulet</h3>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta placeat voluptas doloribus animi voluptates inventore?</p>
-                    <a href="#" class="btn">commander maintenant</a>
-                </div>
-                <div class="image">
-                    <img src="./IMAGE/img1.png" alt="">
-                </div>
-            </div>
-
-
-            <div class="swiper-slide slide">
-                <div class="content">
-                    <span>notre plat special</span>
-                    <h3>plat sain</h3>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta placeat voluptas doloribus animi voluptates inventore?</p>
-                    <a href="#" class="btn">commander maintenant</a>
-                </div>
-                <div class="image">
-                    <img src="./IMAGE/img6.png" alt="">
-                </div>
-            </div>
-
-
-            <div class="swiper-slide slide">
-                <div class="content">
-                    <span>notre plat special</span>
-                    <h3>canard fris</h3>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta placeat voluptas doloribus animi voluptates inventore?</p>
-                    <a href="#" class="btn">commander maintenant</a>
-                </div>
-                <div class="image">
-                    <img src="./IMAGE/img5.png" alt="">
-                </div>
-            </div>
-        </div>
-
-        <div class="swiper-pagination"></div>
-
+<!-- ===== HERO ===== -->
+<section class="hero" id="home">
+  <canvas id="ptx" class="ptx-canvas"></canvas>
+  <div class="hero-wrap">
+    <div class="hero-left">
+      <div class="live-pill"><div class="live-dot"></div> Ouvert · Livraison 28 min</div>
+      <h1 class="hero-title">La vraie<br><span class="t-stroke">STREET</span><br><span class="t-fill">FOOD</span></h1>
+      <p class="hero-desc">Burgers, poulets, plats locaux — préparés à la minute avec des ingrédients frais du marché d'Abidjan.</p>
+      <div class="hero-ctas">
+        <a href="#menu-sec" class="btn-p xl"><i class="fas fa-fire-alt"></i> Voir le menu</a>
+        <button class="btn-ghost xl" onclick="openAIChat()"><i class="fas fa-robot"></i> Commander avec l'IA</button>
+      </div>
+      <div class="hero-pills">
+        <span class="h-pill"><i class="fas fa-star"></i> 4.9/5</span>
+        <span class="h-pill"><i class="fas fa-motorcycle"></i> 28 min moy.</span>
+        <span class="h-pill"><i class="fas fa-shield-alt"></i> Paiement sécurisé</span>
+      </div>
     </div>
-
+    <div class="hero-right">
+      <div class="hero-3d" id="hero-3d" onmousemove="tilt3D(event)" onmouseleave="resetTilt()">
+        <div class="orbit">
+          <div class="orb-item o1" onclick="quickAdd(1)" title="Ajouter burger">🍔</div>
+          <div class="orb-item o2" onclick="quickAdd(3)" title="Ajouter plat local">🌍</div>
+          <div class="orb-item o3" onclick="quickAdd(5)" title="Ajouter frites">🍟</div>
+          <div class="orb-item o4" onclick="quickAdd(8)" title="Ajouter boisson">🧃</div>
+        </div>
+        <div class="main-dish" id="main-dish">🍔</div>
+        <div class="dish-shadow"></div>
+        <div class="dish-glow"></div>
+        <div class="tap-hint">Cliquez pour ajouter !</div>
+      </div>
+    </div>
+  </div>
+  <div class="scroll-hint"><div class="scroll-wheel"></div><span>Défiler</span></div>
 </section>
 
-<!--------- FIN PARTIE ACCEUIL ---------->
+<!-- STATS TICKER -->
+<div class="ticker">
+  <div class="ticker-inner" id="ticker-inner"></div>
+</div>
 
+<!-- ===== CATEGORIES ===== -->
+<div class="cats-bar" id="cats-bar"></div>
 
-
-
-<!--------- DEBUT PARTIE PALTS ---------->
-
-<section class="dishes" id="dishes">
-
-    <h3 class="sub-heading">Nos plats</h3>
-    <h1 class="heading">Plats populaire</h1>
-
-    <div class="box-container">
-
-        <div class="box">
-            <a href="#" class="fas fa-heart"></a>
-            <a href="#" class="fas fa-eye"></a>
-            <img src="./IMAGE/img2.png" alt="">
-            <h3>Plat delicieux</h3>
-            <div class="stars">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star-half-alt"></i>
-            </div>
-            <span>Prix</span>
-            <a href="#" class="btn">ajouter</a>
-        </div>
-
-
-        <div class="box">
-            <a href="#" class="fas fa-heart"></a>
-            <a href="#" class="fas fa-eye"></a>
-            <img src="./IMAGE/plat2.png" alt="">
-            <h3>Plat delicieux</h3>
-            <div class="stars">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star-half-alt"></i>
-            </div>
-            <span>Prix</span>
-            <a href="#" class="btn">ajouter</a>
-        </div>
-
-
-        <div class="box">
-            <a href="#" class="fas fa-heart"></a>
-            <a href="#" class="fas fa-eye"></a>
-            <img src="./IMAGE/PLAT3.png" alt="">
-            <h3>Plat delicieux</h3>
-            <div class="stars">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star-half-alt"></i>
-            </div>
-            <span>Prix</span>
-            <a href="#" class="btn">ajouter</a>
-        </div>
-
-
-        <div class="box">
-            <a href="#" class="fas fa-heart"></a>
-            <a href="#" class="fas fa-eye"></a>
-            <img src="./IMAGE/IJJ.png" alt="">
-            <h3>Plat delicieux</h3>
-            <div class="stars">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star-half-alt"></i>
-            </div>
-            <span>Prix</span>
-            <a href="#" class="btn">ajouter</a>
-        </div>
-
-
-        <div class="box">
-            <a href="#" class="fas fa-heart"></a>
-            <a href="#" class="fas fa-eye"></a>
-            <img src="./IMAGE/img4.png" alt="">
-            <h3>Plat delicieux</h3>
-            <div class="stars">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star-half-alt"></i>
-            </div>
-            <span>Prix</span>
-            <a href="#" class="btn">ajouter</a>
-        </div>
-
-
-        <div class="box">
-            <a href="#" class="fas fa-heart"></a>
-            <a href="#" class="fas fa-eye"></a>
-            <img src="./IMAGE/BURGER2.png" alt="">
-            <h3>Plat delicieux</h3>
-            <div class="stars">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star-half-alt"></i>
-            </div>
-            <span>Prix</span>
-            <a href="#" class="btn">ajouter</a>
-        </div>
-
-
-    </div>
-
+<!-- ===== AI RECOMMANDATIONS ===== -->
+<section class="ai-reco" id="ai-reco">
+  <div class="ai-reco-head">
+    <div class="ai-chip"><i class="fas fa-robot"></i> IA Personnalisée</div>
+    <h2>Recommandé pour vous</h2>
+    <p id="ai-reason">Basé sur l'heure et vos préférences</p>
+  </div>
+  <div class="ai-reco-grid" id="ai-reco-grid"></div>
 </section>
 
-<!--------- FIN PARTIE PALTS ---------->
-
-
-<!--------- DEBUT PARTIE A PROPOS ---------->
-
-<section class="about" id="about">
-
-    <h3 class="sub-heading">Nos plats</h3>
-    <h1 class="heading">Plats populaire</h1>
-
-    <div class="row">
-
-        <div class="image">
-            <img src="./IMAGE/img6.png" alt="">
-        </div>
-
-        <div class="content">
-            <h3>meilleur nourriture du pays</h3>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti fuga, sunt nisi explicabo nobis cupiditate
-             tempore voluptatum vero unde eos esse! Porro obcaecati quos, soluta ut doloribus vel repudiandae? Delectus?</p>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Asperiores sint aut numquam veniam voluptates at, placeat animi laudantium mollitia aspernatur.</p>
-            <div class="icons-container">
-                <div class="icons">
-                    <i class="fas fa-shipping-fast"></i>
-                    <span>livraison rapide</span>
-                </div>
-
-                <div class="icons">
-                    <i class="fas fa-dollar-sign"></i>
-                    <span>payement facile</span>
-                </div>
-
-                <div class="icons">
-                    <i class="fas fa-headset"></i>
-                    <span>service 24/7</span>
-                </div>
-            </div>
-            <a href="#" class="btn">voir plus</a>
-        </div>
+<!-- ===== MENU ===== -->
+<section class="menu-sec" id="menu-sec">
+  <div class="sec-hd">
+    <div>
+      <p class="sec-sub">Notre sélection</p>
+      <h2 class="sec-title">Menu Complet</h2>
     </div>
-
-</section>
-<!--------- FIN PARTIE A PROPOS ---------->
-
-
-<!--------- DEBUT PARTIE MENU ---------->
-
-<section class="menu" id="menu">
-    <h3 class="sub-heading">notre menu</h3>
-    <h1 class="heading">Spécalité du jour</h1>
-
-    <div class="box-container">
-
-        <div class="box">
-            <div class="image">
-                <img src="./IMAGE/c5.jpg" alt="">
-                <a href="#" class="fas fa-heart"></a>
-            </div>
-            <div class="content">
-                <div class="stars">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star-half-alt"></i>
-                </div>
-                <h3>delicieux repas</h3>
-                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Excepturi, harum.</p>
-                <a href="#" class="btn">ajouter</a>
-                <span class="pice">prix</span>
-            </div>
-        </div>
-
-        <div class="box">
-            <div class="image">
-                <img src="./IMAGE/c7.jpg" alt="">
-                <a href="#" class="fas fa-heart"></a>
-            </div>
-            <div class="content">
-                <div class="stars">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star-half-alt"></i>
-                </div>
-                <h3>delicieux repas</h3>
-                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Excepturi, harum.</p>
-                <a href="#" class="btn">ajouter</a>
-                <span class="pice">prix</span>
-            </div>
-        </div>
-
-        <div class="box">
-            <div class="image">
-                <img src="./IMAGE/c8.jpg" alt="">
-                <a href="#" class="fas fa-heart"></a>
-            </div>
-            <div class="content">
-                <div class="stars">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star-half-alt"></i>
-                </div>
-                <h3>delicieux repas</h3>
-                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Excepturi, harum.</p>
-                <a href="#" class="btn">ajouter</a>
-                <span class="pice">prix</span>
-            </div>
-        </div>
-
-        <div class="box">
-            <div class="image">
-                <img src="./IMAGE/p3.jpg" alt="">
-                <a href="#" class="fas fa-heart"></a>
-            </div>
-            <div class="content">
-                <div class="stars">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star-half-alt"></i>
-                </div>
-                <h3>delicieux repas</h3>
-                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Excepturi, harum.</p>
-                <a href="#" class="btn">ajouter</a>
-                <span class="pice">prix</span>
-            </div>
-        </div>
-
-        <div class="box">
-            <div class="image">
-                <img src="./IMAGE/p5.jpg" alt="">
-                <a href="#" class="fas fa-heart"></a>
-            </div>
-            <div class="content">
-                <div class="stars">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star-half-alt"></i>
-                </div>
-                <h3>delicieux repas</h3>
-                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Excepturi, harum.</p>
-                <a href="#" class="btn">ajouter</a>
-                <span class="pice">prix</span>
-            </div>
-        </div>
-
-        <div class="box">
-            <div class="image">
-                <img src="./IMAGE/p6.jpg" alt="">
-                <a href="#" class="fas fa-heart"></a>
-            </div>
-            <div class="content">
-                <div class="stars">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star-half-alt"></i>
-                </div>
-                <h3>delicieux repas</h3>
-                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Excepturi, harum.</p>
-                <a href="#" class="btn">ajouter</a>
-                <span class="pice">prix</span>
-            </div>
-        </div>
-
-        <div class="box">
-            <div class="image">
-                <img src="./IMAGE/p8.jpg" alt="">
-                <a href="#" class="fas fa-heart"></a>
-            </div>
-            <div class="content">
-                <div class="stars">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star-half-alt"></i>
-                </div>
-                <h3>delicieux repas</h3>
-                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Excepturi, harum.</p>
-                <a href="#" class="btn">ajouter</a>
-                <span class="pice">prix</span>
-            </div>
-        </div>
-
-        <div class="box">
-            <div class="image">
-                <img src="./IMAGE/lunch-banner-menupage-m-min-1.jpg" alt="">
-                <a href="#" class="fas fa-heart"></a>
-            </div>
-            <div class="content">
-                <div class="stars">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star-half-alt"></i>
-                </div>
-                <h3>delicieux repas</h3>
-                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Excepturi, harum.</p>
-                <a href="#" class="btn">ajouter</a>
-                <span class="pice">prix</span>
-            </div>
-        </div>
-
-        <div class="box">
-            <div class="image">
-                <img src="./IMAGE/gallery-korean-roll.jpg" alt="">
-                <a href="#" class="fas fa-heart"></a>
-            </div>
-            <div class="content">
-                <div class="stars">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star-half-alt"></i>
-                </div>
-                <h3>delicieux repas</h3>
-                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Excepturi, harum.</p>
-                <a href="#" class="btn">ajouter</a>
-                <span class="pice">prix</span>
-            </div>
-        </div>
+    <div class="menu-ctrl">
+      <div class="view-btns">
+        <button class="vb active" id="vb-grid" onclick="setView('grid')"><i class="fas fa-th"></i></button>
+        <button class="vb" id="vb-list" onclick="setView('list')"><i class="fas fa-list"></i></button>
+      </div>
+      <select id="sort-sel" onchange="sortMenu(this.value)" class="ctrl-sel">
+        <option value="">Trier</option>
+        <option value="price-asc">Prix ↑</option>
+        <option value="price-desc">Prix ↓</option>
+        <option value="rating">Note</option>
+        <option value="popular">Populaire</option>
+      </select>
+      <div class="range-wrap">
+        <label>Max: <strong id="price-lbl">10 000</strong> FCFA</label>
+        <input type="range" id="price-rng" min="500" max="10000" step="500" value="10000" oninput="filterPrice(this.value)">
+      </div>
     </div>
+  </div>
+  <div id="menu-grid" class="menu-grid"></div>
+  <div id="load-more-wrap" class="load-more-wrap">
+    <button class="btn-ghost" onclick="loadMore()">Voir plus <i class="fas fa-chevron-down"></i></button>
+  </div>
 </section>
 
-<!--------- FIN PARTIE MENU ---------->
-
-<!--------- DEBUT PARTIE CRITIQUE ---------->
-
-<!-- CRITIQUES -->
-<section class="critique" id="review">
-    <h3 class="sub-heading"> Avis du client </h3>
-    <h1 class="heading"> Ce qu'ils disent </h1>
-    <div class="swiper critique-slider">
-        <div class="swiper-wrapper">
-            <div class="swiper-slide">
-                <p>"Un service impeccable et des plats délicieux !"</p>
-                <h3>- Marie</h3>
-            </div>
-            <div class="swiper-slide">
-                <p>"Meilleur restaurant de la ville, je recommande vivement."</p>
-                <h3>- Jean</h3>
-            </div>
-            <div class="swiper-slide">
-                <p>"Ambiance chaleureuse et cuisine raffinée."</p>
-                <h3>- Ama</h3>
-            </div>
-        </div>
-        <div class="swiper-pagination"></div>
+<!-- ===== ABOUT ===== -->
+<section class="about-sec" id="about-sec">
+  <div class="about-inner">
+    <div class="about-vis">
+      <div class="video-thumb" onclick="showToast('Vidéo bientôt disponible 🎬','info')">
+        <div class="play-btn"><i class="fas fa-play"></i></div>
+        <div class="vt-bg">🍔🍗🌍</div>
+        <div class="vt-overlay">Notre histoire</div>
+      </div>
+      <div class="stats-2x2">
+        <div class="s-box"><span id="ac1">0</span>K+<small>Clients</small></div>
+        <div class="s-box"><span id="ac2">0</span><small>Plats</small></div>
+        <div class="s-box"><span id="ac3">0</span><small>Avis</small></div>
+        <div class="s-box"><span id="ac4">0</span>min<small>Livraison</small></div>
+      </div>
     </div>
+    <div class="about-txt">
+      <p class="sec-sub">Notre histoire</p>
+      <h2 class="sec-title">Nés de la passion,<br>nourris par Abidjan</h2>
+      <p>Fondée en 2019, StreetBite est née d'un simple constat : la meilleure nourriture du monde se mange dans la rue.</p>
+      <div class="feats">
+        <div class="feat"><div class="feat-ico">🌱</div><div><strong>100% frais</strong><small>Marché local chaque matin</small></div></div>
+        <div class="feat"><div class="feat-ico">⚡</div><div><strong>Ultra-rapide</strong><small>Commandé en 30 sec</small></div></div>
+        <div class="feat"><div class="feat-ico">💳</div><div><strong>Paiement flexible</strong><small>Mobile Money, carte, cash</small></div></div>
+        <div class="feat"><div class="feat-ico">🏆</div><div><strong>Fidélité</strong><small>Points à chaque commande</small></div></div>
+      </div>
+      <a href="#menu-sec" class="btn-p">Voir le menu <i class="fas fa-arrow-right"></i></a>
+    </div>
+  </div>
 </section>
 
-<!--------- FIN PARTIE CRITIQUE ---------->
+<!-- ===== LIVRAISON / GEO ===== -->
+<section class="delivery-sec" id="delivery-sec">
+  <div class="delivery-inner">
+    <div class="delivery-txt">
+      <p class="sec-sub">Livraison</p>
+      <h2 class="sec-title">On livre chez vous</h2>
+      <p>Géolocalisation automatique · Suivi en temps réel · SMS de confirmation</p>
+      <button class="btn-p" onclick="geolocate()"><i class="fas fa-crosshairs"></i> Localiser ma position</button>
+      <div id="geo-result" class="geo-result"></div>
+      <div class="zones">
+        <div class="zone"><span class="z-dot z1"></span> Plateau — <strong>30 min</strong></div>
+        <div class="zone"><span class="z-dot z2"></span> Cocody — <strong>35 min</strong></div>
+        <div class="zone"><span class="z-dot z3"></span> Marcory — <strong>40 min</strong></div>
+        <div class="zone"><span class="z-dot z4"></span> Yopougon — <strong>50 min</strong></div>
+      </div>
+    </div>
+    <div class="map-col">
+      <div class="map-ui" id="map-ui">
+        <div class="map-grid"></div>
+        <div class="map-marker" id="map-marker"><i class="fas fa-map-marker-alt"></i></div>
+        <div class="map-rings"></div>
+        <div class="map-label">📍 Abidjan</div>
+        <div class="moving-bike" id="moving-bike">🛵</div>
+      </div>
+    </div>
+  </div>
+</section>
 
-<!-- AUTRE -->
-<section class="order" id="order">
+<!-- ===== REVIEWS ===== -->
+<section class="reviews-sec" id="reviews">
+  <p class="sec-sub center">Ils en parlent</p>
+  <h2 class="sec-title center">Avis clients</h2>
+  <div class="reviews-summary">
+    <div class="big-rating">4.9<small>/5</small></div>
+    <div id="rating-bars" class="rating-bars"></div>
+    <div class="rev-count">+2 450 avis vérifiés</div>
+  </div>
+  <div id="reviews-grid" class="reviews-grid"></div>
+  <div class="write-review">
+    <h3>Laissez votre avis</h3>
+    <div id="star-picker" class="star-picker"></div>
+    <textarea id="rev-text" placeholder="Partagez votre expérience..."></textarea>
+    <button class="btn-p" onclick="submitReview()"><i class="fas fa-paper-plane"></i> Publier</button>
+  </div>
+</section>
 
-    <h3 class="sub-heading"> Commandez maintenant</h3>
-    <h1 class="heading"> Gratuit et rapide </h1>
-
-    <form action="https://api.web3forms.com/submit" method="POST">
-        <input type="hidden" name="access_key" value="c2380bf5-2c33-4ee4-9641-fb5e2f5dadba">
-        <div class="inputBox">
-            <div class="input">
-                <span>Votre Nom</span>
-                <input type="text" name="name" placeholder="Entrez Votre Nom">
-            </div>
-            <div class="input">
-                <span>Votre Numéro</span>
-                <input type="text" name="Number" placeholder="Entrez Votre numéro">
-            </div>
+<!-- ===== ORDER SECTION ===== -->
+<section class="order-sec" id="order-sec">
+  <p class="sec-sub center">Commande directe</p>
+  <h2 class="sec-title center">Livraison rapide</h2>
+  <div class="order-wrap">
+    <form id="order-form" class="order-form" onsubmit="submitOrder(event)">
+      <div class="fg2">
+        <div class="fg"><label><i class="fas fa-user"></i> Nom</label><input id="o-name" type="text" placeholder="Votre nom" required></div>
+        <div class="fg"><label><i class="fas fa-phone"></i> Téléphone</label><input id="o-phone" type="tel" placeholder="+225 07 00 00 00 00" required></div>
+      </div>
+      <div class="fg"><label><i class="fas fa-utensils"></i> Plat</label><select id="o-dish" required><option value="">Choisir...</option></select></div>
+      <div class="fg2">
+        <div class="fg"><label><i class="fas fa-plus"></i> Extras</label><input id="o-extras" type="text" placeholder="Sauce, extra..."></div>
+        <div class="fg"><label><i class="fas fa-hashtag"></i> Qté</label><input id="o-qty" type="number" min="1" max="20" value="1"></div>
+      </div>
+      <div class="fg">
+        <label><i class="fas fa-map-marker-alt"></i> Adresse</label>
+        <div class="addr-wrap">
+          <textarea id="o-addr" placeholder="Quartier, rue, détails..." rows="3" required></textarea>
+          <button type="button" class="geo-fill-btn" onclick="fillAddr()" title="Ma position"><i class="fas fa-crosshairs"></i></button>
         </div>
-
-        <div class="inputBox">
-            <div class="input">
-                <span>Votre commande</span>
-                <input type="text" name="food name" placeholder="Entrez le nom du plat">
-            </div>
-            <div class="input">
-                <span>supplémentaire</span>
-                <input type="text" name="extra with food" placeholder="supplément avec la nourriture">
-            </div>
+      </div>
+      <div class="fg"><label><i class="fas fa-calendar"></i> Date/Heure</label><input id="o-dt" type="datetime-local"></div>
+      <div class="pay-methods">
+        <label>Mode de paiement</label>
+        <div class="pay-opts">
+          <label class="pay-opt"><input type="radio" name="pay" value="mobile" checked><span><i class="fas fa-mobile-alt"></i> Mobile Money</span></label>
+          <label class="pay-opt"><input type="radio" name="pay" value="card"><span><i class="fas fa-credit-card"></i> Carte</span></label>
+          <label class="pay-opt"><input type="radio" name="pay" value="cash"><span><i class="fas fa-money-bill"></i> Cash</span></label>
         </div>
-        <div class="inputBox">
-            <div class="input">
-                <span>Combien</span>
-                <input type="number" name="order" placeholder="Combien de commande ?">
-            </div>
-            <div class="input">
-                <span>Date et minuterie</span>
-                <input type="datetime-local" name="date">
-            </div>
-        </div>
-
-        <div class="inputBox">
-            <div class="input">
-                <span>Votre adresse</span>
-                <textarea id="" name="message" placeholder="Entrez Votre addresse" cols="30" rows="10"></textarea>
-            </div>
-            <div class="input">
-                <span>Votre message</span>
-                <textarea name="message" id="" placeholder="Entrez Votre message" cols="30" rows="10"></textarea>
-            </div>
-        </div>
-
-        <input type="submit" value="Commander Maintenant" class="btn">
-
-
+      </div>
+      <button type="submit" class="btn-p w100 xl"><i class="fas fa-rocket"></i> Commander maintenant</button>
     </form>
-
-
-</section>
-
-<!-- order section end  -->
-
-<!-- footer section start  -->
-<section class="footer">
-
-    <div class="box-container">
-
-        <div class="box">
-            <h3>Emplacement</h3>
-            <a href="#">Emplacement</a>
-            <a href="#">Emplacement</a>
-            <a href="#">Emplacement</a>
-            <a href="#">Emplacement</a>
-            <a href="#">Emplacement</a>
-        </div>
-
-        <div class="box">
-            <h3>Liens rapides</h3>
-            <a href="#">Acceuil</a>
-            <a href="#">Plats</a>
-            <a href="#">Menu</a>
-            <a href="#">Critiques</a>
-            <a href="#">A propos</a>
-            <a href="#">Commande</a>
-        </div>
-
-        <div class="box">
-            <h3>Coordonnées</h3>
-            <a href="#">+(indicatif) numero</a>
-            <a href="#">+(indicatif) numero</a>
-            <a href="#">abc@exemple.com</a>
-            <a href="#">abc@exemple.com</a>
-            <a href="#">Entreprise</a>
-        </div>
-
-
-        <div class="box">
-            <h3>Suivez-nous</h3>
-            <a href="#">Facebook</a>
-            <a href="#">Twitter</a>
-            <a href="#">instagram</a>
-            <a href="#">Linkedin</a>
-        </div>
-
+    <div class="order-aside">
+      <div class="order-sum-card">
+        <h3>📦 Récapitulatif</h3>
+        <div id="order-sum-items"></div>
+      </div>
+      <div class="promo-card">
+        <div class="promo-code-badge">CODE: <strong>BITE10</strong></div>
+        <p>-10% sur votre première commande !</p>
+      </div>
     </div>
-
-    <div class="credit"> Copyright @2025 by <span>damel</span></div>
+  </div>
 </section>
 
-
-
-
-
-<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js">
-
-</script>
-    <!--------- DEBUT PARTIE JS ---------->
+<!-- ===== FOOTER ===== -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="footer-logo">STREET<span>BITE</span></div>
+      <p>La vraie street food livrée depuis 2019.</p>
+      <div class="socials">
+        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+        <a href="#" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+      </div>
+      <div class="app-btns">
+        <div class="app-btn"><i class="fab fa-apple"></i> App Store</div>
+        <div class="app-btn"><i class="fab fa-google-play"></i> Google Play</div>
+      </div>
+    </div>
+    <div class="f-col"><h4>Menu</h4><a href="#">Burgers</a><a href="#">Poulet</a><a href="#">Local</a><a href="#">Boissons</a></div>
+    <div class="f-col"><h4>Info</h4><a href="#">À propos</a><a href="#">Blog</a><a href="#">Carrières</a><a href="#">Contact</a></div>
+    <div class="f-col">
+      <h4>Contact</h4>
+      <a href="tel:+22500000000"><i class="fas fa-phone"></i> +225 00 00 00 00</a>
+      <a href="mailto:hello@streetbite.ci"><i class="fas fa-envelope"></i> hello@streetbite.ci</a>
+      <a href="#"><i class="fas fa-map-marker-alt"></i> Plateau, Abidjan</a>
+      <div id="open-status"></div>
+    </div>
+  </div>
+  <div class="footer-btm">
+    <p>© 2025 StreetBite · Tous droits réservés</p>
+    <p></p>
+  </div>
+</footer>
 
 <script src="./script.js"></script>
-    <!--------- FIN PARTIE JS ---------->
 </body>
 </html>

@@ -13,7 +13,7 @@
     const PROJECTS = [
         { 
             src: './image/BOUFFE.jpeg', 
-            href: './page/autres_pages/BOUFFE/index.html',
+            href: 'https://damitielieericouattara-rgb.github.io/restaurant/',
             title: 'Site de Livraison de Nourriture',
             description: 'Plateforme de commande de repas en ligne avec interface moderne et responsive, design attractif et expérience utilisateur optimisée.',
             technologies: ['HTML5', 'CSS3', 'JavaScript', 'Bootstrap'],
@@ -31,7 +31,7 @@
         },
         { 
             src: './image/MIEL.jpeg', 
-            href: './page/autres_pages/VENTE_MIEL/index.html',
+            href: 'https://damitielieericouattara-rgb.github.io/VENTE_MIEL/',
             title: 'Site Vitrine - Vente de Miel',
             description: 'Site e-commerce élégant pour la vente de miel naturels. Design moderne et navigation intuitive.',
             technologies: ['HTML5', 'CSS3', 'JavaScript', 'Animations'],
@@ -49,7 +49,7 @@
         },
         { 
             src: './image/todolist.jpeg', 
-            href: './page/autres_pages/todo-list/index.html',
+            href: 'https://stellular-praline-df37c1.netlify.app/',
             title: 'Todo List Manager',
             description: 'Application de gestion de tâches avec localStorage. Interface clean et fonctionnalités complètes pour la productivité.',
             technologies: ['HTML5', 'CSS3', 'JavaScript', 'LocalStorage'],
