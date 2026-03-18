@@ -19,7 +19,7 @@
             category: 'fullstack',
             year: '2024',
             status: 'En ligne',
-            icon: '🍛'
+            icon: 'bx bx-store-alt'
         },
         {
             id: 2,
@@ -32,7 +32,7 @@
             category: 'frontend',
             year: '2024',
             status: 'En ligne',
-            icon: '🎯'
+            icon: 'bx bx-target-lock'
         },
         {
             id: 3,
@@ -45,7 +45,7 @@
             category: 'frontend',
             year: '2024',
             status: 'En ligne',
-            icon: '🍯'
+            icon: 'bx bx-shopping-bag'
         },
         {
             id: 4,
@@ -58,7 +58,7 @@
             category: 'react',
             year: '2024',
             status: 'En ligne',
-            icon: '✅'
+            icon: 'bx bx-list-check'
         },
         {
             id: 5,
@@ -71,7 +71,7 @@
             category: 'frontend',
             year: '2024',
             status: 'En ligne',
-            icon: '⏰'
+            icon: 'bx bx-time-five'
         }
     ];
 
@@ -171,7 +171,6 @@
             ? PROJECTS.filter(p => p.category === currentFilter)
             : PROJECTS;
 
-        // Basculer la classe de layout selon le filtre
         portfolioGrid.classList.toggle('pf-grid--filtered', isFiltered);
 
         portfolioGrid.style.opacity = '0';
@@ -224,7 +223,7 @@
             <div class="pf-card-content">
 
                 <div class="pf-card-meta">
-                    <span class="pf-icon-box" aria-hidden="true">${p.icon}</span>
+                    <span class="pf-icon-box" aria-hidden="true"><i class='${p.icon}'></i></span>
                     <span class="pf-cat-badge ${p.category}">${catLabel}</span>
                 </div>
 

@@ -1475,3 +1475,55 @@ body.light-mode .acc-float-badge {
         transform: none;
     }
 }
+
+
+
+
+
+
+
+
+/* ============================================
+   CORRECTIF MODE CLAIR — Boutons lisibles
+   À ajouter à la fin de additions.css
+   ============================================ */
+
+/* Bouton primaire : texte blanc sur fond teal */
+body.light-mode .btn-primary {
+    color: #ffffff;
+}
+body.light-mode .btn-primary:hover {
+    color: #ffffff;
+}
+
+/* Bouton secondaire : texte teal bien visible */
+body.light-mode .btn-secondary {
+    color: var(--main-color);
+    border-color: var(--main-color);
+}
+body.light-mode .btn-secondary:hover {
+    color: #ffffff;
+    background: var(--main-color);
+}
+
+/* Bouton outline */
+body.light-mode .btn-outline {
+    color: var(--main-color);
+    border-color: var(--main-color);
+}
+body.light-mode .btn-outline:hover {
+    color: #ffffff;
+    background: var(--main-color);
+}
+
+/* Filtre actif dans portfolio */
+body.light-mode .filter-btn.active {
+    color: #ffffff;
+}
+
+/* Icône de la pf-icon-box : taille cohérente avec les boxicons */
+.pf-icon-box i {
+    font-size: 2.4rem;
+    color: var(--main-color);
+    line-height: 1;
+}
