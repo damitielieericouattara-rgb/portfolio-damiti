@@ -18,7 +18,7 @@
             technologies: ['HTML5', 'CSS3', 'JavaScript', 'PHP', 'MySQL'],
             category: 'fullstack',
             year: '2024',
-            status: 'En ligne',
+            // status: 'En ligne',
             icon: 'bx bx-store-alt'
         },
         {
@@ -31,7 +31,7 @@
             technologies: ['HTML5','CSS3', 'TAILWIND', 'JavaScript', 'DOM API'],
             category: 'frontend',
             year: '2024',
-            status: 'En ligne',
+            // status: 'En ligne',
             icon: 'bx bx-target-lock'
         },
         {
@@ -44,7 +44,7 @@
             technologies: ['HTML5', 'CSS3', 'JavaScript', 'LocalStorage', 'WhatsApp API'],
             category: 'frontend',
             year: '2024',
-            status: 'En ligne',
+            // status: 'En ligne',
             icon: 'bx bx-shopping-bag'
         },
         {
@@ -57,7 +57,7 @@
             technologies: ['React.js', 'Tailwind CSS', 'Hooks', 'LocalStorage'],
             category: 'react',
             year: '2024',
-            status: 'En ligne',
+            // status: 'En ligne',
             icon: 'bx bx-list-check'
         },
         {
@@ -70,7 +70,7 @@
             technologies: ['HTML5', 'CSS3', 'JavaScript', 'setInterval'],
             category: 'frontend',
             year: '2024',
-            status: 'En ligne',
+            // status: 'En ligne',
             icon: 'bx bx-time-five'
         }
     ];

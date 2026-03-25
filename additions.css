@@ -1527,3 +1527,146 @@ body.light-mode .filter-btn.active {
     color: var(--main-color);
     line-height: 1;
 }
+
+
+
+/* ============================================================
+   CORRECTIF — Image section Accueil
+   Problème : image coupée nettement en bas (desktop + mobile)
+   
+   Causes identifiées :
+   1. overflow: hidden sur .accueil coupe l'image qui dépasse
+   2. .image-wrapper n'a pas assez de hauteur
+   3. .profile-img avait un max-height trop restrictif (fix précédent)
+   
+   Solution : laisser l'image s'afficher en plein avec padding-bottom
+   pour absorber le débordement naturel de la photo PNG
+   ============================================================ */
+
+/* ── 1. Autoriser le débordement visuel de l'image vers le bas ── */
+.accueil {
+    overflow: visible !important; /* annule le overflow:hidden de style.css */
+    /* On garde le clip uniquement sur X pour éviter le scroll horizontal */
+    overflow-x: clip !important;
+}
+
+/* ── 2. Le container principal ── */
+.accueil-container {
+    align-items: flex-end;       /* aligne les deux colonnes sur le bas */
+    padding-top: 10rem;          /* espace sous le header fixe */
+    padding-bottom: 0;           /* l'image gère son propre espace */
+    gap: 2rem;
+}
+
+/* ── 3. Colonne image : laisse l'image sortir vers le bas naturellement ── */
+.accueil-image-container {
+    align-self: flex-end;        /* colle l'image au bas du container */
+    overflow: visible;
+    padding-bottom: 0;
+}
+
+/* ── 4. Le wrapper qui contient photo + badge ── */
+.image-wrapper {
+    position: relative;
+    display: flex;
+    align-items: flex-end;       /* ancre l'image par le bas */
+    justify-content: center;
+    overflow: visible;           /* le personnage peut dépasser vers le haut */
+}
+
+/* ── 5. L'image elle-même : taille naturelle, non coupée ── */
+.profile-img {
+    width: 480px;                /* taille desktop confortable */
+    height: auto;                /* hauteur 100% naturelle — JAMAIS de max-height ici */
+    max-width: 100%;
+    object-fit: contain;
+    display: block;
+    /* Supprime tout max-height précédemment appliqué */
+    max-height: none !important;
+    filter: drop-shadow(0 10px 50px rgba(0, 238, 255, 0.25));
+    animation: float-image 5s ease-in-out infinite;
+}
+
+/* ── 6. Badge "Disponible pour un stage" — repositionné proprement ── */
+.floating-badge {
+    position: absolute;
+    bottom: 60px;                /* 60px au-dessus du bas de l'image */
+    right: -40px;
+    white-space: nowrap;
+    z-index: 10;
+}
+
+/* ══════════════════════════════════════════
+   RESPONSIVE TABLETTE (≤ 991px)
+══════════════════════════════════════════ */
+@media (max-width: 991px) {
+    .profile-img {
+        width: 400px;
+    }
+    .floating-badge {
+        right: 0;
+        bottom: 40px;
+    }
+}
+
+/* ══════════════════════════════════════════
+   RESPONSIVE MOBILE (≤ 768px)
+   Sur mobile : colonne inversée, image en haut
+   L'image ne doit pas être coupée non plus
+══════════════════════════════════════════ */
+@media (max-width: 768px) {
+    .accueil-container {
+        flex-direction: column-reverse;
+        align-items: center;
+        padding-top: 8rem;
+        padding-bottom: 3rem;
+        gap: 3rem;
+    }
+
+    .accueil-image-container {
+        align-self: center;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+    .image-wrapper {
+        align-items: center;     /* centré verticalement sur mobile */
+    }
+
+    .profile-img {
+        width: 300px;            /* taille mobile : bonne taille, image complète */
+        max-height: none !important;
+    }
+
+    /* Badge repositionné en bas à droite de l'image sur mobile */
+    .floating-badge {
+        bottom: 10px;
+        right: 50%;
+        transform: translateX(50%);
+        font-size: 1.2rem;
+        padding: 0.8rem 1.5rem;
+    }
+}
+
+/* ══════════════════════════════════════════
+   TRÈS PETIT MOBILE (≤ 480px)
+══════════════════════════════════════════ */
+@media (max-width: 480px) {
+    .profile-img {
+        width: 260px;
+        max-height: none !important;
+    }
+
+    .accueil-container {
+        padding-top: 7rem;
+    }
+
+    .floating-badge {
+        font-size: 1.1rem;
+        padding: 0.7rem 1.2rem;
+    }
+}
+
+
+
