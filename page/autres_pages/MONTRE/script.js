@@ -1,31 +1,61 @@
-let section = document.querySelector("section"),
-icons = document.querySelector(".icons");
+/* ============================================================
+   MONTRE ÉLÉGANTE — Script
+   ============================================================ */
 
-icons.onclick = () => {
+const html       = document.documentElement;
+const themeBtn   = document.getElementById('themeToggle');
+const toggleIcon = document.getElementById('toggle-icon');
+const hourEl     = document.getElementById('hour-num');
+const minEl      = document.getElementById('min-num');
+const secEl      = document.getElementById('sec-num');
+const ampmEl     = document.getElementById('am-pm');
+const dateEl     = document.getElementById('date-display');
+const dayBar     = document.getElementById('day-bar');
+const pctEl      = document.getElementById('progress-pct');
 
-    section.classList.toggle("dark");
-};
+/* ── Theme toggle ──────────────────────────────────────── */
+themeBtn.addEventListener('click', () => {
+  const isDark = html.getAttribute('data-theme') === 'dark';
+  html.setAttribute('data-theme', isDark ? 'light' : 'dark');
+  toggleIcon.className = isDark ? 'fas fa-moon' : 'fas fa-sun';
+});
 
-setInterval(() => {
+/* ── Locale-aware date label ───────────────────────────── */
+function updateDate() {
+  const now = new Date();
+  dateEl.textContent = now.toLocaleDateString('fr-FR', {
+    weekday: 'long',
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric'
+  });
+}
 
-    let date = new Date(),
-    hour  =  date.getHours(),
-    min  =  date.getMinutes(),
-    sec  =  date.getSeconds();
+/* ── Clock tick ────────────────────────────────────────── */
+function pad(n) { return n < 10 ? '0' + n : String(n); }
 
-    let d;
-    d = hour < 12 ? "AM ": "PM";
-    hour = hour > 12 ? hour - 12 : hour;
-    hour = hour == 0 ? (hour = 12) : hour;
+function tick() {
+  const now  = new Date();
+  let h      = now.getHours();
+  const m    = now.getMinutes();
+  const s    = now.getSeconds();
 
+  const meridiem = h < 12 ? 'AM' : 'PM';
+  h = h % 12 || 12;
 
-    hour = hour < 10 ? "0" + hour : hour;
-    min = min < 10 ? "0" + min : min;
-    sec = sec < 10 ? "0" + sec : sec;
+  hourEl.textContent = pad(h);
+  minEl.textContent  = pad(m);
+  secEl.textContent  = pad(s);
+  ampmEl.textContent = meridiem;
 
+  /* Day progress (seconds elapsed / 86400) */
+  const totalSec = now.getHours() * 3600 + m * 60 + s;
+  const pct      = Math.round((totalSec / 86400) * 100);
+  dayBar.style.width  = pct + '%';
+  pctEl.textContent   = pct + '%';
+}
 
-    document.querySelector(".hour_num").innerText = hour;
-    document.querySelector(".min_num").innerText = min;
-    document.querySelector(".sec_num").innerText = sec;
-    document.querySelector(".am_pm").innerText = d;
-}, 1000);
+/* ── Init ──────────────────────────────────────────────── */
+updateDate();
+tick();
+setInterval(tick, 1000);
