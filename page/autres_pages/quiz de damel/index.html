@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quiz</title>
+    <title>Quiz de Damiti</title>
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -14,145 +14,96 @@
     <main class="main">
 
         <header class="header">
-
-            <a href="#" class="logo">Quiz.</a>
-
-            <nav class="navbar">
-
-                <a href="#" class="active">Acceuil</a>
-
-                <a href="#">Autre</a>
-
-                <a href="#">Service</a>
-
-                <a href="#">Contact</a>
-
-            </nav>
-
+            <a href="../../../../index.html" class="logo">Quiz.</a>
+            <!-- <nav class="navbar">
+                <a href="../../../../index.html">Accueil</a>
+                <a href="../../../../index.html#portfolio">Projets</a>
+                <a href="../../../../index.html#services">Services</a>
+                <a href="../../../../index.html#Contact">Contact</a>
+            </nav> -->
         </header>
 
-<div class="container">
+        <div class="container">
 
-    <section class="quiz-section">
+            <section class="quiz-section">
 
-        <div class="quiz-box">
+                <div class="quiz-box">
 
-            <h1>Quiz Codé</h1>
+                    <h1>Quiz Interactif</h1>
 
-            <div class="quiz-header">
+                    <div class="quiz-header">
+                        <span id="category-label">Culture & Tech</span>
+                        <span class="header-score">Score : 0 / 0</span>
+                    </div>
 
-                <span>Quiz Website tutoriel</span>
+                    <h2 class="question-text">Chargement…</h2>
 
-                <span class="header-score">Score: 0 / 5</span>
+                    <div class="option-list"></div>
 
-            </div>
-
-            <h2 class="question-text">Que signifie HTML ?</h2>
-
-            <div class="option-list">
-
-                <div class="option">
-
-                    <span>A. Hyper Type Multi Language</span>
-
+                    <div class="quiz-footer">
+                        <span class="question-total">1 sur 20</span>
+                        <button class="next-btn">Suivant</button>
+                    </div>
                 </div>
 
-                <div class="option">
+                <div class="result-box">
 
-                    <span>B. Hyper Text Multiple Language</span>
+                    <h2>Résultat du Quiz !</h2>
 
+                    <div class="pourcentage-container">
+
+                        <div class="circular-progress">
+                            <span class="progress-value">0%</span>
+                        </div>
+
+                        <span class="Score-text">Ton score est de 0 sur 20</span>
+
+                    </div>
+
+                    <div class="result-mention"></div>
+
+                    <div class="buttons">
+                        <button class="tryAgain-btn">Recommencer</button>
+                        <button class="goHome-btn">Retour à l'accueil</button>
+                    </div>
                 </div>
 
-                <div class="option">
+            </section>
 
-                    <span>C. Hyper Text Markup Language</span>
+            <section class="home">
 
+                <div class="home-content">
+
+                    <h1>Quiz Interactif</h1>
+
+                    <p>Mets tes connaissances à l'épreuve ! Ce quiz mêle culture générale,
+                        sciences, histoire et développement web. 20 questions, un seul objectif :
+                        battre ton meilleur score.</p>
+
+                    <button class="start-btn">Commencer</button>
                 </div>
 
-                <div class="option">
-
-                    <span>D. Home Text Multi Language</span>
-
-                </div>
-
-            </div>
-
-            <div class="quiz-footer">
-
-                <span class="question-total">1 sur 5</span>
-
-                <button class="next-btn">Suivant</button>
-
-            </div>
+            </section>
         </div>
-
-        <div class="result-box">
-
-            <h2>Resultat du Quiz!</h2>
-
-            <div class="pourcentage-container">
-
-                <div class="circular-progress">
-
-                    <span class="progress-value">0%</span>
-
-                </div>
-
-                <span class="Score-text">Ton Score est de 0 sur 5</span>
-
-            </div>
-
-            <div class="buttons"> 
-
-                <button class="tryAgain-btn">recommencer</button>
-
-                <button class="goHome-btn">Aller a l'Acceuil</button>
-
-            </div>
-        </div>
-
-    </section>
-
-        <section class="home">
-
-            <div class="home-content">
-
-                <h1>Site Web Quiz</h1>
-
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-                    Officia blanditiis minus ratione deserunt amet accusamus pariatur ipsa, harum et rerum sed hic ad nobis necessitatibus,
-                     beatae unde! Animi, harum architecto.</p>
-
-                     <button class="start-btn">Commencer le Quiz</button>
-            </div>
-
-        </section>
-    </div>
     </main>
 
     <div class="popup-info">
 
-        <h2>Guide du Quiz</h2>
+        <h2>Règles du Quiz</h2>
 
-        <span class="info">1. Lorem ipsum dolor sit amet consectetur adipisicing elit.</span>
+        <span class="info">1. Le quiz comporte <strong>20 questions</strong> à choix multiple.</span>
+        <span class="info">2. Chaque question propose <strong>4 réponses</strong> possibles.</span>
+        <span class="info">3. Une seule réponse est correcte par question.</span>
+        <span class="info">4. La bonne réponse s'affiche si tu te trompes.</span>
+        <span class="info">5. Tu peux recommencer autant de fois que tu veux !</span>
 
-        <span class="info">2. Lorem ipsum dolor sit amet consectetur.</span>
-
-        <span class="info">3. Lorem ipsum dolor sit amet consectetur adipisicing elit.</span>
-
-        <span class="info">4. Lorem ipsum dolor sit amet consectetur elit.</span>
-
-        <span class="info">5. Lorem ipsum dolor amet consectetur adipisicing elit.</span>
-
-    <div class="btn-group">
-
-        <button class="info-btn exit-btn">Sortir du Quiz</button>
-
-        <a href="#" class="info-btn continue-btn">Continuer</a>
+        <div class="btn-group">
+            <button class="info-btn exit-btn">Quitter</button>
+            <a href="#" class="info-btn continue-btn">Commencer</a>
+        </div>
 
     </div>
 
-</div>
     <script src="questions.js"></script>
     <script src="script.js"></script>
 </body>
