@@ -37,7 +37,7 @@
         {
             id: 3,
             src: './image/MIEL.jpeg',
-            href: 'https://damitielieericouattara-rgb.github.io/VENTE_MIEL/',
+            href: './page/autres_pages/VENTE_MIEL/index.html',
             title: 'BON MIEL',
             subtitle: 'Boutique WhatsApp · Front-end',
             description: 'Boutique de produits apicoles avec catalogue, panier dynamique et persistance localStorage. La commande est formatée automatiquement et envoyée sur WhatsApp — aucun serveur requis.',

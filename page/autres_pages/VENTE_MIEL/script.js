@@ -1,280 +1,325 @@
-// const header = document.querySelector("header");
+/* ============================================================
+   BON MIEL — script.js
+   ============================================================ */
 
-// window.addEventListener("scroll", function(){
+// ── Header sticky ──────────────────────────────────────────
+const header   = document.querySelector('header');
+const scrollBtn = document.getElementById('scrollTop');
 
-//     header.classList.toggle("sticky", window.scrollY > 80);
-// });
+window.addEventListener('scroll', () => {
+    header.classList.toggle('sticky', window.scrollY > 80);
+    if (scrollBtn) scrollBtn.classList.toggle('visible', window.scrollY > 400);
+});
 
-// let menu = document.querySelector('#menu-icon');
-// let navlist = document.querySelector('.navlist');
+// ── Mobile menu ────────────────────────────────────────────
+const menuIcon = document.getElementById('menu-icon');
+const navlist  = document.querySelector('.navlist');
 
+// Create overlay for nav
+const navOverlay = document.createElement('div');
+navOverlay.className = 'nav-overlay';
+document.body.appendChild(navOverlay);
 
-// menu.onclick = () => {
+function openMenu() {
+    menuIcon.classList.add('bx-x');
+    navlist.classList.add('open');
+    navOverlay.classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
 
-//     menu.classList.toggle('bx-x');
-//     navlist.classList.toggle('open');
-// };
+function closeMenu() {
+    menuIcon.classList.remove('bx-x');
+    navlist.classList.remove('open');
+    navOverlay.classList.remove('active');
+    document.body.style.overflow = '';
+}
 
-// window.onscroll = () => {
+menuIcon.addEventListener('click', () => {
+    navlist.classList.contains('open') ? closeMenu() : openMenu();
+});
 
-//     menu.classList.remove('bx-x');
-//     navlist.classList.remove('open');
-// };
+navOverlay.addEventListener('click', closeMenu);
 
-// const sr = ScrollReveal({
-//     origin: 'top',
-//     distance: '85px',
-//     duration: 2500,
-//     reset: true 
-// })
+// Close menu on nav link click
+document.querySelectorAll('.navlist a').forEach(link => {
+    link.addEventListener('click', closeMenu);
+});
 
-// sr.reveal ('.home-text',{delay:300});
-// sr.reveal ('.home-img',{delay:400});
-// sr.reveal ('.container',{delay:400});
+// ── Active nav links on scroll ─────────────────────────────
+const sections = document.querySelectorAll('section[id]');
+const navLinks  = document.querySelectorAll('.navlist a');
 
+const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            navLinks.forEach(l => l.classList.remove('active'));
+            const link = document.querySelector(`.navlist a[href="#${entry.target.id}"]`);
+            if (link) link.classList.add('active');
+        }
+    });
+}, { rootMargin: '-30% 0px -60% 0px' });
 
-// sr.reveal ('.about-img',{});
-// sr.reveal ('.about-text',{delay:300});
+sections.forEach(s => observer.observe(s));
 
+// ── Reveal on scroll ───────────────────────────────────────
+const revealObserver = new IntersectionObserver(entries => {
+    entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+            entry.target.style.transitionDelay = `${(i % 4) * 80}ms`;
+            entry.target.classList.add('visible');
+            revealObserver.unobserve(entry.target);
+        }
+    });
+}, { rootMargin: '0px 0px -80px 0px' });
 
-// sr.reveal ('.middle-text',{});
-// sr.reveal ('.row-btn,.shop-content',{delay:300}); 
+document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
+// ── Toast notification ─────────────────────────────────────
+function showToast(message) {
+    const toast = document.getElementById('toast');
+    toast.textContent = message;
+    toast.classList.add('show');
+    setTimeout(() => toast.classList.remove('show'), 3000);
+}
 
+// ── Cart ───────────────────────────────────────────────────
+let cart = [];
 
+try {
+    cart = JSON.parse(localStorage.getItem('bonmiel_cart')) || [];
+} catch {
+    cart = [];
+}
 
+function saveCart() {
+    try {
+        localStorage.setItem('bonmiel_cart', JSON.stringify(cart));
+    } catch {}
+}
 
+function updateCartUI() {
+    const countEl  = document.getElementById('cartCount');
+    const itemsEl  = document.getElementById('cartItems');
+    const totalEl  = document.getElementById('cartTotal');
+    const footerEl = document.getElementById('cartFooter');
 
-// Header Sticky
-        const header = document.querySelector("header");
-        window.addEventListener("scroll", function() {
-            header.classList.toggle("sticky", window.scrollY > 80);
-        });
+    if (!countEl) return;
 
-        // Mobile Menu Toggle
-        let menu = document.querySelector('#menu-icon');
-        let navlist = document.querySelector('.navlist');
+    const totalQty = cart.reduce((s, i) => s + i.quantity, 0);
+    countEl.textContent = totalQty;
+    countEl.style.display = totalQty > 0 ? 'flex' : 'none';
 
-        menu.onclick = () => {
-            menu.classList.toggle('bx-x');
-            navlist.classList.toggle('open');
-        };
+    if (cart.length === 0) {
+        itemsEl.innerHTML = `
+            <div class="empty-cart">
+                <i class='bx bx-cart-alt'></i>
+                <p>Votre panier est vide</p>
+            </div>`;
+        footerEl.style.display = 'none';
+        return;
+    }
 
-        window.onscroll = () => {
-            menu.classList.remove('bx-x');
-            navlist.classList.remove('open');
-        };
-
-        // Active Nav Links
-        const sections = document.querySelectorAll('section');
-        const navLinks = document.querySelectorAll('.navlist a');
-
-        window.addEventListener('scroll', () => {
-            let current = '';
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                const sectionHeight = section.clientHeight;
-                if (scrollY >= (sectionTop - 200)) {
-                    current = section.getAttribute('id');
-                }
-            });
-
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href').slice(1) === current) {
-                    link.classList.add('active');
-                }
-            });
-        });
-
-        // Shopping Cart System
-        let cart = JSON.parse(localStorage.getItem('cart')) || [];
-
-        function updateCartUI() {
-            const cartCount = document.getElementById('cartCount');
-            const cartItems = document.getElementById('cartItems');
-            const cartTotal = document.getElementById('cartTotal');
-            const cartFooter = document.getElementById('cartFooter');
-
-            cartCount.textContent = cart.reduce((sum, item) => sum + item.quantity, 0);
-
-            if (cart.length === 0) {
-                cartItems.innerHTML = `
-                    <div class="empty-cart">
-                        <i class='bx bx-cart-alt'></i>
-                        <p>Votre panier est vide</p>
+    let total = 0;
+    itemsEl.innerHTML = cart.map((item, idx) => {
+        total += item.price * item.quantity;
+        return `
+            <div class="cart-item">
+                <div class="cart-item-image">🍯</div>
+                <div class="cart-item-info">
+                    <h4>${item.name}</h4>
+                    <p>${item.price.toLocaleString('fr-FR')} FCFA</p>
+                </div>
+                <div class="cart-item-actions">
+                    <div class="cart-item-quantity">
+                        <button class="quantity-btn" onclick="updateQuantity(${idx}, -1)">−</button>
+                        <span>${item.quantity}</span>
+                        <button class="quantity-btn" onclick="updateQuantity(${idx}, 1)">+</button>
                     </div>
-                `;
-                cartFooter.style.display = 'none';
+                    <button class="remove-item" onclick="removeFromCart(${idx})">Retirer</button>
+                </div>
+            </div>`;
+    }).join('');
+
+    totalEl.textContent = total.toLocaleString('fr-FR') + ' FCFA';
+    footerEl.style.display = 'block';
+    saveCart();
+}
+
+function addToCart(name, price) {
+    const existing = cart.find(i => i.name === name);
+    if (existing) {
+        existing.quantity++;
+    } else {
+        cart.push({ name, price, quantity: 1 });
+    }
+    updateCartUI();
+    showToast(` ${name} ajouté au panier !`);
+
+    // Bounce cart icon
+    const cartIcon = document.querySelector('.bx-cart');
+    if (cartIcon) {
+        cartIcon.style.transform = 'scale(1.35)';
+        setTimeout(() => { cartIcon.style.transform = 'scale(1)'; }, 300);
+    }
+}
+
+function updateQuantity(index, change) {
+    cart[index].quantity += change;
+    if (cart[index].quantity <= 0) cart.splice(index, 1);
+    updateCartUI();
+}
+
+function removeFromCart(index) {
+    cart.splice(index, 1);
+    updateCartUI();
+}
+
+function toggleCart() {
+    document.getElementById('cartModal').classList.toggle('active');
+    document.getElementById('cartOverlay').classList.toggle('active');
+}
+
+function checkout() {
+    if (cart.length === 0) {
+        showToast(' Votre panier est vide !');
+        return;
+    }
+
+    let msg = 'Bonjour, je souhaite commander :\n\n';
+    let total = 0;
+
+    cart.forEach(item => {
+        msg += `• ${item.name} x${item.quantity} = ${(item.price * item.quantity).toLocaleString('fr-FR')} FCFA\n`;
+        total += item.price * item.quantity;
+    });
+
+    msg += `\n💰 Total: ${total.toLocaleString('fr-FR')} FCFA\n\nMerci !`;
+    window.open(`https://wa.me/2250713188565?text=${encodeURIComponent(msg)}`, '_blank');
+}
+
+// ── Search ─────────────────────────────────────────────────
+const products = [
+    { name: "Miel d'Acacia",    price: 7000,  category: 'floral',  img: './image/p1.png' },
+    { name: "Miel de Forêt",    price: 9000,  category: 'foret',   img: './image/p2.png' },
+    { name: "Miel de Fleurs",   price: 6000,  category: 'floral',  img: './image/p3.png' },
+    { name: "Miel Royal",       price: 10000, category: 'premium', img: './image/p4.png' },
+    { name: "Miel de Mangrove", price: 8500,  category: 'foret',   img: './image/p1.png' },
+    { name: "Miel Épicé",       price: 11000, category: 'premium', img: './image/p2.png' },
+];
+
+function toggleSearch() {
+    const modal = document.getElementById('searchModal');
+    modal.classList.toggle('active');
+    if (modal.classList.contains('active')) {
+        document.getElementById('searchInput').focus();
+        document.getElementById('searchResults').innerHTML = '';
+    }
+}
+
+document.getElementById('searchInput').addEventListener('input', function () {
+    const term = this.value.trim().toLowerCase();
+    const results = document.getElementById('searchResults');
+    const rows = document.querySelectorAll('.shop-content .row');
+
+    // Filter shop cards
+    rows.forEach(row => {
+        const name = row.querySelector('h3')?.textContent.toLowerCase() || '';
+        row.style.display = !term || name.includes(term) ? '' : 'none';
+    });
+
+    // Show inline results in modal
+    if (!term) { results.innerHTML = ''; return; }
+
+    const matches = products.filter(p => p.name.toLowerCase().includes(term));
+    if (matches.length === 0) {
+        results.innerHTML = `<p style="color:var(--second-color);text-align:center;grid-column:1/-1;padding:1rem">Aucun résultat pour "${term}"</p>`;
+        return;
+    }
+
+    results.innerHTML = matches.map(p => `
+        <div class="search-result-item" onclick="addToCart('${p.name}', ${p.price}); toggleSearch();">
+            <span> </span>
+            <div>
+                <div><span>${p.name}</span></div>
+                <small>${p.price.toLocaleString('fr-FR')} FCFA</small>
+            </div>
+        </div>`).join('');
+});
+
+// Close search on Escape
+document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') {
+        if (document.getElementById('searchModal').classList.contains('active')) toggleSearch();
+        if (document.getElementById('cartModal').classList.contains('active')) toggleCart();
+    }
+});
+
+// ── Like / Wishlist ────────────────────────────────────────
+function toggleLike(el) {
+    el.classList.toggle('bxs-heart');
+    el.classList.toggle('bx-heart');
+    el.classList.toggle('liked');
+
+    if (el.classList.contains('liked')) {
+        showToast(' Ajouté aux favoris !');
+    }
+}
+
+// ── Shop filter ────────────────────────────────────────────
+document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', function () {
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        this.classList.add('active');
+
+        const filter = this.dataset.filter;
+        document.querySelectorAll('.shop-content .row').forEach(row => {
+            const cat = row.dataset.category || '';
+            if (filter === 'all' || cat === filter) {
+                row.style.display = '';
+                row.style.opacity = '0';
+                row.style.transform = 'translateY(20px)';
+                setTimeout(() => {
+                    row.style.transition = 'opacity .4s ease, transform .4s ease';
+                    row.style.opacity = '1';
+                    row.style.transform = 'translateY(0)';
+                }, 50);
             } else {
-                let total = 0;
-                cartItems.innerHTML = cart.map((item, index) => {
-                    total += item.price * item.quantity;
-                    return `
-                        <div class="cart-item">
-                            <div class="cart-item-image">🍯</div>
-                            <div class="cart-item-info">
-                                <h4>${item.name}</h4>
-                                <p>${item.price.toLocaleString()} FCFA</p>
-                            </div>
-                            <div class="cart-item-actions">
-                                <div class="cart-item-quantity">
-                                    <button class="quantity-btn" onclick="updateQuantity(${index}, -1)">-</button>
-                                    <span>${item.quantity}</span>
-                                    <button class="quantity-btn" onclick="updateQuantity(${index}, 1)">+</button>
-                                </div>
-                                <button class="remove-item" onclick="removeFromCart(${index})">Retirer</button>
-                            </div>
-                        </div>
-                    `;
-                }).join('');
-                cartTotal.textContent = total.toLocaleString() + ' FCFA';
-                cartFooter.style.display = 'block';
+                row.style.display = 'none';
             }
-
-            localStorage.setItem('cart', JSON.stringify(cart));
-        }
-
-        function addToCart(name, price) {
-            const existingItem = cart.find(item => item.name === name);
-            if (existingItem) {
-                existingItem.quantity++;
-            } else {
-                cart.push({ name, price, quantity: 1 });
-            }
-            updateCartUI();
-            
-            // Animation feedback
-            const cartIcon = document.querySelector('.bx-cart');
-            cartIcon.style.transform = 'scale(1.3)';
-            setTimeout(() => {
-                cartIcon.style.transform = 'scale(1)';
-            }, 300);
-
-            // Notification
-            alert(`✅ ${name} ajouté au panier !`);
-        }
-
-        function updateQuantity(index, change) {
-            cart[index].quantity += change;
-            if (cart[index].quantity <= 0) {
-                cart.splice(index, 1);
-            }
-            updateCartUI();
-        }
-
-        function removeFromCart(index) {
-            if (confirm('Voulez-vous vraiment retirer cet article ?')) {
-                cart.splice(index, 1);
-                updateCartUI();
-            }
-        }
-
-        function toggleCart() {
-            document.getElementById('cartModal').classList.toggle('active');
-            document.getElementById('cartOverlay').classList.toggle('active');
-        }
-
-        function toggleSearch() {
-            document.getElementById('searchModal').classList.toggle('active');
-            if (document.getElementById('searchModal').classList.contains('active')) {
-                document.getElementById('searchInput').focus();
-            }
-        }
-
-        function checkout() {
-            if (cart.length === 0) {
-                alert('Votre panier est vide !');
-                return;
-            }
-
-            let message = `Bonjour, je souhaite commander :\n\n`;
-            let total = 0;
-
-            cart.forEach(item => {
-                message += `• ${item.name} x${item.quantity} = ${(item.price * item.quantity).toLocaleString()} FCFA\n`;
-                total += item.price * item.quantity;
-            });
-
-            message += `\n💰 Total: ${total.toLocaleString()} FCFA\n\nMerci !`;
-
-            const whatsappUrl = `https://wa.me/2250713188565?text=${encodeURIComponent(message)}`;
-            window.open(whatsappUrl, '_blank');
-        }
-
-        function toggleLike(element) {
-            element.classList.toggle('liked');
-            if (element.classList.contains('liked')) {
-                element.classList.remove('bx-heart');
-                element.classList.add('bxs-heart');
-            } else {
-                element.classList.remove('bxs-heart');
-                element.classList.add('bx-heart');
-            }
-        }
-
-        // Search Functionality
-        document.getElementById('searchInput').addEventListener('input', function(e) {
-            const searchTerm = e.target.value.toLowerCase();
-            const products = document.querySelectorAll('.shop-content .row');
-            
-            products.forEach(product => {
-                const productName = product.querySelector('h3').textContent.toLowerCase();
-                if (productName.includes(searchTerm)) {
-                    product.style.display = 'block';
-                } else {
-                    product.style.display = 'none';
-                }
-            });
         });
+    });
+});
 
-        // Initialize cart on page load
-        updateCartUI();
+// ── Newsletter ─────────────────────────────────────────────
+function subscribeNewsletter() {
+    const email = document.getElementById('newsletterEmail').value.trim();
+    if (!email || !email.includes('@')) {
+        showToast(' Veuillez entrer un email valide.');
+        return;
+    }
+    document.getElementById('newsletterEmail').value = '';
+    showToast(' Merci ! Vous êtes maintenant abonné(e).');
+}
 
-        // Scroll Reveal Animations (simple version)
-        window.addEventListener('scroll', () => {
-            const reveals = document.querySelectorAll('.container-box, .row, .box');
-            reveals.forEach(element => {
-                const windowHeight = window.innerHeight;
-                const elementTop = element.getBoundingClientRect().top;
-                const elementVisible = 150;
-                
-                if (elementTop < windowHeight - elementVisible) {
-                    element.style.opacity = '1';
-                    element.style.transform = 'translateY(0)';
-                }
-            });
-        });
+// ── Contact form → WhatsApp ────────────────────────────────
+function sendMessage() {
+    const name    = document.getElementById('formName')?.value.trim();
+    const email   = document.getElementById('formEmail')?.value.trim();
+    const phone   = document.getElementById('formPhone')?.value.trim();
+    const message = document.getElementById('formMessage')?.value.trim();
 
-        // Initial animation setup
-        document.querySelectorAll('.container-box, .row, .box').forEach(element => {
-            element.style.opacity = '0';
-            element.style.transform = 'translateY(30px)';
-            element.style.transition = 'all 0.6s ease';
-        });
+    if (!name || !message) {
+        showToast('veuillez remplir au minimum votre nom et votre message.');
+        return;
+    }
 
+    let msg = `Bonjour Bon Miel,\n\nNom : ${name}\n`;
+    if (email)   msg += `Email : ${email}\n`;
+    if (phone)   msg += `Tél : ${phone}\n`;
+    msg += `\nMessage :\n${message}\n\nMerci !`;
 
+    window.open(`https://wa.me/2250713188565?text=${encodeURIComponent(msg)}`, '_blank');
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
+// ── Init ───────────────────────────────────────────────────
+updateCartUI();
