@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quiz de Damiti</title>
+    <title>Quiz</title>
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -15,12 +15,6 @@
 
         <header class="header">
             <a href="../../../../index.html" class="logo">Quiz.</a>
-            <!-- <nav class="navbar">
-                <a href="../../../../index.html">Accueil</a>
-                <a href="../../../../index.html#portfolio">Projets</a>
-                <a href="../../../../index.html#services">Services</a>
-                <a href="../../../../index.html#Contact">Contact</a>
-            </nav> -->
         </header>
 
         <div class="container">
@@ -29,7 +23,10 @@
 
                 <div class="quiz-box">
 
-                    <h1>Quiz Interactif</h1>
+                    <div class="quiz-box-topbar">
+                        <h1>Quiz</h1>
+                        <button class="quit-btn" title="Quitter la partie">&#x2715;</button>
+                    </div>
 
                     <div class="quiz-header">
                         <span id="category-label">Culture & Tech</span>
@@ -86,6 +83,16 @@
             </section>
         </div>
     </main>
+
+    <!-- Popup confirmation quitter -->
+    <div class="popup-quit">
+        <h2>Quitter la partie ?</h2>
+        <p>Ta progression sera perdue.</p>
+        <div class="btn-group">
+            <button class="quit-cancel-btn info-btn">Continuer</button>
+            <button class="quit-confirm-btn info-btn">Quitter</button>
+        </div>
+    </div>
 
     <div class="popup-info">
 

@@ -225,6 +225,111 @@ body {
     border-color: #5a8a2e;
 }
 
+/* ══════════════ QUIZ BOX TOPBAR ══════════════ */
+.quiz-box-topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.quit-btn {
+    background: transparent;
+    border: 2px solid rgba(240, 234, 214, 0.2);
+    border-radius: 50%;
+    width: 34px;
+    height: 34px;
+    font-size: 16px;
+    color: rgba(240, 234, 214, 0.5);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: .3s;
+    flex-shrink: 0;
+}
+
+.quit-btn:hover {
+    border-color: #c0572a;
+    color: #c0572a;
+    background: rgba(180, 60, 40, 0.1);
+}
+
+/* ══════════════ POPUP QUITTER ══════════════ */
+.popup-quit {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(.9);
+    width: 340px;
+    background: #f5f0e8;
+    border-radius: 6px;
+    padding: 24px 28px 20px;
+    opacity: 0;
+    pointer-events: none;
+    transition: .3s ease;
+    z-index: 300;
+    text-align: center;
+}
+
+.popup-quit.active {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.popup-quit h2 {
+    color: var(--bg-color);
+    font-size: 24px;
+    margin-bottom: 8px;
+}
+
+.popup-quit p {
+    color: #555;
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+.popup-quit .btn-group {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+}
+
+.popup-quit .info-btn {
+    width: 120px;
+    height: 42px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    border: 2px solid var(--main-color);
+    transition: .3s;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.popup-quit .quit-cancel-btn {
+    background: transparent;
+    color: var(--main-color);
+}
+
+.popup-quit .quit-cancel-btn:hover {
+    background: var(--main-color);
+    color: var(--bg-color);
+}
+
+.popup-quit .quit-confirm-btn {
+    background: #c0572a;
+    border-color: #c0572a;
+    color: #fff;
+}
+
+.popup-quit .quit-confirm-btn:hover {
+    background: #a04020;
+    border-color: #a04020;
+}
+
 /* ══════════════ QUIZ SECTION ══════════════ */
 .quiz-section {
     position: relative;
@@ -504,7 +609,7 @@ body {
     color: var(--bg-color);
 }
 
-/* ══════════════ RESPONSIVE ══════════════ */
+/* ══════════════ RESPONSIVE 1024px ══════════════ */
 @media (max-width: 1024px) {
     .header { padding: 15px 5%; }
     .home-content h1 { font-size: 60px; }
@@ -513,71 +618,113 @@ body {
     .popup-info { width: 80%; }
 }
 
+/* ══════════════ RESPONSIVE 768px ══════════════ */
 @media (max-width: 768px) {
+
+    /* --- Reset global scroll --- */
     html, body {
         width: 100vw;
-        height: 100vh;
+        height: 100%;
         overflow: hidden;
     }
 
-    .header { padding: 14px 4%; }
+    body {
+        overflow: hidden;
+    }
 
+    .header {
+        padding: 14px 4%;
+        background: rgba(26, 32, 22, 0.85);
+        backdrop-filter: blur(6px);
+    }
+
+    /* --- MAIN garde son fond image --- */
     .main {
         width: 100vw;
         height: 100vh;
-    }
-
-    .container {
-        width: 200vw;
-        height: 100vh;
         overflow: hidden;
     }
 
-    .home {
-        left: 0;
+    /* --- Container : empile verticalement sur mobile --- */
+    .container {
+        /* On abandonne le slide horizontal et on empile */
+        display: block;
         width: 100vw;
         height: 100vh;
-        padding: 80px 20px 20px;
+        overflow: hidden;
+        position: relative;
     }
 
-    /* quiz-section plein écran, scrollable en interne */
-    .quiz-section {
+    /* --- HOME : plein écran, visible par défaut --- */
+    .home {
+        position: absolute;
+        top: 0;
         left: 0;
         width: 100vw;
         height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 80px 20px 20px;
+        /* Réinitialise le left: -50% du desktop */
+        left: 0 !important;
+    }
+
+    /* --- QUIZ SECTION : plein écran, cachée par défaut --- */
+    .quiz-section {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        display: none; /* caché par défaut, JS le met à flex */
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start;
         overflow-y: auto;
         overflow-x: hidden;
         padding: 0;
-        align-items: flex-start;
-        justify-content: flex-start;
+        /* Désactive la transition de slide horizontal */
         transition: none;
+        /* Réinitialise le left: -50% du desktop */
+        left: 0 !important;
     }
 
-    /* quiz-box et result-box = toute la largeur, toute la hauteur */
+    /* Quand JS met display:flex, on scrolle normalement */
+    .quiz-section[style*="display: flex"] {
+        overflow-y: auto;
+    }
+
+    /* --- QUIZ BOX : plein écran, en flux normal --- */
     .quiz-section .quiz-box {
-        width: 100vw;
+        position: relative;
+        top: auto;
+        left: auto;
+        transform: none !important;
+        width: 100%;
         min-height: 100vh;
         border: none;
         border-radius: 0;
-        padding: 80px 20px 30px;
+        padding: 80px 20px 40px;
         opacity: 0;
-        transform: scale(1);
+        pointer-events: none;
     }
 
     .quiz-section .quiz-box.active {
         opacity: 1;
-        transform: scale(1);
+        pointer-events: auto;
+        transform: none !important;
         transition: opacity .5s ease;
-        transition-delay: .8s;
+        transition-delay: .3s;
     }
 
-    /* result-box en flux normal, plein écran */
+    /* --- RESULT BOX : plein écran, en flux normal --- */
     .quiz-section .result-box {
         position: relative;
         top: auto;
         left: auto;
-        transform: none;
-        width: 100vw;
+        transform: none !important;
+        width: 100%;
         min-height: 100vh;
         border: none;
         border-radius: 0;
@@ -589,18 +736,25 @@ body {
     .quiz-section .result-box.active {
         opacity: 1;
         pointer-events: auto;
-        transform: none;
+        transform: none !important;
     }
 
+    /* --- POPUP --- */
     .popup-info {
         width: calc(100vw - 32px);
         max-width: 480px;
         padding: 14px 18px;
     }
 
+    .popup-quit {
+        width: calc(100vw - 48px);
+        max-width: 340px;
+    }
+
     .popup-info h2 { font-size: 30px; }
     .popup-info .info { font-size: 13px; }
 
+    /* --- NAVBAR --- */
     .navbar {
         position: absolute;
         top: 65px;
@@ -613,10 +767,12 @@ body {
     }
     .navbar a { margin: 8px 0; font-size: 15px; }
 
+    /* --- HOME CONTENT --- */
     .home-content h1 { font-size: 42px; text-align: center; }
     .home-content p { font-size: 14px; }
     .home-content .start-btn { width: 160px; height: 50px; font-size: 16px; }
 
+    /* --- QUIZ BOX CONTENU --- */
     .quiz-box h1 { font-size: 22px; }
     .quiz-box .quiz-header { padding: 14px 0; margin-bottom: 18px; }
     .quiz-box span { font-size: 14px; }
@@ -624,10 +780,17 @@ body {
 
     .option-list .option { font-size: 14px; padding: 11px 12px; margin: 8px 0; }
 
-    .quiz-footer { flex-direction: column; gap: 10px; padding: 16px 0; margin-top: 16px; }
+    /* Footer : en colonne, bouton "Suivant" pleine largeur */
+    .quiz-footer {
+        flex-direction: column;
+        gap: 10px;
+        padding: 16px 0;
+        margin-top: 16px;
+    }
     .quiz-footer .next-btn { width: 100%; }
     .quiz-footer .question-total { font-size: 13px; }
 
+    /* --- RESULT BOX CONTENU --- */
     .result-box h2 { font-size: 30px; }
     .result-box .pourcentage-container { width: 100%; }
     .pourcentage-container .circular-progress { width: 180px; height: 180px; }
@@ -640,6 +803,7 @@ body {
     .buttons button { width: 100%; margin: 0 0 8px; }
 }
 
+/* ══════════════ RESPONSIVE 480px ══════════════ */
 @media (max-width: 480px) {
     .logo { font-size: 22px; }
 

@@ -16,6 +16,10 @@ const nextBtn       = document.querySelector('.next-btn');
 const optionList    = document.querySelector('.option-list');
 const container     = document.querySelector('.container');
 const homeSection   = document.querySelector('.home');
+const quitBtn       = document.querySelector('.quit-btn');
+const popupQuit     = document.querySelector('.popup-quit');
+const quitCancelBtn = document.querySelector('.quit-cancel-btn');
+const quitConfirmBtn= document.querySelector('.quit-confirm-btn');
 
 // ── Variables d'état ──────────────────────────────────────
 let questionCount = 0;
@@ -38,25 +42,26 @@ function shuffle(array) {
     return arr;
 }
 
-// ── Afficher la section quiz (mobile ou desktop) ─────────
+// ── Afficher la section quiz ─────────────────────────────
 function showQuizSection() {
     if (isMobile()) {
-        // Sur mobile : cacher la home, montrer la section quiz
+        // Sur mobile : affichage absolu, on cache la home
         homeSection.style.display = 'none';
         quizSection.style.display = 'flex';
-        quizSection.style.left = '0';
-        container.style.overflow = 'hidden';
+        quizSection.style.flexDirection = 'column';
+        quizSection.style.alignItems = 'flex-start';
+        quizSection.style.justifyContent = 'flex-start';
+        quizSection.scrollTop = 0;
     } else {
         quizSection.classList.add('active');
     }
 }
 
-// ── Revenir à l'accueil (mobile ou desktop) ──────────────
+// ── Revenir à l'accueil ──────────────────────────────────
 function showHomeSection() {
     if (isMobile()) {
         quizSection.style.display = 'none';
         homeSection.style.display = 'flex';
-        quizSection.style.left = '';
     } else {
         quizSection.classList.remove('active');
     }
@@ -96,7 +101,6 @@ function startQuiz() {
     resultBox.classList.remove('active');
     nextBtn.classList.remove('active');
 
-    // Sur mobile, scroll en haut à chaque nouvelle question
     if (isMobile()) quizSection.scrollTop = 0;
 
     showQuestions(0);
@@ -126,6 +130,39 @@ goHomeBtn.onclick = () => {
     headerScore();
 };
 
+// ── Bouton Quitter (en cours de partie) ──────────────────
+quitBtn.onclick = () => {
+    popupQuit.classList.add('active');
+    main.classList.add('active');
+};
+
+quitCancelBtn.onclick = () => {
+    popupQuit.classList.remove('active');
+    main.classList.remove('active');
+};
+
+quitConfirmBtn.onclick = () => {
+    popupQuit.classList.remove('active');
+    main.classList.remove('active');
+
+    quizBox.classList.remove('active');
+    resultBox.classList.remove('active');
+    nextBtn.classList.remove('active');
+
+    questionCount = 0;
+    questionNumb  = 1;
+    userScore     = 0;
+
+    showHomeSection();
+
+    shuffledQuestions = shuffle(questions);
+    showQuestions(0);
+    questionCounter(1);
+    headerScore();
+};
+
+// ── Touche Échap pour fermer le popup Quitter ─────────────
+
 // ── Bouton Suivant ───────────────────────────────────────
 nextBtn.onclick = () => {
     if (questionCount < shuffledQuestions.length - 1) {
@@ -134,7 +171,6 @@ nextBtn.onclick = () => {
         showQuestions(questionCount);
         questionCounter(questionNumb);
         nextBtn.classList.remove('active');
-        // Scroll en haut sur mobile
         if (isMobile()) quizSection.scrollTop = 0;
     } else {
         showResultBox();
@@ -143,6 +179,10 @@ nextBtn.onclick = () => {
 
 // ── Navigation clavier ───────────────────────────────────
 document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && popupQuit.classList.contains('active')) {
+        quitCancelBtn.click();
+        return;
+    }
     if (e.key === 'Enter' && nextBtn.classList.contains('active')) {
         nextBtn.click();
     }
@@ -260,10 +300,12 @@ function showResultBox() {
 
 // ── Recalcul au redimensionnement ────────────────────────
 window.addEventListener('resize', () => {
-    // Si on passe desktop → mobile ou inverse en cours de quiz, on remet tout droit
     if (!isMobile()) {
+        // Retour desktop : on remet les styles inline à zéro
         homeSection.style.display = '';
         quizSection.style.display = '';
-        quizSection.style.left = '';
+        quizSection.style.flexDirection = '';
+        quizSection.style.alignItems = '';
+        quizSection.style.justifyContent = '';
     }
 });
