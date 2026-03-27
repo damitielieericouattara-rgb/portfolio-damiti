@@ -1,7 +1,5 @@
 /* ============================================================
-   QUIZ DE DAMITI — script.js amélioré
-   Corrections : affichage du total, keyboard nav, mention résultat,
-   shuffle questions, timer visuel, retour accueil propre
+   QUIZ DE DAMITI — script.js
    ============================================================ */
 
 const startBtn      = document.querySelector('.start-btn');
@@ -16,6 +14,8 @@ const tryAgainBtn   = document.querySelector('.tryAgain-btn');
 const goHomeBtn     = document.querySelector('.goHome-btn');
 const nextBtn       = document.querySelector('.next-btn');
 const optionList    = document.querySelector('.option-list');
+const container     = document.querySelector('.container');
+const homeSection   = document.querySelector('.home');
 
 // ── Variables d'état ──────────────────────────────────────
 let questionCount = 0;
@@ -23,7 +23,12 @@ let questionNumb  = 1;
 let userScore     = 0;
 let shuffledQuestions = [];
 
-// ── Mélange des questions à chaque partie ────────────────
+// ── Détection mobile ─────────────────────────────────────
+function isMobile() {
+    return window.innerWidth <= 768;
+}
+
+// ── Mélange des questions ────────────────────────────────
 function shuffle(array) {
     const arr = [...array];
     for (let i = arr.length - 1; i > 0; i--) {
@@ -31,6 +36,30 @@ function shuffle(array) {
         [arr[i], arr[j]] = [arr[j], arr[i]];
     }
     return arr;
+}
+
+// ── Afficher la section quiz (mobile ou desktop) ─────────
+function showQuizSection() {
+    if (isMobile()) {
+        // Sur mobile : cacher la home, montrer la section quiz
+        homeSection.style.display = 'none';
+        quizSection.style.display = 'flex';
+        quizSection.style.left = '0';
+        container.style.overflow = 'hidden';
+    } else {
+        quizSection.classList.add('active');
+    }
+}
+
+// ── Revenir à l'accueil (mobile ou desktop) ──────────────
+function showHomeSection() {
+    if (isMobile()) {
+        quizSection.style.display = 'none';
+        homeSection.style.display = 'flex';
+        quizSection.style.left = '';
+    } else {
+        quizSection.classList.remove('active');
+    }
 }
 
 // ── Bouton Commencer ─────────────────────────────────────
@@ -58,12 +87,17 @@ function startQuiz() {
     questionNumb  = 1;
     userScore     = 0;
 
-    quizSection.classList.add('active');
     popupInfo.classList.remove('active');
     main.classList.remove('active');
+
+    showQuizSection();
+
     quizBox.classList.add('active');
     resultBox.classList.remove('active');
     nextBtn.classList.remove('active');
+
+    // Sur mobile, scroll en haut à chaque nouvelle question
+    if (isMobile()) quizSection.scrollTop = 0;
 
     showQuestions(0);
     questionCounter(1);
@@ -75,9 +109,8 @@ tryAgainBtn.onclick = () => {
     startQuiz();
 };
 
-// ── Retour à l'accueil du quiz ───────────────────────────
+// ── Retour à l'accueil ───────────────────────────────────
 goHomeBtn.onclick = () => {
-    quizSection.classList.remove('active');
     resultBox.classList.remove('active');
     nextBtn.classList.remove('active');
 
@@ -85,7 +118,8 @@ goHomeBtn.onclick = () => {
     questionNumb  = 1;
     userScore     = 0;
 
-    // Réinitialise sans lancer le quiz
+    showHomeSection();
+
     shuffledQuestions = shuffle(questions);
     showQuestions(0);
     questionCounter(1);
@@ -100,17 +134,18 @@ nextBtn.onclick = () => {
         showQuestions(questionCount);
         questionCounter(questionNumb);
         nextBtn.classList.remove('active');
+        // Scroll en haut sur mobile
+        if (isMobile()) quizSection.scrollTop = 0;
     } else {
         showResultBox();
     }
 };
 
-// ── Navigation clavier (Entrée = valider / Suivant) ──────
+// ── Navigation clavier ───────────────────────────────────
 document.addEventListener('keydown', (e) => {
     if (e.key === 'Enter' && nextBtn.classList.contains('active')) {
         nextBtn.click();
     }
-    // Touches 1–4 pour sélectionner une option
     if (['1','2','3','4'].includes(e.key)) {
         const opts = optionList.querySelectorAll('.option:not(.disabled)');
         const idx = parseInt(e.key) - 1;
@@ -149,7 +184,6 @@ function optionSelected(answer) {
         headerScore();
     } else {
         answer.classList.add('incorrect');
-        // Surligner la bonne réponse automatiquement
         Array.from(allOptions).forEach(opt => {
             if (opt.textContent.trim() === correctAnswer) {
                 opt.classList.add('correct');
@@ -157,9 +191,7 @@ function optionSelected(answer) {
         });
     }
 
-    // Désactiver toutes les options
     Array.from(allOptions).forEach(opt => opt.classList.add('disabled'));
-
     nextBtn.classList.add('active');
 }
 
@@ -179,11 +211,11 @@ function headerScore() {
 // ── Mention selon le score ───────────────────────────────
 function getMention(score, total) {
     const pct = (score / total) * 100;
-    if (pct === 100) return { text: ' Score parfait !',        color: '#ffd700' };
-    if (pct >= 80)  return { text: ' Excellent résultat !',   color: '#00e676' };
-    if (pct >= 60)  return { text: ' Bon travail !',          color: '#0ef' };
-    if (pct >= 40)  return { text: ' Peut mieux faire…',      color: '#ffb300' };
-    return              { text: ' Continue à t\'entraîner !', color: '#ff6b6b' };
+    if (pct === 100) return { text: 'Score parfait !',              color: '#ffd700' };
+    if (pct >= 80)  return { text: 'Excellent résultat !',         color: '#8fbc5a' };
+    if (pct >= 60)  return { text: 'Bon travail !',                color: '#a8d878' };
+    if (pct >= 40)  return { text: 'Peut mieux faire…',            color: '#c8a84b' };
+    return              { text: 'Continue à t\'entraîner !',       color: '#c0572a' };
 }
 
 // ── Afficher la boîte de résultat ────────────────────────
@@ -191,12 +223,13 @@ function showResultBox() {
     quizBox.classList.remove('active');
     resultBox.classList.add('active');
 
+    if (isMobile()) quizSection.scrollTop = 0;
+
     const total = shuffledQuestions.length;
 
     const scoreText = document.querySelector('.Score-text');
     scoreText.textContent = `Ton score est de ${userScore} sur ${total}`;
 
-    // Mention
     const mention = getMention(userScore, total);
     const resultMention = document.querySelector('.result-mention');
     if (resultMention) {
@@ -204,7 +237,6 @@ function showResultBox() {
         resultMention.style.color = mention.color;
     }
 
-    // Animation cercle
     const circularProgress = document.querySelector('.circular-progress');
     const progressValue    = document.querySelector('.progress-value');
 
@@ -213,15 +245,25 @@ function showResultBox() {
     const speed = 20;
 
     progressValue.textContent = '0%';
-    circularProgress.style.background = `conic-gradient(var(--main-color) 0deg, rgba(225,225,225,.1) 0deg)`;
+    circularProgress.style.background = `conic-gradient(var(--main-color) 0deg, rgba(143,188,90,.1) 0deg)`;
 
     const progress = setInterval(() => {
         progressStartValue++;
         progressValue.textContent = `${progressStartValue}%`;
-        circularProgress.style.background = `conic-gradient(var(--main-color) ${progressStartValue * 3.6}deg, rgba(225,225,225,.1) 0deg)`;
+        circularProgress.style.background = `conic-gradient(var(--main-color) ${progressStartValue * 3.6}deg, rgba(143,188,90,.1) 0deg)`;
 
         if (progressStartValue >= progressEndValue) {
             clearInterval(progress);
         }
     }, speed);
 }
+
+// ── Recalcul au redimensionnement ────────────────────────
+window.addEventListener('resize', () => {
+    // Si on passe desktop → mobile ou inverse en cours de quiz, on remet tout droit
+    if (!isMobile()) {
+        homeSection.style.display = '';
+        quizSection.style.display = '';
+        quizSection.style.left = '';
+    }
+});
