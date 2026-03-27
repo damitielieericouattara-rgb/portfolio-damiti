@@ -494,6 +494,8 @@ body {
 }
 
 @media (max-width: 768px) {
+    body { overflow-y: auto; }
+
     .navbar {
         display: flex;
         flex-direction: column;
@@ -542,16 +544,55 @@ body {
 }
 
 @media (max-width: 480px) {
+    body { overflow-y: auto; }
+
     .logo { font-size: 24px; }
+
     .home-content h1 { font-size: 32px; }
-    .home-content p { font-size: 13px; }
+    .home-content p { font-size: 13px; padding: 0 10px; }
     .home-content .start-btn { width: 140px; height: 45px; font-size: 14px; }
+
+    .popup-info { width: 95%; padding: 12px 15px; }
+    .popup-info h2 { font-size: 24px; }
+    .popup-info .info { font-size: 13px; }
+    .popup-info .btn-group .info-btn { width: 110px; font-size: 14px; }
+
+    .quiz-section .quiz-box,
+    .quiz-section .result-box { width: 95%; padding: 12px 14px; }
+
     .quiz-box h1 { font-size: 20px; }
     .quiz-box .question-text { font-size: 15px; }
     .quiz-box span { font-size: 14px; }
-    .popup-info h2 { font-size: 24px; }
-    .popup-info .info { font-size: 13px; }
+
+    .option-list .option { font-size: 14px; padding: 10px; margin: 8px 0; }
+
+    .quiz-footer { padding: 14px 10px; margin-top: 15px; }
+    .quiz-footer .question-total { font-size: 13px; }
+    .quiz-footer .next-btn { font-size: 14px; }
+
+    .result-box h2 { font-size: 26px; }
+    .result-box .pourcentage-container { width: 160px; }
+
+    .pourcentage-container .circular-progress {
+        width: 150px;
+        height: 150px;
+    }
+    .pourcentage-container .circular-progress::before {
+        width: 124px;
+        height: 124px;
+    }
+
     .circular-progress .progress-value { font-size: 28px; }
-    .pourcentage-container .Score-text { font-size: 16px; text-align: center; }
-    .result-mention { font-size: 16px; }
+    .pourcentage-container .Score-text { font-size: 15px; text-align: center; }
+    .result-mention { font-size: 15px; }
+
+    .buttons button { font-size: 13px; height: 42px; }
+}
+
+@media (max-width: 360px) {
+    .home-content h1 { font-size: 26px; }
+    .quiz-box .question-text { font-size: 13px; }
+    .option-list .option { font-size: 13px; }
+    .circular-progress .progress-value { font-size: 24px; }
+    .pourcentage-container .Score-text { font-size: 13px; }
 }
