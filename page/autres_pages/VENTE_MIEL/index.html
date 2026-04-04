@@ -4,16 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bon Miel - Miel Naturel de Qualité</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/boxicons/2.1.0/css/animations.min.css">
+
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
     <!-- ========== HEADER ========== -->
     <header>
         <a href="#home" class="logo">
-            <i class='bx bxs-home'></i><span>B</span>on <span>M</span>iel
+            <i class='fa-solid fa-house'></i><span>B</span>on <span>M</span>iel
         </a>
 
         <ul class="navlist">
@@ -26,21 +28,23 @@
         </ul>
 
         <div class="nav-icons">
-            <a href="#" aria-label="Recherche"><i class='bx bx-search' onclick="toggleSearch()"></i></a>
-            <a href="#" aria-label="Panier" class="cart-icon-wrapper">
-                <i class='bx bx-cart' onclick="toggleCart()"></i>
-                <span class="cart-count" id="cartCount">0</span>
+            <a href="#" aria-label="Recherche" onclick="toggleSearch(); return false;">
+                <i class='fa-solid fa-magnifying-glass'></i>
             </a>
-            <div class="bx bx-menu" id="menu-icon"></div>
+            <a href="#" aria-label="Panier" class="cart-icon-wrapper" onclick="toggleCart(); return false;">
+                <i class='fa-solid fa-cart-shopping'></i>
+                <span class="cart-count" id="cartCount" style="display:none;">0</span>
+            </a>
+            <i class="fa-solid fa-bars" id="menu-icon"></i>
         </div>
     </header>
 
     <!-- ========== SEARCH MODAL ========== -->
     <div class="search-modal" id="searchModal">
-        <i class='bx bx-x close-search' onclick="toggleSearch()"></i>
+        <i class='fa-solid fa-xmark close-search' onclick="toggleSearch()"></i>
         <div class="search-box">
             <input type="text" placeholder="Rechercher un produit..." id="searchInput" autocomplete="off">
-            <i class='bx bx-search'></i>
+            <i class='fa-solid fa-magnifying-glass'></i>
         </div>
         <div class="search-results" id="searchResults"></div>
     </div>
@@ -49,12 +53,12 @@
     <div class="cart-overlay" id="cartOverlay" onclick="toggleCart()"></div>
     <div class="cart-modal" id="cartModal">
         <div class="cart-header">
-            <h2><i class='bx bxs-cart'></i> Mon Panier</h2>
-            <i class='bx bx-x close-cart' onclick="toggleCart()"></i>
+            <h2><i class='fa-solid fa-cart-shopping'></i> Mon Panier</h2>
+            <i class='fa-solid fa-xmark close-cart' onclick="toggleCart()"></i>
         </div>
         <div class="cart-items" id="cartItems">
             <div class="empty-cart">
-                <i class='bx bx-cart-alt'></i>
+                <i class='fa-solid fa-cart-arrow-down'></i>
                 <p>Votre panier est vide</p>
             </div>
         </div>
@@ -63,8 +67,8 @@
                 <span>Total :</span>
                 <span id="cartTotal">0 FCFA</span>
             </div>
-            <a href="#contact" class="btn" style="width:100%;text-align:center;" onclick="checkout()">
-                Commander <i class='bx bxs-right-arrow'></i>
+            <a href="#" class="btn" style="width:100%;text-align:center;justify-content:center;" onclick="checkout(); return false;">
+                Commander <i class='fa-solid fa-arrow-right'></i>
             </a>
         </div>
     </div>
@@ -75,11 +79,10 @@
     <!-- ========== HOME ========== -->
     <section class="home" id="home">
         <div class="home-text">
-            <!-- <div class="home-badge">🍯 100% Naturel &amp; Artisanal</div> -->
             <h1>Rencontrez, <span>mangez et</span><br>appréciez le vrai<br>goût</h1>
             <p class="home-desc">Découvrez notre gamme de miels purs, récoltés avec soin par nos apiculteurs passionnés de Côte d'Ivoire.</p>
             <div class="home-btns">
-                <a href="#shop" class="btn">Explorer nos produits <i class='bx bxs-right-arrow'></i></a>
+                <a href="#shop" class="btn">Explorer nos produits <i class='fa-solid fa-arrow-right'></i></a>
                 <a href="#about" class="btn2">Disponible Maintenant</a>
             </div>
             <div class="home-stats">
@@ -135,12 +138,12 @@
             <p>Depuis plus de 10 ans, <strong>Bon Miel</strong> s'engage à vous offrir des miels d'exception, récoltés directement auprès d'apiculteurs locaux en Côte d'Ivoire. Chaque pot est un concentré de saveurs authentiques et de bienfaits naturels.</p>
             <p>Nous garantissons une traçabilité complète, de la ruche à votre table, sans additifs ni conservateurs. Parce que la nature sait mieux faire.</p>
             <div class="about-features">
-                <div class="feature"><i class='bx bx-check-circle'></i> 100% Naturel</div>
-                <div class="feature"><i class='bx bx-check-circle'></i> Sans conservateurs</div>
-                <div class="feature"><i class='bx bx-check-circle'></i> Apiculteurs locaux</div>
-                <div class="feature"><i class='bx bx-check-circle'></i> Certifié pur</div>
+                <div class="feature"><i class='fa-solid fa-circle-check'></i> 100% Naturel</div>
+                <div class="feature"><i class='fa-solid fa-circle-check'></i> Sans conservateurs</div>
+                <div class="feature"><i class='fa-solid fa-circle-check'></i> Apiculteurs locaux</div>
+                <div class="feature"><i class='fa-solid fa-circle-check'></i> Certifié pur</div>
             </div>
-            <a href="#shop" class="btn">Voir nos produits <i class="bx bxs-right-arrow"></i></a>
+            <a href="#shop" class="btn">Voir nos produits <i class='fa-solid fa-arrow-right'></i></a>
         </div>
     </section>
 
@@ -152,22 +155,22 @@
         </div>
         <div class="benefits-grid">
             <div class="benefit-card reveal">
-                <div class="benefit-icon"><i class='bx bx-heart-circle'></i></div>
+                <div class="benefit-icon"><i class='fa-solid fa-heart-pulse'></i></div>
                 <h3>Santé &amp; Vitalité</h3>
                 <p>Riche en antioxydants, le miel naturel booste votre système immunitaire et améliore votre énergie au quotidien.</p>
             </div>
             <div class="benefit-card reveal">
-                <div class="benefit-icon"><i class='bx bx-leaf'></i></div>
+                <div class="benefit-icon"><i class='fa-solid fa-leaf'></i></div>
                 <h3>100% Naturel</h3>
                 <p>Aucun additif, aucun conservateur. Juste du miel pur récolté dans nos ruches avec passion et respect de la nature.</p>
             </div>
             <div class="benefit-card reveal">
-                <div class="benefit-icon"><i class='bx bx-droplet'></i></div>
+                <div class="benefit-icon"><i class='fa-solid fa-droplet'></i></div>
                 <h3>Saveurs Uniques</h3>
                 <p>Chaque variété possède son profil aromatique unique. Découvrez les nuances florales, boisées ou fruitées de nos miels.</p>
             </div>
             <div class="benefit-card reveal">
-                <div class="benefit-icon"><i class='bx bx-shield'></i></div>
+                <div class="benefit-icon"><i class='fa-solid fa-shield-halved'></i></div>
                 <h3>Qualité Garantie</h3>
                 <p>Chaque lot est analysé et certifié. Nous vous garantissons une pureté et une qualité constantes à chaque commande.</p>
             </div>
@@ -197,13 +200,13 @@
                 <div class="in-text">
                     <div class="price"><h6>7 000 FCFA</h6><small>/ 500g</small></div>
                     <div class="s-btnn">
-                        <a href="#" onclick="addToCart('Miel d\'Acacia', 7000, './image/p1.png'); return false;">
-                            <i class='bx bx-cart-add'></i> Ajouter
+                        <a href="#" onclick="addToCart('Miel d\'Acacia', 7000); return false;">
+                            <i class='fa-solid fa-cart-plus'></i> Ajouter
                         </a>
                     </div>
                 </div>
                 <div class="top-icon">
-                    <i class='bx bx-heart' onclick="toggleLike(this)"></i>
+                    <i class='fa-regular fa-heart' onclick="toggleLike(this)"></i>
                 </div>
             </div>
 
@@ -214,13 +217,13 @@
                 <div class="in-text">
                     <div class="price"><h6>9 000 FCFA</h6><small>/ 500g</small></div>
                     <div class="s-btnn">
-                        <a href="#" onclick="addToCart('Miel de Forêt', 9000, './image/p2.png'); return false;">
-                            <i class='bx bx-cart-add'></i> Ajouter
+                        <a href="#" onclick="addToCart('Miel de Forêt', 9000); return false;">
+                            <i class='fa-solid fa-cart-plus'></i> Ajouter
                         </a>
                     </div>
                 </div>
                 <div class="top-icon">
-                    <i class='bx bx-heart' onclick="toggleLike(this)"></i>
+                    <i class='fa-regular fa-heart' onclick="toggleLike(this)"></i>
                 </div>
             </div>
 
@@ -232,13 +235,13 @@
                 <div class="in-text">
                     <div class="price"><h6>6 000 FCFA</h6><small>/ 500g</small></div>
                     <div class="s-btnn">
-                        <a href="#" onclick="addToCart('Miel de Fleurs', 6000, './image/p3.png'); return false;">
-                            <i class='bx bx-cart-add'></i> Ajouter
+                        <a href="#" onclick="addToCart('Miel de Fleurs', 6000); return false;">
+                            <i class='fa-solid fa-cart-plus'></i> Ajouter
                         </a>
                     </div>
                 </div>
                 <div class="top-icon">
-                    <i class='bx bx-heart' onclick="toggleLike(this)"></i>
+                    <i class='fa-regular fa-heart' onclick="toggleLike(this)"></i>
                 </div>
             </div>
 
@@ -250,13 +253,13 @@
                 <div class="in-text">
                     <div class="price"><h6>10 000 FCFA</h6><small>/ 500g</small></div>
                     <div class="s-btnn">
-                        <a href="#" onclick="addToCart('Miel Royal', 10000, './image/p4.png'); return false;">
-                            <i class='bx bx-cart-add'></i> Ajouter
+                        <a href="#" onclick="addToCart('Miel Royal', 10000); return false;">
+                            <i class='fa-solid fa-cart-plus'></i> Ajouter
                         </a>
                     </div>
                 </div>
                 <div class="top-icon">
-                    <i class='bx bx-heart' onclick="toggleLike(this)"></i>
+                    <i class='fa-regular fa-heart' onclick="toggleLike(this)"></i>
                 </div>
             </div>
 
@@ -267,13 +270,13 @@
                 <div class="in-text">
                     <div class="price"><h6>8 500 FCFA</h6><small>/ 500g</small></div>
                     <div class="s-btnn">
-                        <a href="#" onclick="addToCart('Miel de Mangrove', 8500, './image/p1.png'); return false;">
-                            <i class='bx bx-cart-add'></i> Ajouter
+                        <a href="#" onclick="addToCart('Miel de Mangrove', 8500); return false;">
+                            <i class='fa-solid fa-cart-plus'></i> Ajouter
                         </a>
                     </div>
                 </div>
                 <div class="top-icon">
-                    <i class='bx bx-heart' onclick="toggleLike(this)"></i>
+                    <i class='fa-regular fa-heart' onclick="toggleLike(this)"></i>
                 </div>
             </div>
 
@@ -285,23 +288,23 @@
                 <div class="in-text">
                     <div class="price"><h6>11 000 FCFA</h6><small>/ 500g</small></div>
                     <div class="s-btnn">
-                        <a href="#" onclick="addToCart('Miel Épicé', 11000, './image/p2.png'); return false;">
-                            <i class='bx bx-cart-add'></i> Ajouter
+                        <a href="#" onclick="addToCart('Miel Épicé', 11000); return false;">
+                            <i class='fa-solid fa-cart-plus'></i> Ajouter
                         </a>
                     </div>
                 </div>
                 <div class="top-icon">
-                    <i class='bx bx-heart' onclick="toggleLike(this)"></i>
+                    <i class='fa-regular fa-heart' onclick="toggleLike(this)"></i>
                 </div>
             </div>
         </div>
 
         <div class="row-btn reveal">
-            <a href="#contact" class="btn">Commander en gros <i class="bx bxs-right-arrow"></i></a>
+            <a href="#contact" class="btn">Commander en gros <i class='fa-solid fa-arrow-right'></i></a>
         </div>
     </section>
 
-    <!-- ========== PROCESS / COMMENT ========== -->
+    <!-- ========== PROCESS ========== -->
     <section class="process" id="process">
         <div class="middle-text reveal">
             <h4>Notre Processus</h4>
@@ -310,28 +313,28 @@
         <div class="process-steps">
             <div class="step reveal">
                 <div class="step-num">01</div>
-                <div class="step-icon"><i class='bx bx-home-heart'></i></div>
+                <div class="step-icon"><i class='fa-solid fa-house-chimney'></i></div>
                 <h3>Nos Ruches</h3>
                 <p>Des ruches naturelles installées dans des zones protégées, loin de toute pollution.</p>
             </div>
-            <div class="step-arrow reveal"><i class='bx bx-right-arrow-alt'></i></div>
+            <div class="step-arrow reveal"><i class='fa-solid fa-arrow-right'></i></div>
             <div class="step reveal">
                 <div class="step-num">02</div>
-                <div class="step-icon"><i class='bx bx-droplet'></i></div>
+                <div class="step-icon"><i class='fa-solid fa-droplet'></i></div>
                 <h3>Récolte</h3>
                 <p>Récolte manuelle respectueuse des abeilles, effectuée par nos apiculteurs certifiés.</p>
             </div>
-            <div class="step-arrow reveal"><i class='bx bx-right-arrow-alt'></i></div>
+            <div class="step-arrow reveal"><i class='fa-solid fa-arrow-right'></i></div>
             <div class="step reveal">
                 <div class="step-num">03</div>
-                <div class="step-icon"><i class='bx bx-filter'></i></div>
+                <div class="step-icon"><i class='fa-solid fa-filter'></i></div>
                 <h3>Filtrage</h3>
                 <p>Filtrage doux à froid pour préserver tous les nutriments et les arômes naturels.</p>
             </div>
-            <div class="step-arrow reveal"><i class='bx bx-right-arrow-alt'></i></div>
+            <div class="step-arrow reveal"><i class='fa-solid fa-arrow-right'></i></div>
             <div class="step reveal">
                 <div class="step-num">04</div>
-                <div class="step-icon"><i class='bx bx-package'></i></div>
+                <div class="step-icon"><i class='fa-solid fa-box'></i></div>
                 <h3>Mise en pot</h3>
                 <p>Conditionnement artisanal en pots de verre recyclables, prêts pour la livraison.</p>
             </div>
@@ -347,7 +350,7 @@
         <div class="review-content">
             <div class="box reveal">
                 <div class="review-stars">
-                    <i class='bx bxs-star'></i><i class='bx bxs-star'></i><i class='bx bxs-star'></i><i class='bx bxs-star'></i><i class='bx bxs-star'></i>
+                    <i class='fa-solid fa-star'></i><i class='fa-solid fa-star'></i><i class='fa-solid fa-star'></i><i class='fa-solid fa-star'></i><i class='fa-solid fa-star'></i>
                 </div>
                 <p>« Un miel d'une qualité exceptionnelle ! J'en commande chaque mois pour toute ma famille. Le miel d'acacia est tout simplement divin. »</p>
                 <div class="in-box">
@@ -360,7 +363,7 @@
             </div>
             <div class="box reveal">
                 <div class="review-stars">
-                    <i class='bx bxs-star'></i><i class='bx bxs-star'></i><i class='bx bxs-star'></i><i class='bx bxs-star'></i><i class='bx bxs-star'></i>
+                    <i class='fa-solid fa-star'></i><i class='fa-solid fa-star'></i><i class='fa-solid fa-star'></i><i class='fa-solid fa-star'></i><i class='fa-solid fa-star'></i>
                 </div>
                 <p>« Je recommande Bon Miel à tous mes abonnés ! Le packaging est soigné et la qualité est au rendez-vous. Je ne peux plus m'en passer. »</p>
                 <div class="in-box">
@@ -373,7 +376,7 @@
             </div>
             <div class="box reveal">
                 <div class="review-stars">
-                    <i class='bx bxs-star'></i><i class='bx bxs-star'></i><i class='bx bxs-star'></i><i class='bx bxs-star'></i><i class='bx bxs-star'></i>
+                    <i class='fa-solid fa-star'></i><i class='fa-solid fa-star'></i><i class='fa-solid fa-star'></i><i class='fa-solid fa-star'></i><i class='fa-solid fa-star'></i>
                 </div>
                 <p>« En tant que blogueur alimentaire, j'ai testé beaucoup de miels. Celui de Bon Miel est clairement dans le top. Un produit local qui mérite d'être connu. »</p>
                 <div class="in-box">
@@ -390,12 +393,12 @@
     <!-- ========== NEWSLETTER ========== -->
     <section class="newsletter" id="newsletter">
         <div class="newsletter-content reveal">
-            <div class="newsletter-icon"><i class='bx bxs-envelope'></i></div>
+            <div class="newsletter-icon"><i class='fa-solid fa-envelope'></i></div>
             <h2>Restez Informé</h2>
             <p>Abonnez-vous pour recevoir nos offres exclusives, recettes et nouveautés directement dans votre boîte mail.</p>
             <div class="newsletter-form">
                 <input type="email" placeholder="Votre adresse e-mail..." id="newsletterEmail">
-                <button onclick="subscribeNewsletter()">S'abonner <i class='bx bxs-right-arrow'></i></button>
+                <button onclick="subscribeNewsletter()">S'abonner <i class='fa-solid fa-arrow-right'></i></button>
             </div>
         </div>
     </section>
@@ -415,17 +418,17 @@
                 </div>
                 <p>Vous avez une question, une commande spéciale ou souhaitez nous rejoindre ? Contactez-nous via les informations ci-dessous ou sur nos réseaux sociaux.</p>
                 <div class="social">
-                    <a href="#" class="clr" aria-label="Instagram"><i class='bx bxl-instagram-alt'></i></a>
-                    <a href="#" aria-label="Facebook"><i class='bx bxl-facebook'></i></a>
-                    <a href="#" aria-label="WhatsApp"><i class='bx bxl-whatsapp'></i></a>
-                    <a href="#" aria-label="Twitter"><i class='bx bxl-twitter'></i></a>
-                    <a href="#" aria-label="Google"><i class='bx bxl-google'></i></a>
+                    <a href="#" aria-label="Instagram"><i class='fa-brands fa-instagram'></i></a>
+                    <a href="#" aria-label="Facebook"><i class='fa-brands fa-facebook-f'></i></a>
+                    <a href="https://wa.me/2250713188565" target="_blank" aria-label="WhatsApp"><i class='fa-brands fa-whatsapp'></i></a>
+                    <a href="#" aria-label="Twitter"><i class='fa-brands fa-x-twitter'></i></a>
+                    <a href="#" aria-label="TikTok"><i class='fa-brands fa-tiktok'></i></a>
                 </div>
                 <div class="detail">
-                    <div class="main-d"><a href="#"><i class='bx bxs-location-plus'></i>Abidjan, Cocody, Côte d'Ivoire</a></div>
-                    <div class="main-d"><a href="tel:+2250713188565"><i class='bx bx-mobile-alt'></i>07 13 18 85 65</a></div>
-                    <div class="main-d"><a href="mailto:ericelieouattara@gmail.com"><i class='bx bx-envelope'></i>ericelieouattara@gmail.com</a></div>
-                    <div class="main-d"><a href="#"><i class='bx bx-time'></i>Lun – Sam : 08h00 – 18h00</a></div>
+                    <div class="main-d"><a href="https://maps.google.com/?q=Cocody+Abidjan" target="_blank"><i class='fa-solid fa-location-dot'></i>Abidjan, Cocody, Côte d'Ivoire</a></div>
+                    <div class="main-d"><a href="tel:+2250713188565"><i class='fa-solid fa-mobile-screen-button'></i>07 13 18 85 65</a></div>
+                    <div class="main-d"><a href="/cdn-cgi/l/email-protection#6704080913060413270508090a0e020b49040e"><i class='fa-solid fa-envelope'></i><span class="__cf_email__" data-cfemail="05666a6b7164667145676a6b686c60692b666c">[email&#160;protected]</span></a></div>
+                    <div class="main-d"><a href="#"><i class='fa-regular fa-clock'></i>Lun – Sam : 08h00 – 18h00</a></div>
                 </div>
             </div>
 
@@ -448,7 +451,7 @@
                     <textarea id="formMessage" rows="4" placeholder="Votre message..."></textarea>
                 </div>
                 <button class="btn submit-btn" onclick="sendMessage()">
-                    Envoyer <i class='bx bxl-whatsapp'></i>
+                    Envoyer via WhatsApp <i class='fa-brands fa-whatsapp'></i>
                 </button>
             </div>
         </div>
@@ -458,54 +461,54 @@
     <footer>
         <div class="footer-content">
             <div class="footer-brand">
-                <a href="#home" class="logo"><i class='bx bxs-home'></i><span>B</span>on <span>M</span>iel</a>
+                <a href="#home" class="logo"><i class='fa-solid fa-house'></i><span>B</span>on <span>M</span>iel</a>
                 <p>Votre spécialiste du miel artisanal de Côte d'Ivoire. Qualité, authenticité et passion depuis 2014.</p>
             </div>
             <div class="footer-links">
                 <h4>Navigation</h4>
                 <ul>
-                    <li><a href="#home">Accueil</a></li>
-                    <li><a href="#about">À propos</a></li>
-                    <li><a href="#shop">Produits</a></li>
-                    <li><a href="#review">Avis clients</a></li>
-                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="#home"><i class='fa-solid fa-chevron-right'></i> Accueil</a></li>
+                    <li><a href="#about"><i class='fa-solid fa-chevron-right'></i> À propos</a></li>
+                    <li><a href="#shop"><i class='fa-solid fa-chevron-right'></i> Produits</a></li>
+                    <li><a href="#review"><i class='fa-solid fa-chevron-right'></i> Avis clients</a></li>
+                    <li><a href="#contact"><i class='fa-solid fa-chevron-right'></i> Contact</a></li>
                 </ul>
             </div>
             <div class="footer-links">
                 <h4>Produits</h4>
                 <ul>
-                    <li><a href="#shop">Miel d'Acacia</a></li>
-                    <li><a href="#shop">Miel de Forêt</a></li>
-                    <li><a href="#shop">Miel de Fleurs</a></li>
-                    <li><a href="#shop">Miel Royal</a></li>
-                    <li><a href="#shop">Miel Épicé</a></li>
+                    <li><a href="#shop"><i class='fa-solid fa-chevron-right'></i> Miel d'Acacia</a></li>
+                    <li><a href="#shop"><i class='fa-solid fa-chevron-right'></i> Miel de Forêt</a></li>
+                    <li><a href="#shop"><i class='fa-solid fa-chevron-right'></i> Miel de Fleurs</a></li>
+                    <li><a href="#shop"><i class='fa-solid fa-chevron-right'></i> Miel Royal</a></li>
+                    <li><a href="#shop"><i class='fa-solid fa-chevron-right'></i> Miel Épicé</a></li>
                 </ul>
             </div>
             <div class="footer-contact">
                 <h4>Contact Rapide</h4>
-                <p><i class='bx bx-mobile-alt'></i> 07 13 18 85 65</p>
-                <p><i class='bx bxs-location-plus'></i> Cocody, Abidjan</p>
-                <p><i class='bx bx-time'></i> 08h – 18h (Lun–Sam)</p>
+                <p><i class='fa-solid fa-mobile-screen-button'></i> 07 13 18 85 65</p>
+                <p><i class='fa-solid fa-location-dot'></i> Cocody, Abidjan</p>
+                <p><i class='fa-regular fa-clock'></i> 08h – 18h (Lun–Sam)</p>
                 <a href="https://wa.me/2250713188565" class="whatsapp-btn" target="_blank">
-                    <i class='bx bxl-whatsapp'></i> WhatsApp
+                    <i class='fa-brands fa-whatsapp'></i> WhatsApp
                 </a>
             </div>
         </div>
         <div class="footer-bottom">
-            <p>© 2024 <span>Bon Miel</span> – Tous droits réservés. Made with in Côte d'Ivoire</p>
+            <p>© 2024 <span>Bon Miel</span> – Tous droits réservés | damel dev</p>
         </div>
     </footer>
 
     <!-- ========== SCROLL TO TOP ========== -->
     <a href="#home" class="scroll" id="scrollTop" aria-label="Retour en haut">
-        <i class='bx bx-up-arrow-alt'></i>
+        <i class='fa-solid fa-arrow-up'></i>
     </a>
 
     <!-- ========== WHATSAPP FLOAT ========== -->
     <a href="https://wa.me/2250713188565" class="whatsapp-float" target="_blank" aria-label="WhatsApp">
-        <i class='bx bxl-whatsapp'></i>
+        <i class='fa-brands fa-whatsapp'></i>
     </a>
 
-    <script src="./script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>

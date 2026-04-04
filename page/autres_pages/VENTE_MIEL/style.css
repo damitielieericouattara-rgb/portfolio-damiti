@@ -6,11 +6,15 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
     list-style: none;
     text-decoration: none;
     scroll-behavior: smooth;
     scroll-padding-top: 80px;
+}
+
+/* Police Poppins appliquée au body uniquement — ne pas mettre dans * pour ne pas écraser les polices d'icônes */
+body, input, textarea, button, select {
+    font-family: 'Poppins', sans-serif;
 }
 
 :root {
@@ -1620,4 +1624,4 @@ footer {
 
     .detail { gap: .8rem; }
     .main-d a { font-size: .9rem; }
-}
+}   

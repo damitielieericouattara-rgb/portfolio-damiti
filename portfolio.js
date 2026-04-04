@@ -1,51 +1,49 @@
 /* ============================================================
    PORTFOLIO — Ouattara Damiti Elie
-   Bento Grid éditorial, cohérent avec le design system complet
    ============================================================ */
 
 (function () {
     'use strict';
 
-    // ── DONNÉES DES PROJETS ───────────────────────────────────
     const PROJECTS = [
         {
             id: 1,
-            src: './image/BOUFFE.jpeg',
-            href: 'https://damitielieericouattara-rgb.github.io/restaurant/',
-            title: 'DABALIE DE BABI ( en cours de developpement )',
-            subtitle: 'Plateforme de livraison · Full-Stack',
-            description: 'Interface complète pour commander de la street food ivoirienne. Catalogue de plats, panier dynamique, suivi de commande et système de paiement mobile. Architecture JavaScript native côté front, PHP + MySQL côté back.',
-            technologies: ['HTML5', 'CSS3', 'JavaScript', 'PHP', 'MySQL'],
+            src: './image/image.png',
+            href: 'https://gestion-finance.infinityfreeapp.com',
+            title: 'App Gestion Financière',
+            subtitle: 'Tableau de bord · Full-Stack',
+            description: 'Application web complète de gestion financière avec tableau de bord admin, suivi des transactions (entrées/sorties), gestion des utilisateurs, historique du solde global, notifications en temps réel et génération de reçus PDF.',
+            technologies: ['PHP', 'MySQL', 'Tailwind CSS', 'JavaScript', 'PHPMailer', 'TCPDF', 'Intelligence Artificielle', 'API REST'],
             category: 'fullstack',
-            year: '2024',
-            // status: 'En ligne',
-            icon: 'bx bx-store-alt'
+            year: '2026',
+            status: 'En ligne',
+            icon: 'bx bx-line-chart'
         },
         {
             id: 2,
+            src: './image/MIEL.jpeg',
+            href: 'https://app-boutique-miel.netlify.app',
+            title: 'BON MIEL',
+            subtitle: 'Boutique WhatsApp · Front-end',
+            description: 'Boutique de produits apicoles avec catalogue, panier dynamique et persistance localStorage. La commande est formatée automatiquement et envoyée sur WhatsApp — aucun serveur requis.',
+            technologies: ['HTML5', 'CSS3', 'JavaScript', 'LocalStorage', 'WhatsApp API', 'Intelligence Artificielle'],
+            category: 'frontend',
+            year: '2024',
+            status: 'En ligne',
+            icon: 'bx bx-shopping-bag'
+        },
+        {
+            id: 3,
             src: './image/quiz.png',
-            href: './page/autres_pages/quiz de damel',
+            href: 'https://app-quiz-damel.netlify.app/l',
             title: 'Quiz Interactif',
             subtitle: 'Application dynamique · Front-end',
             description: 'Quiz avec chronomètre, score en temps réel, animations de feedback et tableau des résultats. 100% JavaScript natif, manipulation du DOM sans librairie externe.',
             technologies: ['HTML5','CSS3', 'TAILWIND', 'JavaScript', 'DOM API'],
             category: 'frontend',
             year: '2024',
-            // status: 'En ligne',
+            status: 'En ligne',
             icon: 'bx bx-target-lock'
-        },
-        {
-            id: 3,
-            src: './image/MIEL.jpeg',
-            href: './page/autres_pages/VENTE_MIEL/index.html',
-            title: 'BON MIEL',
-            subtitle: 'Boutique WhatsApp · Front-end',
-            description: 'Boutique de produits apicoles avec catalogue, panier dynamique et persistance localStorage. La commande est formatée automatiquement et envoyée sur WhatsApp — aucun serveur requis.',
-            technologies: ['HTML5', 'CSS3', 'JavaScript', 'LocalStorage', 'WhatsApp API'],
-            category: 'frontend',
-            year: '2024',
-            // status: 'En ligne',
-            icon: 'bx bx-shopping-bag'
         },
         {
             id: 4,
@@ -57,25 +55,38 @@
             technologies: ['React.js', 'Tailwind CSS', 'Hooks', 'LocalStorage'],
             category: 'react',
             year: '2024',
-            // status: 'En ligne',
+            status: 'En ligne',
             icon: 'bx bx-list-check'
         },
         {
             id: 5,
             src: './image/montre.jpeg',
-            href: './page/autres_pages/MONTRE/index.html',
+            href: 'https://app-montre.netlify.app',
             title: 'AFFICHAGE TEMPS RÉEL',
             subtitle: 'Animation temps réel · Front-end',
             description: 'Horloge analogique et digitale en temps réel. Aiguilles animées via transformations CSS et synchronisées avec setInterval. Zéro librairie externe, code vanilla pur.',
             technologies: ['HTML5', 'CSS3', 'JavaScript', 'setInterval'],
             category: 'frontend',
             year: '2024',
-            // status: 'En ligne',
+            status: 'En ligne',
             icon: 'bx bx-time-five'
+        },
+        {
+            id: 6,
+            src: './image/BOUFFE.jpeg',
+            href: 'https://damitielieericouattara-rgb.github.io/restaurant/',
+            title: 'DABALIE DE BABI ( en cours de developpement )',
+            subtitle: 'Plateforme de livraison · Full-Stack',
+            description: 'Interface complète pour commander de la street food ivoirienne. Catalogue de plats, panier dynamique, suivi de commande et système de paiement mobile. Architecture JavaScript native côté front, PHP + MySQL côté back.',
+            technologies: ['HTML5', 'CSS3', 'JavaScript', 'PHP', 'MySQL'],
+            category: 'fullstack',
+            year: '2024',
+            status: null,
+            icon: 'bx bx-store-alt'
+            
         }
     ];
 
-    // ── FILTRES ───────────────────────────────────────────────
     const FILTERS = [
         { key: 'all',       label: 'Tous',       icon: 'bx-grid-alt' },
         { key: 'fullstack', label: 'Full-Stack',  icon: 'bx-layer' },
@@ -93,7 +104,6 @@
     let portfolioGrid = null;
     let portfolioSection = null;
 
-    // ── INIT ──────────────────────────────────────────────────
     function init() {
         portfolioSection = document.querySelector('.portfolio');
         if (!portfolioSection) return;
@@ -104,7 +114,6 @@
         injectGrid();
     }
 
-    // ── EN-TÊTE ───────────────────────────────────────────────
     function injectSectionHeader() {
         const entete = portfolioSection.querySelector('.entete');
         if (entete) entete.classList.add('pf-entete-hidden');
@@ -123,7 +132,6 @@
         portfolioSection.insertAdjacentElement('afterbegin', header);
     }
 
-    // ── FILTRES ───────────────────────────────────────────────
     function injectFilters() {
         const existing = portfolioSection.querySelector('.portfolio-filters');
         if (existing) existing.remove();
@@ -157,7 +165,6 @@
         else portfolioSection.appendChild(wrap);
     }
 
-    // ── GRILLE ────────────────────────────────────────────────
     function injectGrid() {
         portfolioGrid = document.createElement('div');
         portfolioGrid.className = 'pf-grid';
@@ -172,13 +179,12 @@
             : PROJECTS;
 
         portfolioGrid.classList.toggle('pf-grid--filtered', isFiltered);
-
         portfolioGrid.style.opacity = '0';
         portfolioGrid.style.transform = 'translateY(18px)';
 
         setTimeout(() => {
             portfolioGrid.innerHTML = filtered.length
-                ? filtered.map((p, i) => cardHTML(p, i, isFiltered)).join('')
+                ? filtered.map((p, i) => cardHTML(p, i)).join('')
                 : `<div class="pf-empty">
                        <i class='bx bx-folder-open'></i>
                        <p>Aucun projet dans cette catégorie</p>
@@ -192,11 +198,17 @@
         }, 260);
     }
 
-    // ── CARTE ─────────────────────────────────────────────────
     function cardHTML(p, i) {
         const num = String(i + 1).padStart(2, '0');
         const tags = p.technologies.map(t => `<span class="pf-tech">${t}</span>`).join('');
         const catLabel = CAT_LABELS[p.category] || p.category;
+
+        const statusBadge = p.status
+            ? `<span class="pf-status-badge">
+                   <span class="pf-status-dot"></span>
+                   ${p.status}
+               </span>`
+            : '';
 
         return `
         <article class="pf-card" data-num="${num}" style="animation-delay:${i * 80}ms">
@@ -213,15 +225,11 @@
 
                 <div class="pf-img-badges">
                     <span class="pf-year-badge">${p.year}</span>
-                    <span class="pf-status-badge">
-                        <span class="pf-status-dot"></span>
-                        ${p.status}
-                    </span>
+                    ${statusBadge}
                 </div>
             </div>
 
             <div class="pf-card-content">
-
                 <div class="pf-card-meta">
                     <span class="pf-icon-box" aria-hidden="true"><i class='${p.icon}'></i></span>
                     <span class="pf-cat-badge ${p.category}">${catLabel}</span>
@@ -239,12 +247,10 @@
                         <i class='bx bx-right-arrow-alt'></i>
                     </a>
                 </div>
-
             </div>
         </article>`;
     }
 
-    // ── LAUNCH ────────────────────────────────────────────────
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', init);
     } else {
