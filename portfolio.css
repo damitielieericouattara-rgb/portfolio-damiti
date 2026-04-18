@@ -1,555 +1,115 @@
-/* ============================================================
-   PORTFOLIO — Design Bento Grid Éditorial
-   Ouattara Damiti Elie · 2024
-   ============================================================ */
+:root {
+    --card-w: 180px;
+    --card-h: 240px;
+    --radius: 240px;
+    --perspective: 1500px;
+    --panel: #ffffff;
+    --bdr: #e5e7eb;
+    --shadow: 0 10px 25px rgba(0, 0, 0, .25);
+    --shadow-strong: 0 20px 40px rgba(0, 0, 0, .35);
+}
 
-/* ══════════════════════════════════════════
-   SECTION
-══════════════════════════════════════════ */
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    height: 100%;
+    margin: 0;
+}
+
 .portfolio {
-    background: var(--bg-color);
-    padding: 10rem 6% 8rem;
-    position: relative;
-    overflow: hidden;
-}
-
-/* Lueurs de fond ambiantes */
-.portfolio::before {
-    content: '';
-    position: absolute;
-    top: -10%; left: -5%;
-    width: 55vw; height: 55vw;
-    background: radial-gradient(ellipse, rgba(0,238,255,0.035) 0%, transparent 65%);
-    border-radius: 50%;
-    pointer-events: none;
-    z-index: 0;
-}
-.portfolio::after {
-    content: '';
-    position: absolute;
-    bottom: 0; right: -10%;
-    width: 45vw; height: 45vw;
-    background: radial-gradient(ellipse, rgba(244,106,6,0.03) 0%, transparent 65%);
-    border-radius: 50%;
-    pointer-events: none;
-    z-index: 0;
-}
-
-/* ── En-tête ── */
-.pf-section-header {
-    text-align: center;
-    margin-bottom: 3rem;
-    position: relative;
-    z-index: 2;
-}
-
-.pf-entete-hidden { display: none !important; }
-
-/* ── Stats ── */
-.portfolio-stats {
-    display: flex;
-    justify-content: center;
-    gap: 2rem;
-    margin-bottom: 3.5rem;
-    flex-wrap: wrap;
-    position: relative;
-    z-index: 2;
-}
-
-/* ══════════════════════════════════════════
-   FILTRES
-══════════════════════════════════════════ */
-.pf-filters {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 0.4rem;
-    margin-bottom: 5rem;
-    flex-wrap: nowrap;
-    position: relative;
-    z-index: 2;
-    background: rgba(255,255,255,0.03);
-    border: 1px solid rgba(0,238,255,0.08);
-    border-radius: 10rem;
-    padding: 0.5rem;
-    width: fit-content;
-    max-width: calc(100% - 2rem);
-    margin-left: auto;
-    margin-right: auto;
-    overflow: visible;
-}
-
-.pf-filter-count {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    min-width: 20px; height: 20px;
-    background: rgba(255,255,255,0.12);
-    border-radius: 3rem;
-    font-size: 1.1rem;
-    font-style: normal;
-    font-weight: 700;
-    margin-left: 0.4rem;
-    padding: 0 0.5rem;
-    transition: background 0.3s ease;
-}
-.filter-btn.active .pf-filter-count {
-    background: rgba(0,0,0,0.25);
-}
-
-/* ══════════════════════════════════════════
-   GRILLE UNIFORME — 3 colonnes
-══════════════════════════════════════════ */
-.pf-grid {
+    font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
+    /* background: linear-gradient(180deg, #0b0e14 0%, #101522 100%); */
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2rem;
-    max-width: 1350px;
-    margin: 0 auto;
-    position: relative;
-    z-index: 2;
-}
-
-/* ══════════════════════════════════════════
-   CARTE
-══════════════════════════════════════════ */
-.pf-card {
-    background: var(--second-bg-color);
-    border-radius: 2.4rem;
-    border: 1.5px solid rgba(0,238,255,0.08);
+    place-items: center;
     overflow: hidden;
-    position: relative;
+}
+
+.wrap {
+    width: min(1100px, 96vw);
+    height: min(720px, 88vh);
     display: flex;
-    flex-direction: column;
-    transition: transform 0.4s cubic-bezier(0.23,1,0.32,1),
-                border-color 0.35s ease,
-                box-shadow 0.4s ease;
-    min-height: 280px;
+    align-items: center;
+    justify-content: center;
+    user-select: none;
+    cursor: grab;
 }
 
-/* Numéro décoratif de fond */
-.pf-card::after {
-    content: attr(data-num);
-    position: absolute;
-    bottom: -0.5rem;
-    right: 1.5rem;
-    font-size: 12rem;
-    font-weight: 900;
-    color: rgba(0,238,255,0.03);
-    line-height: 1;
-    pointer-events: none;
-    z-index: 0;
-    transition: color 0.35s ease, transform 0.4s ease;
-    font-family: 'Poppins', sans-serif;
-    letter-spacing: -4px;
+.wrap.dragging {
+    cursor: grabbing;
 }
 
-/* Ligne accent top */
-.pf-card::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0;
-    width: 100%; height: 2px;
-    background: linear-gradient(90deg, var(--main-color), rgba(0,238,255,0.2), transparent);
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform 0.4s cubic-bezier(0.23,1,0.32,1);
-    z-index: 4;
-}
-
-/* Hover */
-.pf-card:hover {
-    border-color: rgba(0,238,255,0.28);
-    transform: translateY(-8px) scale(1.01);
-    box-shadow:
-        0 20px 60px rgba(0,0,0,0.35),
-        0 0 0 1px rgba(0,238,255,0.08),
-        inset 0 1px 0 rgba(255,255,255,0.06);
-}
-.pf-card:hover::before { transform: scaleX(1); }
-.pf-card:hover::after  {
-    color: rgba(0,238,255,0.06);
-    transform: translateX(8px);
-}
-
-/* ══════════════════════════════════════════
-   IMAGE
-══════════════════════════════════════════ */
-.pf-card-visual {
+.stage {
     position: relative;
+    perspective: var(--perspective);
+    perspective-origin: center;
+}
+
+.wheel {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: var(--card-w);
+    height: var(--card-h);
+    margin-left: calc(var(--card-w) / -2);
+    margin-top: calc(var(--card-h) / -2);
+    transform-style: preserve-3d;
+}
+
+.card {
+    position: absolute;
+    width: var(--card-w);
+    height: var(--card-h);
+    transform-style: preserve-3d;
+}
+
+.card-inner {
     width: 100%;
+    height: 100%;
+    border-radius: 16px;
     overflow: hidden;
-    flex-shrink: 0;
-    background: #080c12;
+    background: var(--panel);
+    border: 1px solid var(--bdr);
+    box-shadow: var(--shadow);
+    backface-visibility: hidden;
+    transition: transform .3s ease, box-shadow .3s ease;
 }
 
-/* Image uniforme sur toutes les cartes */
-.pf-card .pf-card-visual {
-    height: 210px;
+.card-inner:hover {
+    transform: scale(1.05);
+    box-shadow: var(--shadow-strong);
+    z-index: 10;
 }
 
-.pf-card-img {
-    width: 100%; height: 100%;
+.card img {
+    width: 100%;
+    height: 100%;
     object-fit: cover;
-    filter: brightness(0.72) saturate(1.1);
-    transition: transform 0.65s cubic-bezier(0.23,1,0.32,1),
-                filter 0.4s ease;
     display: block;
-}
-.pf-card:hover .pf-card-img {
-    transform: scale(1.07);
-    filter: brightness(0.38) saturate(0.8);
-}
-
-/* Dégradé bas de l'image pour fondre avec le contenu */
-.pf-card-visual::after {
-    content: '';
-    position: absolute;
-    bottom: 0; left: 0; right: 0;
-    height: 60%;
-    background: linear-gradient(to top, var(--second-bg-color), transparent);
-    z-index: 1;
     pointer-events: none;
 }
 
-/* Overlay hover avec bouton */
-.pf-card-overlay {
+.hud {
     position: absolute;
-    inset: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    opacity: 0;
-    z-index: 3;
-    transition: opacity 0.35s ease;
-}
-.pf-card:hover .pf-card-overlay { opacity: 1; }
-
-/* Bouton overlay */
-.pf-overlay-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 1rem;
-    padding: 1.3rem 3rem;
-    background: rgba(0,238,255,0.95);
-    color: #0a0e14;
-    border-radius: 10rem;
-    font-size: 1.5rem;
-    font-weight: 800;
-    text-decoration: none;
-    transform: translateY(18px) scale(0.92);
-    transition: transform 0.38s cubic-bezier(0.23,1,0.32,1),
-                box-shadow 0.3s ease;
-    box-shadow: 0 8px 32px rgba(0,238,255,0.45);
-    font-family: 'Poppins', sans-serif;
-    letter-spacing: 0.3px;
-    backdrop-filter: blur(8px);
-}
-.pf-card:hover .pf-overlay-btn {
-    transform: translateY(0) scale(1);
-    box-shadow: 0 14px 50px rgba(0,238,255,0.6);
-}
-.pf-overlay-btn i { font-size: 2rem; }
-
-/* Badges flottants sur l'image */
-.pf-img-badges {
-    position: absolute;
-    top: 1.4rem;
-    left: 1.4rem;
-    right: 1.4rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    pointer-events: none;
-    z-index: 3;
+    left: 50%;
+    bottom: 16px;
+    transform: translateX(-50%);
+    font-size: 12px;
+    opacity: .75;
+    background: rgba(17, 24, 39, .55);
+    border: 1px solid rgba(148, 163, 184, .25);
+    padding: 8px 12px;
+    border-radius: 999px;
+    backdrop-filter: blur(6px);
+    color: #e5e7eb;
 }
 
-.pf-year-badge {
-    font-size: 1.2rem;
-    font-weight: 800;
-    color: rgba(255,255,255,0.9);
-    background: rgba(0,0,0,0.5);
-    backdrop-filter: blur(12px);
-    padding: 0.5rem 1.3rem;
-    border-radius: 3rem;
-    border: 1px solid rgba(255,255,255,0.1);
-    letter-spacing: 0.8px;
-}
-
-/* .pf-status-badge { */
-.pf-status-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-size: 1.2rem;
-    font-weight: 700;
-    color: #00e676;
-    /* background: rgba(0,0,0,0.5); */
-    backdrop-filter: blur(12px);
-    padding: 0.5rem 1.3rem;
-    border-radius: 3rem;
-    border: none;
-}
-
-.pf-status-dot {
-    width: 6px; height: 6px;
-    background: #00e676;
-    border-radius: 50%;
-    flex-shrink: 0;
-    animation: pf-dot-pulse 2s ease-in-out infinite;
-}
-@keyframes pf-dot-pulse {
-    0%,100% { box-shadow: 0 0 0 0 rgba(0,230,118,0.55); }
-    50%      { box-shadow: 0 0 0 5px rgba(0,230,118,0); }
-}
-
-/* ══════════════════════════════════════════
-   CONTENU
-══════════════════════════════════════════ */
-.pf-card-content {
-    padding: 2rem 2.4rem 2.4rem;
-    display: flex;
-    flex-direction: column;
-    gap: 1.1rem;
-    flex: 1;
-    position: relative;
-    z-index: 2;
-}
-
-/* Meta : icône + badge */
-.pf-card-meta {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-/* Icône */
-.pf-icon-box {
-    width: 48px; height: 48px;
-    /* background: rgba(0,238,255,0.08); */
-    border-radius: 1.4rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 2.4rem;
-    border: 1.5px solid rgba(0,238,255,0.12);
-    transition: transform 0.35s cubic-bezier(0.23,1,0.32,1),
-                background 0.3s ease;
-    flex-shrink: 0;
-}
-.pf-card:hover .pf-icon-box {
-    transform: scale(1.12) rotate(6deg);
-    /* background: rgba(0,238,255,0.16); */
-    border-color: rgba(0,238,255,0.3);
-}
-
-/* Badge catégorie */
-.pf-cat-badge {
-    padding: 0.45rem 1.3rem;
-    border-radius: 3rem;
-    font-size: 1.15rem;
-    font-weight: 700;
-    letter-spacing: 0.3px;
-}
-.pf-cat-badge.frontend {
-    /* background: rgba(0,238,255,0.1); */
-    color: var(--main-color);
-    /* border: 1px solid rgba(0,238,255,0.25); */
-}
-.pf-cat-badge.fullstack {
-    /* background: rgba(244,106,6,0.1); */
-    color: #f46a06;
-    /* border: 1px solid rgba(244,106,6,0.25); */
-}
-.pf-cat-badge.react {
-    /* background: rgba(97,218,251,0.1); */
-    color: #61dafb;
-    /* border: 1px solid rgba(97,218,251,0.25); */
-}
-
-/* Sous-titre */
-.pf-card-subtitle {
-    font-size: 1.15rem;
-    font-weight: 700;
-    color: var(--main-color);
-    text-transform: uppercase;
-    letter-spacing: 1.2px;
-    opacity: 0.75;
-    margin: 0;
-}
-
-/* Titre */
-.pf-card-title {
-    font-size: 2rem;
-    font-weight: 800;
-    color: var(--text-color);
-    line-height: 1.15;
-    margin: 0;
-    transition: color 0.3s ease;
-    letter-spacing: -0.3px;
-}
-
-.pf-card:hover .pf-card-title { color: var(--main-color); }
-
-/* Description */
-.pf-card-desc {
-    font-size: 1.45rem;
-    color: #999;
-    line-height: 1.65;
-    margin: 0;
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    flex: 1;
-}
-
-
-/* Tags techno */
-.pf-tech-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.6rem;
-}
-.pf-tech {
-    padding: 0.45rem 1.1rem;
-    /* background: rgba(0,238,255,0.06); */
-    /* border: 1px solid rgba(0,238,255,0.18); */
-    border-radius: 2rem;
-    color: rgba(0,238,255,0.8);
-    font-size: 1.15rem;
-    font-weight: 600;
-    transition: all 0.3s ease;
-    letter-spacing: 0.2px;
-}
-.pf-card:hover .pf-tech {
-    
-    color: var(--text-color);
-    /* border: 1px solid rgba(0,238,255,0.18); */
-}
-
-/* Footer */
-.pf-card-footer {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding-top: 1.2rem;
-    border-top: 1px solid rgba(255,255,255,0.05);
-    margin-top: auto;
-    gap: 1rem;
-}
-
-/* CTA lien */
-.pf-cta {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-size: 1.4rem;
-    font-weight: 700;
-    color: var(--main-color);
-    text-decoration: none;
-    transition: gap 0.3s ease, opacity 0.3s ease;
-    opacity: 0.85;
-}
-.pf-cta i {
-    font-size: 2.2rem;
-    transition: transform 0.35s cubic-bezier(0.23,1,0.32,1);
-}
-.pf-card:hover .pf-cta {
-    opacity: 1;
-    gap: 1rem;
-}
-.pf-card:hover .pf-cta i {
-    transform: translateX(6px);
-}
-
-
-
-/* ── État vide ── */
-.pf-empty {
-    grid-column: 1/-1;
-    text-align: center;
-    padding: 8rem 2rem;
-}
-.pf-empty i {
-    font-size: 7rem;
-    color: var(--main-color);
-    opacity: 0.2;
-    display: block;
-    margin-bottom: 1.5rem;
-}
-.pf-empty p { font-size: 1.8rem; color: #555; }
-
-/* Quand grille filtrée — pas de changement de layout nécessaire */
-
-/* ══════════════════════════════════════════
-   MODE CLAIR
-══════════════════════════════════════════ */
-body.light-mode .pf-card {
-    background: #e2e8f0;
-    border-color: rgba(8,145,178,0.12);
-}
-body.light-mode .pf-card:hover {
-    border-color: rgba(8,145,178,0.38);
-    box-shadow:
-        0 20px 60px rgba(0,0,0,0.12),
-        0 0 0 1px rgba(8,145,178,0.1);
-}
-body.light-mode .pf-card-visual::after {
-    background: linear-gradient(to top, #e2e8f0, transparent);
-}
-body.light-mode .pf-card-desc    { color: #4b5563; }
-body.light-mode .pf-card-title   { color: #1a202c; }
-body.light-mode .pf-icon-box     { background: rgba(8,145,178,0.08); border-color: rgba(8,145,178,0.18); }
-body.light-mode .pf-tech         { background: rgba(8,145,178,0.07); border-color: rgba(8,145,178,0.22); color: #0891b2; }
-body.light-mode .pf-card:hover .pf-tech { background: rgba(8,145,178,0.14); border-color: rgba(8,145,178,0.4); }
-body.light-mode .pf-card-footer  { border-color: rgba(0,0,0,0.07); }
-body.light-mode .stat-box        { background: #e2e8f0; }
-body.light-mode .pf-filter-count { background: rgba(0,0,0,0.1); }
-body.light-mode .pf-filters      { background: rgba(0,0,0,0.04); border-color: rgba(8,145,178,0.12); }
-body.light-mode .pf-card::after  { color: rgba(8,145,178,0.04); }
-body.light-mode .pf-card-subtitle { color: #0891b2; }
-body.light-mode .pf-cta          { color: #0891b2; }
-body.light-mode .pf-cat-badge.frontend { background: rgba(8,145,178,0.1); color: #0891b2; border-color: rgba(8,145,178,0.25); }
-
-/* ══════════════════════════════════════════
-   RESPONSIVE
-══════════════════════════════════════════ */
-@media (max-width: 1100px) {
-    .pf-grid { grid-template-columns: repeat(2, 1fr); }
-}
-
-@media (max-width: 900px) {
-    .portfolio { padding: 8rem 5% 6rem; }
-}
-
-@media (max-width: 640px) {
-    .portfolio { padding: 8rem 4% 5rem; }
-    .pf-grid {
-        grid-template-columns: 1fr;
-        gap: 1.4rem;
+@media (max-width: 768px) {
+    :root {
+        --card-w: 140px;
+        --card-h: 190px;
+        --radius: 160px;
     }
-    /* Tous les boutons sur une ligne : on cache label + compteur, icône seule */
-    .pf-filter-label { display: none; }
-    .pf-filter-count { display: none; }
-    .pf-filters .filter-btn {
-        padding: 1rem 1.4rem;
-        min-width: unset;
-        
-    }
-    .pf-filters {
-        gap: 1.4rem;
-        padding: 0.4rem;
-    }
-    .portfolio-stats { gap: 1.2rem; }
-    .pf-card-content { padding: 1.8rem; }
-    .pf-card .pf-card-visual { height: 190px; }
-}
-
-@media (max-width: 480px) {
-    .pf-card-title   { font-size: 1.8rem; }
-    .pf-card-desc    { font-size: 1.35rem; }
-    .pf-tech         { font-size: 1.1rem; padding: 0.4rem 0.9rem; }
-    .pf-icon-box     { width: 44px; height: 44px; font-size: 2rem; }
-    .pf-card-content { gap: 0.9rem; padding: 1.6rem; }
 }

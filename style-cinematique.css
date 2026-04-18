@@ -1,0 +1,714 @@
+/* ============================================================
+   ANIMATIONS PREMIUM — Style Apple · Airbnb · Stripe
+   Portfolio Ouattara Damiti
+   ============================================================ */
+
+/* ══════════════════════════════════════════
+   1. CURSEUR PERSONNALISÉ
+══════════════════════════════════════════ */
+
+*, *::before, *::after { cursor: none !important; }
+
+.custom-cursor {
+    position: fixed;
+    pointer-events: none;
+    z-index: 99999;
+    mix-blend-mode: difference;
+    transition: transform 0.15s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.cursor-dot {
+    width: 8px;
+    height: 8px;
+    background: #fff;
+    border-radius: 50%;
+    position: fixed;
+    top: 0; left: 0;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    z-index: 99999;
+    transition: width 0.25s cubic-bezier(0.23,1,0.32,1),
+                height 0.25s cubic-bezier(0.23,1,0.32,1),
+                opacity 0.25s ease;
+    mix-blend-mode: difference;
+}
+
+.cursor-ring {
+    width: 36px;
+    height: 36px;
+    border: 1.5px solid rgba(0, 238, 255, 0.7);
+    border-radius: 50%;
+    position: fixed;
+    top: 0; left: 0;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    z-index: 99998;
+    transition: width 0.4s cubic-bezier(0.23,1,0.32,1),
+                height 0.4s cubic-bezier(0.23,1,0.32,1),
+                border-color 0.3s ease,
+                opacity 0.3s ease;
+}
+
+.cursor-ring.hovering {
+    width: 56px;
+    height: 56px;
+    border-color: var(--main-color);
+    background: rgba(0, 238, 255, 0.06);
+}
+
+.cursor-dot.clicking {
+    width: 4px;
+    height: 4px;
+    opacity: 0.6;
+}
+
+body.light-mode .cursor-dot { background: #1a202c; }
+body.light-mode .cursor-ring { border-color: rgba(8, 145, 178, 0.7); }
+body.light-mode .cursor-ring.hovering { border-color: #0891b2; background: rgba(8,145,178,0.05); }
+
+@media (hover: none) {
+    .cursor-dot, .cursor-ring { display: none !important; }
+    *, *::before, *::after { cursor: auto !important; }
+}
+
+
+/* ══════════════════════════════════════════
+   2. LOADER PREMIUM (splash screen)
+══════════════════════════════════════════ */
+
+#page-loader {
+    position: fixed;
+    inset: 0;
+    background: var(--bg-color);
+    z-index: 100000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 2.4rem;
+    transition: opacity 0.7s cubic-bezier(0.23,1,0.32,1),
+                transform 0.7s cubic-bezier(0.23,1,0.32,1);
+}
+
+#page-loader.hide {
+    opacity: 0;
+    transform: scale(1.04);
+    pointer-events: none;
+}
+
+.loader-logo {
+    font-size: 2.4rem;
+    font-weight: 700;
+    color: var(--text-color);
+    letter-spacing: 0.1em;
+    opacity: 0;
+    transform: translateY(14px);
+    animation: loader-in 0.6s cubic-bezier(0.23,1,0.32,1) 0.2s forwards;
+}
+.loader-logo span { color: var(--main-color); }
+
+.loader-bar-wrap {
+    width: 180px;
+    height: 2px;
+    background: rgba(255,255,255,0.08);
+    border-radius: 2px;
+    overflow: hidden;
+    opacity: 0;
+    animation: loader-in 0.5s ease 0.4s forwards;
+}
+.loader-bar {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, var(--main-color), rgba(0,238,255,0.5));
+    border-radius: 2px;
+    animation: loader-progress 1.6s cubic-bezier(0.4,0,0.2,1) 0.5s forwards;
+}
+
+@keyframes loader-in {
+    to { opacity: 1; transform: translateY(0); }
+}
+@keyframes loader-progress {
+    0%   { width: 0%; }
+    60%  { width: 75%; }
+    100% { width: 100%; }
+}
+
+body.light-mode #page-loader { background: #f0f4f8; }
+body.light-mode .loader-bar-wrap { background: rgba(0,0,0,0.07); }
+
+
+/* ══════════════════════════════════════════
+   3. HERO — TEXTE ANIMÉ AU CHARGEMENT
+══════════════════════════════════════════ */
+
+.accueil-content .greeting-badge,
+.accueil-content .name-title,
+.accueil-content .role-text,
+.accueil-content .description-text,
+.accueil-content .quick-stats,
+.accueil-content .social-media-new,
+.accueil-content .action-buttons {
+    opacity: 0;
+    transform: translateY(28px);
+    animation: hero-reveal 0.85s cubic-bezier(0.23,1,0.32,1) both;
+}
+
+.accueil-content .greeting-badge      { animation-delay: 0.55s; }
+.accueil-content .name-title          { animation-delay: 0.7s; }
+.accueil-content .role-text           { animation-delay: 0.85s; }
+.accueil-content .description-text    { animation-delay: 0.97s; }
+.accueil-content .quick-stats         { animation-delay: 1.1s; }
+.accueil-content .social-media-new    { animation-delay: 1.22s; }
+.accueil-content .action-buttons      { animation-delay: 1.35s; }
+
+.accueil-image-container {
+    opacity: 0;
+    transform: translateX(40px) scale(0.96);
+    animation: hero-img-reveal 1.1s cubic-bezier(0.23,1,0.32,1) 0.9s both;
+}
+
+@keyframes hero-reveal {
+    to { opacity: 1; transform: translateY(0); }
+}
+@keyframes hero-img-reveal {
+    to { opacity: 1; transform: translateX(0) scale(1); }
+}
+
+
+/* ══════════════════════════════════════════
+   4. MAGNETIC BUTTONS
+══════════════════════════════════════════ */
+
+.btn, .social-btn, .filter-btn, .contact-v2-submit,
+.stage-cta-buttons a, .pf-overlay-btn {
+    transition: transform 0.3s cubic-bezier(0.23,1,0.32,1),
+                box-shadow 0.3s ease,
+                background 0.3s ease,
+                color 0.3s ease !important;
+    will-change: transform;
+}
+
+.btn-primary:hover,
+.contact-v2-submit:hover {
+    transform: translateY(-3px) scale(1.02) !important;
+}
+
+.btn-secondary:hover,
+.btn-outline:hover {
+    transform: translateY(-2px) !important;
+}
+
+/* Ripple effect sur click */
+.btn, .social-btn, .filter-btn {
+    position: relative;
+    overflow: hidden;
+}
+
+.ripple-effect {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.25);
+    transform: scale(0);
+    animation: ripple-anim 0.55s linear;
+    pointer-events: none;
+}
+
+@keyframes ripple-anim {
+    to { transform: scale(4); opacity: 0; }
+}
+
+
+/* ══════════════════════════════════════════
+   5. SCROLL REVEAL PREMIUM
+   (remplace/améliore scroll-animations.js)
+══════════════════════════════════════════ */
+
+[data-reveal] {
+    opacity: 0;
+    will-change: opacity, transform;
+    transition: opacity 0.75s cubic-bezier(0.23,1,0.32,1),
+                transform 0.75s cubic-bezier(0.23,1,0.32,1);
+}
+
+[data-reveal="up"]    { transform: translateY(50px); }
+[data-reveal="down"]  { transform: translateY(-35px); }
+[data-reveal="left"]  { transform: translateX(55px); }
+[data-reveal="right"] { transform: translateX(-55px); }
+[data-reveal="zoom"]  { transform: scale(0.84); }
+[data-reveal="flip"]  { transform: perspective(600px) rotateX(20deg) translateY(30px); }
+
+[data-reveal].revealed {
+    opacity: 1;
+    transform: none;
+}
+
+
+/* ══════════════════════════════════════════
+   6. HOVER CARDS — effet tilt 3D subtil
+══════════════════════════════════════════ */
+
+.pf-card, .comp-card, .service-card,
+.stage-card, .tm-card, .channel-card {
+    transform-style: preserve-3d;
+    transition: transform 0.4s cubic-bezier(0.23,1,0.32,1),
+                box-shadow 0.4s ease,
+                border-color 0.35s ease !important;
+}
+
+/* shine sweep on hover */
+.pf-card::after,
+.comp-card::after,
+.service-card::after {
+    content: '' !important;
+    position: absolute !important;
+    inset: 0 !important;
+    background: linear-gradient(
+        105deg,
+        transparent 40%,
+        rgba(255,255,255,0.04) 50%,
+        transparent 60%
+    ) !important;
+    background-size: 200% 200% !important;
+    background-position: 200% 200% !important;
+    transition: background-position 0.55s ease !important;
+    pointer-events: none !important;
+    z-index: 1 !important;
+    border-radius: inherit !important;
+    font-size: 0 !important;
+    color: transparent !important;
+}
+
+.pf-card:hover::after,
+.comp-card:hover::after,
+.service-card:hover::after {
+    background-position: -10% -10% !important;
+}
+
+/* Réinitialiser le contenu décoratif du portfolio.css pour les cartes pf */
+.pf-card[data-num]::after {
+    content: attr(data-num) !important;
+    background: none !important;
+    font-size: 12rem !important;
+    color: rgba(0,238,255,0.03) !important;
+    position: absolute !important;
+    bottom: -0.5rem !important; right: 1.5rem !important;
+    line-height: 1 !important;
+    font-weight: 900 !important;
+    font-family: 'Poppins', sans-serif !important;
+    letter-spacing: -4px !important;
+    pointer-events: none !important;
+    transition: color 0.35s ease, transform 0.4s ease !important;
+    z-index: 0 !important;
+}
+
+
+/* ══════════════════════════════════════════
+   7. NAVBAR — blur glass premium
+══════════════════════════════════════════ */
+
+.header {
+    backdrop-filter: blur(20px) saturate(180%) !important;
+    -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
+    background: rgba(31, 36, 45, 0.75) !important;
+    border-bottom: 1px solid rgba(0, 238, 255, 0.06) !important;
+    transition: background 0.4s ease,
+                box-shadow 0.4s ease,
+                border-color 0.4s ease !important;
+}
+
+.header.sticky {
+    background: rgba(20, 24, 32, 0.88) !important;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.35) !important;
+    border-bottom-color: rgba(0, 238, 255, 0.1) !important;
+}
+
+body.light-mode .header {
+    background: rgba(240, 244, 248, 0.78) !important;
+    border-bottom-color: rgba(8, 145, 178, 0.1) !important;
+}
+body.light-mode .header.sticky {
+    background: rgba(240, 244, 248, 0.94) !important;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.1) !important;
+}
+
+/* Underline animé sous les liens nav */
+.navbar a {
+    position: relative;
+}
+.navbar a::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 100%; height: 1.5px;
+    background: var(--main-color);
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.35s cubic-bezier(0.23,1,0.32,1);
+}
+.navbar a:hover::after,
+.navbar a.active::after {
+    transform: scaleX(1);
+    transform-origin: left;
+}
+
+
+/* ══════════════════════════════════════════
+   8. SECTION TRANSITIONS — parallax léger
+══════════════════════════════════════════ */
+
+.apropos,
+.parcours-moderne,
+.competence,
+.portfolio,
+.services-section,
+.contact-v2 {
+    position: relative;
+    overflow: hidden;
+}
+
+/* Ligne lumineuse de séparation entre sections */
+.apropos::before,
+.parcours-moderne::before,
+.competence::before,
+.portfolio::before,
+.services-section::before,
+.contact-v2::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 10%; right: 10%;
+    height: 1px;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(0,238,255,0.18),
+        transparent
+    );
+    z-index: 10;
+}
+
+body.light-mode .apropos::before,
+body.light-mode .parcours-moderne::before,
+body.light-mode .competence::before,
+body.light-mode .portfolio::before,
+body.light-mode .services-section::before,
+body.light-mode .contact-v2::before {
+    background: linear-gradient(90deg, transparent, rgba(8,145,178,0.18), transparent);
+}
+
+
+/* ══════════════════════════════════════════
+   9. TECH ITEMS — stagger hover
+══════════════════════════════════════════ */
+
+.tech-grid .tech-item {
+    transition: transform 0.3s cubic-bezier(0.23,1,0.32,1),
+                box-shadow 0.3s ease,
+                border-color 0.3s ease !important;
+}
+
+.tech-grid .tech-item:hover {
+    transform: translateY(-7px) scale(1.06) !important;
+    box-shadow: 0 14px 30px rgba(0,238,255,0.2) !important;
+    border-color: var(--main-color) !important;
+}
+
+.tech-grid .tech-item:hover i {
+    animation: tech-icon-pop 0.4s cubic-bezier(0.23,1,0.32,1);
+}
+
+@keyframes tech-icon-pop {
+    0%   { transform: scale(1) rotate(0deg); }
+    40%  { transform: scale(1.25) rotate(-6deg); }
+    100% { transform: scale(1) rotate(0deg); }
+}
+
+
+/* ══════════════════════════════════════════
+   10. SECTION TITLE — gradient animé
+══════════════════════════════════════════ */
+
+.section-title .highlight {
+    background: linear-gradient(90deg, var(--main-color) 0%, #00ff88 50%, var(--main-color) 100%);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: gradient-shift 4s linear infinite;
+}
+
+@keyframes gradient-shift {
+    from { background-position: 0% center; }
+    to   { background-position: 200% center; }
+}
+
+body.light-mode .section-title .highlight {
+    background: linear-gradient(90deg, #0891b2 0%, #0e7490 50%, #0891b2 100%);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    animation: gradient-shift 4s linear infinite;
+}
+
+
+/* ══════════════════════════════════════════
+   11. STATS — count-up animation
+══════════════════════════════════════════ */
+
+.stat-number[data-target],
+.stat-box .stat-number {
+    display: inline-block;
+    transition: transform 0.3s ease;
+}
+
+.stat-box:hover .stat-number {
+    transform: scale(1.1);
+    color: var(--main-color);
+}
+
+
+/* ══════════════════════════════════════════
+   12. FLOATING BADGE — glow pulse
+══════════════════════════════════════════ */
+
+.floating-badge {
+    box-shadow:
+        0 5px 20px rgba(0,238,255,0.35),
+        0 0 0 0 rgba(0,238,255,0.4) !important;
+    animation:
+        badge-bounce 3.5s ease-in-out infinite,
+        badge-glow   2.5s ease-in-out infinite !important;
+}
+
+@keyframes badge-glow {
+    0%, 100% { box-shadow: 0 5px 20px rgba(0,238,255,0.35), 0 0 0 0 rgba(0,238,255,0.3); }
+    50%       { box-shadow: 0 8px 30px rgba(0,238,255,0.5), 0 0 0 10px rgba(0,238,255,0); }
+}
+
+
+/* ══════════════════════════════════════════
+   13. SCROLL PROGRESS BAR (top)
+══════════════════════════════════════════ */
+
+#scroll-progress {
+    position: fixed;
+    top: 0; left: 0;
+    height: 2.5px;
+    width: 0%;
+    background: linear-gradient(90deg, var(--main-color), #00ff88);
+    z-index: 200000;
+    transition: width 0.1s linear;
+    box-shadow: 0 0 8px rgba(0,238,255,0.5);
+}
+
+body.light-mode #scroll-progress {
+    background: linear-gradient(90deg, #0891b2, #0e7490);
+    box-shadow: 0 0 8px rgba(8,145,178,0.4);
+}
+
+
+/* ══════════════════════════════════════════
+   14. SOCIAL BUTTONS — hover 3D lift
+══════════════════════════════════════════ */
+
+.social-btn {
+    transition:
+        transform 0.3s cubic-bezier(0.23,1,0.32,1),
+        box-shadow 0.3s ease !important;
+}
+
+.social-btn:hover {
+    transform: translateY(-4px) scale(1.04) !important;
+}
+
+.social-icon-btn {
+    transition:
+        transform 0.3s cubic-bezier(0.23,1,0.32,1),
+        box-shadow 0.3s ease !important;
+}
+
+.social-icon-btn:hover {
+    transform: translateY(-5px) scale(1.12) !important;
+    box-shadow: 0 10px 24px rgba(0,0,0,0.3) !important;
+}
+
+
+/* ══════════════════════════════════════════
+   15. COMP CARDS — border sweep
+══════════════════════════════════════════ */
+
+.comp-card {
+    background-image: none !important;
+}
+
+/* Highlighted level badges pop */
+.comp-level {
+    transition: transform 0.25s ease, box-shadow 0.25s ease !important;
+}
+.comp-card:hover .comp-level {
+    transform: scale(1.06) !important;
+    box-shadow: 0 4px 12px rgba(0,238,255,0.25) !important;
+}
+
+
+/* ══════════════════════════════════════════
+   16. FOOTER — appear on scroll
+══════════════════════════════════════════ */
+
+.footer {
+    transition: opacity 0.6s ease, transform 0.6s ease !important;
+}
+
+
+/* ══════════════════════════════════════════
+   17. SELECTION STYLE
+══════════════════════════════════════════ */
+
+::selection {
+    background: rgba(0, 238, 255, 0.2);
+    color: var(--text-color);
+}
+
+body.light-mode ::selection {
+    background: rgba(8, 145, 178, 0.18);
+    color: #1a202c;
+}
+
+
+/* ══════════════════════════════════════════
+   18. GLOW AMBIENT sur les icônes principales
+══════════════════════════════════════════ */
+
+.role-icon i,
+.bio-icon i,
+.stage-card-icon i,
+.service-card-icon i {
+    transition: filter 0.3s ease, transform 0.3s cubic-bezier(0.23,1,0.32,1) !important;
+}
+
+.role-card:hover .role-icon i,
+.bio-section:hover .bio-icon i {
+    filter: drop-shadow(0 0 10px rgba(0,238,255,0.6)) !important;
+    transform: scale(1.1) rotate(5deg) !important;
+}
+
+
+/* ══════════════════════════════════════════
+   19. PROFILE IMAGE — parallax glow
+══════════════════════════════════════════ */
+
+.profile-img {
+    transition: filter 0.4s ease, transform 0.4s cubic-bezier(0.23,1,0.32,1) !important;
+}
+
+.accueil-image-container:hover .profile-img {
+    filter: drop-shadow(0 20px 60px rgba(0,238,255,0.4)) !important;
+}
+
+.apropos-img {
+    transition: transform 0.5s cubic-bezier(0.23,1,0.32,1),
+                filter 0.4s ease !important;
+}
+
+.apropos-image-wrapper:hover .apropos-img {
+    transform: scale(1.03) translateY(-5px) !important;
+    filter: drop-shadow(0 20px 50px rgba(0,238,255,0.25)) !important;
+}
+
+
+/* ══════════════════════════════════════════
+   20. CONTACT FORM — input focus glow
+══════════════════════════════════════════ */
+
+.contact-v2-form-card input,
+.contact-v2-form-card textarea {
+    transition:
+        border-color 0.3s ease,
+        background 0.3s ease,
+        box-shadow 0.4s cubic-bezier(0.23,1,0.32,1),
+        transform 0.25s ease !important;
+}
+
+.contact-v2-form-card input:focus,
+.contact-v2-form-card textarea:focus {
+    transform: translateY(-2px) !important;
+}
+
+
+/* ══════════════════════════════════════════
+   21. PROCESS STEPS — connector pulse
+══════════════════════════════════════════ */
+
+.process-arrow i {
+    animation: arrow-pulse 2s ease-in-out infinite;
+}
+
+@keyframes arrow-pulse {
+    0%, 100% { transform: translateX(0); opacity: 0.4; }
+    50%       { transform: translateX(4px); opacity: 1; }
+}
+
+
+/* ══════════════════════════════════════════
+   22. TIMELINE DOTS — pulse actif
+══════════════════════════════════════════ */
+
+.tm-dot-active::after {
+    content: '';
+    position: absolute;
+    inset: -8px;
+    border: 1.5px solid rgba(0,238,255,0.25);
+    border-radius: 50%;
+    animation: tm-ring 2s ease-in-out infinite;
+}
+
+@keyframes tm-ring {
+    0%   { transform: scale(0.8); opacity: 0.8; }
+    100% { transform: scale(1.5); opacity: 0; }
+}
+
+
+/* ══════════════════════════════════════════
+   23. CERTIF CARDS — slide reveal
+══════════════════════════════════════════ */
+
+.certif-inline-card {
+    transition:
+        transform 0.35s cubic-bezier(0.23,1,0.32,1),
+        border-color 0.3s ease,
+        box-shadow 0.35s ease !important;
+}
+
+
+/* ══════════════════════════════════════════
+   24. BACK TO TOP — rotate + glow
+══════════════════════════════════════════ */
+
+.footer-iconTop a {
+    transition: transform 0.3s cubic-bezier(0.23,1,0.32,1),
+                box-shadow 0.3s ease !important;
+}
+
+.footer-iconTop a:hover {
+    transform: translateY(-6px) rotate(-10deg) !important;
+    box-shadow: 0 8px 25px rgba(0,238,255,0.5) !important;
+}
+
+
+/* ══════════════════════════════════════════
+   25. REDUCED MOTION — respect a11y
+══════════════════════════════════════════ */
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+
+    .loader-bar { width: 100% !important; }
+    #page-loader { animation: none; opacity: 0; pointer-events: none; }
+
+    [data-reveal] { opacity: 1 !important; transform: none !important; }
+}
