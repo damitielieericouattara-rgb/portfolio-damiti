@@ -1,50 +1,163 @@
+/* ============================================================
+   PORTFOLIO.CSS — Carrousel 3D Premium avec descriptions
+   Portfolio Ouattara Damiti
+   ============================================================ */
+
+/* ══════════════════════════════════════════
+   VARIABLES GLOBALES DU CARROUSEL
+══════════════════════════════════════════ */
 :root {
-    --card-w: 180px;
-    --card-h: 240px;
-    --radius: 240px;
-    --perspective: 1500px;
-    --panel: #ffffff;
-    --bdr: #e5e7eb;
-    --shadow: 0 10px 25px rgba(0, 0, 0, .25);
-    --shadow-strong: 0 20px 40px rgba(0, 0, 0, .35);
+    --card-w:       240px;
+    --card-h:       400px;
+    --perspective:  1600px;
+    --card-radius:  18px;
+    --pf-bg:        #1a1e2a;
+    --pf-surface:   #1f2535;
+    --pf-border:    rgba(0, 238, 255, 0.10);
+    --pf-shadow:    0 16px 40px rgba(0, 0, 0, 0.45);
+    --pf-shadow-h:  0 24px 60px rgba(0, 0, 0, 0.55);
+    --pf-cyan:      #0ef;
+    --pf-trans:     cubic-bezier(0.23, 1, 0.32, 1);
 }
 
-* {
-    box-sizing: border-box;
-}
+*, *::before, *::after { box-sizing: border-box; }
 
-html,
-body {
-    height: 100%;
-    margin: 0;
-}
-
+/* ══════════════════════════════════════════
+   SECTION PORTFOLIO
+══════════════════════════════════════════ */
 .portfolio {
-    font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
-    /* background: linear-gradient(180deg, #0b0e14 0%, #101522 100%); */
-    display: grid;
-    place-items: center;
+    background: var(--bg-color);
+    padding-bottom: 8rem;
     overflow: hidden;
+    position: relative;
 }
 
+/* ── Titre section ── */
+.portfolio h2.entete {
+    text-align: center;
+    font-size: 4.5rem;
+    padding-top: 2rem;
+    margin-bottom: 4rem;
+}
+
+/* ── Statistiques ── */
+.portfolio-stats {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    margin-bottom: 4rem;
+    flex-wrap: wrap;
+    position: relative;
+    z-index: 2;
+}
+
+/* ══════════════════════════════════════════
+   FILTRES — REDESIGN COMPLET
+══════════════════════════════════════════ */
+.portfolio-filters {
+    display: flex;
+    justify-content: center;
+    gap: 1.2rem;
+    margin-bottom: 5rem;
+    flex-wrap: wrap;
+    position: relative;
+    z-index: 2;
+}
+
+/* ── Bouton filtre ── */
+.portfolio-filters .filter-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.8rem;
+    padding: 1.1rem 2.4rem;
+    background: var(--second-bg-color);
+    color: #aaa;
+    border: 2px solid rgba(0, 238, 255, 0.10);
+    border-radius: 3rem;
+    font-size: 1.5rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition:
+        background 0.3s var(--pf-trans),
+        border-color 0.3s var(--pf-trans),
+        color 0.3s var(--pf-trans),
+        transform 0.25s var(--pf-trans),
+        box-shadow 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    font-family: 'Poppins', sans-serif;
+    white-space: nowrap;
+}
+
+.portfolio-filters .filter-btn::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(0,238,255,0.08), transparent);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    border-radius: inherit;
+}
+
+.portfolio-filters .filter-btn:hover {
+    border-color: rgba(0,238,255,0.4);
+    color: var(--main-color);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(0,238,255,0.15);
+}
+.portfolio-filters .filter-btn:hover::before { opacity: 1; }
+
+.portfolio-filters .filter-btn.active {
+    background: var(--main-color);
+    color: #0f1118;
+    border-color: var(--main-color);
+    box-shadow: 0 8px 28px rgba(0,238,255,0.40);
+    transform: translateY(-3px);
+}
+
+.portfolio-filters .filter-btn i { font-size: 1.9rem; }
+
+/* ── Badge compteur ── */
+.pf-filter-count {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.12);
+    font-size: 1.1rem;
+    font-weight: 800;
+    line-height: 1;
+    margin-left: 2px;
+    transition: background 0.3s ease;
+}
+.portfolio-filters .filter-btn.active .pf-filter-count {
+    background: rgba(0,0,0,0.18);
+}
+
+/* ══════════════════════════════════════════
+   CARROUSEL — STAGE & WHEEL
+══════════════════════════════════════════ */
 .wrap {
     width: min(1100px, 96vw);
-    height: min(720px, 88vh);
+    height: min(680px, 88vh);
     display: flex;
     align-items: center;
     justify-content: center;
     user-select: none;
     cursor: grab;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
 }
 
-.wrap.dragging {
-    cursor: grabbing;
-}
+.wrap.dragging { cursor: grabbing; }
 
 .stage {
     position: relative;
     perspective: var(--perspective);
-    perspective-origin: center;
+    perspective-origin: 50% 45%;
 }
 
 .wheel {
@@ -56,8 +169,12 @@ body {
     margin-left: calc(var(--card-w) / -2);
     margin-top: calc(var(--card-h) / -2);
     transform-style: preserve-3d;
+    transition: transform 0.05s linear;
 }
 
+/* ══════════════════════════════════════════
+   CARTE INDIVIDUELLE
+══════════════════════════════════════════ */
 .card {
     position: absolute;
     width: var(--card-w);
@@ -68,48 +185,364 @@ body {
 .card-inner {
     width: 100%;
     height: 100%;
-    border-radius: 16px;
+    border-radius: var(--card-radius);
     overflow: hidden;
-    background: var(--panel);
-    border: 1px solid var(--bdr);
-    box-shadow: var(--shadow);
+    background: var(--pf-surface);
+    border: 1px solid var(--pf-border);
+    box-shadow: var(--pf-shadow);
     backface-visibility: hidden;
-    transition: transform .3s ease, box-shadow .3s ease;
+    display: flex;
+    flex-direction: column;
+    transition:
+        transform 0.35s var(--pf-trans),
+        box-shadow 0.35s ease,
+        border-color 0.35s ease;
+    position: relative;
 }
 
 .card-inner:hover {
-    transform: scale(1.05);
-    box-shadow: var(--shadow-strong);
+    transform: scale(1.05) translateZ(10px);
+    box-shadow:
+        var(--pf-shadow-h),
+        0 0 0 1px rgba(0,238,255,0.25),
+        0 0 40px rgba(0,238,255,0.10);
+    border-color: rgba(0,238,255,0.28);
     z-index: 10;
 }
 
-.card img {
+/* ══════════════════════════════════════════
+   ZONE IMAGE
+══════════════════════════════════════════ */
+.pf-card-img-wrap {
+    position: relative;
+    width: 100%;
+    height: 150px;
+    flex-shrink: 0;
+    overflow: hidden;
+}
+
+.pf-card-img-wrap img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     display: block;
+    transition: transform 0.5s var(--pf-trans);
     pointer-events: none;
 }
 
+.card-inner:hover .pf-card-img-wrap img {
+    transform: scale(1.08);
+}
+
+/* Overlay gradient sur l'image */
+.pf-card-img-overlay {
+    position: absolute;
+    inset: 0;
+    opacity: 0.55;
+    mix-blend-mode: multiply;
+    pointer-events: none;
+    transition: opacity 0.35s ease;
+}
+.card-inner:hover .pf-card-img-overlay { opacity: 0.35; }
+
+/* ── Badge catégorie ── */
+.pf-card-cat {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 4px 12px;
+    border-radius: 3rem;
+    border: 1.5px solid;
+    font-size: 1.1rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    white-space: nowrap;
+}
+.pf-card-cat i { font-size: 1.3rem; }
+
+/* ── Badge statut ── */
+.pf-status {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 4px 10px;
+    border-radius: 3rem;
+    font-size: 1.0rem;
+    font-weight: 700;
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    white-space: nowrap;
+}
+
+.pf-status-live {
+    background: rgba(0, 200, 100, 0.15);
+    border: 1px solid rgba(0, 200, 100, 0.35);
+    color: #22c55e;
+}
+
+.pf-status-dev {
+    background: rgba(251, 191, 36, 0.12);
+    border: 1px solid rgba(251, 191, 36, 0.35);
+    color: #fbbf24;
+}
+
+.pf-status-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.pf-status-live .pf-status-dot {
+    background: #22c55e;
+    animation: dot-pulse 1.8s ease-in-out infinite;
+}
+
+.pf-status-dev .pf-status-dot {
+    background: #fbbf24;
+}
+
+@keyframes dot-pulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(34,197,94,0.5); }
+    50%       { box-shadow: 0 0 0 5px rgba(34,197,94,0); }
+}
+
+/* ══════════════════════════════════════════
+   CORPS DE LA CARTE
+══════════════════════════════════════════ */
+.pf-card-body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    padding: 14px 16px 14px;
+    overflow: hidden;
+}
+
+/* ── Année ── */
+.pf-card-year {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--main-color);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 5px;
+    opacity: 0.8;
+}
+
+/* ── Titre ── */
+.pf-card-title {
+    font-size: 1.55rem;
+    font-weight: 800;
+    color: #f1f5f9;
+    line-height: 1.25;
+    margin-bottom: 8px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* ── Description ── */
+.pf-card-desc {
+    font-size: 1.2rem;
+    color: #94a3b8;
+    line-height: 1.6;
+    flex: 1;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    margin-bottom: 10px;
+}
+
+/* ── Tags technos ── */
+.pf-card-techs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin-bottom: 12px;
+}
+
+.pf-tech {
+    padding: 3px 9px;
+    border-radius: 2rem;
+    background: rgba(0,238,255,0.07);
+    border: 1px solid rgba(0,238,255,0.18);
+    color: var(--main-color);
+    font-size: 1.0rem;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    white-space: nowrap;
+    transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.card-inner:hover .pf-tech {
+    background: rgba(0,238,255,0.12);
+    border-color: rgba(0,238,255,0.30);
+}
+
+.pf-tech-more {
+    background: rgba(255,255,255,0.05);
+    border-color: rgba(255,255,255,0.12);
+    color: #64748b;
+}
+
+/* ── Bouton lien ── */
+.pf-card-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    padding: 9px 0;
+    width: 100%;
+    background: linear-gradient(135deg, rgba(0,238,255,0.14), rgba(0,238,255,0.06));
+    border: 1.5px solid rgba(0,238,255,0.25);
+    border-radius: 1rem;
+    color: var(--main-color);
+    font-size: 1.25rem;
+    font-weight: 700;
+    text-decoration: none;
+    letter-spacing: 0.03em;
+    transition:
+        background 0.25s var(--pf-trans),
+        border-color 0.25s ease,
+        transform 0.2s ease,
+        box-shadow 0.25s ease,
+        color 0.2s ease;
+    cursor: pointer;
+    margin-top: auto;
+}
+
+.pf-card-link i { font-size: 1.5rem; }
+
+.pf-card-link:hover {
+    background: var(--main-color);
+    color: #0f1118;
+    border-color: var(--main-color);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0,238,255,0.40);
+}
+
+/* ══════════════════════════════════════════
+   HUD (indicateur navigation)
+══════════════════════════════════════════ */
 .hud {
     position: absolute;
     left: 50%;
-    bottom: 16px;
+    bottom: 14px;
     transform: translateX(-50%);
-    font-size: 12px;
-    opacity: .75;
-    background: rgba(17, 24, 39, .55);
-    border: 1px solid rgba(148, 163, 184, .25);
-    padding: 8px 12px;
-    border-radius: 999px;
-    backdrop-filter: blur(6px);
-    color: #e5e7eb;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 1.2rem;
+    color: rgba(229,231,235,0.7);
+    background: rgba(15,17,24,0.65);
+    border: 1px solid rgba(148,163,184,0.18);
+    padding: 8px 18px;
+    border-radius: 3rem;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    white-space: nowrap;
+    pointer-events: none;
+    z-index: 20;
+    letter-spacing: 0.02em;
 }
+.hud i { font-size: 1.5rem; color: var(--main-color); }
 
+/* ══════════════════════════════════════════
+   MODE CLAIR — adaptations
+══════════════════════════════════════════ */
+body.light-mode .card-inner {
+    background: #ffffff;
+    border-color: rgba(8,145,178,0.15);
+    box-shadow: 0 12px 35px rgba(0,0,0,0.10);
+}
+body.light-mode .card-inner:hover {
+    border-color: rgba(8,145,178,0.40);
+    box-shadow:
+        0 24px 60px rgba(0,0,0,0.15),
+        0 0 0 1px rgba(8,145,178,0.25);
+}
+body.light-mode .pf-card-title { color: #1a202c; }
+body.light-mode .pf-card-desc  { color: #6b7280; }
+body.light-mode .pf-card-year  { color: #0891b2; }
+body.light-mode .pf-tech {
+    background: rgba(8,145,178,0.08);
+    border-color: rgba(8,145,178,0.22);
+    color: #0891b2;
+}
+body.light-mode .pf-tech-more  { background: rgba(0,0,0,0.05); border-color: rgba(0,0,0,0.12); color: #9ca3af; }
+body.light-mode .pf-card-link {
+    background: rgba(8,145,178,0.10);
+    border-color: rgba(8,145,178,0.25);
+    color: #0891b2;
+}
+body.light-mode .pf-card-link:hover {
+    background: #0891b2;
+    color: #ffffff;
+    border-color: #0891b2;
+    box-shadow: 0 6px 20px rgba(8,145,178,0.35);
+}
+body.light-mode .portfolio-filters .filter-btn {
+    background: #e2e8f0;
+    color: #4b5563;
+    border-color: rgba(8,145,178,0.15);
+}
+body.light-mode .portfolio-filters .filter-btn:hover {
+    border-color: rgba(8,145,178,0.4);
+    color: #0891b2;
+    box-shadow: 0 8px 24px rgba(8,145,178,0.15);
+}
+body.light-mode .portfolio-filters .filter-btn.active {
+    background: #0891b2;
+    color: #fff;
+    border-color: #0891b2;
+    box-shadow: 0 8px 28px rgba(8,145,178,0.40);
+}
+body.light-mode .hud {
+    background: rgba(240,244,248,0.8);
+    border-color: rgba(8,145,178,0.2);
+    color: #374151;
+}
+body.light-mode .hud i { color: #0891b2; }
+
+/* ══════════════════════════════════════════
+   RESPONSIVE
+══════════════════════════════════════════ */
 @media (max-width: 768px) {
     :root {
-        --card-w: 140px;
-        --card-h: 190px;
-        --radius: 160px;
+        --card-w:   200px;
+        --card-h:   350px;
+        --card-radius: 14px;
     }
+    .wrap { height: min(560px, 86vh); }
+    .pf-card-img-wrap { height: 120px; }
+    .pf-card-body { padding: 12px 13px 12px; gap: 0; }
+    .pf-card-title { font-size: 1.4rem; }
+    .pf-card-desc { font-size: 1.1rem; -webkit-line-clamp: 3; }
+    .pf-tech { font-size: 0.9rem; padding: 2px 7px; }
+    .pf-card-link { font-size: 1.15rem; padding: 8px 0; }
+    .portfolio-filters { gap: 0.8rem; }
+    .portfolio-filters .filter-btn { padding: 0.9rem 1.8rem; font-size: 1.35rem; }
+}
+
+@media (max-width: 480px) {
+    :root {
+        --card-w:   180px;
+        --card-h:   320px;
+    }
+    .wrap { height: min(500px, 84vh); }
+    .pf-card-img-wrap { height: 105px; }
+    .pf-card-desc { -webkit-line-clamp: 2; }
+    .pf-card-year { display: none; }
+    .portfolio-filters .filter-btn span { display: none; }
 }
