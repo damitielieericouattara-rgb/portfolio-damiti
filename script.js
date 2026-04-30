@@ -179,7 +179,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (btn) { btn.innerHTML = '<i class="bx bx-loader-alt bx-spin"></i> Envoi…'; btn.disabled = true; }
 
             setTimeout(() => {
-                const text = `Bonjour, je suis ${data.nom}.\n📧 ${data.email}\n📱 ${data.mobile}\n📌 ${data.sujet}\n📝 ${data.message}`;
+                const text = `Bonjour, je suis ${data.nom}.\n ${data.email}\n ${data.mobile}\n ${data.sujet}\n📝 ${data.message}`;
                 const url  = `https://wa.me/${CONFIG.whatsappNumber}?text=${encodeURIComponent(text)}`;
                 window.open(url, '_blank');
 

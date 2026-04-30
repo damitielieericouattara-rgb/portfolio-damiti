@@ -473,7 +473,7 @@ section.visible {
     transition: all 0.3s ease;
 }
 .role-card:hover { border-color: var(--main-color); transform: translateX(5px); }
-.role-icon { width: 70px; height: 70px; display: flex; align-items: center; justify-content: center; background: rgba(0,238,255,0.1); border-radius: 1.5rem; font-size: 3.5rem; color: var(--main-color); }
+.role-icon { width: 70px; height: 70px; display: flex; align-items: center; justify-content: center;  border-radius: 1.5rem; font-size: 3.5rem; color: var(--main-color); }
 .role-content h3 { font-size: 2.5rem; color: var(--text-color); margin-bottom: 0.5rem; }
 .role-content p  { font-size: 1.5rem; color: #888; }
 
@@ -666,8 +666,8 @@ section.visible {
 .tm-tags { display: flex; flex-wrap: wrap; gap: 0.7rem; }
 .tm-tags span {
     padding: 0.5rem 1.2rem;
-    background: rgba(0,238,255,0.08);
-    border: 1px solid rgba(0,238,255,0.25);
+    /* background: rgba(0,238,255,0.08); */
+    /* border: 1px solid rgba(0,238,255,0.25); */
     border-radius: 2rem;
     color: var(--main-color);
     font-size: 1.2rem;
@@ -729,9 +729,9 @@ section.visible {
     font-weight: 700;
     letter-spacing: 0.5px;
 }
-.comp-level-avance      { background: rgba(0,238,255,0.12); color: var(--main-color); border: 1px solid rgba(0,238,255,0.3); }
-.comp-level-intermediaire { background: rgba(100,200,100,0.12); color: #6dc; border: 1px solid rgba(100,200,100,0.3); }
-.comp-level-debutant    { background: rgba(255,180,0,0.1); color: #fb0; border: 1px solid rgba(255,180,0,0.3); }
+.comp-level-avance      {  color: var(--main-color); border: 1px solid rgba(0,238,255,0.3); }
+.comp-level-intermediaire {  color: #6dc; border: 1px solid rgba(100,200,100,0.3); }
+.comp-level-debutant    {  color: #fb0; border: 1px solid rgba(255,180,0,0.3); }
 
 .comp-card h4 { font-size: 2rem; color: var(--text-color); font-weight: 700; margin-bottom: 1rem; }
 .comp-card p  { font-size: 1.5rem; color: #aaa; line-height: 1.7; margin-bottom: 1.5rem; }
@@ -741,7 +741,7 @@ section.visible {
     align-items: flex-start;
     gap: 0.8rem;
     padding: 1rem 1.5rem;
-    background: rgba(0,238,255,0.05);
+    /* background: rgba(0,238,255,0.05); */
     border-radius: 1rem;
     font-size: 1.3rem;
     color: #ccc;

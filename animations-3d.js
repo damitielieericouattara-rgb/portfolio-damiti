@@ -40,124 +40,124 @@
         const section = document.getElementById('accueil');
         if (!section) return;
 
-        const canvas = document.createElement('canvas');
-        canvas.id = 'hero-3d';
-        Object.assign(canvas.style, {
-            position: 'absolute', inset: '0',
-            width: '100%', height: '100%',
-            zIndex: '0', pointerEvents: 'none',
-            opacity: '0', transition: 'opacity 1.2s ease 0.5s',
-        });
-        section.style.position = 'relative';
-        section.insertBefore(canvas, section.firstChild);
+        // const canvas = document.createElement('canvas');
+        // canvas.id = 'hero-3d';
+        // Object.assign(canvas.style, {
+        //     position: 'absolute', inset: '0',
+        //     width: '100%', height: '100%',
+        //     zIndex: '0', pointerEvents: 'none',
+        //     opacity: '0', transition: 'opacity 1.2s ease 0.5s',
+        // });
+        // section.style.position = 'relative';
+        // section.insertBefore(canvas, section.firstChild);
 
-        const W = section.offsetWidth, H = section.offsetHeight;
-        const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
-        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-        renderer.setSize(W, H);
+        // const W = section.offsetWidth, H = section.offsetHeight;
+        // const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+        // renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+        // renderer.setSize(W, H);
 
-        const scene  = new THREE.Scene();
-        const camera = new THREE.PerspectiveCamera(60, W / H, 0.1, 1000);
-        camera.position.set(0, 0, 22);
+        // const scene  = new THREE.Scene();
+        // const camera = new THREE.PerspectiveCamera(60, W / H, 0.1, 1000);
+        // camera.position.set(0, 0, 22);
 
-        /* ── Particules en double hélice (DNA style) ── */
-        const COUNT  = isMobile() ? 300 : 600;
-        const geo    = new THREE.BufferGeometry();
-        const pos    = new Float32Array(COUNT * 3);
-        const colors = new Float32Array(COUNT * 3);
-        const sizes  = new Float32Array(COUNT);
+        // /* ── Particules en double hélice (DNA style) ── */
+        // const COUNT  = isMobile() ? 300 : 600;
+        // const geo    = new THREE.BufferGeometry();
+        // const pos    = new Float32Array(COUNT * 3);
+        // const colors = new Float32Array(COUNT * 3);
+        // const sizes  = new Float32Array(COUNT);
 
-        const c1 = new THREE.Color(C.cyan);
-        const c2 = new THREE.Color(C.cyan2);
+        // const c1 = new THREE.Color(C.cyan);
+        // const c2 = new THREE.Color(C.cyan2);
 
-        for (let i = 0; i < COUNT; i++) {
-            const t     = (i / COUNT) * Math.PI * 12;
-            const strand = i % 2;
-            const offset = strand * Math.PI;
-            const r = 6 + Math.random() * 0.4;
-            pos[i * 3]     = Math.cos(t + offset) * r + (Math.random() - 0.5) * 1.2;
-            pos[i * 3 + 1] = (t / (Math.PI * 12)) * 22 - 11 + (Math.random() - 0.5) * 0.8;
-            pos[i * 3 + 2] = Math.sin(t + offset) * r + (Math.random() - 0.5) * 1.2;
+        // for (let i = 0; i < COUNT; i++) {
+        //     const t     = (i / COUNT) * Math.PI * 12;
+        //     const strand = i % 2;
+        //     const offset = strand * Math.PI;
+        //     const r = 6 + Math.random() * 0.4;
+        //     pos[i * 3]     = Math.cos(t + offset) * r + (Math.random() - 0.5) * 1.2;
+        //     pos[i * 3 + 1] = (t / (Math.PI * 12)) * 22 - 11 + (Math.random() - 0.5) * 0.8;
+        //     pos[i * 3 + 2] = Math.sin(t + offset) * r + (Math.random() - 0.5) * 1.2;
 
-            const mix  = i / COUNT;
-            const col  = strand === 0 ? c1.clone().lerp(c2, mix) : c2.clone().lerp(c1, mix);
-            colors[i * 3]     = col.r;
-            colors[i * 3 + 1] = col.g;
-            colors[i * 3 + 2] = col.b;
-            sizes[i] = Math.random() * 3 + 1.5;
-        }
+        //     const mix  = i / COUNT;
+        //     const col  = strand === 0 ? c1.clone().lerp(c2, mix) : c2.clone().lerp(c1, mix);
+        //     colors[i * 3]     = col.r;
+        //     colors[i * 3 + 1] = col.g;
+        //     colors[i * 3 + 2] = col.b;
+        //     sizes[i] = Math.random() * 3 + 1.5;
+        // }
 
-        geo.setAttribute('position', new THREE.BufferAttribute(pos, 3));
-        geo.setAttribute('color',    new THREE.BufferAttribute(colors, 3));
-        geo.setAttribute('size',     new THREE.BufferAttribute(sizes, 1));
+        // geo.setAttribute('position', new THREE.BufferAttribute(pos, 3));
+        // geo.setAttribute('color',    new THREE.BufferAttribute(colors, 3));
+        // geo.setAttribute('size',     new THREE.BufferAttribute(sizes, 1));
 
-        const mat = new THREE.PointsMaterial({
-            size: 0.18, vertexColors: true, transparent: true,
-            opacity: 0.85, sizeAttenuation: true,
-        });
+        // const mat = new THREE.PointsMaterial({
+        //     size: 0.18, vertexColors: true, transparent: true,
+        //     opacity: 0.85, sizeAttenuation: true,
+        // });
 
-        const helix = new THREE.Points(geo, mat);
-        helix.position.x = isMobile() ? 0 : 7;
-        scene.add(helix);
+        // const helix = new THREE.Points(geo, mat);
+        // helix.position.x = isMobile() ? 0 : 7;
+        // scene.add(helix);
 
-        /* ── Anneau orbital ── */
-        const ringGeo = new THREE.TorusGeometry(9, 0.04, 8, 120);
-        const ringMat = new THREE.MeshBasicMaterial({ color: C.cyan, transparent: true, opacity: 0.12 });
-        const ring1 = new THREE.Mesh(ringGeo, ringMat);
-        ring1.rotation.x = Math.PI / 2.8;
-        ring1.position.x = isMobile() ? 0 : 7;
-        scene.add(ring1);
+        // /* ── Anneau orbital ── */
+        // const ringGeo = new THREE.TorusGeometry(9, 0.04, 8, 120);
+        // const ringMat = new THREE.MeshBasicMaterial({ color: C.cyan, transparent: true, opacity: 0.12 });
+        // const ring1 = new THREE.Mesh(ringGeo, ringMat);
+        // ring1.rotation.x = Math.PI / 2.8;
+        // ring1.position.x = isMobile() ? 0 : 7;
+        // scene.add(ring1);
 
-        const ring2 = ring1.clone();
-        ring2.rotation.x = Math.PI / 1.7;
-        ring2.rotation.z = Math.PI / 3;
-        scene.add(ring2);
+        // const ring2 = ring1.clone();
+        // ring2.rotation.x = Math.PI / 1.7;
+        // ring2.rotation.z = Math.PI / 3;
+        // scene.add(ring2);
 
-        /* ── Mouse parallax ── */
-        let mouseX = 0, mouseY = 0;
-        document.addEventListener('mousemove', e => {
-            mouseX = (e.clientX / window.innerWidth  - 0.5) * 2;
-            mouseY = (e.clientY / window.innerHeight - 0.5) * 2;
-        });
+        // /* ── Mouse parallax ── */
+        // let mouseX = 0, mouseY = 0;
+        // document.addEventListener('mousemove', e => {
+        //     mouseX = (e.clientX / window.innerWidth  - 0.5) * 2;
+        //     mouseY = (e.clientY / window.innerHeight - 0.5) * 2;
+        // });
 
-        /* ── Scroll-driven rotation ── */
-        let scrollY = 0;
-        window.addEventListener('scroll', () => { scrollY = window.scrollY; }, { passive: true });
+        // /* ── Scroll-driven rotation ── */
+        // let scrollY = 0;
+        // window.addEventListener('scroll', () => { scrollY = window.scrollY; }, { passive: true });
 
-        let rafId;
-        const clock = new THREE.Clock();
+        // let rafId;
+        // const clock = new THREE.Clock();
 
-        function tick() {
-            rafId = requestAnimationFrame(tick);
-            const t = clock.getElapsedTime();
+        // function tick() {
+        //     rafId = requestAnimationFrame(tick);
+        //     const t = clock.getElapsedTime();
 
-            /* Rotation lente + réaction souris */
-            helix.rotation.y = t * 0.08 + mouseX * 0.15;
-            helix.rotation.x = mouseY * 0.06 + scrollY * 0.0003;
-            ring1.rotation.y = t * 0.06;
-            ring2.rotation.y = -t * 0.04;
+        //     /* Rotation lente + réaction souris */
+        //     helix.rotation.y = t * 0.08 + mouseX * 0.15;
+        //     helix.rotation.x = mouseY * 0.06 + scrollY * 0.0003;
+        //     ring1.rotation.y = t * 0.06;
+        //     ring2.rotation.y = -t * 0.04;
 
-            /* Pulsation légère de l'opacité */
-            mat.opacity = 0.7 + Math.sin(t * 0.8) * 0.15;
+        //     /* Pulsation légère de l'opacité */
+        //     mat.opacity = 0.7 + Math.sin(t * 0.8) * 0.15;
 
-            renderer.render(scene, camera);
-        }
-        tick();
-        setTimeout(() => { canvas.style.opacity = '1'; }, 100);
+        //     renderer.render(scene, camera);
+        // }
+        // tick();
+        // setTimeout(() => { canvas.style.opacity = '1'; }, 100);
 
-        /* Resize */
-        window.addEventListener('resize', () => {
-            const W2 = section.offsetWidth, H2 = section.offsetHeight;
-            camera.aspect = W2 / H2;
-            camera.updateProjectionMatrix();
-            renderer.setSize(W2, H2);
-        });
+        // /* Resize */
+        // window.addEventListener('resize', () => {
+        //     const W2 = section.offsetWidth, H2 = section.offsetHeight;
+        //     camera.aspect = W2 / H2;
+        //     camera.updateProjectionMatrix();
+        //     renderer.setSize(W2, H2);
+        // });
 
-        /* Stop quand la section quitte le viewport */
-        new IntersectionObserver(([e]) => {
-            if (e.isIntersecting) tick();
-            else cancelAnimationFrame(rafId);
-        }).observe(section);
+        // /* Stop quand la section quitte le viewport */
+        // new IntersectionObserver(([e]) => {
+        //     if (e.isIntersecting) tick();
+        //     else cancelAnimationFrame(rafId);
+        // }).observe(section);
     }
 
     /* ══════════════════════════════════════════

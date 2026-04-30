@@ -85,7 +85,7 @@
             technologies: ['HTML5', 'CSS3', 'JavaScript', 'PHP', 'MySQL'],
             category: 'fullstack',
             year: '2024',
-            status: 'En développement',
+            status: 'En cours',
             icon: 'bx bx-store-alt',
             gradient: 'linear-gradient(135deg, #dc2626 0%, #7f1d1d 100%)'
         },
