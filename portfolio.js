@@ -379,14 +379,14 @@
     /* ══════════════════════════════════════════
        HUD
     ══════════════════════════════════════════ */
-    // function buildHud() {
-    //     const old = stage.querySelector('.hud');
-    //     if (old) old.remove();
-    //     const hud = document.createElement('div');
-    //     hud.className = 'hud';
-    //     hud.innerHTML = `<i class='bx bx-move-horizontal'></i>Glissez ou scrollez pour pivoter`;
-    //     stage.appendChild(hud);
-    // }
+    function buildHud() {
+        const old = stage.querySelector('.hud');
+        if (old) old.remove();
+        const hud = document.createElement('div');
+        hud.className = 'hud';
+        // hud.innerHTML = `<i class='bx bx-move-horizontal'></i>Glissez ou scrollez pour pivoter`;
+        stage.appendChild(hud);
+    }
 
     /* ══════════════════════════════════════════
        INIT
