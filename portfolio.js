@@ -101,6 +101,19 @@
             status: 'En ligne',
             icon: 'bx bx-user-circle',
             gradient: 'linear-gradient(135deg, #059669 0%, #064e3b 100%)'
+        },
+        {
+            id: 8,
+            src: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=900&q=80',
+            href: 'https://immobilier-site.netlify.app/',
+            title: 'Y Immobilier',
+            description: 'Site vitrine immobilier clé en main : catalogue de biens animé (villas, appartements, terrains), fiches détaillées avec prix et localisation, formulaire de demande de visite et offre commerciale intégrée. Conçu pour les agences abidjanaises.',
+            technologies: ['HTML5', 'CSS3', 'JavaScript', 'Responsive'],
+            category: 'frontend',
+            year: '2025',
+            status: 'En ligne',
+            icon: 'bx bx-building-house',
+            gradient: 'linear-gradient(135deg, #0f4c75 0%, #1b6ca8 100%)'
         }
     ];
 

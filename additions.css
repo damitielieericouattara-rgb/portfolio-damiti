@@ -919,7 +919,7 @@ body.light-mode .process-arrow {
 .channel-card {
     display: flex; align-items: center; gap: 1.8rem;
     padding: 1.6rem 2rem;
-    background: var(--second-bg-color);
+    /* background: var(--second-bg-color); */
     border-radius: 1.6rem;
     border: 2px solid transparent;
     text-decoration: none;
@@ -977,7 +977,7 @@ body.light-mode .process-arrow {
 .contact-v2-right { width: 100%; }
 
 .contact-v2-form-card {
-    background: var(--second-bg-color);
+    /* background: var(--second-bg-color); */
     border-radius: 2.4rem; padding: 4rem;
     border: 2px solid rgba(0,238,255,0.1);
     position: relative; overflow: hidden;
@@ -1012,14 +1012,14 @@ body.light-mode .process-arrow {
 .contact-v2-form-card textarea {
     width: 100%; padding: 1.5rem 1.8rem;
     font-size: 1.5rem; color: var(--text-color);
-    background: var(--bg-color);
-    border: 2px solid rgba(255,255,255,0.06);
+    border-color: #38bdf8; background: transparent;
+    border: 2px solid rgba(56, 189, 248, 0.1);
     border-radius: 1.2rem; outline: none;
     transition: all 0.3s ease;
     font-family: 'Poppins', sans-serif;
 }
 .contact-v2-form-card input::placeholder,
-.contact-v2-form-card textarea::placeholder { color: #555; }
+.contact-v2-form-card textarea::placeholder { color: #ddd; }
 .contact-v2-form-card input:focus,
 .contact-v2-form-card textarea:focus { border-color: var(--main-color); background: rgba(0,238,255,0.03); box-shadow: 0 0 0 4px rgba(0,238,255,0.08); }
 .contact-v2-form-card input.error,
@@ -1032,13 +1032,14 @@ body.light-mode .process-arrow {
     width: 100%;
     display: flex; align-items: center; justify-content: center; gap: 1.2rem;
     padding: 1.8rem 3rem;
-    background: linear-gradient(135deg, #25d366, #128c3e);
-    color: #fff; border: none; border-radius: 1.4rem;
+    background: transparent;
+    border: 2px solid rgba(37,211,102,0.25);
+    color: #25d366 ; border-radius: 1.4rem;
     font-size: 1.7rem; font-weight: 700; cursor: pointer;
     transition: all 0.3s ease; margin-top: 0.5rem;
     font-family: 'Poppins', sans-serif; letter-spacing: 0.3px;
 }
-.contact-v2-submit:hover { transform: translateY(-3px); box-shadow: 0 12px 35px rgba(37,211,102,0.45); background: linear-gradient(135deg, #128c3e, #25d366); }
+.contact-v2-submit:hover { transform: translateY(-3px); box-shadow: 0 12px 35px rgba(37,211,102,0.45); background: linear-gradient(135deg, #128c3e, #25d366); color: #fff; }
 .contact-v2-submit:active { transform: translateY(-1px); }
 .contact-v2-submit i { font-size: 2.4rem; }
 
