@@ -104,7 +104,7 @@
         },
         {
             id: 8,
-            src: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=900&q=80',
+            src: './image/immobilier.jpeg',
             href: 'https://immobilier-site.netlify.app/',
             title: 'Y Immobilier',
             description: 'Site vitrine immobilier clé en main : catalogue de biens animé (villas, appartements, terrains), fiches détaillées avec prix et localisation, formulaire de demande de visite et offre commerciale intégrée. Conçu pour les agences abidjanaises.',
@@ -379,14 +379,14 @@
     /* ══════════════════════════════════════════
        HUD
     ══════════════════════════════════════════ */
-    function buildHud() {
-        const old = stage.querySelector('.hud');
-        if (old) old.remove();
-        const hud = document.createElement('div');
-        hud.className = 'hud';
-        hud.innerHTML = `<i class='bx bx-move-horizontal'></i>Glissez ou scrollez pour pivoter`;
-        stage.appendChild(hud);
-    }
+    // function buildHud() {
+    //     const old = stage.querySelector('.hud');
+    //     if (old) old.remove();
+    //     const hud = document.createElement('div');
+    //     hud.className = 'hud';
+    //     hud.innerHTML = `<i class='bx bx-move-horizontal'></i>Glissez ou scrollez pour pivoter`;
+    //     stage.appendChild(hud);
+    // }
 
     /* ══════════════════════════════════════════
        INIT
