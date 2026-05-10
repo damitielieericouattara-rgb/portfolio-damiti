@@ -89,21 +89,21 @@
             icon: 'bx bx-store-alt',
             gradient: 'linear-gradient(135deg, #dc2626 0%, #7f1d1d 100%)'
         },
+        // {
+        //     id: 7,
+        //     src: './image/image (3).png',
+        //     href: 'https://premier-portfolio.netlify.app/',
+        //     title: 'Premier Portfolio',
+        //     description: 'Mon tout premier portfolio responsive avec animations CSS soignées et navigation fluide entre sections.',
+        //     technologies: ['HTML5', 'CSS3', 'JavaScript', 'Responsive'],
+        //     category: 'frontend',
+        //     year: '2025',
+        //     status: 'En ligne',
+        //     icon: 'bx bx-user-circle',
+        //     gradient: 'linear-gradient(135deg, #059669 0%, #064e3b 100%)'
+        // },
         {
             id: 7,
-            src: './image/image (3).png',
-            href: 'https://premier-portfolio.netlify.app/',
-            title: 'Premier Portfolio',
-            description: 'Mon tout premier portfolio responsive avec animations CSS soignées et navigation fluide entre sections.',
-            technologies: ['HTML5', 'CSS3', 'JavaScript', 'Responsive'],
-            category: 'frontend',
-            year: '2025',
-            status: 'En ligne',
-            icon: 'bx bx-user-circle',
-            gradient: 'linear-gradient(135deg, #059669 0%, #064e3b 100%)'
-        },
-        {
-            id: 8,
             src: './image/immobilier.jpeg',
             href: 'https://immobilier-site.netlify.app/',
             title: 'Y Immobilier',
@@ -114,7 +114,21 @@
             status: 'En ligne',
             icon: 'bx bx-building-house',
             gradient: 'linear-gradient(135deg, #0f4c75 0%, #1b6ca8 100%)'
-        }
+        },
+
+        {
+    id: 8,
+    src: 'https://btp-site.netlify.app/assets/images/features-1.jpg',
+    href: 'https://btp-site.netlify.app',
+    title: 'Y BTP Immobilier',
+    description: 'Site vitrine BTP complet : planning, architecture, construction et aménagement intérieur. Design responsive moderne avec galerie de projets filtrée, équipe experte et section témoignages clients.',
+    technologies: ['HTML5', 'CSS3', 'JavaScript', 'Responsive'],
+    category: 'frontend',
+    year: '2025',
+    status: 'En ligne',
+    icon: 'bx bx-building-house',
+    gradient: 'linear-gradient(135deg, #78350f 0%, #b45309 100%)'
+},
     ];
 
     /* ══════════════════════════════════════════
