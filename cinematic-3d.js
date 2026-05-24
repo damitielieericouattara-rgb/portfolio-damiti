@@ -1,6 +1,6 @@
 /* ============================================================
-   ANIMATIONS-PREMIUM.JS
-   Curseur · Loader · Scroll progress · Tilt cards · Ripple
+   ANIMATIONS-PREMIUM.JS — v2 (sans curseur personnalisé)
+   Loader · Scroll progress · Tilt · Ripple · Scroll reveal
    Portfolio Ouattara Damiti
    ============================================================ */
 
@@ -8,53 +8,7 @@
     'use strict';
 
     /* ══════════════════════════════════════════
-       1. CURSEUR PERSONNALISÉ
-    ══════════════════════════════════════════ */
-    function initCursor() {
-        if (window.matchMedia('(hover: none)').matches) return;
-
-        const dot  = document.createElement('div');
-        const ring = document.createElement('div');
-        dot.className  = 'cursor-dot';
-        ring.className = 'cursor-ring';
-        document.body.appendChild(dot);
-        document.body.appendChild(ring);
-
-        let mx = -100, my = -100;
-        let rx = -100, ry = -100;
-
-        document.addEventListener('mousemove', e => {
-            mx = e.clientX;
-            my = e.clientY;
-            dot.style.left  = mx + 'px';
-            dot.style.top   = my + 'px';
-        });
-
-        /* Ring avec lag pour effet fluide */
-        function animateRing() {
-            rx += (mx - rx) * 0.12;
-            ry += (my - ry) * 0.12;
-            ring.style.left = rx + 'px';
-            ring.style.top  = ry + 'px';
-            requestAnimationFrame(animateRing);
-        }
-        animateRing();
-
-        /* Hover : agrandit le ring sur les éléments interactifs */
-        const interactives = 'a, button, .btn, .pf-card, .comp-card, .service-card, .tech-item, .social-btn, .filter-btn, .channel-card, .certif-inline-card, .tm-card, .stage-card';
-        document.querySelectorAll(interactives).forEach(el => {
-            el.addEventListener('mouseenter', () => ring.classList.add('hovering'));
-            el.addEventListener('mouseleave', () => ring.classList.remove('hovering'));
-        });
-
-        /* Click : rétrécit le dot */
-        document.addEventListener('mousedown', () => dot.classList.add('clicking'));
-        document.addEventListener('mouseup',   () => dot.classList.remove('clicking'));
-    }
-
-
-    /* ══════════════════════════════════════════
-       2. PAGE LOADER
+       1. PAGE LOADER
     ══════════════════════════════════════════ */
     function initLoader() {
         const loader = document.createElement('div');
@@ -65,32 +19,38 @@
         `;
         document.body.prepend(loader);
 
-        /* Cache le loader quand la barre est pleine (~2.1s) */
         setTimeout(() => {
             loader.classList.add('hide');
             setTimeout(() => loader.remove(), 750);
-        }, 2100);
+        }, 1800);
     }
 
 
     /* ══════════════════════════════════════════
-       3. SCROLL PROGRESS BAR
+       2. SCROLL PROGRESS BAR
     ══════════════════════════════════════════ */
     function initScrollProgress() {
         const bar = document.createElement('div');
         bar.id = 'scroll-progress';
         document.body.appendChild(bar);
 
+        let ticking = false;
         window.addEventListener('scroll', () => {
-            const el  = document.documentElement;
-            const pct = (el.scrollTop / (el.scrollHeight - el.clientHeight)) * 100;
-            bar.style.width = Math.min(pct, 100) + '%';
+            if (!ticking) {
+                requestAnimationFrame(() => {
+                    const el  = document.documentElement;
+                    const pct = (el.scrollTop / (el.scrollHeight - el.clientHeight)) * 100;
+                    bar.style.width = Math.min(pct, 100) + '%';
+                    ticking = false;
+                });
+                ticking = true;
+            }
         }, { passive: true });
     }
 
 
     /* ══════════════════════════════════════════
-       4. RIPPLE EFFECT sur boutons
+       3. RIPPLE EFFECT sur boutons
     ══════════════════════════════════════════ */
     function initRipple() {
         const selector = '.btn, .social-btn, .filter-btn, .contact-v2-submit, .pf-overlay-btn';
@@ -113,81 +73,75 @@
 
 
     /* ══════════════════════════════════════════
-       5. TILT 3D sur les cartes
+       4. TILT 3D sur les cartes (desktop uniquement)
     ══════════════════════════════════════════ */
     function initTilt() {
         if (window.matchMedia('(hover: none)').matches) return;
 
-        const cards = document.querySelectorAll(
-            '.pf-card, .comp-card, .service-card, .stage-card'
-        );
+        const applyTilt = () => {
+            document.querySelectorAll('.pf-card, .comp-card, .service-card, .stage-card').forEach(card => {
+                if (card._tiltBound) return;
+                card._tiltBound = true;
 
-        cards.forEach(card => {
-            card.addEventListener('mousemove', e => {
-                const rect  = card.getBoundingClientRect();
-                const cx    = rect.left + rect.width  / 2;
-                const cy    = rect.top  + rect.height / 2;
-                const dx    = (e.clientX - cx) / (rect.width  / 2);
-                const dy    = (e.clientY - cy) / (rect.height / 2);
-                const rotX  = -dy * 5;
-                const rotY  =  dx * 5;
-                card.style.transform = `perspective(900px) rotateX(${rotX}deg) rotateY(${rotY}deg) translateY(-8px) scale(1.01)`;
-            });
+                card.addEventListener('mousemove', e => {
+                    const rect = card.getBoundingClientRect();
+                    const dx   = (e.clientX - rect.left - rect.width  / 2) / (rect.width  / 2);
+                    const dy   = (e.clientY - rect.top  - rect.height / 2) / (rect.height / 2);
+                    card.style.transform = `perspective(900px) rotateX(${-dy * 5}deg) rotateY(${dx * 5}deg) translateY(-8px) scale(1.01)`;
+                });
 
-            card.addEventListener('mouseleave', () => {
-                card.style.transform = '';
+                card.addEventListener('mouseleave', () => {
+                    card.style.transform = '';
+                });
             });
-        });
+        };
+
+        applyTilt();
+        return applyTilt; // retourné pour rappel externe si besoin
     }
 
 
     /* ══════════════════════════════════════════
-       6. SCROLL REVEAL (IntersectionObserver)
+       5. SCROLL REVEAL (IntersectionObserver)
     ══════════════════════════════════════════ */
     function initScrollReveal() {
-        /* Assigner les attributs data-reveal aux éléments ciblés */
         const MAP = [
-            { sel: '.section-tag',              dir: 'down'  },
-            { sel: '.section-title',            dir: 'down'  },
-            { sel: '.section-subtitle',         dir: 'up'    },
-            { sel: '.apropos-image-wrapper',    dir: 'right' },
-            { sel: '.role-card',                dir: 'up'    },
-            { sel: '.bio-intro',                dir: 'up'    },
-            { sel: '.bio-section',              dir: 'left'  },
-            { sel: '.certif-inline-card',       dir: 'up'    },
-            { sel: '.tech-item',                dir: 'zoom'  },
-            { sel: '.apropos-actions',          dir: 'up'    },
-            { sel: '.tm-card',                  dir: 'up'    },
-            { sel: '.comp-card',                dir: 'up'    },
-            { sel: '.stat-box',                 dir: 'zoom'  },
-            { sel: '.service-card',             dir: 'up'    },
-            { sel: '.stage-card',               dir: 'up'    },
-            { sel: '.channel-card',             dir: 'right' },
-            { sel: '.contact-v2-form-card',     dir: 'left'  },
-            { sel: '.contact-v2-header',        dir: 'right' },
-            { sel: '.services-process',         dir: 'up'    },
-            { sel: '.stage-cta',                dir: 'up'    },
+            { sel: '.section-tag',           dir: 'down'  },
+            { sel: '.section-title',         dir: 'down'  },
+            { sel: '.section-subtitle',      dir: 'up'    },
+            { sel: '.apropos-image-wrapper', dir: 'right' },
+            { sel: '.role-card',             dir: 'up'    },
+            { sel: '.bio-intro',             dir: 'up'    },
+            { sel: '.bio-section',           dir: 'left', stagger: true },
+            { sel: '.certif-inline-card',    dir: 'up',   stagger: true },
+            { sel: '.tech-item',             dir: 'zoom', stagger: true },
+            { sel: '.apropos-actions',       dir: 'up'    },
+            { sel: '.tm-card',               dir: 'up',   stagger: true },
+            { sel: '.comp-card',             dir: 'up',   stagger: true },
+            { sel: '.stat-box',              dir: 'zoom', stagger: true },
+            { sel: '.service-card',          dir: 'up',   stagger: true },
+            { sel: '.stage-card',            dir: 'up',   stagger: true },
+            { sel: '.channel-card',          dir: 'right',stagger: true },
+            { sel: '.contact-v2-form-card',  dir: 'left'  },
+            { sel: '.contact-v2-header',     dir: 'right' },
+            { sel: '.services-process',      dir: 'up'    },
+            { sel: '.stage-cta',             dir: 'up'    },
         ];
 
-        const STAGGER_STEP = 80;
+        const STAGGER_STEP = 70;
 
-        MAP.forEach(({ sel, dir }) => {
+        MAP.forEach(({ sel, dir, stagger }) => {
             document.querySelectorAll(sel).forEach((el, i) => {
-                if (el.closest('.accueil')) return;
-                if (el.hasAttribute('data-reveal')) return;
+                if (el.closest('.accueil') || el.hasAttribute('data-reveal')) return;
                 el.setAttribute('data-reveal', dir);
-                const delay = i * STAGGER_STEP;
+                const delay = stagger ? i * STAGGER_STEP : 0;
                 if (delay) el.style.transitionDelay = delay + 'ms';
             });
         });
 
         const observer = new IntersectionObserver(entries => {
             entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('revealed');
-                } else {
-                    entry.target.classList.remove('revealed');
-                }
+                entry.target.classList.toggle('revealed', entry.isIntersecting);
             });
         }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
 
@@ -196,10 +150,10 @@
 
 
     /* ══════════════════════════════════════════
-       7. COUNT-UP sur les stats
+       6. COUNT-UP sur les stats
     ══════════════════════════════════════════ */
     function initCountUp() {
-        const statNums = document.querySelectorAll('.stat-number, .stat-box .stat-number');
+        const nums = document.querySelectorAll('.stat-number, .stat-box .stat-number');
 
         const observer = new IntersectionObserver(entries => {
             entries.forEach(entry => {
@@ -210,10 +164,9 @@
                 if (isNaN(num)) return;
                 const suffix = raw.replace(/\d/g, '');
                 let start = 0;
-                const dur = 1200;
-                const step = timestamp => {
-                    if (!start) start = timestamp;
-                    const prog = Math.min((timestamp - start) / dur, 1);
+                const step = ts => {
+                    if (!start) start = ts;
+                    const prog  = Math.min((ts - start) / 1200, 1);
                     const eased = 1 - Math.pow(1 - prog, 3);
                     el.textContent = Math.round(eased * num) + suffix;
                     if (prog < 1) requestAnimationFrame(step);
@@ -223,26 +176,31 @@
             });
         }, { threshold: 0.5 });
 
-        statNums.forEach(el => observer.observe(el));
+        nums.forEach(el => observer.observe(el));
     }
 
 
     /* ══════════════════════════════════════════
-       8. PARALLAX LÉGER sur les glow de fond
+       7. PARALLAX LÉGER sur les glows de fond
     ══════════════════════════════════════════ */
     function initParallax() {
         if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
-        const glows = document.querySelectorAll(
-            '.accueil-bg-glow, .image-bg-shape'
-        );
+        const glows = document.querySelectorAll('.accueil-bg-glow, .image-bg-shape');
+        if (!glows.length) return;
 
+        let ticking = false;
         window.addEventListener('scroll', () => {
-            const y = window.scrollY;
-            glows.forEach((g, i) => {
-                const speed = i % 2 === 0 ? 0.08 : 0.05;
-                g.style.transform = `translateY(${y * speed}px)`;
-            });
+            if (!ticking) {
+                requestAnimationFrame(() => {
+                    const y = window.scrollY;
+                    glows.forEach((g, i) => {
+                        g.style.transform = `translateY(${y * (i % 2 === 0 ? 0.07 : 0.04)}px)`;
+                    });
+                    ticking = false;
+                });
+                ticking = true;
+            }
         }, { passive: true });
     }
 
@@ -253,20 +211,20 @@
     function init() {
         initLoader();
         initScrollProgress();
-        initCursor();
         initRipple();
         initScrollReveal();
         initCountUp();
         initParallax();
 
-        /* Tilt après que le portfolio JS ait injecté ses cartes */
-        setTimeout(initTilt, 800);
+        /* Tilt après que le portfolio ait injecté ses cartes */
+        const tiltFn = initTilt();
+        setTimeout(tiltFn, 800);
 
-        /* Observer les nouvelles cartes injectées dynamiquement (portfolio filter) */
-        const portfolioGrid = document.querySelector('.portfolio');
-        if (portfolioGrid) {
-            new MutationObserver(() => setTimeout(initTilt, 100))
-                .observe(portfolioGrid, { childList: true, subtree: true });
+        /* Observer les nouvelles cartes injectées par le filtre portfolio */
+        const portfolio = document.querySelector('.portfolio');
+        if (portfolio && tiltFn) {
+            new MutationObserver(() => setTimeout(tiltFn, 100))
+                .observe(portfolio, { childList: true, subtree: true });
         }
     }
 

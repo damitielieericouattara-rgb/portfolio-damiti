@@ -1,38 +1,53 @@
 /* ============================================================
-   PORTFOLIO.CSS — Carrousel 3D Premium
-   Cartes compactes · Hover overlay depuis le bas
+   PORTFOLIO.CSS — Agency Split-Panel
+   Liste interactive ← → Vitrine cinématique
+   Accordion sur mobile
    Portfolio Ouattara Damiti
    ============================================================ */
 
-:root {
-    --card-w:      190px;
-    --card-h:      275px;
-    --perspective: 1600px;
-    --card-radius: 14px;
-    --pf-surface:  #1a1e2a;
-    --pf-border:   rgba(0, 238, 255, 0.10);
-    --pf-shadow:   0 12px 32px rgba(0, 0, 0, 0.45);
-    --pf-shadow-h: 0 22px 50px rgba(0, 0, 0, 0.60);
-    --pf-trans:    cubic-bezier(0.23, 1, 0.32, 1);
+/* ── Réinitialisation wrap ── */
+.wrap {
+    width: 100%;
+    max-width: 1400px;
+    height: auto !important;
+    min-height: unset !important;
+    margin: 0 auto;
+    cursor: default;
+    user-select: none;
+    position: relative;
+    z-index: 1;
 }
-
-*, *::before, *::after { box-sizing: border-box; }
+.stage, .wheel { display: none !important; }
 
 /* ══════════════════════════════════════════
-   SECTION PORTFOLIO
+   SECTION
 ══════════════════════════════════════════ */
 .portfolio {
     background: var(--bg-color);
-    padding-bottom: 8rem;
+    padding: 10rem 9% 8rem;
     overflow: hidden;
     position: relative;
 }
+.portfolio::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(0,238,255,0.15), transparent);
+}
+
 .portfolio h2.entete {
     text-align: center;
     font-size: 4.5rem;
     padding-top: 2rem;
     margin-bottom: 4rem;
+    position: relative;
+    z-index: 2;
 }
+
+/* ══════════════════════════════════════════
+   STATS & FILTRES
+══════════════════════════════════════════ */
 .portfolio-stats {
     display: flex;
     justify-content: center;
@@ -43,45 +58,33 @@
     z-index: 2;
 }
 
-/* ══════════════════════════════════════════
-   FILTRES
-══════════════════════════════════════════ */
 .portfolio-filters {
     display: flex;
     justify-content: center;
-    gap: 1.2rem;
+    gap: 1rem;
     margin-bottom: 5rem;
     flex-wrap: wrap;
     position: relative;
     z-index: 2;
 }
+
 .portfolio-filters .filter-btn {
     display: inline-flex;
     align-items: center;
     gap: 0.8rem;
-    padding: 1.1rem 2.4rem;
+    padding: 1rem 2.4rem;
     background: var(--second-bg-color);
     color: #aaa;
-    border: 2px solid rgba(0,238,255,0.10);
+    border: 2px solid rgba(0,238,255,0.08);
     border-radius: 3rem;
     font-size: 1.5rem;
     font-weight: 600;
     cursor: pointer;
-    transition: background .3s var(--pf-trans), border-color .3s var(--pf-trans),
-                color .3s var(--pf-trans), transform .25s var(--pf-trans), box-shadow .3s ease;
-    position: relative;
-    overflow: hidden;
+    transition: all 0.3s cubic-bezier(0.23,1,0.32,1);
     font-family: 'Poppins', sans-serif;
     white-space: nowrap;
-}
-.portfolio-filters .filter-btn::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(135deg, rgba(0,238,255,0.08), transparent);
-    opacity: 0;
-    transition: opacity .3s ease;
-    border-radius: inherit;
+    position: relative;
+    overflow: hidden;
 }
 .portfolio-filters .filter-btn:hover {
     border-color: rgba(0,238,255,0.4);
@@ -89,7 +92,6 @@
     transform: translateY(-3px);
     box-shadow: 0 8px 24px rgba(0,238,255,0.15);
 }
-.portfolio-filters .filter-btn:hover::before { opacity: 1; }
 .portfolio-filters .filter-btn.active {
     background: var(--main-color);
     color: #0f1118;
@@ -98,7 +100,6 @@
     transform: translateY(-3px);
 }
 .portfolio-filters .filter-btn i { font-size: 1.9rem; }
-
 .pf-filter-count {
     display: inline-flex;
     align-items: center;
@@ -106,417 +107,578 @@
     width: 20px; height: 20px;
     border-radius: 50%;
     background: rgba(255,255,255,0.12);
-    font-size: 1.0rem;
+    font-size: 1rem;
     font-weight: 800;
-    line-height: 1;
-    margin-left: 2px;
 }
 .portfolio-filters .filter-btn.active .pf-filter-count { background: rgba(0,0,0,0.18); }
 
 /* ══════════════════════════════════════════
-   CARROUSEL STAGE
+   SPLIT PANEL
 ══════════════════════════════════════════ */
-.wrap {
-    width: min(1100px, 96vw);
-    height: min(530px, 80vh);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    user-select: none;
-    cursor: grab;
-    margin: 0 auto;
+.pf-split {
+    display: grid;
+    grid-template-columns: 380px 1fr;
+    gap: 0;
+    border: 2px solid rgba(0,238,255,0.1);
+    border-radius: 2.4rem;
+    overflow: hidden;
+    background: var(--second-bg-color);
+    min-height: 580px;
     position: relative;
     z-index: 1;
 }
-.wrap.dragging { cursor: grabbing; }
 
-.stage {
-    position: relative;
-    perspective: var(--perspective);
-    perspective-origin: 50% 45%;
-}
-
-.wheel {
+/* Ligne de séparation centrale */
+.pf-split::after {
+    content: '';
     position: absolute;
-    left: 50%;
-    top: 50%;
-    width: var(--card-w);
-    height: var(--card-h);
-    margin-left: calc(var(--card-w) / -2);
-    margin-top: calc(var(--card-h) / -2);
-    transform-style: preserve-3d;
-}
-
-/* ══════════════════════════════════════════
-   CARTE 3D — COQUILLE
-══════════════════════════════════════════ */
-.card {
-    position: absolute;
-    width: var(--card-w);
-    height: var(--card-h);
-    transform-style: preserve-3d;
-}
-
-.card-inner {
-    width: 100%;
+    top: 0;
+    left: 380px;
+    width: 1px;
     height: 100%;
-    border-radius: var(--card-radius);
-    overflow: hidden;
-    background: var(--pf-surface);
-    border: 1px solid var(--pf-border);
-    box-shadow: var(--pf-shadow);
-    backface-visibility: hidden;
-    position: relative;
-    transition:
-        transform 0.4s var(--pf-trans),
-        box-shadow 0.4s ease,
-        border-color 0.4s ease;
-}
-.card-inner:hover {
-    transform: scale(1.06) translateZ(14px);
-    box-shadow:
-        var(--pf-shadow-h),
-        0 0 0 1px rgba(0,238,255,0.30),
-        0 0 40px rgba(0,238,255,0.13);
-    border-color: rgba(0,238,255,0.35);
+    background: linear-gradient(to bottom, transparent, rgba(0,238,255,0.15) 20%, rgba(0,238,255,0.15) 80%, transparent);
+    pointer-events: none;
+    z-index: 5;
 }
 
-/* ══════════════════════════════════════════
-   IMAGE — plein fond
-══════════════════════════════════════════ */
-.pf-card-img-wrap {
-    position: absolute;
-    inset: 0;
-    overflow: hidden;
-    z-index: 0;
+/* ── LISTE GAUCHE ── */
+.pf-split__list {
+    overflow-y: auto;
+    padding: 1.2rem 0;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(0,238,255,0.2) transparent;
 }
-.pf-card-img-wrap img {
+.pf-split__list::-webkit-scrollbar { width: 4px; }
+.pf-split__list::-webkit-scrollbar-thumb { background: rgba(0,238,255,0.2); border-radius: 4px; }
+
+/* Ligne projet */
+.pf-project-row {
+    display: flex;
+    align-items: center;
+    gap: 1.8rem;
+    padding: 1.8rem 2.6rem;
+    cursor: pointer;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    position: relative;
+    transition: background 0.25s ease;
+    outline: none;
+}
+.pf-project-row:last-child { border-bottom: none; }
+
+/* Barre active à gauche */
+.pf-project-row::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 8px; bottom: 8px;
+    width: 3px;
+    background: var(--main-color);
+    border-radius: 0 2px 2px 0;
+    transform: scaleY(0);
+    transform-origin: center;
+    transition: transform 0.3s cubic-bezier(0.23,1,0.32,1);
+}
+.pf-project-row.active::before { transform: scaleY(1); }
+
+.pf-project-row:hover  { background: rgba(0,238,255,0.04); }
+.pf-project-row.active { background: rgba(0,238,255,0.07); }
+
+/* Numéro */
+.pf-row-num {
+    font-size: 1.15rem;
+    font-weight: 800;
+    color: rgba(0,238,255,0.35);
+    width: 2.8rem;
+    flex-shrink: 0;
+    letter-spacing: 0.05em;
+    transition: color 0.3s ease;
+}
+.pf-project-row.active .pf-row-num { color: var(--main-color); }
+
+/* Vignette image */
+.pf-row-thumb {
+    width: 52px;
+    height: 40px;
+    border-radius: 0.8rem;
+    overflow: hidden;
+    flex-shrink: 0;
+    border: 1.5px solid rgba(255,255,255,0.08);
+    transition: border-color 0.3s ease;
+}
+.pf-row-thumb img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     display: block;
-    transition: transform 0.55s var(--pf-trans);
     pointer-events: none;
 }
-.card-inner:hover .pf-card-img-wrap img { transform: scale(1.12); }
+.pf-project-row.active .pf-row-thumb { border-color: rgba(0,238,255,0.4); }
 
-/* Overlay coloré sur l'image */
-.pf-card-img-overlay {
-    position: absolute;
-    inset: 0;
-    opacity: 0.45;
-    pointer-events: none;
-    mix-blend-mode: multiply;
-    transition: opacity 0.4s ease;
-    z-index: 1;
-}
-.card-inner:hover .pf-card-img-overlay { opacity: 0.20; }
+/* Texte */
+.pf-row-text { flex: 1; min-width: 0; }
 
-/* Dégradé sombre permanent au bas */
-.pf-card-fade-bottom {
-    position: absolute;
-    bottom: 0; left: 0; right: 0;
-    height: 65%;
-    background: linear-gradient(to top, rgba(8,10,20,0.95) 0%, transparent 100%);
-    pointer-events: none;
-    z-index: 2;
-    transition: opacity 0.35s ease;
-}
-.card-inner:hover .pf-card-fade-bottom { opacity: 0; }
-
-/* ── Badge catégorie ── */
-.pf-card-cat {
-    position: absolute;
-    top: 9px; left: 9px;
-    z-index: 6;
-    display: inline-flex;
-    align-items: center;
-    gap: 4px;
-    padding: 3px 9px;
-    border-radius: 3rem;
-    border: 1.5px solid;
-    font-size: 0.95rem;
+.pf-row-title {
+    font-size: 1.6rem;
     font-weight: 700;
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    white-space: nowrap;
-}
-.pf-card-cat i { font-size: 1.05rem; }
-
-/* ── Badge statut ── */
-.pf-status {
-    position: absolute;
-    top: 9px; right: 9px;
-    z-index: 6;
-    display: inline-flex;
-    align-items: center;
-    gap: 4px;
-    padding: 2px 4px;
-    font-size: 0.85rem;
-    font-weight: 700;
-    /* backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    white-space: nowrap; */
-}
-.pf-status-live {  color: #22c55e; }
-.pf-status-dev  {  color: #fbbf24; }
-.pf-status-dot  { width: 5px; height: 5px; border-radius: 50%; flex-shrink: 0; }
-.pf-status-live .pf-status-dot { background: #22c55e; animation: dot-pulse 1.8s ease-in-out infinite; }
-.pf-status-dev  .pf-status-dot { background: #fbbf24; }
-
-@keyframes dot-pulse {
-    0%, 100% { box-shadow: 0 0 0 0 rgba(34,197,94,0.55); }
-    50%       { box-shadow: 0 0 0 4px rgba(34,197,94,0); }
-}
-
-/* ── Barre d'info au bas (repos) ── */
-.pf-card-info-bar {
-    position: absolute;
-    bottom: 0; left: 0; right: 0;
-    z-index: 4;
-    padding: 10px 11px 12px;
-    transition: opacity 0.30s ease, transform 0.30s var(--pf-trans);
-}
-.card-inner:hover .pf-card-info-bar {
-    opacity: 0;
-    transform: translateY(8px);
-    pointer-events: none;
-}
-.pf-card-year {
-    font-size: 0.9rem;
-    font-weight: 700;
-    color: rgba(0,238,255,0.75);
-    letter-spacing: 0.10em;
-    text-transform: uppercase;
-    margin-bottom: 2px;
-}
-.pf-card-title {
-    font-size: 1.25rem;
-    font-weight: 800;
-    color: #f1f5f9;
-    line-height: 1.2;
+    color: var(--text-color);
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    line-height: 1.3;
+    transition: color 0.3s ease;
+}
+.pf-project-row.active .pf-row-title { color: var(--main-color); }
+
+.pf-row-cat {
+    display: inline-block;
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: #666;
+    margin-top: 0.3rem;
+}
+
+/* Flèche */
+.pf-row-arrow {
+    font-size: 2.2rem;
+    color: var(--main-color);
+    opacity: 0;
+    transform: translateX(-6px);
+    transition: opacity 0.25s ease, transform 0.25s ease;
+    flex-shrink: 0;
+}
+.pf-project-row:hover .pf-row-arrow,
+.pf-project-row.active .pf-row-arrow {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* ── VITRINE DROITE ── */
+.pf-split__showcase {
+    position: relative;
+    overflow: hidden;
+}
+
+/* Panel pour chaque projet (superposés, 1 actif à la fois) */
+.pf-showcase-panel {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    opacity: 0;
+    transform: translateX(16px);
+    transition: opacity 0.45s cubic-bezier(0.23,1,0.32,1),
+                transform 0.45s cubic-bezier(0.23,1,0.32,1);
+    pointer-events: none;
+    z-index: 1;
+}
+.pf-showcase-panel.active {
+    opacity: 1;
+    transform: translateX(0);
+    pointer-events: auto;
+    z-index: 2;
+}
+
+/* Image showcase */
+.pf-showcase-img {
+    height: 56%;
+    flex-shrink: 0;
+    overflow: hidden;
+    position: relative;
+}
+.pf-showcase-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.6s cubic-bezier(0.23,1,0.32,1);
+}
+.pf-showcase-panel.active .pf-showcase-img img {
+    animation: showcase-zoom-in 0.6s cubic-bezier(0.23,1,0.32,1) forwards;
+}
+@keyframes showcase-zoom-in {
+    from { transform: scale(1.06); }
+    to   { transform: scale(1); }
+}
+
+/* Badges sur image */
+.pf-showcase-badges {
+    position: absolute;
+    top: 1.6rem;
+    left: 1.6rem;
+    display: flex;
+    gap: 0.8rem;
+    z-index: 3;
+}
+.pf-showcase-cat {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.55rem 1.4rem;
+    border-radius: 3rem;
+    font-size: 1.1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    backdrop-filter: blur(12px);
+    border: 1.5px solid;
+}
+.pf-showcase-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.55rem 1.2rem;
+    border-radius: 3rem;
+    font-size: 1.1rem;
+    font-weight: 700;
+    backdrop-filter: blur(12px);
+    background: rgba(10,14,26,0.7);
+    border: 1.5px solid rgba(255,255,255,0.1);
+}
+
+/* Dégradé bas image */
+.pf-showcase-img::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 45%;
+    background: linear-gradient(to top, var(--second-bg-color), transparent);
+    pointer-events: none;
+}
+
+/* Infos showcase */
+.pf-showcase-info {
+    flex: 1;
+    padding: 2.6rem 3.2rem 3rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.4rem;
+    overflow-y: auto;
+}
+
+.pf-showcase-year {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: rgba(0,238,255,0.6);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+.pf-showcase-title {
+    font-size: 2.8rem;
+    font-weight: 800;
+    color: var(--text-color);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+}
+
+.pf-showcase-desc {
+    font-size: 1.5rem;
+    color: #9ca3af;
+    line-height: 1.75;
+}
+
+.pf-showcase-techs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.7rem;
+}
+.pf-showcase-tech {
+    padding: 0.45rem 1.2rem;
+    background: rgba(0,238,255,0.07);
+    border: 1px solid rgba(0,238,255,0.2);
+    border-radius: 2rem;
+    color: var(--main-color);
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+/* Bouton showcase */
+.pf-showcase-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 1rem;
+    align-self: flex-start;
+    padding: 1.3rem 3rem;
+    background: var(--main-color);
+    color: #0a0e1a;
+    border-radius: 3rem;
+    font-size: 1.5rem;
+    font-weight: 800;
+    text-decoration: none;
+    letter-spacing: 0.02em;
+    border: none;
+    cursor: pointer;
+    margin-top: auto;
+    transition: transform 0.3s cubic-bezier(0.23,1,0.32,1),
+                box-shadow 0.3s ease,
+                background 0.3s ease;
+}
+.pf-showcase-btn i { font-size: 1.8rem; }
+.pf-showcase-btn:hover {
+    background: #fff;
+    color: #0891b2;
+    transform: translateY(-3px);
+    box-shadow: 0 12px 35px rgba(0,238,255,0.45);
+}
+
+/* Statut dot */
+.pf-st-dot {
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+.pf-st-dot--live { background: #22c55e; animation: st-pulse 1.8s ease-in-out infinite; }
+.pf-st-dot--dev  { background: #fbbf24; }
+@keyframes st-pulse {
+    0%,100% { box-shadow: 0 0 0 0 rgba(34,197,94,0.5); }
+    50%      { box-shadow: 0 0 0 5px rgba(34,197,94,0); }
 }
 
 /* ══════════════════════════════════════════
-   ✨ HOVER PANEL — glisse depuis le bas
+   ACCORDION MOBILE (caché sur desktop)
 ══════════════════════════════════════════ */
-.pf-card-hover-panel {
-    position: absolute;
-    bottom: 0; left: 0; right: 0;
-    z-index: 8;
-    padding: 12px 12px 13px;
+.pf-accordion { display: none; }
 
-    /* Fond glassmorphism sombre */
-    background: linear-gradient(
-        170deg,
-        rgba(6, 10, 22, 0.97) 0%,
-        rgba(10, 16, 30, 0.96) 100%
-    );
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border-top: 1px solid rgba(0, 238, 255, 0.20);
-    border-radius: 0 0 var(--card-radius) var(--card-radius);
+.pf-accordion-item {
+    border-bottom: 1px solid rgba(0,238,255,0.08);
+    overflow: hidden;
+}
+.pf-accordion-item:first-child { border-radius: 2rem 2rem 0 0; overflow: hidden; }
+.pf-accordion-item:last-child  { border-radius: 0 0 2rem 2rem; overflow: hidden; border-bottom: none; }
 
-    /* Caché : décalé vers le bas */
-    transform: translateY(100%);
-    opacity: 0;
-
-    transition:
-        transform 0.40s var(--pf-trans),
-        opacity   0.35s ease;
-
+/* Header accordéon */
+.pf-acc-header {
     display: flex;
-    flex-direction: column;
-    gap: 7px;
+    align-items: center;
+    gap: 1.6rem;
+    padding: 2rem 2.2rem;
+    background: var(--second-bg-color);
+    cursor: pointer;
+    border: none;
+    width: 100%;
+    text-align: left;
+    font-family: 'Poppins', sans-serif;
+    transition: background 0.25s ease;
+    position: relative;
+}
+.pf-acc-header::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 3px;
+    background: var(--main-color);
+    transform: scaleY(0);
+    transition: transform 0.3s ease;
+}
+.pf-accordion-item.active .pf-acc-header::before { transform: scaleY(1); }
+.pf-accordion-item.active .pf-acc-header { background: rgba(0,238,255,0.06); }
+
+.pf-acc-num {
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: rgba(0,238,255,0.4);
+    width: 2.5rem;
+    flex-shrink: 0;
+}
+.pf-accordion-item.active .pf-acc-num { color: var(--main-color); }
+
+.pf-acc-thumb {
+    width: 48px; height: 38px;
+    border-radius: 0.8rem;
+    overflow: hidden;
+    flex-shrink: 0;
+    border: 1.5px solid rgba(255,255,255,0.1);
+}
+.pf-acc-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+.pf-acc-title {
+    flex: 1;
+    font-size: 1.65rem;
+    font-weight: 700;
+    color: var(--text-color);
+}
+.pf-accordion-item.active .pf-acc-title { color: var(--main-color); }
+
+.pf-acc-chevron {
+    font-size: 2.4rem;
+    color: #666;
+    transition: transform 0.35s cubic-bezier(0.23,1,0.32,1), color 0.3s ease;
+    flex-shrink: 0;
+}
+.pf-accordion-item.active .pf-acc-chevron {
+    transform: rotate(180deg);
+    color: var(--main-color);
 }
 
-/* Activation hover */
-.card-inner:hover .pf-card-hover-panel {
-    transform: translateY(0);
+/* Corps accordéon */
+.pf-acc-body {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s cubic-bezier(0.23,1,0.32,1),
+                opacity 0.4s ease;
+    opacity: 0;
+    background: var(--bg-color);
+}
+.pf-accordion-item.active .pf-acc-body {
     opacity: 1;
 }
 
-/* Ligne de lueur en haut du panel */
-.pf-card-hover-panel::before {
+.pf-acc-img {
+    height: 220px;
+    overflow: hidden;
+    position: relative;
+}
+.pf-acc-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+.pf-acc-img::after {
     content: '';
     position: absolute;
-    top: 0; left: 12px; right: 12px;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(0,238,255,0.5), transparent);
+    bottom: 0; left: 0; right: 0;
+    height: 40%;
+    background: linear-gradient(to top, var(--bg-color), transparent);
+    pointer-events: none;
 }
 
-/* ── Titre du panel ── */
-.pf-panel-title {
-    font-size: 1.25rem;
-    font-weight: 800;
-    color: #f1f5f9;
-    line-height: 1.2;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+.pf-acc-content {
+    padding: 2.2rem 2.4rem 2.8rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.4rem;
 }
 
-/* ── Description courte ── */
-.pf-panel-desc {
-    font-size: 0.98rem;
-    color: #94a3b8;
-    line-height: 1.55;
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    margin-bottom: 1px;
+.pf-acc-meta {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+}
+.pf-acc-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: 1.2rem;
+    font-weight: 700;
+}
+.pf-acc-year {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: rgba(0,238,255,0.6);
+    letter-spacing: 0.08em;
+    margin-left: auto;
 }
 
-/* ── Tags techno ── */
-.pf-panel-techs {
+.pf-acc-desc {
+    font-size: 1.45rem;
+    color: #9ca3af;
+    line-height: 1.75;
+}
+
+.pf-acc-techs {
     display: flex;
     flex-wrap: wrap;
-    gap: 4px;
+    gap: 0.7rem;
 }
-.pf-tech {
-    padding: 2px 7px;
-    /* border-radius: 2rem; */
-    /* background: rgba(0,238,255,0.08);
-    border: 1px solid rgba(0,238,255,0.20); */
+.pf-acc-tech {
+    padding: 0.45rem 1.1rem;
+    background: rgba(0,238,255,0.07);
+    border: 1px solid rgba(0,238,255,0.2);
+    border-radius: 2rem;
     color: var(--main-color);
-    font-size: 0.88rem;
+    font-size: 1.15rem;
     font-weight: 600;
-    white-space: nowrap;
-    letter-spacing: 0.02em;
-    transition: background 0.2s ease, border-color 0.2s ease;
-}
-.card-inner:hover .pf-tech {
-    /* background: rgba(0,238,255,0.13);
-    border-color: rgba(0,238,255,0.30); */
-}
-.pf-tech-more {
-    background: rgba(255,255,255,0.04);
-    border-color: rgba(255,255,255,0.10);
-    color: #64748b;
 }
 
-/* ── Bouton "Voir le projet" ── */
-.pf-panel-link {
+.pf-acc-btn {
     display: inline-flex;
     align-items: center;
-    justify-content: center;
-    gap: 6px;
-    padding: 8px 0;
-    width: 100%;
+    gap: 0.9rem;
+    padding: 1.3rem 2.4rem;
     background: var(--main-color);
-    color: #06080f;
-    font-size: 1.1rem;
+    color: #0a0e1a;
+    border-radius: 3rem;
+    font-size: 1.45rem;
     font-weight: 800;
     text-decoration: none;
-    letter-spacing: 0.04em;
-    border-radius: 0.75rem;
-    border: none;
-    cursor: pointer;
-    margin-top: 2px;
-    transition:
-        background 0.22s ease,
-        color 0.22s ease,
-        transform 0.20s ease,
-        box-shadow 0.22s ease;
+    align-self: flex-start;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    width: 100%;
+    justify-content: center;
 }
-.pf-panel-link i { font-size: 1.25rem; }
-.pf-panel-link:hover {
-    background: #fff;
-    color: #0891b2;
+.pf-acc-btn:hover {
     transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(0,238,255,0.50);
+    box-shadow: 0 10px 30px rgba(0,238,255,0.4);
 }
-
-/* ══════════════════════════════════════════
-   HUD
-══════════════════════════════════════════ */
-/* .hud {
-    position: absolute;
-    left: 50%;
-    bottom: 14px;
-    transform: translateX(-50%);
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 1.2rem;
-    color: rgba(229,231,235,0.7);
-    background: rgba(15,17,24,0.65);
-    border: 1px solid rgba(148,163,184,0.18);
-    padding: 8px 18px;
-    border-radius: 3rem;
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    white-space: nowrap;
-    pointer-events: none;
-    z-index: 20;
-    letter-spacing: 0.02em;
-}
-.hud i { font-size: 1.5rem; color: var(--main-color); } */
 
 /* ══════════════════════════════════════════
    MODE CLAIR
 ══════════════════════════════════════════ */
-body.light-mode .card-inner {
-    background: #ffffff;
-    border-color: rgba(8,145,178,0.15);
-    box-shadow: 0 10px 28px rgba(0,0,0,0.09);
+body.light-mode .pf-split {
+    background: #e2e8f0;
+    border-color: rgba(8,145,178,0.2);
 }
-body.light-mode .card-inner:hover {
-    border-color: rgba(8,145,178,0.40);
-    box-shadow: 0 20px 50px rgba(0,0,0,0.14), 0 0 0 1px rgba(8,145,178,0.25);
+body.light-mode .pf-split::after {
+    background: linear-gradient(to bottom, transparent, rgba(8,145,178,0.2) 20%, rgba(8,145,178,0.2) 80%, transparent);
 }
-body.light-mode .pf-card-fade-bottom {
-    background: linear-gradient(to top, rgba(240,244,248,0.95) 0%, transparent 100%);
-}
-body.light-mode .pf-card-title  { color: #1a202c; }
-body.light-mode .pf-panel-title { color: #1a202c; }
-body.light-mode .pf-panel-desc  { color: #4b5563; }
-body.light-mode .pf-card-year   { color: #0891b2; }
-body.light-mode .pf-card-hover-panel {
-    background: linear-gradient(170deg, rgba(240,244,248,0.97) 0%, rgba(235,241,248,0.96) 100%);
-    border-top-color: rgba(8,145,178,0.22);
-}
-body.light-mode .pf-card-hover-panel::before {
-    background: linear-gradient(90deg, transparent, rgba(8,145,178,0.4), transparent);
-}
-body.light-mode .pf-tech {
-    background: rgba(8,145,178,0.08);
-    border-color: rgba(8,145,178,0.22);
-    color: #0891b2;
-}
-body.light-mode .pf-tech-more  { background: rgba(0,0,0,0.04); border-color: rgba(0,0,0,0.10); color: #9ca3af; }
-body.light-mode .pf-panel-link { background: #0891b2; color: #fff; }
-body.light-mode .pf-panel-link:hover { background: #065f8a; color: #fff; box-shadow: 0 6px 18px rgba(8,145,178,0.40); }
-body.light-mode .portfolio-filters .filter-btn { background: #e2e8f0; color: #4b5563; border-color: rgba(8,145,178,0.15); }
+body.light-mode .pf-project-row:hover  { background: rgba(8,145,178,0.06); }
+body.light-mode .pf-project-row.active { background: rgba(8,145,178,0.1); }
+body.light-mode .pf-project-row::before { background: #0891b2; }
+body.light-mode .pf-row-num  { color: rgba(8,145,178,0.45); }
+body.light-mode .pf-project-row.active .pf-row-num { color: #0891b2; }
+body.light-mode .pf-row-title { color: #1a202c; }
+body.light-mode .pf-project-row.active .pf-row-title { color: #0891b2; }
+body.light-mode .pf-row-arrow { color: #0891b2; }
+body.light-mode .pf-row-thumb { border-color: rgba(8,145,178,0.2); }
+body.light-mode .pf-showcase-img::after { background: linear-gradient(to top, #e2e8f0, transparent); }
+body.light-mode .pf-showcase-title { color: #1a202c; }
+body.light-mode .pf-showcase-tech { background: rgba(8,145,178,0.08); border-color: rgba(8,145,178,0.25); color: #0891b2; }
+body.light-mode .pf-showcase-btn { background: #0891b2; color: #fff; }
+body.light-mode .pf-showcase-btn:hover { background: #065f8a; box-shadow: 0 12px 35px rgba(8,145,178,0.4); }
+body.light-mode .pf-accordion-item { border-color: rgba(8,145,178,0.1); }
+body.light-mode .pf-acc-header { background: #e2e8f0; }
+body.light-mode .pf-accordion-item.active .pf-acc-header { background: rgba(8,145,178,0.08); }
+body.light-mode .pf-acc-body  { background: #f0f4f8; }
+body.light-mode .pf-acc-img::after { background: linear-gradient(to top, #f0f4f8, transparent); }
+body.light-mode .pf-acc-num   { color: rgba(8,145,178,0.45); }
+body.light-mode .pf-accordion-item.active .pf-acc-num   { color: #0891b2; }
+body.light-mode .pf-acc-title { color: #1a202c; }
+body.light-mode .pf-accordion-item.active .pf-acc-title { color: #0891b2; }
+body.light-mode .pf-acc-tech  { background: rgba(8,145,178,0.08); border-color: rgba(8,145,178,0.2); color: #0891b2; }
+body.light-mode .pf-acc-btn   { background: #0891b2; color: #fff; }
+body.light-mode .portfolio-filters .filter-btn { background: #e2e8f0; color: #4b5563; border-color: rgba(8,145,178,0.12); }
 body.light-mode .portfolio-filters .filter-btn:hover { border-color: rgba(8,145,178,0.4); color: #0891b2; }
 body.light-mode .portfolio-filters .filter-btn.active { background: #0891b2; color: #fff; border-color: #0891b2; }
-body.light-mode .hud { background: rgba(240,244,248,0.85); border-color: rgba(8,145,178,0.2); color: #374151; }
-body.light-mode .hud i { color: #0891b2; }
 
 /* ══════════════════════════════════════════
-   RESPONSIVE
+   RESPONSIVE — Tablette 1024px
+══════════════════════════════════════════ */
+@media (max-width: 1024px) {
+    .pf-split {
+        grid-template-columns: 300px 1fr;
+        min-height: 540px;
+    }
+    .pf-split::after { left: 300px; }
+    .pf-showcase-title { font-size: 2.4rem; }
+}
+
+/* ══════════════════════════════════════════
+   RESPONSIVE — Mobile 768px
+   Split panel → Accordion
 ══════════════════════════════════════════ */
 @media (max-width: 768px) {
-    :root { --card-w: 162px; --card-h: 238px; --card-radius: 12px; }
-    .wrap { height: min(470px, 80vh); }
-    .pf-card-title  { font-size: 1.15rem; }
-    .pf-panel-title { font-size: 1.1rem; }
-    .pf-panel-desc  { font-size: 0.90rem; -webkit-line-clamp: 2; }
-    .pf-tech        { font-size: 0.82rem; padding: 2px 6px; }
-    .pf-panel-link  { font-size: 1.05rem; padding: 7px 0; }
-    .portfolio-filters { gap: 0.8rem; }
-    .portfolio-filters .filter-btn { padding: 0.9rem 1.6rem; font-size: 1.35rem; }
+    .portfolio { padding: 8rem 5% 6rem; }
+
+    .pf-split   { display: none !important; }
+    .pf-accordion { display: block; border: 2px solid rgba(0,238,255,0.1); border-radius: 2rem; overflow: hidden; }
+
+    .portfolio h2.entete { font-size: 3.5rem; }
+    .portfolio-filters { gap: 0.8rem; margin-bottom: 3.5rem; }
+    .portfolio-filters .filter-btn { padding: 0.9rem 1.8rem; font-size: 1.35rem; }
 }
+
 @media (max-width: 480px) {
-    :root { --card-w: 145px; --card-h: 210px; }
-    .wrap { height: min(400px, 76vh); }
-    .pf-panel-desc  { -webkit-line-clamp: 2; }
-    .pf-card-year   { display: none; }
-    .portfolio-filters .filter-btn span { display: none; }
+    .portfolio h2.entete { font-size: 3rem; }
+    .pf-acc-header { padding: 1.8rem; }
+    .pf-acc-content { padding: 2rem 2rem 2.4rem; }
 }
