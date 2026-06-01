@@ -4,12 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Portfolio de Ouattara Damiti Elie – Développeur web front-end passionné, étudiant en Licence 3 Informatique à Abidjan. Disponible pour un stage. Compétences : HTML, CSS, JavaScript, PHP, MySQL, React.">
+    <meta name="description" content="Portfolio de Ouattara Damiti Elie – Développeur web front-end passionné, étudiant en Licence 3 Informatique à Abidjan. Disponible pour un stage.">
     <meta name="keywords" content="développeur web, front-end, stage, Abidjan, HTML, CSS, JavaScript, portfolio, Ouattara Damiti">
     <meta name="author" content="Ouattara Damiti Elie Lindaye Eric">
     <meta name="theme-color" content="#1f242d">
     <meta property="og:title" content="Portfolio – Ouattara Damiti | Développeur Web">
-    <meta property="og:description" content="Étudiant en Licence 3 Informatique à Abidjan, passionné par le développement web front-end. Disponible pour un stage.">
+    <meta property="og:description" content="Étudiant en Licence 3 Informatique à Abidjan, passionné par le développement web front-end.">
     <meta property="og:type" content="website">
 
     <title>Portfolio – Ouattara Damiti | Développeur Web Front-end</title>
@@ -17,27 +17,57 @@
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="./image/favicon.svg">
 
-    <!-- ── FONTS (display=swap pour éviter le FOIT) ── -->
+    <!-- ══════════════════════════════════════
+         RESOURCE HINTS (avant tout le reste)
+    ══════════════════════════════════════ -->
+
+    <!-- Polices Google -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
 
-    <!-- ── CSS CRITIQUE (chargé en premier) ── -->
+    <!-- Icônes CDN -->
+    <link rel="dns-prefetch" href="https://unpkg.com">
+    <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+
+    <!-- Précharger l'image héro (above the fold — critique) -->
+    <link rel="preload" as="image" href="./image/image (2).png" fetchpriority="high">
+
+    <!-- Précharger les polices critiques -->
+    <link rel="preload"
+          href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap"
+          as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript>
+        <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+    </noscript>
+
+    <!-- ══════════════════════════════════════
+         CSS CRITIQUE — chargé en premier
+    ══════════════════════════════════════ -->
     <link rel="stylesheet" href="./style.css">
 
-    <!-- ── ICÔNES (non-bloquant via preload) ── -->
-    <link rel="preload" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <!-- ── Icônes : non-bloquant ── -->
+    <link rel="preload" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" as="style"
+          onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"></noscript>
 
-    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" as="style"
+          onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"></noscript>
 
-    <!-- ── CSS PORTFOLIO & ADDITIONS ── -->
+    <!-- ── CSS secondaires ── -->
     <link rel="stylesheet" href="portfolio.css">
     <link rel="stylesheet" href="additions.css">
-
-    <!-- ── CSS CINÉMATIQUE (en dernier pour override) ── -->
     <link rel="stylesheet" href="./style-cinematique.css">
+
+    <!-- ══════════════════════════════════════
+         perf.css — EN DERNIER (override)
+         Corrige la règle * { transition } et ajoute
+         content-visibility + will-change ciblés
+    ══════════════════════════════════════ -->
+    <link rel="stylesheet" href="./perf.css">
+
+    <!-- ── Typed.js : preload (nécessaire pour le hero) ── -->
+    <link rel="preload" href="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js" as="script">
 </head>
 
 <body>
@@ -143,12 +173,13 @@
 
             <div class="accueil-image-container">
                 <div class="image-wrapper">
-                    <!-- Image principale : PAS de lazy loading (above the fold) -->
+                    <!-- fetchpriority="high" : navigateur charge cette image en priorité absolue -->
                     <img src="./image/image (2).png"
                          alt="Damiti – Développeur Web"
                          class="profile-img"
-                         width="480" height="auto"
-                         decoding="async">
+                         width="480" height="600"
+                         fetchpriority="high"
+                         decoding="sync">
                 </div>
             </div>
 
@@ -168,7 +199,7 @@
                          alt="Damiti – Développeur Web"
                          class="apropos-img"
                          loading="lazy" decoding="async"
-                         width="400" height="auto">
+                         width="400" height="400">
                 </div>
                 <div class="circular-stats">
                     <div class="circular-stat">
@@ -229,42 +260,33 @@
                 <div class="bio-content">
                     <p class="bio-intro">
                         <strong>Bonjour, je suis Damiti.</strong> Ce qui me différencie ?
-                        Je ne code pas juste pour que ça marche , je code pour que ça soit
+                        Je ne code pas juste pour que ça marche — je code pour que ça soit
                         <strong>beau, rapide et compréhensible</strong> par n'importe quel utilisateur.
                     </p>
 
                     <div class="bio-section">
                         <div class="bio-text">
                             <h4>Ce qui me passionne</h4>
-                            <p>
-                                Les interfaces qui <strong>résolvent un vrai problème</strong> de manière élégante.
-                                Je m'intéresse particulièrement aux projets de <strong>gestion</strong> (stocks, tâches, données)
-                                et aux <strong>plateformes de service</strong> (livraison, e-commerce, quiz interactifs) ,
-                                là où l'UX fait réellement la différence entre adoption et abandon.
-                            </p>
+                            <p>Les interfaces qui <strong>résolvent un vrai problème</strong> de manière élégante.
+                            Je m'intéresse particulièrement aux projets de <strong>gestion</strong> et aux
+                            <strong>plateformes de service</strong> — là où l'UX fait réellement la différence.</p>
                         </div>
                     </div>
 
                     <div class="bio-section">
                         <div class="bio-text">
                             <h4>Mon approche technique</h4>
-                            <p>
-                                Je pars toujours de la <strong>structure HTML sémantique</strong>, j'applique un CSS
-                                précis et maintenable, puis j'enrichis avec JavaScript uniquement là où c'est
-                                nécessaire. Résultat : des pages <strong>légères, accessibles et responsives</strong>
-                                même sur connexions lentes en Côte d'Ivoire.
-                            </p>
+                            <p>Je pars toujours de la <strong>structure HTML sémantique</strong>, j'applique un CSS
+                            précis et maintenable, puis j'enrichis avec JavaScript uniquement là où c'est nécessaire.
+                            Résultat : des pages <strong>légères, accessibles et responsives</strong>.</p>
                         </div>
                     </div>
 
                     <div class="bio-section">
                         <div class="bio-text">
                             <h4>Mon objectif immédiat</h4>
-                            <p>
-                                Décrocher un <strong>stage en entreprise</strong> pour confronter mes compétences
-                                à des projets réels, collaborer avec une équipe et progresser sur
-                                <strong>React.js, Node.js et les outils professionnels</strong> (Git, CI/CD, tests).
-                            </p>
+                            <p>Décrocher un <strong>stage en entreprise</strong> pour confronter mes compétences
+                            à des projets réels et progresser sur <strong>React.js, Node.js et les outils pro</strong>.</p>
                         </div>
                     </div>
                 </div>
@@ -479,7 +501,7 @@
                         <div class="comp-level comp-level-intermediaire">Intermédiaire</div>
                     </div>
                     <h4>Intelligence Artificielle</h4>
-                    <p>Utilisation et intégration d'outils IA dans des workflows de développement : génération de contenu, assistance au code, automatisation et APIs IA (OpenAI, Claude…).</p>
+                    <p>Utilisation et intégration d'outils IA dans des workflows de développement : génération de contenu, assistance au code, automatisation et APIs IA.</p>
                     <div class="comp-proof">
                         <span class="proof-label"><i class='bx bx-link-alt'></i> Usages :</span>
                         <span>Prompting · Intégration API IA · Automatisation</span>
@@ -543,7 +565,7 @@
                 <h2 class="services-title">Votre idée mérite un site qui <span class="highlight">travaille pour vous</span></h2>
                 <p class="services-subtitle">
                     De l'idée à la mise en ligne, je vous aide à créer des solutions web modernes,
-                    efficaces et adaptées à vos objectifs. Pas juste un beau site, un outil qui rapporte.
+                    efficaces et adaptées à vos objectifs.
                 </p>
             </div>
 
@@ -552,48 +574,42 @@
                     <div class="service-card-icon"><i class='bx bx-paint' style="color:#0ef;"></i></div>
                     <div class="service-number">01</div>
                     <h4>Site Vitrine &amp; Landing Page</h4>
-                    <p>Votre première impression en ligne. Sites modernes, rapides et adaptés à tous les écrans pour présenter votre activité et inspirer confiance dès le premier regard.</p>
-                    <!-- <div class="service-tags"><span>HTML/CSS</span><span>Responsive</span><span>SEO</span></div> -->
+                    <p>Votre première impression en ligne. Sites modernes, rapides et adaptés à tous les écrans pour inspirer confiance dès le premier regard.</p>
                 </div>
 
                 <div class="service-card">
                     <div class="service-card-icon"><i class='bx bxl-javascript' style="color:#f7df1e;"></i></div>
                     <div class="service-number">02</div>
                     <h4>Fonctionnalités Interactives</h4>
-                    <p>Formulaires intelligents, galeries animées, quiz, paniers d'achat , tout ce qui guide naturellement vos visiteurs vers l'action.</p>
-                    <!-- <div class="service-tags"><span>JavaScript</span><span>API</span><span>UX</span></div> -->
+                    <p>Formulaires intelligents, galeries animées, quiz, paniers d'achat — tout ce qui guide naturellement vos visiteurs vers l'action.</p>
                 </div>
 
                 <div class="service-card">
                     <div class="service-card-icon"><i class='bx bxl-react' style="color:#61dafb;"></i></div>
                     <div class="service-number">03</div>
                     <h4>Application Web React.js</h4>
-                    <p>Tableaux de bord, espaces clients, outils de gestion , des applications web rapides, modernes et faciles à faire évoluer.</p>
-                    <!-- <div class="service-tags"><span>React.js</span><span>Hooks</span><span>Tailwind</span></div> -->
+                    <p>Tableaux de bord, espaces clients, outils de gestion — des applications web rapides, modernes et faciles à faire évoluer.</p>
                 </div>
 
                 <div class="service-card">
                     <div class="service-card-icon"><i class='bx bxl-php' style="color:#8993be;"></i></div>
                     <div class="service-number">04</div>
                     <h4>Site avec Gestion de Données</h4>
-                    <p>Réservations, catalogues, gestion d'utilisateurs , je construis le back-end complet de manière fiable et sécurisée.</p>
-                    <!-- <div class="service-tags"><span>PHP</span><span>MySQL</span><span>CRUD</span></div> -->
+                    <p>Réservations, catalogues, gestion d'utilisateurs — je construis le back-end complet de manière fiable et sécurisée.</p>
                 </div>
 
                 <div class="service-card">
                     <div class="service-card-icon"><i class='bx bxl-tailwind-css' style="color:#38bdf8;"></i></div>
                     <div class="service-number">05</div>
                     <h4>Intégration UI &amp; Design System</h4>
-                    <p>Vous avez une maquette Figma ? Je l'intègre avec précision , code propre, chargement rapide, rendu fidèle sur tous les écrans.</p>
-                    <!-- <div class="service-tags"><span>Figma</span><span>Tailwind</span><span>Pixel-perfect</span></div> -->
+                    <p>Vous avez une maquette Figma ? Je l'intègre avec précision — code propre, chargement rapide, rendu fidèle sur tous les écrans.</p>
                 </div>
 
                 <div class="service-card">
                     <div class="service-card-icon"><i class='bx bxl-whatsapp' style="color:#25d366;"></i></div>
                     <div class="service-number">06</div>
                     <h4>Boutique WhatsApp sans Serveur</h4>
-                    <p>Recevez les commandes de vos clients directement sur WhatsApp. Catalogue en ligne, panier automatique , e-commerce léger et gratuit.</p>
-                    <!-- <div class="service-tags"><span>WhatsApp API</span><span>JS</span><span>No-server</span></div> -->
+                    <p>Recevez les commandes directement sur WhatsApp. Catalogue en ligne, panier automatique — e-commerce léger et gratuit.</p>
                 </div>
             </div>
 
@@ -636,7 +652,7 @@
 
             <div class="stage-cta">
                 <h3>Vous avez un projet <span>en tête ?</span></h3>
-                <p>Décrivez-le moi en quelques lignes. Je vous réponds sous 24h avec une solution concrète, adaptée à votre budget , sans jargon technique.</p>
+                <p>Décrivez-le moi en quelques lignes. Je vous réponds sous 24h avec une solution concrète.</p>
                 <div class="stage-cta-buttons">
                     <a href="#Contact" class="btn btn-primary"><i class='bx bx-paper-plane'></i> Discutons ensemble</a>
                     <a href="#portfolio" class="btn btn-secondary"><i class='bx bx-briefcase'></i> Voir mes réalisations</a>
@@ -662,16 +678,10 @@
                         Parlons de votre <span class="highlight">projet</span>
                     </h2>
                     <p class="contact-v2-intro">
-                        Recruteur, collaborateur ou simplement curieux ,
+                        Recruteur, collaborateur ou simplement curieux —
                         je lis chaque message et réponds sous 24h.
                     </p>
                 </div>
-
-                <!-- Badge disponibilité stage -->
-                <!-- <div class="contact-v2-status">
-                    <span class="status-dot"></span>
-                    Disponible pour un stage · 2026
-                </div> -->
 
                 <div class="contact-v2-channels">
                     <a href="mailto:ouattara.damiti.dev@gmail.com" class="channel-card">
@@ -788,25 +798,33 @@
     </footer>
 
     <!-- ═══════════════════════════════════════════════════════
-         SCRIPTS , chargés après le contenu
-         • scrollreveal & typed : synchrones (nécessaires au rendu initial)
-         • autres : defer ou async
+         SCRIPTS — ordre optimisé pour la performance
+
+         Stratégie :
+         • Typed.js : defer (nécessaire pour le héro)
+         • Tous les scripts métier : defer
+         • visitor-notify : async (totalement non-critique)
+         • animations-3d (Three.js) : defer en dernier
+         • ScrollReveal SUPPRIMÉ (inutile — scroll-animations.js fait tout)
     ═══════════════════════════════════════════════════════ -->
-    <script src="https://unpkg.com/scrollreveal" defer></script>
+
+    <!-- Typed.js uniquement (ScrollReveal retiré) -->
     <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js" defer></script>
 
-    <!-- Scripts métier -->
+    <!-- Scripts métier dans l'ordre de priorité -->
     <script src="script.js" defer></script>
     <script src="theme-toggle.js" defer></script>
     <script src="portfolio.js" defer></script>
+    <script src="scroll-animations.js" defer></script>
 
-    <!-- Notification visiteur : totalement non-critique -->
+    <!-- Notification visiteur — complètement asynchrone -->
     <script src="visitor-notify.js" async></script>
 
     <!-- Animations premium (sans curseur) -->
     <script src="cinematic-3d.js" defer></script>
 
-    <!-- Animations 3D Three.js : non-critique, chargé en dernier -->
+    <!-- Three.js 3D — non-critique, chargé en tout dernier -->
     <script src="animations-3d.js" defer></script>
+
 </body>
 </html>

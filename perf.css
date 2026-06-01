@@ -1,0 +1,273 @@
+/* ============================================================
+   perf.css — Optimisations performance
+   À charger EN DERNIER dans <head> (override style.css)
+
+   Principes appliqués :
+   • content-visibility: auto → skip rendering des sections hors écran
+   • contain: layout style paint → isolate reflow per card
+   • will-change uniquement sur les éléments réellement animés
+   • GPU compositing : transform + opacity uniquement
+   • Suppression de la règle * { transition } (causes massive recalc)
+   ============================================================ */
+
+/* ══════════════════════════════════════════
+   1. ANNULATION de la règle * catch-all
+   (définie dans additions.css — killer de perf)
+   On la surcharge sélectivement
+══════════════════════════════════════════ */
+*, *::before, *::after {
+    /* SUPPRIMÉ : transition: background-color 0.3s... */
+}
+
+/* Transitions ciblées — uniquement les éléments qui en ont besoin */
+body,
+.header,
+.navbar a,
+.btn,
+.social-btn,
+.filter-btn,
+.tech-item,
+.comp-card,
+.service-card,
+.stage-card,
+.tm-card,
+.channel-card,
+.pf-project-row,
+.pf-showcase-panel,
+.contact-v2-form-card,
+.certif-inline-card,
+.pf-acc-header,
+.pf-acc-body,
+.stat-box,
+.social-icon-btn,
+.footer-iconTop a,
+.theme-toggle,
+.process-step-num,
+.apropos-img,
+.profile-img {
+    transition: background-color 0.3s ease,
+                color 0.3s ease,
+                border-color 0.3s ease,
+                box-shadow 0.3s ease;
+}
+
+/* ══════════════════════════════════════════
+   2. CONTENT-VISIBILITY
+   Les sections sous la fold ne sont pas rendues
+   jusqu'à ce qu'elles approchent du viewport.
+   Gain : jusqu'à 60% de temps de rendu initial
+══════════════════════════════════════════ */
+.apropos,
+.parcours-moderne,
+.competence,
+.portfolio,
+.services-section,
+.stage-section,
+.contact-v2,
+.footer {
+    content-visibility: auto;
+    /* Hint de taille pour éviter le layout shift */
+    contain-intrinsic-size: 0 800px;
+}
+
+/* ══════════════════════════════════════════
+   3. CONTAIN — isoler le reflow par composant
+   Empêche une carte de recalculer le layout global
+══════════════════════════════════════════ */
+.comp-card,
+.service-card,
+.stage-card,
+.tm-card,
+.pf-acc-header,
+.channel-card,
+.certif-inline-card,
+.stat-box,
+.tech-item,
+.role-card {
+    contain: layout style;
+}
+
+/* paint contain sur les containers à scroll */
+.pf-split__list,
+.pf-split__showcase {
+    contain: strict;
+}
+
+/* ══════════════════════════════════════════
+   4. WILL-CHANGE ciblé
+   Uniquement sur les éléments avec animation active
+   NE PAS mettre will-change sur tout !
+══════════════════════════════════════════ */
+
+/* Image flottante hero */
+.profile-img {
+    will-change: transform;
+}
+
+/* Icosaèdre 3D / éléments Three.js */
+#apropos-3d,
+#comp-3d,
+#contact-3d,
+#portfolio-3d,
+#services-3d {
+    will-change: opacity;
+}
+
+/* Scroll progress bar (change width en continu) */
+#scroll-progress {
+    will-change: width;
+}
+
+/* Panel showcase (changement d'opacité + transform) */
+.pf-showcase-panel {
+    will-change: opacity, transform;
+}
+
+/* Loader bar */
+.loader-bar {
+    will-change: width;
+}
+
+/* ══════════════════════════════════════════
+   5. GPU COMPOSITING — transform + opacity only
+   Aucun top/left/width/height dans les animations
+══════════════════════════════════════════ */
+
+/* Cartes hover — translateY uniquement (pas de margin/padding) */
+.comp-card:hover,
+.service-card:hover,
+.stage-card:hover {
+    transform: translateY(-6px) translateZ(0);
+}
+
+.tm-card:hover {
+    transform: translateX(6px) translateZ(0);
+}
+
+.tech-item:hover {
+    transform: translateY(-5px) translateZ(0);
+}
+
+.certif-inline-card:hover {
+    transform: translateX(6px) translateZ(0);
+}
+
+.channel-card:hover {
+    transform: translateX(6px) translateZ(0);
+}
+
+/* Badges flottants : translateY uniquement */
+.tech-float-badge:hover {
+    transform: scale(1.1) translateY(-4px) translateZ(0) !important;
+}
+
+/* ══════════════════════════════════════════
+   6. PASSIVE SCROLL ANIMATIONS
+   Smooth scrolling sur le document entier
+   via Scroll-driven animation hint
+══════════════════════════════════════════ */
+html {
+    scroll-behavior: smooth;
+    /* Optimise le compositing */
+    -webkit-overflow-scrolling: touch;
+}
+
+/* ══════════════════════════════════════════
+   7. IMAGE RENDERING — éviter le blur sur resize
+══════════════════════════════════════════ */
+.profile-img,
+.apropos-img,
+.pf-row-thumb img,
+.pf-acc-thumb img,
+.pf-showcase-img img,
+.pf-acc-img img {
+    image-rendering: -webkit-optimize-contrast;
+    /* Évite les recalculs inutiles */
+    transform: translateZ(0);
+    backface-visibility: hidden;
+}
+
+/* ══════════════════════════════════════════
+   8. FONT RENDERING
+══════════════════════════════════════════ */
+body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeSpeed;
+}
+
+/* Headlines : lisibilité prioritaire */
+h1, h2, h3 {
+    text-rendering: optimizeLegibility;
+}
+
+/* ══════════════════════════════════════════
+   9. INTERACTION OPTIMIZATION
+   pointer-events: none sur les décos pures
+══════════════════════════════════════════ */
+.accueil-bg-glow,
+.image-bg-shape,
+.service-number,
+.tm-dot::after {
+    pointer-events: none;
+}
+
+/* ══════════════════════════════════════════
+   10. REDUCED MOTION — respect a11y
+══════════════════════════════════════════ */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.001ms !important;
+        scroll-behavior: auto !important;
+    }
+
+    .profile-img,
+    .tech-float-badge,
+    .floating-badge,
+    .image-bg-shape {
+        animation: none !important;
+    }
+
+    [data-reveal],
+    .sa-el {
+        opacity: 1 !important;
+        transform: none !important;
+    }
+
+    content-visibility: visible;
+}
+
+/* ══════════════════════════════════════════
+   11. OVERSCROLL BEHAVIOR
+   Empêche le bounce iOS de casser les animations
+══════════════════════════════════════════ */
+body {
+    overscroll-behavior: none;
+}
+
+/* ══════════════════════════════════════════
+   12. LAYOUT SHIFT PREVENTION
+   Réserver l'espace des images avant chargement
+══════════════════════════════════════════ */
+.profile-img {
+    aspect-ratio: 480 / 600;
+}
+
+.pf-row-thumb {
+    aspect-ratio: 52 / 40;
+}
+
+.pf-showcase-img {
+    min-height: 200px;
+}
+
+/* ══════════════════════════════════════════
+   13. LOADER — cache body overflow pendant le splash
+══════════════════════════════════════════ */
+body:has(#page-loader:not(.hide)) {
+    overflow: hidden;
+}
